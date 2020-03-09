@@ -20,6 +20,8 @@ namespace ETModel
 				DontDestroyOnLoad(gameObject);
 				Game.EventSystem.Add(DLLType.Model, typeof(Init).Assembly);
 
+				EntityDefine.Init();
+
 				Game.Scene.AddComponent<TimerComponent>();
 				Game.Scene.AddComponent<GlobalConfigComponent>();
 				Game.Scene.AddComponent<NetOuterComponent>();

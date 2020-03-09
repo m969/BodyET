@@ -15,9 +15,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants>TRACE;RELEASE;NETCOREAPP2_0;SERVER</DefineConstants>
     <OutputPath>..\..\Bin\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Other\**" />
+    <Compile Include="..\..\Unity\Assets\Hotfix\Module\Demo\OperaType.cs" Link="Module\Demo\Map\OperaType.cs" />
     <Compile Include="..\..\Unity\Assets\Model\Module\Message\NetOuterComponentSystem.cs">
       <Link>Module\Message\NetOuterComponentSystem.cs</Link>
     </Compile>

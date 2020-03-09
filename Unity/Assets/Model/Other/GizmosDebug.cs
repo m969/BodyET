@@ -7,7 +7,10 @@ namespace ETModel
     {
         public static GizmosDebug Instance { get; private set; }
 
-        public List<Vector3> Path;
+        public List<Vector3> Path { get; set; } = new List<Vector3>() { Vector3.zero, Vector3.zero };
+        public Vector3 From { get; set; }
+        public Vector3 Direction { get; set; }
+        public Ray Ray { get; set; } = new Ray(Vector3.zero, Vector3.zero);
 
         private void Awake()
         {
@@ -16,6 +19,8 @@ namespace ETModel
 
         private void OnDrawGizmos()
         {
+            //Gizmos.DrawRay(From, Direction);
+            Gizmos.DrawRay(Ray.origin, Ray.direction);
             if (this.Path.Count < 2)
             {
                 return;

@@ -17,6 +17,7 @@
     <DefineConstants>TRACE;RELEASE;NETCOREAPP2_0;SERVER</DefineConstants>
     <OutputPath>..\..\Bin\</OutputPath>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Libs\**" />
@@ -173,6 +174,9 @@
     <Compile Include="..\..\Unity\Assets\Model\Module\CoroutineLock\CoroutineLockType.cs">
       <Link>Module\CoroutineLock\CoroutineLockType.cs</Link>
     </Compile>
+    <Compile Include="..\..\Unity\Assets\Model\Module\Demo\Bullet.cs" Link="Module\Demo\Bullet\Bullet.cs" />
+    <Compile Include="..\..\Unity\Assets\Model\Module\Demo\EntityDefine.cs" Link="Module\Demo\EntityDefine.cs" />
+    <Compile Include="..\..\Unity\Assets\Model\Module\Demo\Unit\Unit.cs" Link="Module\Demo\Unit.cs" />
     <Compile Include="..\..\Unity\Assets\Model\Module\Message\MessagePool.cs">
       <Link>Module\Message\MessagePool\ETModel\MessagePool.cs</Link>
     </Compile>
@@ -420,6 +424,12 @@
     <Folder Include="Module\Scene" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Box2DSharp">
+      <HintPath>..\ThirdParty\Box2DSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="BulletSharp">
+      <HintPath>..\ThirdParty\BulletSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Pathfinding.Ionic.Zip.Reduced, Version=1.9.1.9000, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\ThirdParty\Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
     </Reference>

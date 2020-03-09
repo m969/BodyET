@@ -1,0 +1,4 @@
+*.meta
+NuGet*
+NuGet/*
+Packages/

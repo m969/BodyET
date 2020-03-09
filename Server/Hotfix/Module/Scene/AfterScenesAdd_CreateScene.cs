@@ -17,6 +17,8 @@ namespace ETHotfix
                 SceneConfig sceneConfig = startConfig.GetComponent<SceneConfig>();
                 await SceneFactory.Create(Game.Scene, startConfig.Id, sceneConfig.Name, sceneConfig.SceneType);    
             }
+            Unit.OnPropertyChanged = MessageHelper.OnPropertyChanged;
+            new Test().Tumbler(false);
         }
     }
 }

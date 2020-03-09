@@ -68,13 +68,34 @@ message UnitOperation // IActorLocationMessage
 	int32 Y = 3;
 	int32 Z = 4;
 	int32 Operation = 5;
+	int32 AngleY = 8;
+	repeated int32 IntParams = 9;
+	repeated string StringParams = 10;
+	repeated int64 LongParams = 11;
+}
+
+message M2C_OnEntityChanged // IActorLocationMessage
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 Id = 94;
+
+	int64 EntityId  = 1;
+	int32 EntityType = 5;
+	int32 X = 2;
+	int32 Y = 3;
+	int32 Z = 4;
+	int32 AngleY = 8;
+	repeated int32 TypeParams = 9;
+	repeated int32 IntParams = 10;
 }
 
 message M2C_CreateUnits // IActorMessage
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
-    repeated UnitInfo Units = 1;
+	repeated UnitInfo Units = 1;
+	int64 SelfUnitId = 2;
 }
 
 message Frame_ClickMap // IActorLocationMessage

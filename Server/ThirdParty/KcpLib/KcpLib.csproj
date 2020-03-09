@@ -12,6 +12,9 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <OutputPath>..\..\..\Bin\</OutputPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
   <ItemGroup>
     <None Include="..\..\..\Unity\Assets\Plugins\x86_64\kcp.dll" Link="kcp.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -63,78 +63,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\KinematicCharacterController\Core\ICharacterController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Core\IMoverController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Core\KinematicCharacterMotor.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Core\KinematicCharacterSystem.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Core\PhysicsMover.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Core\ReadOnlyAttribute.cs" />
-    <Compile Include="Assets\KinematicCharacterController\ExampleCharacter\Scripts\ExampleCharacterCamera.cs" />
-    <Compile Include="Assets\KinematicCharacterController\ExampleCharacter\Scripts\ExampleCharacterController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\ExampleCharacter\Scripts\ExamplePlayer.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Examples\Scripts\BuildManager.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Examples\Scripts\ExampleAIController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Examples\Scripts\ExampleMovingPlatform.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Examples\Scripts\FrameratePanel.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Examples\Scripts\PlanetManager.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Examples\Scripts\PlayableMover.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Examples\Scripts\PrefabLauncher.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Examples\Scripts\StressTestManager.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Examples\Scripts\Teleporter.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\1- Player Camera Character Setup\Scripts\MyCharacterController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\1- Player Camera Character Setup\Scripts\MyPlayer.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\10- Multiple movement states setup\Scripts\MyCharacterController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\10- Multiple movement states setup\Scripts\MyPlayer.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\11- Charging state\Scripts\MyCharacterController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\11- Charging state\Scripts\MyPlayer.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\12- NoClip state\Scripts\MyCharacterController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\12- NoClip state\Scripts\MyPlayer.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\13- Swimming state\Scripts\MyCharacterController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\13- Swimming state\Scripts\MyPlayer.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\14- Climbing Ladders\Scripts\MyCharacterController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\14- Climbing Ladders\Scripts\MyLadder.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\14- Climbing Ladders\Scripts\MyPlayer.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\15- Root motion example\Scripts\MyCharacterController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\15- Root motion example\Scripts\MyPlayer.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\16- FramePerfect Rotation\Scripts\MyCharacterController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\16- FramePerfect Rotation\Scripts\MyPlayer.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\2- Basic Movement and Gravity\Scripts\MyCharacterController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\2- Basic Movement and Gravity\Scripts\MyPlayer.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\3- Jumping\Scripts\a- Simple Jumping\MyCharacterController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\3- Jumping\Scripts\a- Simple Jumping\MyPlayer.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\3- Jumping\Scripts\b- Double Jumping\MyCharacterController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\3- Jumping\Scripts\b- Double Jumping\MyPlayer.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\3- Jumping\Scripts\c- Wall Jumping\MyCharacterController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\3- Jumping\Scripts\c- Wall Jumping\MyPlayer.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\4- Landing and leaving ground\Scripts\MyCharacterController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\4- Landing and leaving ground\Scripts\MyPlayer.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\5- Adding velocities and impulses\Scripts\MyCharacterController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\5- Adding velocities and impulses\Scripts\MyPlayer.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\6- Crouching\Scripts\MyCharacterController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\6- Crouching\Scripts\MyPlayer.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\7- Orienting towards arbitrary up direction\Scripts\MyCharacterController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\7- Orienting towards arbitrary up direction\Scripts\MyPlayer.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\8- Creating a moving platform\Scripts\MyCharacterController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\8- Creating a moving platform\Scripts\MyMovingPlatform.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\8- Creating a moving platform\Scripts\MyPlayer.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\9- Custom collision filtering\Scripts\MyCharacterController.cs" />
-    <Compile Include="Assets\KinematicCharacterController\Walkthrough\9- Custom collision filtering\Scripts\MyPlayer.cs" />
+    <Compile Include="Assets\StylizedExplosionPack\scripts\destroyMe.cs" />
+    <Compile Include="Assets\StylizedExplosionPack\scripts\instantiateEffectCaller.cs" />
+    <Compile Include="Assets\StylizedExplosionPack\scripts\particleColorChanger.cs" />
+    <None Include="Assets\StylizedExplosionPack\shader\alphaBlend_depthBlend_glow.shader" />
+    <None Include="Assets\StylizedExplosionPack\shader\alphaBlend_glow.shader" />
     <None Include="Assets\Res\Config\GlobalProto.txt" />
     <None Include="Assets\link.xml" />
+    <None Include="Assets\StylizedExplosionPack\Tips &amp; Documentations.txt" />
     <None Include="Assets\Res\Config\BuffConfig.txt" />
     <None Include="Assets\Res\Config\UnitConfig.txt" />
     <None Include="Assets\StreamingAssets\Version.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET - 6.0/Unity/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET - 6.0/Unity/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.AssetBundleBrowser.Editor">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET - 6.0/Unity/Library/ScriptAssemblies/Unity.AssetBundleBrowser.Editor.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Library/ScriptAssemblies/Unity.AssetBundleBrowser.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET - 6.0/Unity/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -329,16 +279,25 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.14f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET - 6.0/Unity/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Pathfinding.ClipperLib">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET - 6.0/Unity/Assets/Plugins/AstarPathfindingProject/Clipper/Pathfinding.ClipperLib.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/AstarPathfindingProject/Clipper/Pathfinding.ClipperLib.dll</HintPath>
     </Reference>
     <Reference Include="Pathfinding.Ionic.Zip.Reduced">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET - 6.0/Unity/Assets/Plugins/AstarPathfindingProject/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/AstarPathfindingProject/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
     </Reference>
     <Reference Include="Pathfinding.Poly2Tri">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET - 6.0/Unity/Assets/Plugins/AstarPathfindingProject/Poly2Tri/Pathfinding.Poly2Tri.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/AstarPathfindingProject/Poly2Tri/Pathfinding.Poly2Tri.dll</HintPath>
+    </Reference>
+    <Reference Include="DemiLib">
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/ThirdParty/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/ThirdParty/Demigiant/DOTween/DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenPro">
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/ThirdParty/Demigiant/DOTweenPro/DOTweenPro.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.14f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -704,6 +663,10 @@
       <Project>{CD311104-1830-B119-81B6-5DBEE2467FFB}</Project>
       <Name>Unity.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="KDTreeAssembly.csproj">
+      <Project>{7CCF4889-60D1-8EB5-62FE-1FF9528762A6}</Project>
+      <Name>KDTreeAssembly</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Hotfix.csproj">
       <Project>{1066F652-6A89-D1C4-9881-1A19DF7AB80E}</Project>
       <Name>Unity.Hotfix</Name>
@@ -711,6 +674,10 @@
     <ProjectReference Include="Unity.Model.csproj">
       <Project>{B4BF9894-F5D9-41C4-13E3-3F26F7700E29}</Project>
       <Name>Unity.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="SpaceColonizationAssembly.csproj">
+      <Project>{A79E6633-D5FB-69BB-511E-BB564C2E9CDF}</Project>
+      <Name>SpaceColonizationAssembly</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

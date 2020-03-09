@@ -69,7 +69,8 @@ MonoBehaviour:
   AirAccelerationSpeed: 30
   Drag: 0.1
   AllowJumpingWhenSliding: 0
-  JumpSpeed: 15
+  JumpUpSpeed: 10
+  JumpScalableForwardSpeed: 10
   JumpPreGroundingGraceTime: 0
   JumpPostGroundingGraceTime: 0
   IgnoredColliders: []

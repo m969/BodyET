@@ -730,6 +730,38 @@ namespace ETModel {
       }
     }
 
+    private int angleY_;
+    public int AngleY {
+      get { return angleY_; }
+      set {
+        angleY_ = value;
+      }
+    }
+
+    private static readonly pb::FieldCodec<int> _repeated_intParams_codec
+        = pb::FieldCodec.ForInt32(74);
+    private pbc::RepeatedField<int> intParams_ = new pbc::RepeatedField<int>();
+    public pbc::RepeatedField<int> IntParams {
+      get { return intParams_; }
+      set { intParams_ = value; }
+    }
+
+    private static readonly pb::FieldCodec<string> _repeated_stringParams_codec
+        = pb::FieldCodec.ForString(82);
+    private pbc::RepeatedField<string> stringParams_ = new pbc::RepeatedField<string>();
+    public pbc::RepeatedField<string> StringParams {
+      get { return stringParams_; }
+      set { stringParams_ = value; }
+    }
+
+    private static readonly pb::FieldCodec<long> _repeated_longParams_codec
+        = pb::FieldCodec.ForInt64(90);
+    private pbc::RepeatedField<long> longParams_ = new pbc::RepeatedField<long>();
+    public pbc::RepeatedField<long> LongParams {
+      get { return longParams_; }
+      set { longParams_ = value; }
+    }
+
     public void WriteTo(pb::CodedOutputStream output) {
       if (UnitId != 0L) {
         output.WriteRawTag(8);
@@ -759,6 +791,13 @@ namespace ETModel {
         output.WriteRawTag(56);
         output.WriteInt64(Time);
       }
+      if (AngleY != 0) {
+        output.WriteRawTag(64);
+        output.WriteInt32(AngleY);
+      }
+      intParams_.WriteTo(output, _repeated_intParams_codec);
+      stringParams_.WriteTo(output, _repeated_stringParams_codec);
+      longParams_.WriteTo(output, _repeated_longParams_codec);
       if (RpcId != 0) {
         output.WriteRawTag(208, 5);
         output.WriteInt32(RpcId);
@@ -805,6 +844,12 @@ namespace ETModel {
       if (Operation != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Operation);
       }
+      if (AngleY != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(AngleY);
+      }
+      size += intParams_.CalculateSize(_repeated_intParams_codec);
+      size += stringParams_.CalculateSize(_repeated_stringParams_codec);
+      size += longParams_.CalculateSize(_repeated_longParams_codec);
       return size;
     }
 
@@ -816,6 +861,10 @@ namespace ETModel {
       operation_ = 0;
       index_ = 0;
       time_ = 0;
+      angleY_ = 0;
+      intParams_.Clear();
+      stringParams_.Clear();
+      longParams_.Clear();
       rpcId_ = 0;
       actorId_ = 0;
       id_ = 0;
@@ -851,6 +900,261 @@ namespace ETModel {
           }
           case 56: {
             Time = input.ReadInt64();
+            break;
+          }
+          case 64: {
+            AngleY = input.ReadInt32();
+            break;
+          }
+          case 74:
+          case 72: {
+            intParams_.AddEntriesFrom(input, _repeated_intParams_codec);
+            break;
+          }
+          case 82: {
+            stringParams_.AddEntriesFrom(input, _repeated_stringParams_codec);
+            break;
+          }
+          case 90:
+          case 88: {
+            longParams_.AddEntriesFrom(input, _repeated_longParams_codec);
+            break;
+          }
+          case 720: {
+            RpcId = input.ReadInt32();
+            break;
+          }
+          case 744: {
+            ActorId = input.ReadInt64();
+            break;
+          }
+          case 752: {
+            Id = input.ReadInt64();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public partial class M2C_OnEntityChanged : pb::IMessage {
+    private static readonly pb::MessageParser<M2C_OnEntityChanged> _parser = new pb::MessageParser<M2C_OnEntityChanged>(() => (M2C_OnEntityChanged)MessagePool.Instance.Fetch(typeof(M2C_OnEntityChanged)));
+    public static pb::MessageParser<M2C_OnEntityChanged> Parser { get { return _parser; } }
+
+    private int rpcId_;
+    public int RpcId {
+      get { return rpcId_; }
+      set {
+        rpcId_ = value;
+      }
+    }
+
+    private long actorId_;
+    public long ActorId {
+      get { return actorId_; }
+      set {
+        actorId_ = value;
+      }
+    }
+
+    private long id_;
+    public long Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    private long entityId_;
+    public long EntityId {
+      get { return entityId_; }
+      set {
+        entityId_ = value;
+      }
+    }
+
+    private int entityType_;
+    public int EntityType {
+      get { return entityType_; }
+      set {
+        entityType_ = value;
+      }
+    }
+
+    private int x_;
+    public int X {
+      get { return x_; }
+      set {
+        x_ = value;
+      }
+    }
+
+    private int y_;
+    public int Y {
+      get { return y_; }
+      set {
+        y_ = value;
+      }
+    }
+
+    private int z_;
+    public int Z {
+      get { return z_; }
+      set {
+        z_ = value;
+      }
+    }
+
+    private int angleY_;
+    public int AngleY {
+      get { return angleY_; }
+      set {
+        angleY_ = value;
+      }
+    }
+
+    private static readonly pb::FieldCodec<int> _repeated_typeParams_codec
+        = pb::FieldCodec.ForInt32(74);
+    private pbc::RepeatedField<int> typeParams_ = new pbc::RepeatedField<int>();
+    public pbc::RepeatedField<int> TypeParams {
+      get { return typeParams_; }
+      set { typeParams_ = value; }
+    }
+
+    private static readonly pb::FieldCodec<int> _repeated_intParams_codec
+        = pb::FieldCodec.ForInt32(82);
+    private pbc::RepeatedField<int> intParams_ = new pbc::RepeatedField<int>();
+    public pbc::RepeatedField<int> IntParams {
+      get { return intParams_; }
+      set { intParams_ = value; }
+    }
+
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (EntityId != 0L) {
+        output.WriteRawTag(8);
+        output.WriteInt64(EntityId);
+      }
+      if (X != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(X);
+      }
+      if (Y != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Y);
+      }
+      if (Z != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Z);
+      }
+      if (EntityType != 0) {
+        output.WriteRawTag(40);
+        output.WriteInt32(EntityType);
+      }
+      if (AngleY != 0) {
+        output.WriteRawTag(64);
+        output.WriteInt32(AngleY);
+      }
+      typeParams_.WriteTo(output, _repeated_typeParams_codec);
+      intParams_.WriteTo(output, _repeated_intParams_codec);
+      if (RpcId != 0) {
+        output.WriteRawTag(208, 5);
+        output.WriteInt32(RpcId);
+      }
+      if (ActorId != 0L) {
+        output.WriteRawTag(232, 5);
+        output.WriteInt64(ActorId);
+      }
+      if (Id != 0L) {
+        output.WriteRawTag(240, 5);
+        output.WriteInt64(Id);
+      }
+    }
+
+    public int CalculateSize() {
+      int size = 0;
+      if (RpcId != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(RpcId);
+      }
+      if (ActorId != 0L) {
+        size += 2 + pb::CodedOutputStream.ComputeInt64Size(ActorId);
+      }
+      if (Id != 0L) {
+        size += 2 + pb::CodedOutputStream.ComputeInt64Size(Id);
+      }
+      if (EntityId != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(EntityId);
+      }
+      if (EntityType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(EntityType);
+      }
+      if (X != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(X);
+      }
+      if (Y != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Y);
+      }
+      if (Z != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Z);
+      }
+      if (AngleY != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(AngleY);
+      }
+      size += typeParams_.CalculateSize(_repeated_typeParams_codec);
+      size += intParams_.CalculateSize(_repeated_intParams_codec);
+      return size;
+    }
+
+    public void MergeFrom(pb::CodedInputStream input) {
+      entityId_ = 0;
+      x_ = 0;
+      y_ = 0;
+      z_ = 0;
+      entityType_ = 0;
+      angleY_ = 0;
+      typeParams_.Clear();
+      intParams_.Clear();
+      rpcId_ = 0;
+      actorId_ = 0;
+      id_ = 0;
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            EntityId = input.ReadInt64();
+            break;
+          }
+          case 16: {
+            X = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            Y = input.ReadInt32();
+            break;
+          }
+          case 32: {
+            Z = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            EntityType = input.ReadInt32();
+            break;
+          }
+          case 64: {
+            AngleY = input.ReadInt32();
+            break;
+          }
+          case 74:
+          case 72: {
+            typeParams_.AddEntriesFrom(input, _repeated_typeParams_codec);
+            break;
+          }
+          case 82:
+          case 80: {
+            intParams_.AddEntriesFrom(input, _repeated_intParams_codec);
             break;
           }
           case 720: {
@@ -899,8 +1203,20 @@ namespace ETModel {
       set { units_ = value; }
     }
 
+    private long selfUnitId_;
+    public long SelfUnitId {
+      get { return selfUnitId_; }
+      set {
+        selfUnitId_ = value;
+      }
+    }
+
     public void WriteTo(pb::CodedOutputStream output) {
       units_.WriteTo(output, _repeated_units_codec);
+      if (SelfUnitId != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(SelfUnitId);
+      }
       if (RpcId != 0) {
         output.WriteRawTag(208, 5);
         output.WriteInt32(RpcId);
@@ -920,12 +1236,16 @@ namespace ETModel {
         size += 2 + pb::CodedOutputStream.ComputeInt64Size(ActorId);
       }
       size += units_.CalculateSize(_repeated_units_codec);
+      if (SelfUnitId != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(SelfUnitId);
+      }
       return size;
     }
 
     public void MergeFrom(pb::CodedInputStream input) {
       for (int i = 0; i < units_.Count; i++) { MessagePool.Instance.Recycle(units_[i]); }
       units_.Clear();
+      selfUnitId_ = 0;
       rpcId_ = 0;
       actorId_ = 0;
       uint tag;
@@ -936,6 +1256,10 @@ namespace ETModel {
             break;
           case 10: {
             units_.AddEntriesFrom(input, _repeated_units_codec);
+            break;
+          }
+          case 16: {
+            SelfUnitId = input.ReadInt64();
             break;
           }
           case 720: {

@@ -160,12 +160,15 @@
     <Compile Include="Assets\Model\Entity\SceneType.cs" />
     <Compile Include="Assets\Model\Entity\UnityWebRequestAsync.cs" />
     <Compile Include="Assets\Model\Helper\ActionHelper.cs" />
+    <Compile Include="Assets\Model\Helper\BehaviourAction.cs" />
     <Compile Include="Assets\Model\Helper\BundleHelper.cs" />
     <Compile Include="Assets\Model\Helper\GameObjectHelper.cs" />
     <Compile Include="Assets\Model\Helper\ILHelper.cs" />
     <Compile Include="Assets\Model\Helper\PathHelper.cs" />
     <Compile Include="Assets\Model\Helper\PositionHelper.cs" />
+    <Compile Include="Assets\Model\Helper\PrefabHelper.cs" />
     <Compile Include="Assets\Model\Helper\ResourcesHelper.cs" />
+    <Compile Include="Assets\Model\Helper\UpdateAction.cs" />
     <Compile Include="Assets\Model\ILBinding\CLRBindings.cs" />
     <Compile Include="Assets\Model\Init.cs" />
     <Compile Include="Assets\Model\Module\Actor\IActorMessage.cs" />
@@ -187,8 +190,11 @@
     <Compile Include="Assets\Model\Module\CoroutineLock\CoroutineLockQueueType.cs" />
     <Compile Include="Assets\Model\Module\CoroutineLock\CoroutineLockType.cs" />
     <Compile Include="Assets\Model\Module\Demo\AnimatorComponent.cs" />
+    <Compile Include="Assets\Model\Module\Demo\Bullet.cs" />
     <Compile Include="Assets\Model\Module\Demo\CameraComponent.cs" />
     <Compile Include="Assets\Model\Module\Demo\Config\UnitConfig.cs" />
+    <Compile Include="Assets\Model\Module\Demo\EntityDefine.cs" />
+    <Compile Include="Assets\Model\Module\Demo\HealthComponent.cs" />
     <Compile Include="Assets\Model\Module\Demo\MoveComponent.cs" />
     <Compile Include="Assets\Model\Module\Demo\Player.cs" />
     <Compile Include="Assets\Model\Module\Demo\PlayerComponent.cs" />
@@ -199,10 +205,11 @@
     <Compile Include="Assets\Model\Module\Demo\UI\UILoading\System\LoadingBeginEvent_CreateLoadingUI.cs" />
     <Compile Include="Assets\Model\Module\Demo\UI\UILoading\System\LoadingFinishEvent_RemoveLoadingUI.cs" />
     <Compile Include="Assets\Model\Module\Demo\UI\UILoading\System\UILoadingFactory.cs" />
-    <Compile Include="Assets\Model\Module\Demo\Unit.cs" />
-    <Compile Include="Assets\Model\Module\Demo\UnitComponent.cs" />
-    <Compile Include="Assets\Model\Module\Demo\UnitFactory.cs" />
-    <Compile Include="Assets\Model\Module\Demo\UnitPathComponent.cs" />
+    <Compile Include="Assets\Model\Module\Demo\Unit\Unit.cs" />
+    <Compile Include="Assets\Model\Module\Demo\Unit\UnitComponent.cs" />
+    <Compile Include="Assets\Model\Module\Demo\Unit\UnitFactory.cs" />
+    <Compile Include="Assets\Model\Module\Demo\Unit\UnitPathComponent.cs" />
+    <Compile Include="Assets\Model\Module\Demo\Unit\UnitViewPartial.cs" />
     <Compile Include="Assets\Model\Module\Message\AMHandler.cs" />
     <Compile Include="Assets\Model\Module\Message\ErrorCode.cs" />
     <Compile Include="Assets\Model\Module\Message\IMessage.cs" />
@@ -609,32 +616,50 @@
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.14f1/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="DemiEditor">
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Editor/Demigiant/DemiLib/Editor/DemiEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenEditor">
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Editor/Demigiant/DOTween/Editor/DOTweenEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenProEditor">
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Editor/Demigiant/DOTweenPro/Editor/DOTweenProEditor.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET - 6.0/Unity/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Pathfinding.ClipperLib">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET - 6.0/Unity/Assets/Plugins/AstarPathfindingProject/Clipper/Pathfinding.ClipperLib.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/AstarPathfindingProject/Clipper/Pathfinding.ClipperLib.dll</HintPath>
     </Reference>
     <Reference Include="Pathfinding.Ionic.Zip.Reduced">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET - 6.0/Unity/Assets/Plugins/AstarPathfindingProject/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/AstarPathfindingProject/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
     </Reference>
     <Reference Include="Pathfinding.Poly2Tri">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET - 6.0/Unity/Assets/Plugins/AstarPathfindingProject/Poly2Tri/Pathfinding.Poly2Tri.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/AstarPathfindingProject/Poly2Tri/Pathfinding.Poly2Tri.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Rider.Unity.Editor.Plugin.Repacked">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET - 6.0/Unity/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET - 6.0/Unity/Assets/Plugins/Editor/npoi/NPOI.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/Editor/npoi/NPOI.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OOXML">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET - 6.0/Unity/Assets/Plugins/Editor/npoi/NPOI.OOXML.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/Editor/npoi/NPOI.OOXML.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXml4Net">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET - 6.0/Unity/Assets/Plugins/Editor/npoi/NPOI.OpenXml4Net.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/Editor/npoi/NPOI.OpenXml4Net.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXmlFormats">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET - 6.0/Unity/Assets/Plugins/Editor/npoi/NPOI.OpenXmlFormats.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/Editor/npoi/NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="DemiLib">
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/ThirdParty/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/ThirdParty/Demigiant/DOTween/DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenPro">
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/ThirdParty/Demigiant/DOTweenPro/DOTweenPro.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.14f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

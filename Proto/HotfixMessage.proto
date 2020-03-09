@@ -38,6 +38,13 @@ message G2C_TestHotfixMessage // IMessage
 	string Info = 1;
 }
 
+message MessageResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
 message C2M_TestActorRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
@@ -73,4 +80,13 @@ message G2C_PlayerInfo // IResponse
     repeated string TestRepeatedString = 3;
     repeated int32 TestRepeatedInt32 = 4;
     repeated int64 TestRepeatedInt64 = 5;
+}
+
+message FireRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 91;
+	int32 X = 1;
+	int32 Y = 2;
+	int32 Z = 3;
 }

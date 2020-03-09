@@ -15,3 +15,4 @@ namespace ETModel
 		public int Weight;
 	}
 }
+    

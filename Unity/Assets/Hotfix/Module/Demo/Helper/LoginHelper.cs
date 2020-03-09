@@ -14,7 +14,7 @@ namespace ETHotfix
 				
                 // 创建一个ETHotfix层的Session, ETHotfix的Session会通过ETModel层的Session发送消息
                 Session realmSession = EntityFactory.Create<Session, ETModel.Session>(domain, session);
-                R2C_Login r2CLogin = (R2C_Login) await realmSession.Call(new C2R_Login() { Account = account, Password = "111111" });
+                R2C_Login r2CLogin = (R2C_Login) await realmSession.Call(new C2R_Login() { Account = IdGenerater.GenerateId().ToString(), Password = "111111" });
                 realmSession.Dispose();
 
                 // 创建一个ETModel层的Session,并且保存到ETModel.SessionComponent中

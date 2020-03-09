@@ -1,0 +1,13 @@
+﻿{
+    "name": "Tests",
+    "references": [
+        "KDTreeAssembly",
+        "SpaceColonizationAssembly"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ]
+}

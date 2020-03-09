@@ -27,6 +27,9 @@ namespace ETModel
 	[Message(OuterOpcode.UnitOperation)]
 	public partial class UnitOperation : IActorLocationMessage {}
 
+	[Message(OuterOpcode.M2C_OnEntityChanged)]
+	public partial class M2C_OnEntityChanged : IActorLocationMessage {}
+
 	[Message(OuterOpcode.M2C_CreateUnits)]
 	public partial class M2C_CreateUnits : IActorMessage {}
 
@@ -64,13 +67,14 @@ namespace ETModel
 		 public const ushort G2C_EnterMap = 106;
 		 public const ushort UnitInfo = 107;
 		 public const ushort UnitOperation = 108;
-		 public const ushort M2C_CreateUnits = 109;
-		 public const ushort Frame_ClickMap = 110;
-		 public const ushort M2C_PathfindingResult = 111;
-		 public const ushort C2R_Ping = 112;
-		 public const ushort R2C_Ping = 113;
-		 public const ushort G2C_Test = 114;
-		 public const ushort C2M_Reload = 115;
-		 public const ushort M2C_Reload = 116;
+		 public const ushort M2C_OnEntityChanged = 109;
+		 public const ushort M2C_CreateUnits = 110;
+		 public const ushort Frame_ClickMap = 111;
+		 public const ushort M2C_PathfindingResult = 112;
+		 public const ushort C2R_Ping = 113;
+		 public const ushort R2C_Ping = 114;
+		 public const ushort G2C_Test = 115;
+		 public const ushort C2M_Reload = 116;
+		 public const ushort M2C_Reload = 117;
 	}
 }

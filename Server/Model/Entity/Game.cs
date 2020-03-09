@@ -35,5 +35,14 @@
 			
 			eventSystem = null;
 		}
+
+		private static Physics physics;
+		public static Physics Physics
+		{
+			get
+			{
+				return physics ?? (physics = new Physics());
+			}
+		}
 	}
 }

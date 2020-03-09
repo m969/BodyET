@@ -25,62 +25,94 @@ namespace ETHotfix
 	public class OperaComponent: Entity
     {
         public Vector3 ClickPoint;
-
-	    public int mapMask;
+	    public int MapMask { get; set; }
+		private Vector3 _lastDirection { get; set; }
 
 	    public void Awake()
 	    {
-		    this.mapMask = LayerMask.GetMask("Map");
-	    }
+		    this.MapMask = LayerMask.GetMask("Map");
+			_lastDirection = Vector3.zero;
+		}
 
-	    private readonly Frame_ClickMap frameClickMap = new Frame_ClickMap();
-	    private readonly UnitOperation operationMsg = new UnitOperation();
+	    //private readonly Frame_ClickMap frameClickMap = new Frame_ClickMap();
+	    private readonly UnitOperation msg = new UnitOperation();
 		private long lastSendTime;
 		public void Update()
         {
-			if (TimeHelper.Now() - lastSendTime > 100)
+			if (Unit.LocalUnit == null)
+				return;
+			var localUnit = Unit.LocalUnit;
+
+			var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			RaycastHit hit;
+			if (Physics.Raycast(ray, out hit, 1000, this.MapMask))
+			{
+				if (localUnit.SkillDiretorTrm == null)
+				{
+					localUnit.SkillDiretorTrm = localUnit.BodyView.transform.parent.Find("SkillDirector");
+				}
+				localUnit.SkillDiretorTrm.position = localUnit.BodyView.transform.position;
+				var direction = hit.point - localUnit.SkillDiretorTrm.position;
+				var dist = Vector3.Distance(direction, _lastDirection);
+				if (dist > 0.5f)
+				{
+					localUnit.SkillDiretorTrm.forward = _lastDirection = direction;
+				}
+			}
+
+
+			msg.UnitId = localUnit.Id;
+			//operationMsg.Index++;
+			msg.Operation = 0;
+			var p = localUnit.Position;
+			msg.X = (int)(p.x * 100);
+			msg.Y = (int)(p.y * 100);
+			msg.Z = (int)(p.z * 100);
+			msg.AngleY = (int)(localUnit.BodyView.transform.eulerAngles.y * 100);
+
+			if (Input.GetMouseButtonDown(0))
+			{
+				localUnit.Firing = true;
+			}
+			if (Input.GetMouseButtonUp(0))
+			{
+				localUnit.Firing = false;
+			}
+			if (localUnit.Firing)
+			{
+				if (TimeHelper.Now() - localUnit.LastFireTime < 100)
+					return;
+				localUnit.LastFireTime = TimeHelper.Now();
+
+				localUnit.BodyView.transform.forward = hit.point;
+				localUnit.KinematicCharacterMotor.SetRotation(localUnit.SkillDiretorTrm.rotation, false);
+				msg.Operation = OperaType.Fire;
+				msg.AngleY = (int)(localUnit.BodyView.transform.eulerAngles.y * 100);
+				p = localUnit.SkillDiretorTrm.Find("TargetPoint").position;
+				msg.IntParams.Clear();
+				msg.LongParams.Clear();
+				var x = (int)(p.x * 100);
+				var y = (int)(p.y * 100);
+				var z = (int)(p.z * 100);
+				msg.IntParams.Add(x);
+				msg.IntParams.Add(y);
+				msg.IntParams.Add(z);
+				var bulletId = IdGenerater.GenerateId();
+				msg.IntParams.Add(1);
+				msg.LongParams.Add(bulletId);
+				SessionHelper.ModelSend(msg);
+				var bulletObj = localUnit.LocalFire(p, 1, bulletId);
+				return;
+			}
+
+			if (TimeHelper.Now() - lastSendTime > 30)
 			{
 				lastSendTime = TimeHelper.Now();
-				if (Unit.LocalUnit == null)
+				if (Vector3.Distance(localUnit.LastPosition, p) < 0.05f)
 					return;
-				operationMsg.Index++;
-				operationMsg.Operation = 0;
-				var p = Unit.LocalUnit.Position;
-				operationMsg.X = (int)p.x;
-				operationMsg.Y = (int)p.y;
-				operationMsg.Z = (int)p.z;
-				ETModel.SessionComponent.Instance.Session.Send(operationMsg);
+				localUnit.LastPosition = p;
+				SessionHelper.ModelSend(msg);
 			}
-			//        if (Input.GetMouseButtonDown(1))
-			//        {
-			//            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			//            RaycastHit hit;
-			//         if (Physics.Raycast(ray, out hit, 1000, this.mapMask))
-			//         {
-			//	this.ClickPoint = hit.point;
-			//          frameClickMap.X = this.ClickPoint.x;
-			//          frameClickMap.Y = this.ClickPoint.y;
-			//          frameClickMap.Z = this.ClickPoint.z;
-			//          ETModel.SessionComponent.Instance.Session.Send(frameClickMap);
-
-			//	// 测试actor rpc消息
-			//	this.TestActor().Coroutine();
-			//}
-			//        }
-		}
-
-	    public async ETVoid TestActor()
-	    {
-		    try
-		    {
-			    M2C_TestActorResponse response = (M2C_TestActorResponse)await SessionComponent.Instance.Session.Call(
-						new C2M_TestActorRequest() { Info = "actor rpc request" });
-			    Log.Info(response.Info);
-			}
-		    catch (Exception e)
-		    {
-				Log.Error(e);
-		    }
 		}
     }
 }

@@ -1,0 +1,60 @@
+Tips and tutorials: StylizedExplosionPack1
+
+How to apply the glow on explosions and environment:
+
+1. Rightclick on the projectview and click on Import Package/Effects
+2. Attach the bloom script on the MainCamera
+3. Make sure to have a high threshold so the explosions does not get over-exposed.
+
+Addding glow can be done in multiply ways, this one is free and easiest to do.
+
+
+How to make new colored explosions
+
+1. Copy the template folder (ExplosionPack1/Assets/explosions/Template)
+2. Drag out the prefab into the sceneview
+3. Open up the tabs in ParticleColorChanger script and start changing the color values.
+Values saves in realtime.
+
+tips:
+4. You can copy the script component and place it on other explosion prefabs. 
+Make sure to revert the "Colored_Particle_System"'s on the new explosion so you
+are configuring the right components.
+
+Optimization tips:
+If you aim for optimized explosions I recommend using the alphaBlend_glow instead of the alphaBlend_depthBlend_glow which are located on most smoke effects.
+
+The debris particle systems are emitting most partciles, disable these if going for optimization.
+All around all smoke particles can be reduced in emittion if needed. (Inside the Particle System, Emission, lower the count in burst or time, spawns less particle)
+
+Shader documentation:
+alphaBlend_glow
+A material that works that communicates with the particle system alpha and similar Shuriken properties.
+Emission can boosted to give out a glow effect (if using bloom script on the Camera or similar).
+Shader was made in ShaderForge.
+
+alphaBlend_depthBlend_glow
+Includes a detphBlend component which makes the smoke blend better into the ground. It is a bit more exepensive performence-wise, if there is any problems 
+use the optimized_glowmaterial shader instead if needed. It just removes the depthBlend option.
+Earlier version of this package used this shader in the explosion. The shader is recommended for higher performence machines because in some cases do not work on mobiles.
+This shader was made in ShaderForge.
+
+v1.01
+Both shaders (optimized_glowMaterial & glow_depthBlend_material) were changed to alphaBlend_glow and alphaBlend_depthBlend_glow were enabled in OpenGLS ES 3.0
+inside Shaderforge which made them work for android phones from 4.4.2(Kit Kat) and tested in Unity from 2.3.1 (Gingerbread). 
+I will be testing on more devices when possible.
+Shaders are currently directly from ShaderForge but the explosions uses low resolution textures, carefully placed particles and largest explosion is currently 6 drawcalls.
+
+If possible I aim to replace the shaders into something more optimized, but for now they seem to be working in most cases.
+Added optimization tips in this text file.
+All explosions now use only use the alphaBlend_glow and unitys built-in mobile additive shader mainly so it works on mobiles without having to change shaders.
+
+v1.02
+Optimized alphaBlend_glow shader by removing the color value. The colors have been slightly altered because of it and I have been tweaking all the colors so they look like marketing product again.
+Also rebuilt the scene so it has baked lightning
+
+v1.03
+Verified explosions work in IOS devices now.
+Also added a lowpolysphere so smokepuffs can be replaced and used in VR environment
+
+If you have any questions, thoughts or suggestions please email me at nordgren@hotmail.com with the topic: "ExplosionPack1 Feedback".

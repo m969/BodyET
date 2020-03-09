@@ -16,6 +16,9 @@ namespace ETHotfix
 	[Message(HotfixOpcode.G2C_TestHotfixMessage)]
 	public partial class G2C_TestHotfixMessage : IMessage {}
 
+	[Message(HotfixOpcode.MessageResponse)]
+	public partial class MessageResponse : IActorLocationResponse {}
+
 	[Message(HotfixOpcode.C2M_TestActorRequest)]
 	public partial class C2M_TestActorRequest : IActorLocationRequest {}
 
@@ -31,6 +34,9 @@ namespace ETHotfix
 	[Message(HotfixOpcode.G2C_PlayerInfo)]
 	public partial class G2C_PlayerInfo : IResponse {}
 
+	[Message(HotfixOpcode.FireRequest)]
+	public partial class FireRequest : IActorLocationRequest {}
+
 }
 namespace ETHotfix
 {
@@ -41,10 +47,12 @@ namespace ETHotfix
 		 public const ushort C2G_LoginGate = 10003;
 		 public const ushort G2C_LoginGate = 10004;
 		 public const ushort G2C_TestHotfixMessage = 10005;
-		 public const ushort C2M_TestActorRequest = 10006;
-		 public const ushort M2C_TestActorResponse = 10007;
-		 public const ushort PlayerInfo = 10008;
-		 public const ushort C2G_PlayerInfo = 10009;
-		 public const ushort G2C_PlayerInfo = 10010;
+		 public const ushort MessageResponse = 10006;
+		 public const ushort C2M_TestActorRequest = 10007;
+		 public const ushort M2C_TestActorResponse = 10008;
+		 public const ushort PlayerInfo = 10009;
+		 public const ushort C2G_PlayerInfo = 10010;
+		 public const ushort G2C_PlayerInfo = 10011;
+		 public const ushort FireRequest = 10012;
 	}
 }

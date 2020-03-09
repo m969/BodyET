@@ -11,13 +11,14 @@
 
 	public class UnitGateComponent : Entity, ISerializeToEntity
 	{
-		public long GateSessionActorId;
+		public long GateSessionActorId { get; set; }
 
-		public bool IsDisconnect;
+		public bool IsDisconnect { get; set; }
 
 		public void Awake(long gateSessionId)
 		{
 			this.GateSessionActorId = gateSessionId;
+			this.IsDisconnect = false;
 		}
 	}
 }

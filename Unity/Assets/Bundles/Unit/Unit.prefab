@@ -50,3 +50,17 @@ MonoBehaviour:
   - key: ExampleCharacter
     gameObject: {fileID: 5394691835327551891, guid: db64676a31c71f14fb80c9071229ada7,
       type: 3}
+  - key: Unit
+    gameObject: {fileID: 7873263590065129798, guid: afac99e4a4638914293e703070366101,
+      type: 3}
+  - key: OtherCharacter
+    gameObject: {fileID: 5394691835327551891, guid: f50d68ad0ad38d840922308c53ff027f,
+      type: 3}
+  - key: Skill_1001
+    gameObject: {fileID: 6102341875898683098, guid: 0c2a684a5c3815b42a2af3620ca36a9d,
+      type: 3}
+  - key: BulletSmallBlue
+    gameObject: {fileID: 135146, guid: b79841d82f4b1f6499d7f44697afdcbd, type: 3}
+  - key: BulletCollider
+    gameObject: {fileID: 2335151428877087330, guid: 7c2474cee509e08409973446db2fba1a,
+      type: 3}

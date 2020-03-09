@@ -20,7 +20,10 @@ namespace ETModel
 				Game.EventSystem.Add(DLLType.Hotfix, DllHelper.GetHotfixAssembly());
 				
 				MongoHelper.Init();
-				
+				EntityDefine.Init();
+
+				Console.WriteLine("Tumbler test 2000 step");
+
 				// 命令行参数
 				Parser.Default.ParseArguments<Options>(args)
 						.WithNotParsed(error => throw new Exception($"命令行格式错误!"))
@@ -55,7 +58,7 @@ namespace ETModel
 				// 数值订阅组件
 				Game.Scene.AddComponent<NumericWatcherComponent>();
 				// 控制台组件
-				Game.Scene.AddComponent<ConsoleComponent>();
+				//Game.Scene.AddComponent<ConsoleComponent>();
 				
 
                 OuterConfig outerConfig = startConfig.GetComponent<OuterConfig>();

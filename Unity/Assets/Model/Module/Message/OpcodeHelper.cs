@@ -8,6 +8,7 @@ namespace ETModel
 		{
 			OuterOpcode.C2R_Ping,
 			OuterOpcode.R2C_Ping,
+			OuterOpcode.UnitOperation,
 		};
 
 		public static bool IsNeedDebugLogMessage(ushort opcode)
