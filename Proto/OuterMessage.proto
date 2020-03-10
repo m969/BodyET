@@ -53,6 +53,7 @@ message UnitInfo
 	float X = 2;
 	float Y = 3;
 	float Z = 4;
+	int32 AngleY = 8;
 }
 
 message UnitOperation // IActorLocationMessage
@@ -74,6 +75,30 @@ message UnitOperation // IActorLocationMessage
 	repeated int64 LongParams = 11;
 }
 
+//当玩家第一次进入某个场景，得到场景内的所有玩家信息
+message M2C_InViewUnits // IActorMessage
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	repeated UnitInfo InViewUnits = 1;
+	UnitInfo SelfUnit = 2;
+	int32 SpaceType = 3;
+}
+//当玩家进入视野
+message M2C_OnEnterView // IActorMessage
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	UnitInfo EnterUnit = 1;
+}
+//当玩家离开视野
+message M2C_OnLeaveView // IActorMessage
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 LeaveUnit = 1;
+}
+
 message M2C_OnEntityChanged // IActorLocationMessage
 {
 	int32 RpcId = 90;
@@ -87,7 +112,7 @@ message M2C_OnEntityChanged // IActorLocationMessage
 	int32 Z = 4;
 	int32 AngleY = 8;
 	repeated int32 TypeParams = 9;
-	repeated int32 IntParams = 10;
+	repeated string ValueParams = 10;
 }
 
 message M2C_CreateUnits // IActorMessage

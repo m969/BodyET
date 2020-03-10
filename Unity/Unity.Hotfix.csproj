@@ -102,8 +102,11 @@
     <Compile Include="Assets\Hotfix\Module\Demo\Helper\Handlers\FireRequestHandler.cs" />
     <Compile Include="Assets\Hotfix\Module\Demo\Helper\Handlers\G2C_TestHotfixHandler.cs" />
     <Compile Include="Assets\Hotfix\Module\Demo\Helper\Handlers\M2C_CreateUnitsHandler.cs" />
-    <Compile Include="Assets\Hotfix\Module\Demo\Helper\Handlers\M2C_OnEntityChangedHandler.cs" />
     <Compile Include="Assets\Hotfix\Module\Demo\Helper\Handlers\M2C_PathfindingResultHandler.cs" />
+    <Compile Include="Assets\Hotfix\Module\Demo\Helper\Handlers\MapHandlers\View\M2C_InViewUnitsHandler.cs" />
+    <Compile Include="Assets\Hotfix\Module\Demo\Helper\Handlers\MapHandlers\View\M2C_OnEnterViewHandler.cs" />
+    <Compile Include="Assets\Hotfix\Module\Demo\Helper\Handlers\MapHandlers\View\M2C_OnEntityChangedHandler.cs" />
+    <Compile Include="Assets\Hotfix\Module\Demo\Helper\Handlers\MapHandlers\View\M2C_OnLeaveViewHandler.cs" />
     <Compile Include="Assets\Hotfix\Module\Demo\Helper\Handlers\UnitOperationHandler.cs" />
     <Compile Include="Assets\Hotfix\Module\Demo\Helper\LoginHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Demo\Helper\MapHelper.cs" />

@@ -14,7 +14,8 @@ namespace ETHotfix
 			if (message.Operation == OperaType.Fire)
 			{
 				var bullet = EntityFactory.Create<Bullet>(unit.Domain);
-				var bulletMove = bullet.AddComponent<BulletMoveComponent>();
+				var bulletMove = bullet.AddComponent<MoveComponent>();
+				var bulletBody = bullet.AddComponent<Body2dComponent>();
 				var targetPoint = new Vector3();
 				targetPoint.x = message.IntParams[0] / 100f;
 				targetPoint.y = message.IntParams[1] / 100f;

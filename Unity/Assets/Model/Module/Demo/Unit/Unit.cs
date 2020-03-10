@@ -15,10 +15,10 @@ namespace ETModel
 	}
 
 	[EntityDefine(1)]
-	public sealed partial class Unit: Entity
+	public partial class Unit: Entity
 	{
 		private string nickname;
-		[PropertyDefine(101, PropertyType.String, SyncFlag.AllClients)]
+		[PropertyDefine(101, SyncFlag.AllClients)]
 		public string Nickname { get { return nickname; } set { nickname = value; PublishProperty(nameof(Nickname), value); } }
 		
 		private int hp;
@@ -26,20 +26,15 @@ namespace ETModel
 
 		public bool Firing { get; set; }
 
+		public TransformComponent Transform { get { return GetComponent<TransformComponent>(); } }
+
+
 		public void Awake()
 		{
 			Nickname = "";
 			HP = 100;
 			Firing = false;
 		}
-
-#if SERVER
-		public Vector3 Position { get; set; }
-		public void Update()
-		{
-			
-		}
-#endif
 
 		public override void Dispose()
 		{

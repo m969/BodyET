@@ -13,6 +13,7 @@ namespace ETHotfix
 			Unit unit = EntityFactory.CreateWithId<Unit>(scene, IdGenerater.GenerateId());
 			unit.Awake();
 			unit.AddComponent<MoveComponent>();
+			unit.AddComponent<TransformComponent>();
 			unit.AddComponent<UnitPathComponent>();
 			unit.Position = new Vector3(-10, 0, -10);
 
@@ -24,7 +25,7 @@ namespace ETHotfix
 			
 			
 			// 广播创建的unit
-			M2C_CreateUnits createUnits = new M2C_CreateUnits();
+			var createUnits = new M2C_OnEnterView();
 			Unit[] units = scene.GetComponent<UnitComponent>().GetAll();
 			Log.Debug($"{units.Length} {units}");
 			foreach (Unit u in units)
@@ -34,11 +35,15 @@ namespace ETHotfix
 				unitInfo.Y = u.Position.y;
 				unitInfo.Z = u.Position.z;
 				unitInfo.UnitId = u.Id;
-				createUnits.Units.Add(unitInfo);
+				//createUnits.InViewUnits.Add(unitInfo);
+				if (u.Id == unit.Id)
+					createUnits.EnterUnit = (unitInfo);
+				response.Units.Add(unitInfo);
 			}
-			createUnits.SelfUnitId = unit.Id;
+			//createUnits.SelfUnitId = unit.Id;
 			MessageHelper.BroadcastToOther(unit, createUnits);
-			response.Units.AddRange(createUnits.Units);
+			//MessageHelper.Send(unit)
+			//response.Units.AddRange(createUnits.InViewUnits);
 			reply();
 		}
 	}

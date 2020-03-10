@@ -577,6 +577,14 @@ namespace ETModel {
       }
     }
 
+    private int angleY_;
+    public int AngleY {
+      get { return angleY_; }
+      set {
+        angleY_ = value;
+      }
+    }
+
     public void WriteTo(pb::CodedOutputStream output) {
       if (UnitId != 0L) {
         output.WriteRawTag(8);
@@ -594,6 +602,10 @@ namespace ETModel {
         output.WriteRawTag(37);
         output.WriteFloat(Z);
       }
+      if (AngleY != 0) {
+        output.WriteRawTag(64);
+        output.WriteInt32(AngleY);
+      }
     }
 
     public int CalculateSize() {
@@ -610,6 +622,9 @@ namespace ETModel {
       if (Z != 0F) {
         size += 1 + 4;
       }
+      if (AngleY != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(AngleY);
+      }
       return size;
     }
 
@@ -618,6 +633,7 @@ namespace ETModel {
       x_ = 0f;
       y_ = 0f;
       z_ = 0f;
+      angleY_ = 0;
       uint tag;
       while ((tag = input.ReadTag()) != 0) {
         switch(tag) {
@@ -638,6 +654,10 @@ namespace ETModel {
           }
           case 37: {
             Z = input.ReadFloat();
+            break;
+          }
+          case 64: {
+            AngleY = input.ReadInt32();
             break;
           }
         }
@@ -938,6 +958,312 @@ namespace ETModel {
 
   }
 
+  /// <summary>
+  ///当玩家第一次进入某个场景，得到场景内的所有玩家信息
+  /// </summary>
+  public partial class M2C_InViewUnits : pb::IMessage {
+    private static readonly pb::MessageParser<M2C_InViewUnits> _parser = new pb::MessageParser<M2C_InViewUnits>(() => (M2C_InViewUnits)MessagePool.Instance.Fetch(typeof(M2C_InViewUnits)));
+    public static pb::MessageParser<M2C_InViewUnits> Parser { get { return _parser; } }
+
+    private int rpcId_;
+    public int RpcId {
+      get { return rpcId_; }
+      set {
+        rpcId_ = value;
+      }
+    }
+
+    private long actorId_;
+    public long ActorId {
+      get { return actorId_; }
+      set {
+        actorId_ = value;
+      }
+    }
+
+    private static readonly pb::FieldCodec<global::ETModel.UnitInfo> _repeated_inViewUnits_codec
+        = pb::FieldCodec.ForMessage(10, global::ETModel.UnitInfo.Parser);
+    private pbc::RepeatedField<global::ETModel.UnitInfo> inViewUnits_ = new pbc::RepeatedField<global::ETModel.UnitInfo>();
+    public pbc::RepeatedField<global::ETModel.UnitInfo> InViewUnits {
+      get { return inViewUnits_; }
+      set { inViewUnits_ = value; }
+    }
+
+    private global::ETModel.UnitInfo selfUnit_;
+    public global::ETModel.UnitInfo SelfUnit {
+      get { return selfUnit_; }
+      set {
+        selfUnit_ = value;
+      }
+    }
+
+    private int spaceType_;
+    public int SpaceType {
+      get { return spaceType_; }
+      set {
+        spaceType_ = value;
+      }
+    }
+
+    public void WriteTo(pb::CodedOutputStream output) {
+      inViewUnits_.WriteTo(output, _repeated_inViewUnits_codec);
+      if (selfUnit_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(SelfUnit);
+      }
+      if (SpaceType != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(SpaceType);
+      }
+      if (RpcId != 0) {
+        output.WriteRawTag(208, 5);
+        output.WriteInt32(RpcId);
+      }
+      if (ActorId != 0L) {
+        output.WriteRawTag(232, 5);
+        output.WriteInt64(ActorId);
+      }
+    }
+
+    public int CalculateSize() {
+      int size = 0;
+      if (RpcId != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(RpcId);
+      }
+      if (ActorId != 0L) {
+        size += 2 + pb::CodedOutputStream.ComputeInt64Size(ActorId);
+      }
+      size += inViewUnits_.CalculateSize(_repeated_inViewUnits_codec);
+      if (selfUnit_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SelfUnit);
+      }
+      if (SpaceType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(SpaceType);
+      }
+      return size;
+    }
+
+    public void MergeFrom(pb::CodedInputStream input) {
+      for (int i = 0; i < inViewUnits_.Count; i++) { MessagePool.Instance.Recycle(inViewUnits_[i]); }
+      inViewUnits_.Clear();
+      if (selfUnit_ != null) MessagePool.Instance.Recycle(selfUnit_); selfUnit_ = null;
+      spaceType_ = 0;
+      rpcId_ = 0;
+      actorId_ = 0;
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            inViewUnits_.AddEntriesFrom(input, _repeated_inViewUnits_codec);
+            break;
+          }
+          case 18: {
+            if (selfUnit_ == null) {
+              selfUnit_ = new global::ETModel.UnitInfo();
+            }
+            input.ReadMessage(selfUnit_);
+            break;
+          }
+          case 24: {
+            SpaceType = input.ReadInt32();
+            break;
+          }
+          case 720: {
+            RpcId = input.ReadInt32();
+            break;
+          }
+          case 744: {
+            ActorId = input.ReadInt64();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///当玩家进入视野
+  /// </summary>
+  public partial class M2C_OnEnterView : pb::IMessage {
+    private static readonly pb::MessageParser<M2C_OnEnterView> _parser = new pb::MessageParser<M2C_OnEnterView>(() => (M2C_OnEnterView)MessagePool.Instance.Fetch(typeof(M2C_OnEnterView)));
+    public static pb::MessageParser<M2C_OnEnterView> Parser { get { return _parser; } }
+
+    private int rpcId_;
+    public int RpcId {
+      get { return rpcId_; }
+      set {
+        rpcId_ = value;
+      }
+    }
+
+    private long actorId_;
+    public long ActorId {
+      get { return actorId_; }
+      set {
+        actorId_ = value;
+      }
+    }
+
+    private global::ETModel.UnitInfo enterUnit_;
+    public global::ETModel.UnitInfo EnterUnit {
+      get { return enterUnit_; }
+      set {
+        enterUnit_ = value;
+      }
+    }
+
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (enterUnit_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(EnterUnit);
+      }
+      if (RpcId != 0) {
+        output.WriteRawTag(208, 5);
+        output.WriteInt32(RpcId);
+      }
+      if (ActorId != 0L) {
+        output.WriteRawTag(232, 5);
+        output.WriteInt64(ActorId);
+      }
+    }
+
+    public int CalculateSize() {
+      int size = 0;
+      if (RpcId != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(RpcId);
+      }
+      if (ActorId != 0L) {
+        size += 2 + pb::CodedOutputStream.ComputeInt64Size(ActorId);
+      }
+      if (enterUnit_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(EnterUnit);
+      }
+      return size;
+    }
+
+    public void MergeFrom(pb::CodedInputStream input) {
+      if (enterUnit_ != null) MessagePool.Instance.Recycle(enterUnit_); enterUnit_ = null;
+      rpcId_ = 0;
+      actorId_ = 0;
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            if (enterUnit_ == null) {
+              enterUnit_ = new global::ETModel.UnitInfo();
+            }
+            input.ReadMessage(enterUnit_);
+            break;
+          }
+          case 720: {
+            RpcId = input.ReadInt32();
+            break;
+          }
+          case 744: {
+            ActorId = input.ReadInt64();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///当玩家离开视野
+  /// </summary>
+  public partial class M2C_OnLeaveView : pb::IMessage {
+    private static readonly pb::MessageParser<M2C_OnLeaveView> _parser = new pb::MessageParser<M2C_OnLeaveView>(() => (M2C_OnLeaveView)MessagePool.Instance.Fetch(typeof(M2C_OnLeaveView)));
+    public static pb::MessageParser<M2C_OnLeaveView> Parser { get { return _parser; } }
+
+    private int rpcId_;
+    public int RpcId {
+      get { return rpcId_; }
+      set {
+        rpcId_ = value;
+      }
+    }
+
+    private long actorId_;
+    public long ActorId {
+      get { return actorId_; }
+      set {
+        actorId_ = value;
+      }
+    }
+
+    private long leaveUnit_;
+    public long LeaveUnit {
+      get { return leaveUnit_; }
+      set {
+        leaveUnit_ = value;
+      }
+    }
+
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (LeaveUnit != 0L) {
+        output.WriteRawTag(8);
+        output.WriteInt64(LeaveUnit);
+      }
+      if (RpcId != 0) {
+        output.WriteRawTag(208, 5);
+        output.WriteInt32(RpcId);
+      }
+      if (ActorId != 0L) {
+        output.WriteRawTag(232, 5);
+        output.WriteInt64(ActorId);
+      }
+    }
+
+    public int CalculateSize() {
+      int size = 0;
+      if (RpcId != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(RpcId);
+      }
+      if (ActorId != 0L) {
+        size += 2 + pb::CodedOutputStream.ComputeInt64Size(ActorId);
+      }
+      if (LeaveUnit != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(LeaveUnit);
+      }
+      return size;
+    }
+
+    public void MergeFrom(pb::CodedInputStream input) {
+      leaveUnit_ = 0;
+      rpcId_ = 0;
+      actorId_ = 0;
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            LeaveUnit = input.ReadInt64();
+            break;
+          }
+          case 720: {
+            RpcId = input.ReadInt32();
+            break;
+          }
+          case 744: {
+            ActorId = input.ReadInt64();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
   public partial class M2C_OnEntityChanged : pb::IMessage {
     private static readonly pb::MessageParser<M2C_OnEntityChanged> _parser = new pb::MessageParser<M2C_OnEntityChanged>(() => (M2C_OnEntityChanged)MessagePool.Instance.Fetch(typeof(M2C_OnEntityChanged)));
     public static pb::MessageParser<M2C_OnEntityChanged> Parser { get { return _parser; } }
@@ -1022,12 +1348,12 @@ namespace ETModel {
       set { typeParams_ = value; }
     }
 
-    private static readonly pb::FieldCodec<int> _repeated_intParams_codec
-        = pb::FieldCodec.ForInt32(82);
-    private pbc::RepeatedField<int> intParams_ = new pbc::RepeatedField<int>();
-    public pbc::RepeatedField<int> IntParams {
-      get { return intParams_; }
-      set { intParams_ = value; }
+    private static readonly pb::FieldCodec<string> _repeated_valueParams_codec
+        = pb::FieldCodec.ForString(82);
+    private pbc::RepeatedField<string> valueParams_ = new pbc::RepeatedField<string>();
+    public pbc::RepeatedField<string> ValueParams {
+      get { return valueParams_; }
+      set { valueParams_ = value; }
     }
 
     public void WriteTo(pb::CodedOutputStream output) {
@@ -1056,7 +1382,7 @@ namespace ETModel {
         output.WriteInt32(AngleY);
       }
       typeParams_.WriteTo(output, _repeated_typeParams_codec);
-      intParams_.WriteTo(output, _repeated_intParams_codec);
+      valueParams_.WriteTo(output, _repeated_valueParams_codec);
       if (RpcId != 0) {
         output.WriteRawTag(208, 5);
         output.WriteInt32(RpcId);
@@ -1101,7 +1427,7 @@ namespace ETModel {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(AngleY);
       }
       size += typeParams_.CalculateSize(_repeated_typeParams_codec);
-      size += intParams_.CalculateSize(_repeated_intParams_codec);
+      size += valueParams_.CalculateSize(_repeated_valueParams_codec);
       return size;
     }
 
@@ -1113,7 +1439,7 @@ namespace ETModel {
       entityType_ = 0;
       angleY_ = 0;
       typeParams_.Clear();
-      intParams_.Clear();
+      valueParams_.Clear();
       rpcId_ = 0;
       actorId_ = 0;
       id_ = 0;
@@ -1152,9 +1478,8 @@ namespace ETModel {
             typeParams_.AddEntriesFrom(input, _repeated_typeParams_codec);
             break;
           }
-          case 82:
-          case 80: {
-            intParams_.AddEntriesFrom(input, _repeated_intParams_codec);
+          case 82: {
+            valueParams_.AddEntriesFrom(input, _repeated_valueParams_codec);
             break;
           }
           case 720: {

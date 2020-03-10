@@ -176,7 +176,8 @@
     </Compile>
     <Compile Include="..\..\Unity\Assets\Model\Module\Demo\Bullet.cs" Link="Module\Demo\Bullet\Bullet.cs" />
     <Compile Include="..\..\Unity\Assets\Model\Module\Demo\EntityDefine.cs" Link="Module\Demo\EntityDefine.cs" />
-    <Compile Include="..\..\Unity\Assets\Model\Module\Demo\Unit\Unit.cs" Link="Module\Demo\Unit.cs" />
+    <Compile Include="..\..\Unity\Assets\Model\Module\Demo\SCCommonComponents\TransformComponent.cs" Link="Module\Demo\SCCommonComponents\TransformComponent.cs" />
+    <Compile Include="..\..\Unity\Assets\Model\Module\Demo\Unit\Unit.cs" Link="Module\Demo\Unit\Unit.cs" />
     <Compile Include="..\..\Unity\Assets\Model\Module\Message\MessagePool.cs">
       <Link>Module\Message\MessagePool\ETModel\MessagePool.cs</Link>
     </Compile>
@@ -417,6 +418,7 @@
   <ItemGroup>
     <Folder Include="Base\RecyclableMemoryStream\" />
     <Folder Include="Component\Config\" />
+    <Folder Include="Module\Demo\SCCommonComponents\" />
     <Folder Include="Module\Message\Network\KCP\" />
     <Folder Include="Module\Message\Network\TCP\" />
     <Folder Include="Module\Message\MessagePool\" />

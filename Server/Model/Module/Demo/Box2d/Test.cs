@@ -102,7 +102,7 @@ namespace ETModel
             }
         }
 
-        public void CreateBoxCollider(float x, float y, float hx, float hy)
+        public Body CreateBoxCollider(float x, float y, float hx, float hy)
         {
             var bd = new BodyDef
             {
@@ -113,6 +113,7 @@ namespace ETModel
             var shape = new PolygonShape();
             shape.SetAsBox(hx, hy);
             body.CreateFixture(shape, 1.0f);
+            return body;
         }
 
         private float _dt = 1 / 60f;
@@ -123,21 +124,21 @@ namespace ETModel
         {
             World.Step(_dt, 8, 3);
             FpsCounter.CountOne();
-            if (_bodyCount < Count)
-            {
-                var bd = new BodyDef
-                {
-                    BodyType = BodyType.DynamicBody,
-                    Position = new Vector2(0.0f, 10.0f)
-                };
-                var body = World.CreateBody(bd);
+            //if (_bodyCount < Count)
+            //{
+            //    var bd = new BodyDef
+            //    {
+            //        BodyType = BodyType.DynamicBody,
+            //        Position = new Vector2(0.0f, 10.0f)
+            //    };
+            //    var body = World.CreateBody(bd);
 
-                var shape = new PolygonShape();
-                shape.SetAsBox(0.125f, 0.125f);
-                body.CreateFixture(shape, 1.0f);
+            //    var shape = new PolygonShape();
+            //    shape.SetAsBox(0.125f, 0.125f);
+            //    body.CreateFixture(shape, 1.0f);
 
-                ++_bodyCount;
-            }
+            //    ++_bodyCount;
+            //}
 
             if (showProfile)
             {

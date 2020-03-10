@@ -8,36 +8,42 @@ namespace ETHotfix
         {
             var entityType = EntityDefine.EntityIds.GetValueByKey(entity.GetType());
             var attr = EntityDefine.EntityDefInfo[entityType][propertyName];
+            
+            var msg = new M2C_OnEntityChanged();
+            msg.EntityId = entity.Id;
+            msg.EntityType = entityType;
+            msg.TypeParams.Add(attr.Id);
+            //if (attr.Type == PropertyType.Int32)
+            msg.ValueParams.Add(value);
+
             if (attr.Flag == SyncFlag.AllClients)
             {
-                if (entity is Unit unit)
-                {
-                    var msg = new M2C_OnEntityChanged();
-                    msg.EntityId = entity.Id;
-                    msg.EntityType = entityType;
-                    msg.TypeParams.Add(attr.Id);
-                    if (attr.Type == PropertyType.Int32)
-                        msg.IntParams.Add(int.Parse(value));
-                    //if (attr.Type == PropertyType.Int64)
-                    //    msg.IntParams.Add(long.Parse(value));
-                    //if (attr.Type == PropertyType.String)
-                    //    msg.IntParams.Add(value);
-                    Broadcast(unit, msg);
-                }
+                Broadcast(entity.Domain, msg);
             }
             if (attr.Flag == SyncFlag.OtherClients)
             {
-
+                if (entity is Unit u)
+                {
+                    BroadcastToOther(u, msg);
+                }
             }
             if (attr.Flag == SyncFlag.OwnClient)
             {
-
+                if (entity is Unit u)
+                {
+                    Send(u, msg);
+                }
             }
         }
 
         public static void Broadcast(Unit unit, IActorMessage message)
         {
-            var units = unit.Domain.GetComponent<UnitComponent>().GetAll();
+            Broadcast(unit.Domain, message);
+        }
+
+        public static void Broadcast(Entity domain, IActorMessage message)
+        {
+            var units = domain.GetComponent<UnitComponent>().GetAll();
 
             if (units == null) return;
 
@@ -84,11 +90,19 @@ namespace ETHotfix
         /// </summary>
         /// <param name="actorId">注册Actor的InstanceId</param>
         /// <param name="message"></param>
+        public static void Send(Unit u, IActorMessage message)
+        {
+            UnitGateComponent unitGateComponent = u.GetComponent<UnitGateComponent>();
+            if (unitGateComponent.IsDisconnect)
+                return;
+            ActorMessageSenderComponent.Instance.Send(unitGateComponent.GateSessionActorId, message);
+        }
+
         public static void SendActor(long actorId, IActorMessage message)
         {
             ActorMessageSenderComponent.Instance.Send(actorId, message);
         }
-        
+
         /// <summary>
         /// 发送RPC协议给Actor
         /// </summary>
