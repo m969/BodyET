@@ -22,7 +22,8 @@ namespace ETModel
 				MongoHelper.Init();
 				EntityDefine.Init();
 
-				Console.WriteLine("Tumbler test 2000 step");
+
+				//Console.WriteLine("Tumbler test 2000 step");
 
 				// 命令行参数
 				Parser.Default.ParseArguments<Options>(args)
@@ -36,7 +37,7 @@ namespace ETModel
 
 				StartConfig startConfig = allConfig.Get(Game.Options.Id);
 				Game.Scene = EntityFactory.CreateScene(0, "Process", SceneType.Process);
-				
+
 				LogManager.Configuration.Variables["appIdFormat"] = $"{Game.Scene.Id:0000}";
 				
 				Game.Scene.AddComponent<StartConfigComponent, StartConfig, long>(allConfig, startConfig.Id);

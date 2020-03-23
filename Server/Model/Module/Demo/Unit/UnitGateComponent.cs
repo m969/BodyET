@@ -9,7 +9,7 @@
 		}
 	}
 
-	public class UnitGateComponent : Entity, ISerializeToEntity
+	public class UnitGateComponent : Entity
 	{
 		public long GateSessionActorId { get; set; }
 

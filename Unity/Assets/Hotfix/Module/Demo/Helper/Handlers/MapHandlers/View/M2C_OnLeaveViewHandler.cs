@@ -10,6 +10,18 @@ namespace ETHotfix
 	{
 		protected override async ETTask Run(ETModel.Session session, M2C_OnLeaveView message)
 		{
+			if (message.EntityType == EntityDefine.EntityIds.GetValueByKey(typeof(Unit)))
+			{
+				UnitComponent.Instance.Remove(message.LeaveEntity);
+			}
+			if (message.EntityType == EntityDefine.EntityIds.GetValueByKey(typeof(Bullet)))
+			{
+				var bullet = BulletComponent.Instance.Get(message.LeaveEntity);
+				if (bullet != null)
+				{
+					BulletComponent.Instance.Remove(message.LeaveEntity);
+				}
+			}
 			await ETTask.CompletedTask;
 		}
     }

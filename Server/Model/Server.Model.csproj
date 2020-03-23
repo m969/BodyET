@@ -138,6 +138,7 @@
     <Compile Include="..\..\Unity\Assets\Model\Component\Config\CopyConfig.cs">
       <Link>Component\Config\CopyConfig.cs</Link>
     </Compile>
+    <Compile Include="..\..\Unity\Assets\Model\Component\Config\MapConfig.cs" Link="Component\Config\MapConfig.cs" />
     <Compile Include="..\..\Unity\Assets\Model\Component\Config\ProcessConfig.cs">
       <Link>Component\Config\ProcessConfig.cs</Link>
     </Compile>
@@ -174,7 +175,8 @@
     <Compile Include="..\..\Unity\Assets\Model\Module\CoroutineLock\CoroutineLockType.cs">
       <Link>Module\CoroutineLock\CoroutineLockType.cs</Link>
     </Compile>
-    <Compile Include="..\..\Unity\Assets\Model\Module\Demo\Bullet.cs" Link="Module\Demo\Bullet\Bullet.cs" />
+    <Compile Include="..\..\Unity\Assets\Model\Module\Demo\Bullet\Bullet.cs" Link="Module\Demo\Bullet\Bullet.cs" />
+    <Compile Include="..\..\Unity\Assets\Model\Module\Demo\Bullet\BulletComponent.cs" Link="Module\Demo\Bullet\BulletComponent.cs" />
     <Compile Include="..\..\Unity\Assets\Model\Module\Demo\EntityDefine.cs" Link="Module\Demo\EntityDefine.cs" />
     <Compile Include="..\..\Unity\Assets\Model\Module\Demo\SCCommonComponents\TransformComponent.cs" Link="Module\Demo\SCCommonComponents\TransformComponent.cs" />
     <Compile Include="..\..\Unity\Assets\Model\Module\Demo\Unit\Unit.cs" Link="Module\Demo\Unit\Unit.cs" />
@@ -418,6 +420,7 @@
   <ItemGroup>
     <Folder Include="Base\RecyclableMemoryStream\" />
     <Folder Include="Component\Config\" />
+    <Folder Include="Module\Demo\Bullet\" />
     <Folder Include="Module\Demo\SCCommonComponents\" />
     <Folder Include="Module\Message\Network\KCP\" />
     <Folder Include="Module\Message\Network\TCP\" />

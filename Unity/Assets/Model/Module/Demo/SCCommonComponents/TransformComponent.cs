@@ -6,8 +6,13 @@ namespace ETModel
 {
 	public class TransformComponent : Entity, ISerializeToEntity
 	{
+		[MongoDB.Bson.Serialization.Attributes.BsonIgnore]
+		public Vector3 LastPosition { get; set; }
+		[MongoDB.Bson.Serialization.Attributes.BsonIgnore]
 		public Vector3 Position { get; set; }
-		public Vector3 Rotation { get; set; }
-		public Vector3 Scale { get; set; }
+		[MongoDB.Bson.Serialization.Attributes.BsonIgnore]
+		public float Rotation { get; set; }
+		[MongoDB.Bson.Serialization.Attributes.BsonIgnore]
+		public float Scale { get; set; }
 	}
 }

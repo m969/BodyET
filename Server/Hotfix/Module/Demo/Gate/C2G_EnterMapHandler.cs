@@ -8,14 +8,17 @@ namespace ETHotfix
 	{
 		protected override async ETTask Run(Session session, C2G_EnterMap request, G2C_EnterMap response, Action reply)
 		{
+			Console.WriteLine("C2G_EnterMapHandler");
 			Player player = session.GetComponent<SessionPlayerComponent>().Player;
 			// 在map服务器上创建战斗Unit
+
 			long mapInstanceId = StartConfigComponent.Instance.GetByName("Map1").SceneInstanceId;
+
 			M2G_CreateUnit createUnit = (M2G_CreateUnit)await ActorMessageSenderComponent.Instance.Call(
 				mapInstanceId, new G2M_CreateUnit() { PlayerId = player.Id, GateSessionId = session.InstanceId });
 			player.UnitId = createUnit.UnitId;
-			response.UnitId = createUnit.UnitId;
-			response.Units.AddRange(createUnit.Units);
+			//response.UnitId = createUnit.UnitId;
+			//response.Units.AddRange(createUnit.Units);
 			reply();
 		}
 	}

@@ -28,13 +28,14 @@ namespace ETEditor
 			
 			GUILayout.Label("Manager外网地址:");
 			managerAddress = EditorGUILayout.TextField(this.managerAddress);
-			
+			managerAddress = "127.0.0.1:10001";
 			GUILayout.Label("帐号:");
 			this.account = GUILayout.TextField(this.account);
-			
+			account = "panda";
 			GUILayout.Label("密码:");
 			this.password = GUILayout.TextField(this.password);
-			
+			password = "panda";
+
 			if (GUILayout.Button("Reload"))
 			{
 				if (!Application.isPlaying)

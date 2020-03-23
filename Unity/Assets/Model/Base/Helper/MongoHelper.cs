@@ -47,12 +47,13 @@ namespace ETModel
 #if SERVER
             BsonSerializer.RegisterSerializer(typeof(Vector3), new StructBsonSerialize<Vector3>());
 #else
+			BsonSerializer.RegisterSerializer(typeof(Vector3), new StructBsonSerialize<Vector3>());
             BsonSerializer.RegisterSerializer(typeof(Vector4), new StructBsonSerialize<Vector4>());
             BsonSerializer.RegisterSerializer(typeof(Vector2Int), new StructBsonSerialize<Vector2Int>());
 #endif
-        }
-        
-        public static void Init()
+		}
+
+		public static void Init()
         {
 	        // 调用这个是为了调用MongoHelper的静态方法
         }
@@ -81,7 +82,27 @@ namespace ETModel
 		{
 			return obj.ToBson();
 		}
-		
+
+		public static byte[] ToBson(int i)
+		{
+			return BitConverter.GetBytes(i);
+		}
+
+		public static int ToInt(byte[] bytes)
+		{
+			return BitConverter.ToInt32(bytes, 0);
+		}
+
+		public static byte[] ToBson(float v)
+		{
+			return BitConverter.GetBytes(v);
+		}
+
+		public static float ToFloat(byte[] bytes)
+		{
+			return BitConverter.ToSingle(bytes, 0);
+		}
+
 		public static void ToBson(object obj, MemoryStream stream)
 		{
 			using (BsonBinaryWriter bsonWriter = new BsonBinaryWriter(stream, BsonBinaryWriterSettings.Defaults))

@@ -97,6 +97,7 @@
     <Compile Include="Assets\Hotfix\Module\Config\ConfigComponent.cs" />
     <Compile Include="Assets\Hotfix\Module\Config\ConfigHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Config\IConfig.cs" />
+    <Compile Include="Assets\Hotfix\Module\Demo\Bullet.hotfix.cs" />
     <Compile Include="Assets\Hotfix\Module\Demo\Config\UnitConfig.cs" />
     <Compile Include="Assets\Hotfix\Module\Demo\Event\TestHotfixSubscribMonoEvent_LogString.cs" />
     <Compile Include="Assets\Hotfix\Module\Demo\Helper\Handlers\FireRequestHandler.cs" />
@@ -121,7 +122,7 @@
     <Compile Include="Assets\Hotfix\Module\Demo\UI\UILogin\System\InitSceneStart_CreateLoginUI.cs" />
     <Compile Include="Assets\Hotfix\Module\Demo\UI\UILogin\System\LoginFinish_RemoveLoginUI.cs" />
     <Compile Include="Assets\Hotfix\Module\Demo\UI\UILogin\System\UILoginFactory.cs" />
-    <Compile Include="Assets\Hotfix\Module\Demo\UnitLogicEx.cs" />
+    <Compile Include="Assets\Hotfix\Module\Demo\Unit.hotfix.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\AMHandler.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\HotfixMessage.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\HotfixMessageDispatcher.cs" />

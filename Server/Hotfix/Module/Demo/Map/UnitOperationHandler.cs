@@ -9,19 +9,14 @@ namespace ETHotfix
 	{
 		protected override async ETTask Run(Unit unit, UnitOperation message)
 		{
-			//Log.Debug($"{JsonHelper.ToJson(message)}");
-			MessageHelper.BroadcastToOther(unit, message);
+			Log.Msg(message);
+			unit.Position = new Vector3(message.X / 100f, 0, message.Z / 100f);
 			if (message.Operation == OperaType.Fire)
 			{
-				var bullet = EntityFactory.Create<Bullet>(unit.Domain);
-				var bulletMove = bullet.AddComponent<MoveComponent>();
-				var bulletBody = bullet.AddComponent<Body2dComponent>();
-				var targetPoint = new Vector3();
-				targetPoint.x = message.IntParams[0] / 100f;
-				targetPoint.y = message.IntParams[1] / 100f;
-				targetPoint.z = message.IntParams[2] / 100f;
-				bulletMove.MoveToAsync(targetPoint, new ETCancellationToken()).Coroutine();
+				//message.LongParams.Add(IdGenerater.GenerateId());
+				unit.Fire(message).Coroutine();
 			}
+			MessageHelper.BroadcastToOther(unit, message);
 			await ETTask.CompletedTask;
 		}
 	}

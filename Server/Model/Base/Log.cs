@@ -24,19 +24,30 @@ namespace ETModel
 		public static void Debug(string message)
 		{
 			globalLog.Debug(message);
+#if DEBUG
+			Log.Console(message);
+#endif
+		}
+
+		public static void Console(string message)
+		{
+			System.Console.WriteLine(message);
 		}
 
 		public static void Error(Exception e)
 		{
-			globalLog.Error(e.ToString());
+			Error(e.ToString());
 		}
 
 		public static void Error(string message)
 		{
 			globalLog.Error(message);
+#if DEBUG
+			Log.Console(message);
+#endif
 		}
 
-        public static void Fatal(Exception e)
+		public static void Fatal(Exception e)
         {
             globalLog.Fatal(e.ToString());
         }

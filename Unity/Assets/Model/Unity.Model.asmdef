@@ -1,10 +1,16 @@
 {
     "name": "Unity.Model",
     "references": [
-        "Unity.ThirdParty"
+        "Unity.ThirdParty",
+        "SCCommon",
+        "Model.Base"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],
-    "allowUnsafeCode": true
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
 }

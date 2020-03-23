@@ -141,7 +141,7 @@ namespace ETModel
 					// parent相同，不设置
 					if (this.parent.InstanceId == value.InstanceId)
 					{
-						Log.Error($"重复设置了Parent: {this.GetType().Name} parent: {this.parent.GetType().Name}");
+						//Log.Error($"重复设置了Parent: {this.GetType().Name} parent: {this.parent.GetType().Name}");
 						return;
 					}
 					

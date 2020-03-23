@@ -80,7 +80,7 @@ namespace ETHotfix
 			}
 			if (localUnit.Firing)
 			{
-				if (TimeHelper.Now() - localUnit.LastFireTime < 100)
+				if (TimeHelper.Now() - localUnit.LastFireTime < 200)
 					return;
 				localUnit.LastFireTime = TimeHelper.Now();
 
@@ -100,18 +100,18 @@ namespace ETHotfix
 				var bulletId = IdGenerater.GenerateId();
 				msg.IntParams.Add(1);
 				msg.LongParams.Add(bulletId);
-				SessionHelper.ModelSend(msg);
-				var bulletObj = localUnit.LocalFire(p, 1, bulletId);
+				SessionHelper.HotfixSend(msg);
+				//var bulletObj = localUnit.LocalFire(p, 1, bulletId);
 				return;
 			}
 
-			if (TimeHelper.Now() - lastSendTime > 30)
+			if (TimeHelper.Now() - lastSendTime > 100)
 			{
 				lastSendTime = TimeHelper.Now();
 				if (Vector3.Distance(localUnit.LastPosition, p) < 0.05f)
 					return;
 				localUnit.LastPosition = p;
-				SessionHelper.ModelSend(msg);
+				SessionHelper.HotfixSend(msg);
 			}
 		}
     }

@@ -24,24 +24,6 @@ namespace ETModel
 	[Message(OuterOpcode.UnitInfo)]
 	public partial class UnitInfo {}
 
-	[Message(OuterOpcode.UnitOperation)]
-	public partial class UnitOperation : IActorLocationMessage {}
-
-//当玩家第一次进入某个场景，得到场景内的所有玩家信息
-	[Message(OuterOpcode.M2C_InViewUnits)]
-	public partial class M2C_InViewUnits : IActorMessage {}
-
-//当玩家进入视野
-	[Message(OuterOpcode.M2C_OnEnterView)]
-	public partial class M2C_OnEnterView : IActorMessage {}
-
-//当玩家离开视野
-	[Message(OuterOpcode.M2C_OnLeaveView)]
-	public partial class M2C_OnLeaveView : IActorMessage {}
-
-	[Message(OuterOpcode.M2C_OnEntityChanged)]
-	public partial class M2C_OnEntityChanged : IActorLocationMessage {}
-
 	[Message(OuterOpcode.M2C_CreateUnits)]
 	public partial class M2C_CreateUnits : IActorMessage {}
 
@@ -78,18 +60,13 @@ namespace ETModel
 		 public const ushort C2G_EnterMap = 105;
 		 public const ushort G2C_EnterMap = 106;
 		 public const ushort UnitInfo = 107;
-		 public const ushort UnitOperation = 108;
-		 public const ushort M2C_InViewUnits = 109;
-		 public const ushort M2C_OnEnterView = 110;
-		 public const ushort M2C_OnLeaveView = 111;
-		 public const ushort M2C_OnEntityChanged = 112;
-		 public const ushort M2C_CreateUnits = 113;
-		 public const ushort Frame_ClickMap = 114;
-		 public const ushort M2C_PathfindingResult = 115;
-		 public const ushort C2R_Ping = 116;
-		 public const ushort R2C_Ping = 117;
-		 public const ushort G2C_Test = 118;
-		 public const ushort C2M_Reload = 119;
-		 public const ushort M2C_Reload = 120;
+		 public const ushort M2C_CreateUnits = 108;
+		 public const ushort Frame_ClickMap = 109;
+		 public const ushort M2C_PathfindingResult = 110;
+		 public const ushort C2R_Ping = 111;
+		 public const ushort R2C_Ping = 112;
+		 public const ushort G2C_Test = 113;
+		 public const ushort C2M_Reload = 114;
+		 public const ushort M2C_Reload = 115;
 	}
 }

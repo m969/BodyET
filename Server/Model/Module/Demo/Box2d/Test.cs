@@ -1,16 +1,19 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
 using System.Text;
+using Box2DSharp.Collision.Collider;
 using Box2DSharp.Collision.Shapes;
 using Box2DSharp.Common;
 using Box2DSharp.Dynamics;
+using Box2DSharp.Dynamics.Contacts;
 using Box2DSharp.Dynamics.Joints;
 using NETCoreTest.Framework;
 
 namespace ETModel
 {
-    public class Test
+    public class Test: IContactListener
     {
         public static Test Instance { get; set; }
 
@@ -35,7 +38,9 @@ namespace ETModel
         public Test()
         {
             Instance = this;
-            World = new World(new Vector2(0, -9.8f));
+            World = new World(new Vector2(0, 0));
+            World.AllowSleep = false;
+            World.SetContactListener(this);
         }
 
         public void Tumbler(bool stressTest = false)
@@ -46,63 +51,64 @@ namespace ETModel
                 ground = World.CreateBody(bd);
             }
 
-            {
-                var bd = new BodyDef
-                {
-                    BodyType = BodyType.DynamicBody,
-                    AllowSleep = false,
-                    Position = new Vector2(0.0f, 10.0f)
-                };
-                var body = World.CreateBody(bd);
+            //{
+            //    var bd = new BodyDef
+            //    {
+            //        BodyType = BodyType.DynamicBody,
+            //        AllowSleep = false,
+            //        Position = new Vector2(0.0f, 10.0f)
+            //    };
+            //    var body = World.CreateBody(bd);
 
-                var shape = new PolygonShape();
-                shape.SetAsBox(0.5f, 10.0f, new Vector2(10.0f, 0.0f), 0.0f);
-                body.CreateFixture(shape, 5.0f);
-                shape.SetAsBox(0.5f, 10.0f, new Vector2(-10.0f, 0.0f), 0.0f);
-                body.CreateFixture(shape, 5.0f);
-                shape.SetAsBox(10.0f, 0.5f, new Vector2(0.0f, 10.0f), 0.0f);
-                body.CreateFixture(shape, 5.0f);
-                shape.SetAsBox(10.0f, 0.5f, new Vector2(0.0f, -10.0f), 0.0f);
-                body.CreateFixture(shape, 5.0f);
+            //    var shape = new PolygonShape();
+            //    shape.SetAsBox(0.5f, 10.0f, new Vector2(10.0f, 0.0f), 0.0f);
+            //    body.CreateFixture(shape, 5.0f);
+            //    shape.SetAsBox(0.5f, 10.0f, new Vector2(-10.0f, 0.0f), 0.0f);
+            //    body.CreateFixture(shape, 5.0f);
+            //    shape.SetAsBox(10.0f, 0.5f, new Vector2(0.0f, 10.0f), 0.0f);
+            //    body.CreateFixture(shape, 5.0f);
+            //    shape.SetAsBox(10.0f, 0.5f, new Vector2(0.0f, -10.0f), 0.0f);
+            //    body.CreateFixture(shape, 5.0f);
 
-                var jd = new RevoluteJointDef
-                {
-                    BodyA = ground,
-                    BodyB = body,
-                    LocalAnchorA = new Vector2(0.0f, 10.0f),
-                    LocalAnchorB = new Vector2(0.0f, 0.0f),
-                    ReferenceAngle = 0.0f,
-                    MotorSpeed = 0.05f * Settings.Pi,
-                    MaxMotorTorque = 1e8f,
-                    EnableMotor = true
-                };
-                _joint = (RevoluteJoint) World.CreateJoint(jd);
-            }
+            //    var jd = new RevoluteJointDef
+            //    {
+            //        BodyA = ground,
+            //        BodyB = body,
+            //        LocalAnchorA = new Vector2(0.0f, 10.0f),
+            //        LocalAnchorB = new Vector2(0.0f, 0.0f),
+            //        ReferenceAngle = 0.0f,
+            //        MotorSpeed = 0.05f * Settings.Pi,
+            //        MaxMotorTorque = 1e8f,
+            //        EnableMotor = true
+            //    };
+            //    _joint = (RevoluteJoint)World.CreateJoint(jd);
+            //}
 
-            _bodyCount = 0;
-            if (stressTest)
-            {
-                var timer = Stopwatch.StartNew();
-                for (int i = 0; i < FrameCount; i++)
-                {
-                    Step(false);
-                }
+            //_bodyCount = 0;
+            //if (stressTest)
+            //{
+            //    var timer = Stopwatch.StartNew();
+            //    for (int i = 0; i < FrameCount; i++)
+            //    {
+            //        Step(false);
+            //    }
 
-                timer.Stop();
-                Console.WriteLine($"{timer.ElapsedMilliseconds} ms");
-            }
-            else
+            //    timer.Stop();
+            //    Console.WriteLine($"{timer.ElapsedMilliseconds} ms");
+            //}
+            //else
             {
                 FixedUpdate = new FixedUpdate(TimeSpan.FromSeconds(1 / 60d), () => { Step(true); });
                 FixedUpdate.Start();
-                while (true)
-                {
-                    FixedUpdate.Update();
-                }
+                //while (true)
+                //{
+                //    FixedUpdate.Update();
+                //}
             }
         }
 
-        public Body CreateBoxCollider(float x, float y, float hx, float hy)
+        private Dictionary<Body, Body2dComponent> bodyComponents { get; set; } = new Dictionary<Body, Body2dComponent>();
+        public Body CreateBoxCollider(Body2dComponent component, float x, float y, float hx, float hy)
         {
             var bd = new BodyDef
             {
@@ -110,10 +116,23 @@ namespace ETModel
                 Position = new Vector2(x, y)
             };
             var body = World.CreateBody(bd);
+            body.IsBullet = false;
             var shape = new PolygonShape();
-            shape.SetAsBox(hx, hy);
+            shape.SetAsBox(hx, hy, Vector2.Zero, 0);
             body.CreateFixture(shape, 1.0f);
+            body.UserData = component;
+
+            bodyComponents.Add(body, component);
             return body;
+        }
+
+        public void Remove(Body body)
+        {
+            if (bodyComponents.ContainsKey(body))
+            {
+                bodyComponents.Remove(body);
+            }
+            World.DestroyBody(body);
         }
 
         private float _dt = 1 / 60f;
@@ -177,20 +196,52 @@ namespace ETModel
                     aveProfile.Broadphase = scale * TotalProfile.Broadphase;
                 }
 
-                _sb.AppendLine($"FPS {FpsCounter.Fps}, ms {FpsCounter.Ms}");
-                _sb.AppendLine($"step [ave] (max) = {p.Step} [{aveProfile.Step}] ({MaxProfile.Step})");
-                _sb.AppendLine($"collide [ave] (max) = {p.Collide} [{aveProfile.Collide}] ({MaxProfile.Collide})");
-                _sb.AppendLine($"solve [ave] (max) = {p.Solve} [{aveProfile.Solve}] ({MaxProfile.Solve})");
-                _sb.AppendLine($"solve init [ave] (max) = {p.SolveInit} [{aveProfile.SolveInit}] ({MaxProfile.SolveInit})");
-                _sb.AppendLine($"solve velocity [ave] (max) = {p.SolveVelocity} [{aveProfile.SolveVelocity}] ({MaxProfile.SolveVelocity})");
-                _sb.AppendLine($"solve position [ave] (max) = {p.SolvePosition} [{aveProfile.SolvePosition}] ({MaxProfile.SolvePosition})");
-                _sb.AppendLine($"solveTOI [ave] (max) = {p.SolveTOI} [{aveProfile.SolveTOI}] ({MaxProfile.SolveTOI})");
-                _sb.AppendLine($"broad-phase [ave] (max) = {p.Broadphase} [{aveProfile.Broadphase}] ({MaxProfile.Broadphase})");
+                //_sb.AppendLine($"FPS {FpsCounter.Fps}, ms {FpsCounter.Ms}");
+                //_sb.AppendLine($"step [ave] (max) = {p.Step} [{aveProfile.Step}] ({MaxProfile.Step})");
+                //_sb.AppendLine($"collide [ave] (max) = {p.Collide} [{aveProfile.Collide}] ({MaxProfile.Collide})");
+                //_sb.AppendLine($"solve [ave] (max) = {p.Solve} [{aveProfile.Solve}] ({MaxProfile.Solve})");
+                //_sb.AppendLine($"solve init [ave] (max) = {p.SolveInit} [{aveProfile.SolveInit}] ({MaxProfile.SolveInit})");
+                //_sb.AppendLine($"solve velocity [ave] (max) = {p.SolveVelocity} [{aveProfile.SolveVelocity}] ({MaxProfile.SolveVelocity})");
+                //_sb.AppendLine($"solve position [ave] (max) = {p.SolvePosition} [{aveProfile.SolvePosition}] ({MaxProfile.SolvePosition})");
+                //_sb.AppendLine($"solveTOI [ave] (max) = {p.SolveTOI} [{aveProfile.SolveTOI}] ({MaxProfile.SolveTOI})");
+                //_sb.AppendLine($"broad-phase [ave] (max) = {p.Broadphase} [{aveProfile.Broadphase}] ({MaxProfile.Broadphase})");
 
-                Console.SetCursorPosition(0, 0);
-                Console.Write(_sb.ToString());
-                _sb.Clear();
+                //Console.SetCursorPosition(0, 0);
+                //Console.Write(_sb.ToString());
+                //_sb.Clear();
             }
+        }
+
+        public void BeginContact(Contact contact)
+        {
+            if (bodyComponents.ContainsKey(contact.FixtureA.Body) && bodyComponents.ContainsKey(contact.FixtureB.Body))
+            {
+                var bodyA = bodyComponents[contact.FixtureA.Body];
+                var bodyB = bodyComponents[contact.FixtureB.Body];
+                if (bodyA.Parent?.GetType() != bodyB.Parent?.GetType())
+                {
+                    bodyA.BeginContact(contact, bodyB);
+                    bodyB.BeginContact(contact, bodyA);
+                }
+            }
+        }
+
+        public void EndContact(Contact contact)
+        {
+            if (bodyComponents.ContainsKey(contact.FixtureA.Body))
+            {
+                bodyComponents[contact.FixtureA.Body].EndContact(contact);
+            }
+        }
+
+        public void PostSolve(Contact contact, in ContactImpulse impulse)
+        {
+
+        }
+
+        public void PreSolve(Contact contact, in Manifold oldManifold)
+        {
+
         }
     }
 }

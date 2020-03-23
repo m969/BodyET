@@ -25,7 +25,8 @@ namespace ETHotfix
 				ETModel.Game.Hotfix.Update = () => { Update(); };
 				ETModel.Game.Hotfix.LateUpdate = () => { LateUpdate(); };
 				ETModel.Game.Hotfix.OnApplicationQuit = () => { OnApplicationQuit(); };
-				
+
+				//OpcodeHelper.ignoreDebugLogMessageSet.Add(HotfixOpcode.UnitOperation);
 
 				Game.Scene.AddComponent<UIComponent>();
 				Game.Scene.AddComponent<OpcodeTypeComponent>();
@@ -52,6 +53,8 @@ namespace ETHotfix
 			try
 			{
 				Game.EventSystem.Update();
+				foreach (var item in BulletComponent.Instance.GetAll())
+					BulletHotfix.Update(item);
 			}
 			catch (Exception e)
 			{

@@ -9,6 +9,7 @@ namespace ETHotfix
 	{
 		protected override async ETTask Run(Session session, C2R_Login request, R2C_Login response, Action reply)
 		{
+			Console.WriteLine("C2R_LoginHandler");
 			// 随机分配一个Gate
 			StartConfig config = RealmGateAddressHelper.GetGate();
 			//Log.Debug($"gate address: {MongoHelper.ToJson(config)}");

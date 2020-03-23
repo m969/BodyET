@@ -4,17 +4,22 @@ namespace ETHotfix
 {
     public static class MessageHelper
     {
-        public static void OnPropertyChanged(Entity entity, string propertyName, string value)
+        public static void OnPropertyChanged(Entity entity, string propertyName, /*string value,*/ byte[] valueBytes)
         {
             var entityType = EntityDefine.EntityIds.GetValueByKey(entity.GetType());
+            if (!EntityDefine.EntityDefInfo.ContainsKey(entityType))
+                return;
+            if (!EntityDefine.EntityDefInfo[entityType].ContainsKey(propertyName))
+                return;
+
             var attr = EntityDefine.EntityDefInfo[entityType][propertyName];
-            
             var msg = new M2C_OnEntityChanged();
             msg.EntityId = entity.Id;
             msg.EntityType = entityType;
-            msg.TypeParams.Add(attr.Id);
-            //if (attr.Type == PropertyType.Int32)
-            msg.ValueParams.Add(value);
+            //msg.TypeParams.Add(attr.Id);
+            //msg.ValueParams.Add(value);
+            msg.PropertyId = attr.Id;
+            msg.PropertyValue.bytes = valueBytes;
 
             if (attr.Flag == SyncFlag.AllClients)
             {
@@ -62,7 +67,7 @@ namespace ETHotfix
         {
             var units = unit.Domain.GetComponent<UnitComponent>().GetAll();
 
-            if (units == null) return;
+            if (units.Length == 0) return;
 
             foreach (Unit u in units)
             {

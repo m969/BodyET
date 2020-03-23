@@ -17,12 +17,13 @@ namespace ETModel
         public long needTime;
 
         // 当前的移动速度
-        public float Speed = 5;
+        public float Speed = 50;
         
         // 开启协程移动,每100毫秒移动一次，并且协程取消的时候会计算玩家真实移动
         // 比方说玩家移动了2500毫秒,玩家有新的目标,这时旧的移动协程结束,将计算250毫秒移动的位置，而不是300毫秒移动的位置
         public async ETTask StartMove(ETCancellationToken cancellationToken)
         {
+            Log.Debug("StartMove");
             var unit = this.GetParent<Entity>().GetComponent<TransformComponent>();
             this.StartPos = unit.Position;
             this.StartTime = TimeHelper.Now();
@@ -70,6 +71,7 @@ namespace ETModel
         
         public async ETTask MoveToAsync(Vector3 target, ETCancellationToken cancellationToken)
         {
+            Log.Debug($"MoveToAsync {target}");
             // 新目标点离旧目标点太近，不设置新的
             if ((target - this.Target).sqrMagnitude < 0.01f)
             {
@@ -77,7 +79,7 @@ namespace ETModel
             }
 
             // 距离当前位置太近
-            if ((this.GetParent<Unit>().Position - target).sqrMagnitude < 0.01f)
+            if ((this.GetParent<Entity>().GetComponent<TransformComponent>().Position - target).sqrMagnitude < 0.01f)
             {
                 return;
             }
@@ -86,6 +88,16 @@ namespace ETModel
             
             // 开启协程移动
             await StartMove(cancellationToken);
+        }
+
+        public async ETVoid MoveTo(Vector3 target, bool destroy = false)
+        {
+            await MoveToAsync(target, EntityFactory.Create<ETCancellationTokenSource>(Domain).Token);
+            if (destroy)
+            {
+                if (Parent != null)
+                    Parent.Dispose();
+            }
         }
     }
 }

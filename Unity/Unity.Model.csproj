@@ -190,7 +190,9 @@
     <Compile Include="Assets\Model\Module\CoroutineLock\CoroutineLockQueueType.cs" />
     <Compile Include="Assets\Model\Module\CoroutineLock\CoroutineLockType.cs" />
     <Compile Include="Assets\Model\Module\Demo\AnimatorComponent.cs" />
-    <Compile Include="Assets\Model\Module\Demo\Bullet.cs" />
+    <Compile Include="Assets\Model\Module\Demo\Bullet\Bullet.client.cs" />
+    <Compile Include="Assets\Model\Module\Demo\Bullet\Bullet.cs" />
+    <Compile Include="Assets\Model\Module\Demo\Bullet\BulletComponent.cs" />
     <Compile Include="Assets\Model\Module\Demo\CameraComponent.cs" />
     <Compile Include="Assets\Model\Module\Demo\Config\UnitConfig.cs" />
     <Compile Include="Assets\Model\Module\Demo\EntityDef\EntityDef.cs" />

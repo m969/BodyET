@@ -50,6 +50,11 @@ namespace ETModel
 		public static Dictionary<ushort, Dictionary<string, PropertyDefineAttribute>> EntityDefInfo { get; set; } = new Dictionary<ushort, Dictionary<string, PropertyDefineAttribute>>();
 		public static Dictionary<ushort, Dictionary<ushort, PropertyInfo>> EntityPropertyInfo { get; set; } = new Dictionary<ushort, Dictionary<ushort, PropertyInfo>>();
 
+		public static ushort GetTypeId(Type type)
+		{
+			return EntityIds.GetValueByKey(type);
+		}
+
 		public static void Init()
 		{
 			var assembly = typeof(Game).Assembly;
@@ -59,11 +64,6 @@ namespace ETModel
 				{
 					continue;
 				}
-				//object[] objects = type.GetCustomAttributes(typeof(EntityDefineAttribute), true);
-				//if (objects.Length == 0)
-				//{
-				//	continue;
-				//}
 				var baseAttribute = type.GetCustomAttribute<EntityDefineAttribute>();
 				if (baseAttribute == null)
 					continue;
@@ -73,15 +73,44 @@ namespace ETModel
 				foreach (var propertyInfo in type.GetProperties())
 				{
 					var attribute = propertyInfo.GetCustomAttribute<PropertyDefineAttribute>();
-					attribute.Type = propertyInfo.PropertyType;
 					if (attribute != null)
 					{
+						attribute.Type = propertyInfo.PropertyType;
 						EntityDefInfo[baseAttribute.Type].Add(propertyInfo.Name, attribute);
 						EntityPropertyInfo[baseAttribute.Type].Add(attribute.Id, propertyInfo);
 					}
 				}
 			}
-			//Console.WriteLine($"{JsonHelper.ToJson(EntityDefInfo.Values)}");
+		}
+	}
+
+	public partial class Entity
+	{
+		[MongoDB.Bson.Serialization.Attributes.BsonIgnore]
+		public static System.Action<Entity, string, /*string, */byte[]> OnPropertyChanged { get; set; }
+		protected void PublishProperty(string name, /*string value, */byte[] valueBytes = null)
+		{
+			OnPropertyChanged?.Invoke(this, name,/* value, */valueBytes);
+		}
+
+		protected void PublishProperty(string name, string value)
+		{
+			PublishProperty(name,/* $"{value}", */MongoHelper.ToBson(value));
+		}
+
+		protected void PublishProperty(string name, int value)
+		{
+			PublishProperty(name,/* $"{value}", */MongoHelper.ToBson(value));
+		}
+
+		protected void PublishProperty(string name, float value)
+		{
+			PublishProperty(name, /*$"{value}", */MongoHelper.ToBson(value));
+		}
+
+		protected void PublishProperty(string name, UnityEngine.Vector3 value)
+		{
+			PublishProperty(name,/* $"{value}", */MongoHelper.ToBson(value));
 		}
 	}
 }

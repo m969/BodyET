@@ -8,6 +8,7 @@ namespace ETHotfix
 	{
 		protected override async ETTask Run(Session session, C2G_LoginGate request, G2C_LoginGate response, Action reply)
 		{
+			Console.WriteLine("C2G_LoginGateHandler");
 			Scene scene = Game.Scene.Get(request.GateId);
 			if (scene == null)
 			{

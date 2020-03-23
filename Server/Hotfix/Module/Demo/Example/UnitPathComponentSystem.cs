@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace ETHotfix
 {
-    public static class UnitPathComponentHelper
+    public static class UnitPathComponentSystem
     {
         public static async ETTask MoveAsync(this UnitPathComponent self, List<Vector3> path)
         {

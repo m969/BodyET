@@ -1,6 +1,8 @@
-﻿using Box2DSharp.Collision.Shapes;
+﻿using Box2DSharp.Collision.Collider;
+using Box2DSharp.Collision.Shapes;
 using Box2DSharp.Common;
 using Box2DSharp.Dynamics;
+using Box2DSharp.Dynamics.Contacts;
 using Box2DSharp.Dynamics.Joints;
 using UnityEngine;
 
@@ -31,26 +33,76 @@ namespace ETModel
 		{
 			get
 			{
-				return GetParent<Entity>().GetComponent<TransformComponent>().Position;
+				var p3 = GetParent<Entity>().GetComponent<TransformComponent>().Position;
+				return new Vector2(p3.x, p3.z);
+			}
+			set
+			{
+				GetParent<Entity>().GetComponent<TransformComponent>().Position = new Vector3(value.x, 0, value.y);
 			}
 		}
 		public float Angle
 		{
 			get
 			{
-				return GetParent<Entity>().GetComponent<TransformComponent>().Rotation.y;
+				return GetParent<Entity>().GetComponent<TransformComponent>().Rotation;
 			}
 		}
 
-
+		private int counter { get; set; } = 0;
 		public void Awake()
 		{
-			Body = Test.Instance.CreateBoxCollider(0, 0, 2, 2);
 		}
 
+		public Body2dComponent CreateBody(float hx, float hy)
+		{
+			this.Body = Test.Instance.CreateBoxCollider(this, Position.x, Position.y, hx, hy);
+			return this;
+		}
+
+		private Vector2 lastPosition { get; set; }
 		public void Update()
 		{
-			Body.SetTransform(new System.Numerics.Vector2(Position.x, Position.y), Angle);
+			if (Position != lastPosition)
+			{
+				Log.Debug("Position = " + Position.ToString());
+				lastPosition = Position;
+			}
+			this.Body.SetTransform(new System.Numerics.Vector2(Position.x, Position.y), Angle);
+		}
+
+		public override void Dispose()
+		{
+			Test.Instance.Remove(Body);
+			base.Dispose();
+		}
+
+		public void BeginContact(Contact contact, Body2dComponent other)
+		{
+			if (Parent is Unit unit)
+			{
+				if (other.Parent is Bullet bullet)
+				{
+					if (bullet.OwnerId != unit.Id)
+					{
+						unit.HP -= 10;
+						if (unit.HP <= 0)
+						{
+							unit.Dead();
+						}
+						bullet.Dispose();
+					}
+				}
+			}
+			//Log.Debug($"A {contact.FixtureA}");
+			//Log.Debug($"B {contact.FixtureB}");
+			//Log.Debug($"A {contact.FixtureA.UserData}");
+			//Log.Debug($"B {contact.FixtureB.UserData}");
+		}
+
+		public void EndContact(Contact contact)
+		{
+			//Log.Debug("Body2dComponent EndContact");
 		}
 	}
 }

@@ -5,7 +5,7 @@ using DG.Tweening;
 
 namespace ETHotfix
 {
-    public static class UnitLogicEx
+    public static class UnitHotfix
     {
 		public static GameObject LocalFire(this Unit self, Vector3 targetPoint, int bulletType, long bulletId)
 		{
