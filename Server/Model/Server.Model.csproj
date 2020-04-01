@@ -51,6 +51,9 @@
     <Compile Include="..\..\Unity\Assets\Model\Base\Async\MoveNextRunner.cs">
       <Link>Base\Async\MoveNextRunner.cs</Link>
     </Compile>
+    <Compile Include="..\..\Unity\Assets\Model\Base\EntityDefine.cs">
+      <Link>Base\EntityDefine.cs</Link>
+    </Compile>
     <Compile Include="..\..\Unity\Assets\Model\Base\Helper\MongoHelper.cs">
       <Link>Base\Helper\MongoHelper.cs</Link>
     </Compile>
@@ -129,6 +132,9 @@
     <Compile Include="..\..\Unity\Assets\Model\Base\ProcessHelper.cs">
       <Link>Base/ProcessHelper.cs</Link>
     </Compile>
+    <Compile Include="..\..\Unity\Assets\Model\Base\ReactCollection.cs" Link="Base\ReactCollection.cs" />
+    <Compile Include="..\..\Unity\Assets\Model\Base\ReactDictionary.cs" Link="Base\ReactDictionary.cs" />
+    <Compile Include="..\..\Unity\Assets\Model\Base\ReactProperty.cs" Link="Base\ReactProperty.cs" />
     <Compile Include="..\..\Unity\Assets\Model\Base\StructBsonSerialize.cs">
       <Link>Base\StructBsonSerialize.cs</Link>
     </Compile>
@@ -177,9 +183,12 @@
     </Compile>
     <Compile Include="..\..\Unity\Assets\Model\Module\Demo\Bullet\Bullet.cs" Link="Module\Demo\Bullet\Bullet.cs" />
     <Compile Include="..\..\Unity\Assets\Model\Module\Demo\Bullet\BulletComponent.cs" Link="Module\Demo\Bullet\BulletComponent.cs" />
-    <Compile Include="..\..\Unity\Assets\Model\Module\Demo\EntityDefine.cs" Link="Module\Demo\EntityDefine.cs" />
+    <Compile Include="..\..\Unity\Assets\Model\Module\Demo\SCCommonComponents\EntityComponent.cs" Link="Module\Demo\SCCommonComponents\EntityComponent.cs" />
     <Compile Include="..\..\Unity\Assets\Model\Module\Demo\SCCommonComponents\TransformComponent.cs" Link="Module\Demo\SCCommonComponents\TransformComponent.cs" />
     <Compile Include="..\..\Unity\Assets\Model\Module\Demo\Unit\Unit.cs" Link="Module\Demo\Unit\Unit.cs" />
+    <Compile Include="..\..\Unity\Assets\Model\Module\Demo\Unit\UnitComponent.cs">
+      <Link>Module\Demo\Unit\UnitComponent.cs</Link>
+    </Compile>
     <Compile Include="..\..\Unity\Assets\Model\Module\Message\MessagePool.cs">
       <Link>Module\Message\MessagePool\ETModel\MessagePool.cs</Link>
     </Compile>

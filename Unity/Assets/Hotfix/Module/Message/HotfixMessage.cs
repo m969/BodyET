@@ -1220,19 +1220,19 @@ namespace ETHotfix {
       }
     }
 
-    private int operation_;
-    public int Operation {
-      get { return operation_; }
-      set {
-        operation_ = value;
-      }
-    }
-
     private int angleY_;
     public int AngleY {
       get { return angleY_; }
       set {
         angleY_ = value;
+      }
+    }
+
+    private int operation_;
+    public int Operation {
+      get { return operation_; }
+      set {
+        operation_ = value;
       }
     }
 
@@ -1277,9 +1277,9 @@ namespace ETHotfix {
         output.WriteRawTag(32);
         output.WriteInt32(Z);
       }
-      if (Operation != 0) {
+      if (AngleY != 0) {
         output.WriteRawTag(40);
-        output.WriteInt32(Operation);
+        output.WriteInt32(AngleY);
       }
       if (Index != 0) {
         output.WriteRawTag(48);
@@ -1289,9 +1289,9 @@ namespace ETHotfix {
         output.WriteRawTag(56);
         output.WriteInt64(Time);
       }
-      if (AngleY != 0) {
+      if (Operation != 0) {
         output.WriteRawTag(64);
-        output.WriteInt32(AngleY);
+        output.WriteInt32(Operation);
       }
       intParams_.WriteTo(output, _repeated_intParams_codec);
       stringParams_.WriteTo(output, _repeated_stringParams_codec);
@@ -1339,11 +1339,11 @@ namespace ETHotfix {
       if (Z != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Z);
       }
-      if (Operation != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Operation);
-      }
       if (AngleY != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(AngleY);
+      }
+      if (Operation != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Operation);
       }
       size += intParams_.CalculateSize(_repeated_intParams_codec);
       size += stringParams_.CalculateSize(_repeated_stringParams_codec);
@@ -1356,10 +1356,10 @@ namespace ETHotfix {
       x_ = 0;
       y_ = 0;
       z_ = 0;
-      operation_ = 0;
+      angleY_ = 0;
       index_ = 0;
       time_ = 0;
-      angleY_ = 0;
+      operation_ = 0;
       intParams_.Clear();
       stringParams_.Clear();
       longParams_.Clear();
@@ -1389,7 +1389,7 @@ namespace ETHotfix {
             break;
           }
           case 40: {
-            Operation = input.ReadInt32();
+            AngleY = input.ReadInt32();
             break;
           }
           case 48: {
@@ -1401,7 +1401,7 @@ namespace ETHotfix {
             break;
           }
           case 64: {
-            AngleY = input.ReadInt32();
+            Operation = input.ReadInt32();
             break;
           }
           case 74:
@@ -2136,6 +2136,131 @@ namespace ETHotfix {
             AngleY = input.ReadInt32();
             break;
           }
+          case 88: {
+            PropertyId = input.ReadInt32();
+            break;
+          }
+          case 98: {
+            PropertyValue = input.ReadBytes();
+            break;
+          }
+          case 720: {
+            RpcId = input.ReadInt32();
+            break;
+          }
+          case 744: {
+            ActorId = input.ReadInt64();
+            break;
+          }
+          case 752: {
+            Id = input.ReadInt64();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public partial class C2M_SetEntityProperty : pb::IMessage {
+    private static readonly pb::MessageParser<C2M_SetEntityProperty> _parser = new pb::MessageParser<C2M_SetEntityProperty>(() => (C2M_SetEntityProperty)MessagePool.Instance.Fetch(typeof(C2M_SetEntityProperty)));
+    public static pb::MessageParser<C2M_SetEntityProperty> Parser { get { return _parser; } }
+
+    private int rpcId_;
+    public int RpcId {
+      get { return rpcId_; }
+      set {
+        rpcId_ = value;
+      }
+    }
+
+    private long actorId_;
+    public long ActorId {
+      get { return actorId_; }
+      set {
+        actorId_ = value;
+      }
+    }
+
+    private long id_;
+    public long Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    private int propertyId_;
+    public int PropertyId {
+      get { return propertyId_; }
+      set {
+        propertyId_ = value;
+      }
+    }
+
+    private pb::ByteString propertyValue_ = pb::ByteString.Empty;
+    public pb::ByteString PropertyValue {
+      get { return propertyValue_; }
+      set {
+        propertyValue_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (PropertyId != 0) {
+        output.WriteRawTag(88);
+        output.WriteInt32(PropertyId);
+      }
+      if (PropertyValue.Length != 0) {
+        output.WriteRawTag(98);
+        output.WriteBytes(PropertyValue);
+      }
+      if (RpcId != 0) {
+        output.WriteRawTag(208, 5);
+        output.WriteInt32(RpcId);
+      }
+      if (ActorId != 0L) {
+        output.WriteRawTag(232, 5);
+        output.WriteInt64(ActorId);
+      }
+      if (Id != 0L) {
+        output.WriteRawTag(240, 5);
+        output.WriteInt64(Id);
+      }
+    }
+
+    public int CalculateSize() {
+      int size = 0;
+      if (RpcId != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeInt32Size(RpcId);
+      }
+      if (ActorId != 0L) {
+        size += 2 + pb::CodedOutputStream.ComputeInt64Size(ActorId);
+      }
+      if (Id != 0L) {
+        size += 2 + pb::CodedOutputStream.ComputeInt64Size(Id);
+      }
+      if (PropertyId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PropertyId);
+      }
+      if (PropertyValue.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(PropertyValue);
+      }
+      return size;
+    }
+
+    public void MergeFrom(pb::CodedInputStream input) {
+      propertyId_ = 0;
+      propertyValue_ = pb::ByteString.Empty;
+      rpcId_ = 0;
+      actorId_ = 0;
+      id_ = 0;
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
           case 88: {
             PropertyId = input.ReadInt32();
             break;

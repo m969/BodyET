@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace ETModel
 {
-	[ObjectSystem]
-	public class AnimatorComponentAwakeSystem : AwakeSystem<AnimatorComponent>
-	{
-		public override void Awake(AnimatorComponent self)
-		{
-			self.Awake();
-		}
-	}
+	//[ObjectSystem]
+	//public class AnimatorComponentAwakeSystem : AwakeSystem<AnimatorComponent>
+	//{
+	//	public override void Awake(AnimatorComponent self)
+	//	{
+	//		self.Awake();
+	//	}
+	//}
 
 	[ObjectSystem]
 	public class AnimatorComponentUpdateSystem : UpdateSystem<AnimatorComponent>
@@ -27,15 +27,16 @@ namespace ETModel
 		public Dictionary<string, AnimationClip> animationClips = new Dictionary<string, AnimationClip>();
 		public HashSet<string> Parameter = new HashSet<string>();
 
-		public MotionType MotionType;
+		public MotionType MotionType = MotionType.Idle;
+		public MotionType NextMotionType = MotionType.None;
 		public float MontionSpeed;
 		public bool isStop;
 		public float stopSpeed;
 		public Animator Animator;
 
-		public void Awake()
+		public void Awake(Animator animator)
 		{
-			Animator animator = this.GetParent<Unit>().ViewGO.GetComponent<Animator>();
+			//Animator animator = this.GetParent<Unit>().BodyView.GetComponent<Animator>();
 
 			if (animator == null)
 			{
@@ -69,7 +70,7 @@ namespace ETModel
 				return;
 			}
 
-			if (this.MotionType == MotionType.None)
+			if (this.NextMotionType == MotionType.None || MotionType == NextMotionType)
 			{
 				return;
 			}
@@ -77,11 +78,9 @@ namespace ETModel
 			try
 			{
 				this.Animator.SetFloat("MotionSpeed", this.MontionSpeed);
-
-				this.Animator.SetTrigger(this.MotionType.ToString());
-
+				this.Animator.SetTrigger(this.NextMotionType.ToString());
 				this.MontionSpeed = 1;
-				this.MotionType = MotionType.None;
+				this.MotionType = NextMotionType;
 			}
 			catch (Exception ex)
 			{
@@ -118,7 +117,7 @@ namespace ETModel
 			{
 				return;
 			}
-			this.MotionType = motionType;
+			this.NextMotionType = motionType;
 			this.MontionSpeed = motionSpeed;
 		}
 

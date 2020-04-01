@@ -11,9 +11,6 @@ namespace ETHotfix
         protected override async ETTask Run(ETModel.Session session, M2C_InViewUnits message)
         {
             var selfUnit = MongoHelper.FromBson<Unit>(message.SelfUnit.bytes);
-            //var selfUnit = M2C_OnEnterViewHandler.OnEnterView(message.SelfUnit);
-            //Unit.LocalUnit = selfUnit;
-            //PlayerComponent.Instance.MyPlayer.UnitId = selfUnit.Id;
             var go = UnityEngine.Object.Instantiate(PrefabHelper.GetUnitPrefab("Unit"));
             GameObject.DontDestroyOnLoad(go);
             var unit = ETModel.EntityFactory.CreateWithId<Unit>(ETModel.Game.Scene, selfUnit.Id);
@@ -22,6 +19,7 @@ namespace ETHotfix
             UnitComponent.Instance.Add(unit);
             go.transform.GetChild(2).parent = null;
             go.transform.GetChild(1).parent = null;
+            unit.Position = selfUnit.PositionProperty.Value;
             Game.Scene.AddComponent<OperaComponent>();
 
             foreach (var entityJson in message.InViewEntitys)

@@ -256,6 +256,8 @@ namespace ETModel
 
 		public long GateSessionId { get; set; }
 
+		public long UnitId { get; set; }
+
 	}
 
 	[Message(InnerOpcode.M2G_CreateUnit)]

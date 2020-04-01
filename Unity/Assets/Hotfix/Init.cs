@@ -26,7 +26,8 @@ namespace ETHotfix
 				ETModel.Game.Hotfix.LateUpdate = () => { LateUpdate(); };
 				ETModel.Game.Hotfix.OnApplicationQuit = () => { OnApplicationQuit(); };
 
-				//OpcodeHelper.ignoreDebugLogMessageSet.Add(HotfixOpcode.UnitOperation);
+				OpcodeHelper.ignoreDebugLogMessageSet.Add(HotfixOpcode.UnitOperation);
+				OpcodeHelper.ignoreDebugLogMessageSet.Add(HotfixOpcode.M2C_OnEntityChanged);
 
 				Game.Scene.AddComponent<UIComponent>();
 				Game.Scene.AddComponent<OpcodeTypeComponent>();
@@ -41,6 +42,16 @@ namespace ETHotfix
 				Log.Debug($"config {JsonHelper.ToJson(unitConfig)}");
 
 				Game.EventSystem.Run(EventIdType.InitSceneStart);
+
+				EntityDefine.OnPropertyChanged += (entity, name, value) =>
+				{
+					var propertyDefineCollection = EntityDefine.PropertyDefineCollectionMap[EntityDefine.GetTypeId<Unit>()];
+					var attr = propertyDefineCollection[name];
+					var msg = new C2M_SetEntityProperty();
+					msg.PropertyId = attr.Id;
+					msg.PropertyValue.bytes = value;
+					SessionHelper.HotfixSend(msg);
+				};
 			}
 			catch (Exception e)
 			{

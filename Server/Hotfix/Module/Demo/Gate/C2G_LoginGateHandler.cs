@@ -23,7 +23,18 @@ namespace ETHotfix
 				reply();
 				return;
 			}
-			Player player = EntityFactory.Create<Player, string>(Game.Scene, account);
+
+			var results = await DBComponent.Instance.Query<Player>(x => x.Account == account);
+			Player player = null;
+			if (results.Count > 0)
+			{
+				player = results[0];
+			}
+			else
+			{
+				player = EntityFactory.Create<Player, string>(Game.Scene, account);
+				DBComponent.Instance.Save(player).Coroutine();
+			}
 			scene.GetComponent<PlayerComponent>().Add(player);
 			session.AddComponent<SessionPlayerComponent>().Player = player;
 			session.AddComponent<MailBoxComponent, MailboxType>(MailboxType.GateSession);
@@ -31,7 +42,7 @@ namespace ETHotfix
 			response.PlayerId = player.Id;
 			reply();
 
-			session.Send(new G2C_TestHotfixMessage() { Info = "recv hotfix message success" });
+			//session.Send(new G2C_TestHotfixMessage() { Info = "recv hotfix message success" });
 			await ETTask.CompletedTask;
 		}
 	}

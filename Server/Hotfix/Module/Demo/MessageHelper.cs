@@ -7,17 +7,15 @@ namespace ETHotfix
         public static void OnPropertyChanged(Entity entity, string propertyName, /*string value,*/ byte[] valueBytes)
         {
             var entityType = EntityDefine.EntityIds.GetValueByKey(entity.GetType());
-            if (!EntityDefine.EntityDefInfo.ContainsKey(entityType))
+            if (!EntityDefine.PropertyDefineCollectionMap.ContainsKey(entityType))
                 return;
-            if (!EntityDefine.EntityDefInfo[entityType].ContainsKey(propertyName))
+            if (!EntityDefine.PropertyDefineCollectionMap[entityType].ContainsKey(propertyName))
                 return;
 
-            var attr = EntityDefine.EntityDefInfo[entityType][propertyName];
+            var attr = EntityDefine.PropertyDefineCollectionMap[entityType][propertyName];
             var msg = new M2C_OnEntityChanged();
             msg.EntityId = entity.Id;
             msg.EntityType = entityType;
-            //msg.TypeParams.Add(attr.Id);
-            //msg.ValueParams.Add(value);
             msg.PropertyId = attr.Id;
             msg.PropertyValue.bytes = valueBytes;
 

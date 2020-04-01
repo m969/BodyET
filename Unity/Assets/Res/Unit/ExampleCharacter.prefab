@@ -900,6 +900,7 @@ MonoBehaviour:
   StableMovementSharpness: 15
   OrientationSharpness: 5
   OrientationMethod: 1
+  FixedDirection: {x: 0, y: 0, z: 0}
   MaxAirMoveSpeed: 10
   AirAccelerationSpeed: 45
   Drag: 0.1

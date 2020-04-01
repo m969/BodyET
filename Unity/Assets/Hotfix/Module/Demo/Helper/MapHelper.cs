@@ -23,26 +23,6 @@ namespace ETHotfix
                 }
 				
                 var g2CEnterMap = await ETModel.SessionComponent.Instance.Session.Call(new C2G_EnterMap()) as G2C_EnterMap;
-                //PlayerComponent.Instance.MyPlayer.UnitId = g2CEnterMap.UnitId;
-
-                //var go = UnityEngine.Object.Instantiate(PrefabHelper.GetUnitPrefab("Unit"));
-                //GameObject.DontDestroyOnLoad(go);
-                //var unit = ETModel.EntityFactory.CreateWithId<Unit>(ETModel.Game.Scene, g2CEnterMap.UnitId);
-                //Unit.LocalUnit = unit;
-                //unit.Awake(go.transform.GetChild(0).gameObject);
-                //UnitComponent.Instance.Add(unit);
-                //go.transform.GetChild(2).parent = null;
-                //go.transform.GetChild(1).parent = null;
-
-                //Game.Scene.AddComponent<OperaComponent>();
-
-                //UnitComponent unitComponent = ETModel.Game.Scene.GetComponent<UnitComponent>();
-                //foreach (var unitInfo in g2CEnterMap.Units)
-                //{
-                //    if (unitComponent.Get(unitInfo.UnitId) != null)
-                //        continue;
-                //    M2C_CreateUnitsHandler.OnEnterView(unitInfo);
-                //}
 
                 Game.EventSystem.Run(EventIdType.EnterMapFinish);
             }

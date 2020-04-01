@@ -75,6 +75,7 @@
     <Compile Include="Assets\Model\Base\Async\IAwaiter.cs" />
     <Compile Include="Assets\Model\Base\Async\MoveNextRunner.cs" />
     <Compile Include="Assets\Model\Base\DoubleMap.cs" />
+    <Compile Include="Assets\Model\Base\EntityDefine.cs" />
     <Compile Include="Assets\Model\Base\Event\Env.cs" />
     <Compile Include="Assets\Model\Base\Event\EnvKey.cs" />
     <Compile Include="Assets\Model\Base\Event\EventAttribute.cs" />
@@ -132,6 +133,9 @@
     <Compile Include="Assets\Model\Base\Pool.cs" />
     <Compile Include="Assets\Model\Base\ProcessHelper.cs" />
     <Compile Include="Assets\Model\Base\QueueDictionary.cs" />
+    <Compile Include="Assets\Model\Base\ReactCollection.cs" />
+    <Compile Include="Assets\Model\Base\ReactDictionary.cs" />
+    <Compile Include="Assets\Model\Base\ReactProperty.cs" />
     <Compile Include="Assets\Model\Base\RecyclableMemoryStream\Events.cs" />
     <Compile Include="Assets\Model\Base\RecyclableMemoryStream\RecyclableMemoryStream.cs" />
     <Compile Include="Assets\Model\Base\RecyclableMemoryStream\RecyclableMemoryStreamManager.cs" />
@@ -195,11 +199,7 @@
     <Compile Include="Assets\Model\Module\Demo\Bullet\BulletComponent.cs" />
     <Compile Include="Assets\Model\Module\Demo\CameraComponent.cs" />
     <Compile Include="Assets\Model\Module\Demo\Config\UnitConfig.cs" />
-    <Compile Include="Assets\Model\Module\Demo\EntityDef\EntityDef.cs" />
-    <Compile Include="Assets\Model\Module\Demo\EntityDef\Method.cs" />
-    <Compile Include="Assets\Model\Module\Demo\EntityDef\Property.cs" />
-    <Compile Include="Assets\Model\Module\Demo\EntityDef\ScriptModule.cs" />
-    <Compile Include="Assets\Model\Module\Demo\EntityDefine.cs" />
+    <Compile Include="Assets\Model\Module\Demo\ExamplePlayer.cs" />
     <Compile Include="Assets\Model\Module\Demo\HealthComponent.cs" />
     <Compile Include="Assets\Model\Module\Demo\MoveComponent.cs" />
     <Compile Include="Assets\Model\Module\Demo\Player.cs" />

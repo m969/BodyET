@@ -27,6 +27,7 @@ namespace ETHotfix
                 case SceneType.Map:
                     scene.AddComponent<UnitComponent>();
                     scene.AddComponent<PathfindingComponent>();
+                    scene.AddComponent<Box2dWorldComponent>();
                     break;
                 case SceneType.Location:
                     scene.AddComponent<LocationComponent>();

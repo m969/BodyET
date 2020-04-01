@@ -9,12 +9,14 @@ namespace KinematicCharacterController.Examples
     public enum CharacterState
     {
         Default,
+        FixedDirection,
     }
 
     public enum OrientationMethod
     {
         TowardsCamera,
         TowardsMovement,
+        FixedDirection,
     }
 
     public struct PlayerCharacterInputs
@@ -42,6 +44,8 @@ namespace KinematicCharacterController.Examples
         public float StableMovementSharpness = 15f;
         public float OrientationSharpness = 10f;
         public OrientationMethod OrientationMethod = OrientationMethod.TowardsCamera;
+        [HideInInspector]
+        public Vector3 FixedDirection = Vector3.zero;
 
         [Header("Air Movement")]
         public float MaxAirMoveSpeed = 100f;
@@ -127,6 +131,24 @@ namespace KinematicCharacterController.Examples
             }
         }
 
+        public void SetRotation(Vector3 direction)
+        {
+            FixedDirection = direction;
+        }
+
+        public void LockRotation(Vector3 direction)
+        {
+            OrientationMethod = OrientationMethod.FixedDirection;
+            CurrentCharacterState = CharacterState.FixedDirection;
+            FixedDirection = direction;
+        }
+
+        public void CancelLockRotation()
+        {
+            OrientationMethod = OrientationMethod.TowardsMovement;
+            CurrentCharacterState = CharacterState.Default;
+        }
+
         /// <summary>
         /// This is called every frame by ExamplePlayer in order to tell the character what its inputs are
         /// </summary>
@@ -146,6 +168,7 @@ namespace KinematicCharacterController.Examples
             switch (CurrentCharacterState)
             {
                 case CharacterState.Default:
+                case CharacterState.FixedDirection:
                     {
                         // Move and look inputs
                         _moveInputVector = cameraPlanarRotation * moveInputVector;
@@ -157,6 +180,9 @@ namespace KinematicCharacterController.Examples
                                 break;
                             case OrientationMethod.TowardsMovement:
                                 _lookInputVector = _moveInputVector.normalized;
+                                break;
+                            case OrientationMethod.FixedDirection:
+                                _lookInputVector = FixedDirection;
                                 break;
                         }
 
@@ -232,6 +258,9 @@ namespace KinematicCharacterController.Examples
                         }
                         break;
                     }
+                case CharacterState.FixedDirection:
+                    currentRotation = Quaternion.Euler(FixedDirection);
+                    break;
             }
         }
 
@@ -245,6 +274,7 @@ namespace KinematicCharacterController.Examples
             switch (CurrentCharacterState)
             {
                 case CharacterState.Default:
+                case CharacterState.FixedDirection:
                     {
                         // Ground movement
                         if (Motor.GroundingStatus.IsStableOnGround)
@@ -363,6 +393,7 @@ namespace KinematicCharacterController.Examples
             switch (CurrentCharacterState)
             {
                 case CharacterState.Default:
+                case CharacterState.FixedDirection:
                     {
                         // Handle jump-related values
                         {
@@ -455,6 +486,7 @@ namespace KinematicCharacterController.Examples
             switch (CurrentCharacterState)
             {
                 case CharacterState.Default:
+                case CharacterState.FixedDirection:
                     {
                         _internalVelocityAdd += velocity;
                         break;

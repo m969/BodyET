@@ -534,12 +534,6 @@ namespace ETModel
 		{
 			this.Start();
 
-#if SERVER
-			//if (Test)
-			Test.Instance?.FixedUpdate?.Update();
-			//Game.Physics.Update(0.1f);
-#endif
-
 			while (this.updates.Count > 0)
 			{
 				long instanceId = this.updates.Dequeue();

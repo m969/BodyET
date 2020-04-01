@@ -103,6 +103,16 @@ namespace ETModel
 			return BitConverter.ToSingle(bytes, 0);
 		}
 
+		public static byte[] ToBson(string v)
+		{
+			return v.ToByteArray();
+		}
+
+		public static string ToString(byte[] bytes)
+		{
+			return BitConverter.ToString(bytes, 0);
+		}
+
 		public static void ToBson(object obj, MemoryStream stream)
 		{
 			using (BsonBinaryWriter bsonWriter = new BsonBinaryWriter(stream, BsonBinaryWriterSettings.Defaults))

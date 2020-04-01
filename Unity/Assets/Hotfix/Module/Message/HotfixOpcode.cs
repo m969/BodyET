@@ -63,6 +63,9 @@ namespace ETHotfix
 
 // repeated int32 TypeParams = 9;
 // repeated string ValueParams = 10;
+	[Message(HotfixOpcode.C2M_SetEntityProperty)]
+	public partial class C2M_SetEntityProperty : IActorLocationMessage {}
+
 	[Message(HotfixOpcode.FireRequest)]
 	public partial class FireRequest : IActorLocationRequest {}
 
@@ -92,7 +95,8 @@ namespace ETHotfix
 		 public const ushort M2C_OnEnterView = 10016;
 		 public const ushort M2C_OnLeaveView = 10017;
 		 public const ushort M2C_OnEntityChanged = 10018;
-		 public const ushort FireRequest = 10019;
-		 public const ushort G2M_GetCopyMap = 10020;
+		 public const ushort C2M_SetEntityProperty = 10019;
+		 public const ushort FireRequest = 10020;
+		 public const ushort G2M_GetCopyMap = 10021;
 	}
 }

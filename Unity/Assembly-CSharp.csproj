@@ -63,14 +63,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\StylizedExplosionPack\scripts\destroyMe.cs" />
-    <Compile Include="Assets\StylizedExplosionPack\scripts\instantiateEffectCaller.cs" />
-    <Compile Include="Assets\StylizedExplosionPack\scripts\particleColorChanger.cs" />
-    <None Include="Assets\StylizedExplosionPack\shader\alphaBlend_depthBlend_glow.shader" />
-    <None Include="Assets\StylizedExplosionPack\shader\alphaBlend_glow.shader" />
+    <Compile Include="Assets\Yuponic\YuME\Scripts\YuME_editorData.cs" />
+    <Compile Include="Assets\Yuponic\YuME\Scripts\YuME_editorPreferences.cs" />
+    <Compile Include="Assets\Yuponic\YuME\Scripts\YuME_GizmoGrid.cs" />
+    <Compile Include="Assets\Yuponic\YuME\Scripts\YuME_importerSettings.cs" />
+    <Compile Include="Assets\Yuponic\YuME\Scripts\YuME_MapManager.cs" />
+    <Compile Include="Assets\Yuponic\YuME\Scripts\YuME_prefabSamplerData.cs" />
+    <Compile Include="Assets\Yuponic\YuME\Scripts\YuME_Preferences.cs" />
+    <Compile Include="Assets\Yuponic\YuME\Scripts\YuME_tileGizmo.cs" />
+    <Compile Include="Assets\Yuponic\YuME\Scripts\YuME_tilesetData.cs" />
     <None Include="Assets\Res\Config\GlobalProto.txt" />
     <None Include="Assets\link.xml" />
-    <None Include="Assets\StylizedExplosionPack\Tips &amp; Documentations.txt" />
     <None Include="Assets\Res\Config\BuffConfig.txt" />
     <None Include="Assets\Res\Config\UnitConfig.txt" />
     <None Include="Assets\StreamingAssets\Version.txt" />
@@ -80,11 +83,11 @@
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.AssetBundleBrowser.Editor">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Library/ScriptAssemblies/Unity.AssetBundleBrowser.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.AssetBundleBrowser.Editor">
+      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Library/ScriptAssemblies/Unity.AssetBundleBrowser.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -663,10 +666,6 @@
       <Project>{CD311104-1830-B119-81B6-5DBEE2467FFB}</Project>
       <Name>Unity.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="KDTreeAssembly.csproj">
-      <Project>{7CCF4889-60D1-8EB5-62FE-1FF9528762A6}</Project>
-      <Name>KDTreeAssembly</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.Hotfix.csproj">
       <Project>{1066F652-6A89-D1C4-9881-1A19DF7AB80E}</Project>
       <Name>Unity.Hotfix</Name>
@@ -674,10 +673,6 @@
     <ProjectReference Include="Unity.Model.csproj">
       <Project>{B4BF9894-F5D9-41C4-13E3-3F26F7700E29}</Project>
       <Name>Unity.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="SpaceColonizationAssembly.csproj">
-      <Project>{A79E6633-D5FB-69BB-511E-BB564C2E9CDF}</Project>
-      <Name>SpaceColonizationAssembly</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

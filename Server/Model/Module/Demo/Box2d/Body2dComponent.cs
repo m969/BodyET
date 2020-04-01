@@ -28,6 +28,7 @@ namespace ETModel
 
 	public class Body2dComponent : Entity
 	{
+		public System.Action<Body2dComponent> OnBeginContactAction { get; set; }
 		public Body Body { get; set; }
 		public Vector2 Position
 		{
@@ -41,6 +42,7 @@ namespace ETModel
 				GetParent<Entity>().GetComponent<TransformComponent>().Position = new Vector3(value.x, 0, value.y);
 			}
 		}
+
 		public float Angle
 		{
 			get
@@ -49,14 +51,13 @@ namespace ETModel
 			}
 		}
 
-		private int counter { get; set; } = 0;
 		public void Awake()
 		{
 		}
 
 		public Body2dComponent CreateBody(float hx, float hy)
 		{
-			this.Body = Test.Instance.CreateBoxCollider(this, Position.x, Position.y, hx, hy);
+			this.Body = Parent.Domain.GetComponent<Box2dWorldComponent>().CreateBoxCollider(this, Position.x, Position.y, hx, hy);
 			return this;
 		}
 
@@ -65,7 +66,7 @@ namespace ETModel
 		{
 			if (Position != lastPosition)
 			{
-				Log.Debug("Position = " + Position.ToString());
+				//Log.Debug("Position = " + Position.ToString());
 				lastPosition = Position;
 			}
 			this.Body.SetTransform(new System.Numerics.Vector2(Position.x, Position.y), Angle);
@@ -73,36 +74,17 @@ namespace ETModel
 
 		public override void Dispose()
 		{
-			Test.Instance.Remove(Body);
+			Body.World.DestroyBody(Body);
 			base.Dispose();
 		}
 
 		public void BeginContact(Contact contact, Body2dComponent other)
 		{
-			if (Parent is Unit unit)
-			{
-				if (other.Parent is Bullet bullet)
-				{
-					if (bullet.OwnerId != unit.Id)
-					{
-						unit.HP -= 10;
-						if (unit.HP <= 0)
-						{
-							unit.Dead();
-						}
-						bullet.Dispose();
-					}
-				}
-			}
-			//Log.Debug($"A {contact.FixtureA}");
-			//Log.Debug($"B {contact.FixtureB}");
-			//Log.Debug($"A {contact.FixtureA.UserData}");
-			//Log.Debug($"B {contact.FixtureB.UserData}");
+			OnBeginContactAction?.Invoke(other);
 		}
 
 		public void EndContact(Contact contact)
 		{
-			//Log.Debug("Body2dComponent EndContact");
 		}
 	}
 }

@@ -18,7 +18,7 @@ namespace ETHotfix
 	{
 		public override void Update(OperaComponent self)
 		{
-			self.Update();
+			self.Update().Coroutine();
 		}
 	}
 
@@ -37,7 +37,7 @@ namespace ETHotfix
 	    //private readonly Frame_ClickMap frameClickMap = new Frame_ClickMap();
 	    private readonly UnitOperation msg = new UnitOperation();
 		private long lastSendTime;
-		public void Update()
+		public async ETVoid Update()
         {
 			if (Unit.LocalUnit == null)
 				return;
@@ -84,8 +84,14 @@ namespace ETHotfix
 					return;
 				localUnit.LastFireTime = TimeHelper.Now();
 
-				localUnit.BodyView.transform.forward = hit.point;
-				localUnit.KinematicCharacterMotor.SetRotation(localUnit.SkillDiretorTrm.rotation, false);
+				if (!localUnit.PreviousFiring)
+				{
+					localUnit.PreviousFiring = true;
+					localUnit.CharacterController.MaxStableMoveSpeed = 4;
+					localUnit.CharacterController.LockRotation(localUnit.SkillDiretorTrm.localEulerAngles);
+				}
+				localUnit.CharacterController.SetRotation(localUnit.SkillDiretorTrm.localEulerAngles);
+
 				msg.Operation = OperaType.Fire;
 				msg.AngleY = (int)(localUnit.BodyView.transform.eulerAngles.y * 100);
 				p = localUnit.SkillDiretorTrm.Find("TargetPoint").position;
@@ -103,6 +109,16 @@ namespace ETHotfix
 				SessionHelper.HotfixSend(msg);
 				//var bulletObj = localUnit.LocalFire(p, 1, bulletId);
 				return;
+			}
+			else
+			{
+				if (localUnit.PreviousFiring)
+				{
+					localUnit.PreviousFiring = false;
+					await TimerComponent.Instance.WaitAsync(100);
+					localUnit.CharacterController.MaxStableMoveSpeed = 10;
+					localUnit.CharacterController.CancelLockRotation();
+				}
 			}
 
 			if (TimeHelper.Now() - lastSendTime > 100)

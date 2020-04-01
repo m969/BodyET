@@ -24,43 +24,35 @@ namespace ETHotfix
 			}
 			if (entity is null)
 				return;
-			if (message.PropertyId == 0)
-				return;
-			{
-				//var index = message.TypeParams.IndexOf(item);
-				//var valueString = message.ValueParams.array[index];
-				var valueString = message.PropertyValue.bytes;
-				var propertyInfo = EntityDefine.EntityPropertyInfo[(ushort)message.EntityType][(ushort)message.PropertyId];
 
-				//switch (propertyInfo.PropertyType)
-				//{
-				//	case typeof(int):
-				//		break;
-				//	default:
-				//		break;
-				//}
+			var propertyCollection = EntityDefine.PropertyCollectionMap[EntityDefine.GetTypeId(entity.GetType())];
+			if (propertyCollection.ContainsKey((ushort)message.PropertyId))
+				entity.SetPropertyValue((ushort)message.PropertyId, message.PropertyValue.bytes);
 
-				if (propertyInfo.PropertyType == typeof(int))
-				{
-					propertyInfo.SetValue(entity, MongoHelper.ToInt(valueString));
-					//propertyInfo.SetValue(entity, int.Parse(valueString));
-				}
-				if (propertyInfo.PropertyType == typeof(float))
-				{
-					propertyInfo.SetValue(entity, MongoHelper.ToFloat(valueString));
-					//propertyInfo.SetValue(entity, float.Parse(valueString));
-				}
-				if (propertyInfo.PropertyType == typeof(string))
-				{
-					propertyInfo.SetValue(entity, MongoHelper.FromBson<string>(valueString));
-					//propertyInfo.SetValue(entity, valueString);
-				}
-				if (propertyInfo.PropertyType == typeof(Vector3))
-				{
-					propertyInfo.SetValue(entity, MongoHelper.FromBson<Vector3>(valueString));
-					//propertyInfo.SetValue(entity, JsonHelper.FromJson<Vector3>(valueString));
-				}
-			}
+			//var valueString = message.PropertyValue.bytes;
+			//var propertyCollection = EntityDefine.PropertyCollectionMap[(ushort)message.EntityType];
+			//var propertyInfo = propertyCollection[(ushort)message.PropertyId];
+			//if (propertyInfo.PropertyType == typeof(int))
+			//{
+			//	//propertyInfo.SetValue(entity, MongoHelper.ToInt(valueString));
+			//	typeof(ReactProperty<int>).GetProperty("Value").SetValue(propertyInfo.GetValue(entity), MongoHelper.ToInt(valueString));
+			//}
+			//if (propertyInfo.PropertyType == typeof(float))
+			//{
+			//	//propertyInfo.SetValue(entity, MongoHelper.ToFloat(valueString));
+			//	typeof(ReactProperty<float>).GetProperty("Value").SetValue(propertyInfo.GetValue(entity), MongoHelper.ToFloat(valueString));
+			//}
+			//if (propertyInfo.PropertyType == typeof(string))
+			//{
+			//	//propertyInfo.SetValue(entity, MongoHelper.FromBson<string>(valueString));
+			//	typeof(ReactProperty<string>).GetProperty("Value").SetValue(propertyInfo.GetValue(entity), MongoHelper.FromBson<string>(valueString));
+			//}
+			//if (propertyInfo.PropertyType == typeof(Vector3))
+			//{
+			//	//propertyInfo.SetValue(entity, MongoHelper.FromBson<Vector3>(valueString));
+			//	typeof(ReactProperty<Vector3>).GetProperty("Value").SetValue(propertyInfo.GetValue(entity), MongoHelper.FromBson<Vector3>(valueString));
+			//}
+
 			await ETTask.CompletedTask;
 		}
 	}

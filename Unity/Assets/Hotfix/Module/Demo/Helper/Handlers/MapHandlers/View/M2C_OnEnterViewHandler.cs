@@ -23,17 +23,18 @@ namespace ETHotfix
 		
 		public static async ETTask<ETModel.Entity> OnEnterView(EntiyInfo entityInfo)
 		{
-			if (entityInfo.Type == EntityDefine.GetTypeId(typeof(Unit)))
+			if (entityInfo.Type == EntityDefine.GetTypeId<Unit>())
 			{
 				var remoteUnit = MongoHelper.FromBson<Unit>(entityInfo.BsonBytes.bytes);
 				//if (remoteUnit.PosArr != null)
 				//	Log.Msg(remoteUnit.PosArr);
 				Unit unit = UnitFactory.Create(ETModel.Game.Scene, remoteUnit.Id);
-				unit.Position = new Vector3(remoteUnit.PosArr[0], remoteUnit.PosArr[1], remoteUnit.PosArr[2]);
+				unit.Position = remoteUnit.Position;
+				//unit.Position = new Vector3(remoteUnit.PosArr[0], remoteUnit.PosArr[1], remoteUnit.PosArr[2]);
 				remoteUnit.Dispose();
 				return unit;
 			}
-			if (entityInfo.Type == EntityDefine.GetTypeId(typeof(Bullet)))
+			if (entityInfo.Type == EntityDefine.GetTypeId<Bullet>())
 			{
 				var remoteBullet = MongoHelper.FromBson<Bullet>(entityInfo.BsonBytes.bytes);
 				//if (remoteBullet.PosArr != null)

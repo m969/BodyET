@@ -104,8 +104,9 @@ message UnitOperation // IActorLocationMessage
 	int32 X = 2;
 	int32 Y = 3;
 	int32 Z = 4;
-	int32 Operation = 5;
-	int32 AngleY = 8;
+	int32 AngleY = 5;
+
+	int32 Operation = 8;
 	repeated int32 IntParams = 9;
 	repeated string StringParams = 10;
 	repeated int64 LongParams = 11;
@@ -164,6 +165,16 @@ message M2C_OnEntityChanged // IActorLocationMessage
 	int32 AngleY = 8;
 	// repeated int32 TypeParams = 9;
 	// repeated string ValueParams = 10;
+}
+
+message C2M_SetEntityProperty // IActorLocationMessage
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 Id = 94;
+	
+	int32 PropertyId = 11;
+	bytes PropertyValue = 12;
 }
 
 message FireRequest // IActorLocationRequest

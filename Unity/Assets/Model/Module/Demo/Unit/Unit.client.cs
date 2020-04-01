@@ -10,10 +10,10 @@ namespace ETModel
 	{
 		public static Unit LocalUnit { get; set; }
 		public GameObject BodyView { get; set; }
-		public Vector3 LastPosition { get; set; } = Vector3.zero;
+		//public Vector3 LastPosition { get; set; } = Vector3.zero;
 		public Transform SkillDiretorTrm { get; set; }
-		public KinematicCharacterMotor KinematicCharacterMotor { get; set; }
-		//public ExampleCharacterController ExampleCharacterController { get; set; }
+		public KinematicCharacterMotor CharacterMotor { get; set; }
+		public ExampleCharacterController CharacterController { get; set; }
 		public ETCancellationTokenSource ETCancellationTokenSource { get; set; }
 		public long LastFireTime { get; set; }
 
@@ -28,8 +28,11 @@ namespace ETModel
 			{
 				SkillDiretorTrm = BodyView.transform.Find("SkillDirector");
 				SkillDiretorTrm.parent = null;
-				KinematicCharacterMotor = BodyView.GetComponent<KinematicCharacterMotor>();
+				CharacterMotor = BodyView.GetComponent<KinematicCharacterMotor>();
+				CharacterController = BodyView.GetComponent<ExampleCharacterController>();
 			}
+			AddComponent<AnimatorComponent>().Awake(gameObject.GetComponentInChildren<Animator>());
+			StateProperty.Subscribe(OnStateChanged);
 		}
 
 		public void Update()
@@ -39,17 +42,17 @@ namespace ETModel
 					SkillDiretorTrm.position = Position;
 		}
 
-		public Vector3 Position
-		{
-			get
-			{
-				return BodyView.transform.position;
-			}
-			set
-			{
-				BodyView.transform.position = value;
-			}
-		}
+		//public Vector3 Position
+		//{
+		//	get
+		//	{
+		//		return BodyView.transform.position;
+		//	}
+		//	set
+		//	{
+		//		BodyView.transform.position = value;
+		//	}
+		//}
 
 		public Quaternion Rotation
 		{
@@ -60,6 +63,19 @@ namespace ETModel
 			set
 			{
 				BodyView.transform.rotation = value;
+			}
+		}
+
+		private void OnStateChanged(int value)
+		{
+			Log.Debug($"OnStateChanged {value}");
+			if (value == 1)
+			{
+				GetComponent<AnimatorComponent>().Play(MotionType.Idle);
+			}
+			if (value == 2)
+			{
+				GetComponent<AnimatorComponent>().Play(MotionType.Run);
 			}
 		}
 	}

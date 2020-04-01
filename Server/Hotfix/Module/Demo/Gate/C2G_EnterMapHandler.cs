@@ -10,15 +10,17 @@ namespace ETHotfix
 		{
 			Console.WriteLine("C2G_EnterMapHandler");
 			Player player = session.GetComponent<SessionPlayerComponent>().Player;
+
+			var createUnitRequest = new G2M_CreateUnit() { PlayerId = player.Id, GateSessionId = session.InstanceId };
+			createUnitRequest.UnitId = player.UnitId;
+
 			// 在map服务器上创建战斗Unit
-
 			long mapInstanceId = StartConfigComponent.Instance.GetByName("Map1").SceneInstanceId;
-
-			M2G_CreateUnit createUnit = (M2G_CreateUnit)await ActorMessageSenderComponent.Instance.Call(
-				mapInstanceId, new G2M_CreateUnit() { PlayerId = player.Id, GateSessionId = session.InstanceId });
+			var createUnit = (M2G_CreateUnit)await ActorMessageSenderComponent.Instance.Call(mapInstanceId, createUnitRequest);
 			player.UnitId = createUnit.UnitId;
-			//response.UnitId = createUnit.UnitId;
-			//response.Units.AddRange(createUnit.Units);
+			DBComponent.Instance.Save(player).Coroutine();
+			
+			response.UnitId = createUnit.UnitId;
 			reply();
 		}
 	}
