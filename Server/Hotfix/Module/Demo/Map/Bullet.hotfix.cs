@@ -37,7 +37,8 @@ namespace ETHotfix
 	{
 		public static void Setup(this Bullet self, Vector3 position)
 		{
-			self.AddComponent<TransformComponent>().Position = position;
+			//self.AddComponent<TransformComponent>().Position = position;
+			self.Position = position;
 			self.AddComponent<MoveComponent>().Speed = 30;
 			self.AddComponent<Body2dComponent>().CreateBody(.2f, .2f);
 			self.GetComponent<Body2dComponent>().OnBeginContactAction += self.OnBeginContact;
@@ -75,11 +76,11 @@ namespace ETHotfix
 			if (TimeHelper.Now() - self.Timer > self.Internal)
 			{
 				self.Timer = TimeHelper.Now();
-				var lp = self.GetComponent<TransformComponent>().LastPosition;
-				var p = self.GetComponent<TransformComponent>().Position;
+				var lp = self.Transform.LastPosition;
+				var p = self.Transform.Position;
 				if (Vector3.Distance(lp, p) < 0.1f)
 					return;
-				self.GetComponent<TransformComponent>().LastPosition = p;
+				self.Transform.LastPosition = p;
 
 				var msg = new M2C_OnEntityChanged();
 				msg.EntityId = self.Id;

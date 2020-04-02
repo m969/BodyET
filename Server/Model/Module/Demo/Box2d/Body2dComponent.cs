@@ -34,12 +34,12 @@ namespace ETModel
 		{
 			get
 			{
-				var p3 = GetParent<Entity>().GetComponent<TransformComponent>().Position;
+				var p3 = (GetParent<Entity>() as ITransform).Position;
 				return new Vector2(p3.x, p3.z);
 			}
 			set
 			{
-				GetParent<Entity>().GetComponent<TransformComponent>().Position = new Vector3(value.x, 0, value.y);
+				(GetParent<Entity>() as ITransform).Position = new Vector3(value.x, 0, value.y);
 			}
 		}
 
@@ -47,7 +47,7 @@ namespace ETModel
 		{
 			get
 			{
-				return GetParent<Entity>().GetComponent<TransformComponent>().Rotation;
+				return (GetParent<Entity>() as ITransform).Angle;
 			}
 		}
 

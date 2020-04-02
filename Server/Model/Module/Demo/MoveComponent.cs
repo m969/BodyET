@@ -24,7 +24,7 @@ namespace ETModel
         public async ETTask StartMove(ETCancellationToken cancellationToken)
         {
             Log.Debug("StartMove");
-            var unit = this.GetParent<Entity>().GetComponent<TransformComponent>();
+            var unit = (GetParent<Entity>() as ITransform);
             this.StartPos = unit.Position;
             this.StartTime = TimeHelper.Now();
             float distance = (this.Target - this.StartPos).magnitude;
@@ -79,7 +79,7 @@ namespace ETModel
             }
 
             // 距离当前位置太近
-            if ((this.GetParent<Entity>().GetComponent<TransformComponent>().Position - target).sqrMagnitude < 0.01f)
+            if (((GetParent<Entity>() as ITransform).Position - target).sqrMagnitude < 0.01f)
             {
                 return;
             }

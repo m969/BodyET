@@ -3,6 +3,7 @@ using ETModel;
 
 namespace ETModel
 {
+    [MongoDB.Bson.Serialization.Attributes.BsonIgnoreExtraElements]
     public class ReactProperty<T> : IDisposable
     {
         public Action<T> _onChanged;

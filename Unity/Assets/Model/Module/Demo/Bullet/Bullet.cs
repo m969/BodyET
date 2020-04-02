@@ -4,7 +4,7 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace ETModel
 {
 	[EntityDefine(2)]
-	public partial class Bullet : Entity
+	public partial class Bullet : Entity, ITransform
 	{
 		public long OwnerId { get; set; }
 		[BsonIgnore]
@@ -12,34 +12,8 @@ namespace ETModel
 		[BsonIgnore]
 		public long Timer { get; set; }
 
-		private float[] posArr = new float[] { 0, 0, 0 };
-		[BsonRepresentation(MongoDB.Bson.BsonType.Double)]
-		public float[] PosArr
-		{
-			get
-			{
-				if (Transform != null)
-				{
-					posArr[0] = Transform.Position.x;
-					posArr[1] = Transform.Position.y;
-					posArr[2] = Transform.Position.z;
-				}
-
-				return posArr;
-			}
-			set
-			{
-				if (Transform != null)
-				{
-					Transform.Position = new Vector3(value[0], value[1], value[2]);
-					posArr[0] = Transform.Position.x;
-					posArr[1] = Transform.Position.y;
-					posArr[2] = Transform.Position.z;
-				}
-			}
-		}
 		[BsonIgnore]
-		public TransformComponent Transform { get { return GetComponent<TransformComponent>(); } }
+		public ITransform Transform { get { return (this as ITransform); } }
 
 
 		public void Awake()
@@ -48,5 +22,37 @@ namespace ETModel
 			Internal = 10;
 			Timer = 0;
 		}
+
+		[BsonIgnore]
+		public ReactProperty<Vector3> PositionProperty { get; set; } = new ReactProperty<Vector3>();
+		public Vector3 Position
+		{
+			get
+			{
+#if SERVER
+				//if (Transform != null)
+				//	return Transform.Position;
+#else
+				if (BodyView != null)
+					return BodyView.transform.position;
+#endif
+				return PositionProperty.Value;
+			}
+			set
+			{
+#if SERVER
+				//if (Transform != null)
+				//	Transform.Position = value;
+#else
+				if (BodyView != null)
+					BodyView.transform.position = value;
+#endif
+				PositionProperty.Value = value;
+			}
+		}
+
+		public Vector3 LastPosition { get; set; }
+		public float Angle			{ get; set; }
+		public float Scale			{ get; set; }
 	}
 }

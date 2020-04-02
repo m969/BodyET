@@ -29,7 +29,7 @@ namespace ETModel
 		public void Setup()
 		{
 			Awake();
-			AddComponent<TransformComponent>();
+			//AddComponent<TransformComponent>();
 			Position = new Vector3(-10, 0, -10);
 			LastPosition = new Vector3(-10, 0, -10);
 			//Pos = new Vector3(-10, 0, -10);

@@ -37,20 +37,13 @@ namespace ETModel
 		OwnClient
 	}
 
-	public enum PropertyType
-	{
-		Int32,
-		Int64,
-		String
-	}
-
 	public class EntityDefine
 	{
 		public static DoubleMap<Type, ushort> EntityIds { get; set; } = new DoubleMap<Type, ushort>();
 		public static Dictionary<ushort, Dictionary<string, PropertyDefineAttribute>> PropertyDefineCollectionMap { get; set; } = new Dictionary<ushort, Dictionary<string, PropertyDefineAttribute>>();
 		public static Dictionary<ushort, Dictionary<ushort, PropertyInfo>> PropertyCollectionMap { get; set; } = new Dictionary<ushort, Dictionary<ushort, PropertyInfo>>();
 		public static Dictionary<ushort, Dictionary<ushort, PropertyInfo>> ReactPropertyCollectionMap { get; set; } = new Dictionary<ushort, Dictionary<ushort, PropertyInfo>>();
-		public static System.Action<Entity, string, byte[]> OnPropertyChanged { get; set; }
+		public static Action<Entity, string, byte[]> OnPropertyChanged { get; set; }
 
 
 		public static ushort GetTypeId(Type type)
@@ -88,7 +81,8 @@ namespace ETModel
 						PropertyDefineCollectionMap[entityDefineAttribute.EntityTypeId].Add(propertyInfo.Name, attribute);
 
 						PropertyCollectionMap[entityDefineAttribute.EntityTypeId].Add(attribute.Id, propertyInfo);
-						ReactPropertyCollectionMap[entityDefineAttribute.EntityTypeId].Add(attribute.Id, type.GetProperty($"{propertyInfo.Name}Property"));
+						var reactPropertyInfo = type.GetProperty($"{propertyInfo.Name}Property");
+						ReactPropertyCollectionMap[entityDefineAttribute.EntityTypeId].Add(attribute.Id, reactPropertyInfo);
 					}
 				}
 			}
@@ -97,7 +91,7 @@ namespace ETModel
 
 	public partial class Entity
 	{
-		protected void PublishProperty(string name, /*string value, */byte[] valueBytes = null)
+		protected void PublishProperty(string name,  byte[] valueBytes = null)
 		{
 #if !SERVER
 			if (this != Unit.LocalUnit)
@@ -106,27 +100,27 @@ namespace ETModel
 			if (Domain == null)
 				return;
 #endif
-			EntityDefine.OnPropertyChanged?.Invoke(this, name,/* value, */valueBytes);
+			EntityDefine.OnPropertyChanged?.Invoke(this, name, valueBytes);
 		}
 
 		protected void PublishProperty(string name, string value)
 		{
-			PublishProperty(name,/* $"{value}", */MongoHelper.ToBson(value));
+			PublishProperty(name, MongoHelper.ToBson(value));
 		}
 
 		protected void PublishProperty(string name, int value)
 		{
-			PublishProperty(name,/* $"{value}", */MongoHelper.ToBson(value));
+			PublishProperty(name, MongoHelper.ToBson(value));
 		}
 
 		protected void PublishProperty(string name, float value)
 		{
-			PublishProperty(name, /*$"{value}", */MongoHelper.ToBson(value));
+			PublishProperty(name, MongoHelper.ToBson(value));
 		}
 
-		protected void PublishProperty(string name, UnityEngine.Vector3 value)
+		protected void PublishProperty(string name, Vector3 value)
 		{
-			PublishProperty(name,/* $"{value}", */MongoHelper.ToBson(value));
+			PublishProperty(name, MongoHelper.ToBson(value));
 		}
 
 

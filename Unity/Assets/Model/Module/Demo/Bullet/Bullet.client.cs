@@ -5,20 +5,20 @@ namespace ETModel
 {
 	public partial class Bullet
 	{
-		[BsonIgnore]
+		//[BsonIgnore]
 		public GameObject BodyView { get; set; }
-		[BsonIgnore]
-		public Vector3 Position
-		{
-			get
-			{
-				return BodyView.transform.position;
-			}
-			set
-			{
-				BodyView.transform.position = value;
-			}
-		}
+		//[BsonIgnore]
+		//public Vector3 Position
+		//{
+		//	get
+		//	{
+		//		return BodyView.transform.position;
+		//	}
+		//	set
+		//	{
+		//		BodyView.transform.position = value;
+		//	}
+		//}
 
 		public override void Dispose()
 		{
