@@ -29,6 +29,7 @@ namespace ETModel
 				Game.Scene.AddComponent<PlayerComponent>();
 				Game.Scene.AddComponent<UnitComponent>();
 				Game.Scene.AddComponent<BulletComponent>();
+				Game.Scene.AddComponent<MonsterComponent>();
 				Game.Scene.AddComponent<UIComponent>();
 
 				// 下载ab包

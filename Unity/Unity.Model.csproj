@@ -200,12 +200,16 @@
     <Compile Include="Assets\Model\Module\Demo\CameraComponent.cs" />
     <Compile Include="Assets\Model\Module\Demo\Config\UnitConfig.cs" />
     <Compile Include="Assets\Model\Module\Demo\ExamplePlayer.cs" />
-    <Compile Include="Assets\Model\Module\Demo\HealthComponent.cs" />
+    <Compile Include="Assets\Model\Module\Demo\Monster\Monster.client.cs" />
+    <Compile Include="Assets\Model\Module\Demo\Monster\Monster.cs" />
+    <Compile Include="Assets\Model\Module\Demo\Monster\MonsterComponent.cs" />
+    <Compile Include="Assets\Model\Module\Demo\Monster\MonsterFactory.cs" />
     <Compile Include="Assets\Model\Module\Demo\MoveComponent.cs" />
     <Compile Include="Assets\Model\Module\Demo\Player.cs" />
     <Compile Include="Assets\Model\Module\Demo\PlayerComponent.cs" />
     <Compile Include="Assets\Model\Module\Demo\PlayerFactory.cs" />
     <Compile Include="Assets\Model\Module\Demo\SCCommonComponents\EntityComponent.cs" />
+    <Compile Include="Assets\Model\Module\Demo\SCCommonComponents\HealthComponent.cs" />
     <Compile Include="Assets\Model\Module\Demo\SCCommonComponents\ITransform.cs" />
     <Compile Include="Assets\Model\Module\Demo\SCCommonComponents\TransformComponent.cs" />
     <Compile Include="Assets\Model\Module\Demo\SessionComponent.cs" />

@@ -3,10 +3,14 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace ETModel
 {
-	public partial class Bullet
+	public partial class Monster
 	{
 		public GameObject BodyView { get; set; }
+		
 
+		partial void Setup()
+		{
+		}
 
 		public override void Dispose()
 		{

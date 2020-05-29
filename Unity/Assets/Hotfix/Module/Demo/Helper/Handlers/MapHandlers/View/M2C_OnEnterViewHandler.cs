@@ -23,26 +23,45 @@ namespace ETHotfix
 		
 		public static async ETTask<ETModel.Entity> OnEnterView(EntiyInfo entityInfo)
 		{
-			if (entityInfo.Type == EntityDefine.GetTypeId<Unit>())
+			try
 			{
-				var remoteUnit = MongoHelper.FromBson<Unit>(entityInfo.BsonBytes.bytes);
-				//if (remoteUnit.PosArr != null)
-				//	Log.Msg(remoteUnit.PosArr);
-				Unit unit = UnitFactory.Create(ETModel.Game.Scene, remoteUnit.Id);
-				unit.Position = remoteUnit.Position;
-				//unit.Position = new Vector3(remoteUnit.PosArr[0], remoteUnit.PosArr[1], remoteUnit.PosArr[2]);
-				remoteUnit.Dispose();
-				return unit;
+				Log.Debug($"{entityInfo.Type}");
+				if (entityInfo.Type == EntityDefine.GetTypeId<Unit>())
+				{
+					var remoteUnit = MongoHelper.FromBson<Unit>(entityInfo.BsonBytes.bytes);
+					//Log.Debug($"{remoteUnit}");
+					Unit unit = UnitFactory.Create(ETModel.Game.Scene, remoteUnit.Id);
+					unit.Position = remoteUnit.Position;
+					remoteUnit.Dispose();
+					return unit;
+				}
+				if (entityInfo.Type == EntityDefine.GetTypeId<Bullet>())
+				{
+					var remoteBullet = MongoHelper.FromBson<Bullet>(entityInfo.BsonBytes.bytes);
+					//Log.Debug($"{remoteBullet}");
+					var bullet = ETModel.EntityFactory.CreateWithId<Bullet>(ETModel.Game.Scene, remoteBullet.Id);
+					BulletComponent.Instance.Add(bullet);
+					remoteBullet.Dispose();
+					return bullet;
+				}
+				if (entityInfo.Type == EntityDefine.GetTypeId<Monster>())
+				{
+					var remote = MongoHelper.FromBson<Monster>(entityInfo.BsonBytes.bytes);
+					Log.Debug($"HealthComponent HP{remote.GetComponent<HealthComponent>().HP}");
+					remote.Awake();
+					remote.Domain = ETModel.Game.Scene;
+					remote.BodyView = GameObject.Instantiate(PrefabHelper.GetUnitPrefab("Monster"));
+					GameObject.DontDestroyOnLoad(remote.BodyView);
+					//var monster = MonsterFactory.Create(ETModel.Game.Scene, remote.Id);
+					MonsterComponent.Instance.Add(remote);
+					//remote.Position = remote.Position;
+					//remote.Dispose();
+					return remote;
+				}
 			}
-			if (entityInfo.Type == EntityDefine.GetTypeId<Bullet>())
+			catch (System.Exception e)
 			{
-				var remoteBullet = MongoHelper.FromBson<Bullet>(entityInfo.BsonBytes.bytes);
-				//if (remoteBullet.PosArr != null)
-				//	Log.Msg(remoteBullet.PosArr);
-				var bullet = ETModel.EntityFactory.CreateWithId<Bullet>(ETModel.Game.Scene, remoteBullet.Id);
-				BulletComponent.Instance.Add(bullet);
-				remoteBullet.Dispose();
-				return bullet;
+				Log.Error(e);
 			}
 			return null;
 		}

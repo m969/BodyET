@@ -68,7 +68,12 @@ namespace ETHotfix
 
 		public static void Destroy(this Unit self)
 		{
-			MessageHelper.Broadcast(self.Domain, new M2C_OnLeaveView() { LeaveEntity = self.Id, EntityType = EntityDefine.EntityIds.GetValueByKey(typeof(Unit)) });
+			MessageHelper.Broadcast(self.Domain, new M2C_OnLeaveView() { LeaveEntity = self.Id, EntityType = EntityDefine.GetTypeId<Unit>() });
+		}
+
+		public static async ETTask Save(this Unit self)
+		{
+			await DBComponent.Instance.Save(self);
 		}
 	}
 }

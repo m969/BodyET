@@ -157,14 +157,13 @@ message M2C_OnEntityChanged // IActorLocationMessage
 
 	int64 EntityId  = 1;
 	int32 EntityType = 5;
+	int32 ComponentType = 6;
 	int32 PropertyId = 11;
 	bytes PropertyValue = 12;
 	int32 X = 2;
 	int32 Y = 3;
 	int32 Z = 4;
 	int32 AngleY = 8;
-	// repeated int32 TypeParams = 9;
-	// repeated string ValueParams = 10;
 }
 
 message C2M_SetEntityProperty // IActorLocationMessage

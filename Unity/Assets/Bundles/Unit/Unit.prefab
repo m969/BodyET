@@ -64,3 +64,6 @@ MonoBehaviour:
   - key: BulletCollider
     gameObject: {fileID: 2335151428877087330, guid: 7c2474cee509e08409973446db2fba1a,
       type: 3}
+  - key: Monster
+    gameObject: {fileID: 5394691835327551891, guid: 599c5beef58f3e540ad3d3d2da69869c,
+      type: 3}

@@ -34,12 +34,11 @@ namespace ETHotfix
 				unit = EntityFactory.CreateWithId<Unit>(copyMap, IdGenerater.GenerateId());
 				unit.PlayerId = request.PlayerId;
 				unit.Setup();
-				DBComponent.Instance.Save(unit).Coroutine();
+				unit.Save().Coroutine();
 			}
 
 			unit.AddComponent<MoveComponent>();
 			unit.AddComponent<Body2dComponent>().CreateBody(.5f, .5f);
-			//unit.AddComponent<UnitPathComponent>();
 			unit.AddComponent<MailBoxComponent>();
 			await unit.AddLocation();
 			unit.AddComponent<UnitGateComponent, long>(request.GateSessionId);
@@ -62,6 +61,16 @@ namespace ETHotfix
 					inViewUnitsMsg.SelfUnit = entityInfo.BsonBytes;
 					continue;
 				}
+				inViewUnitsMsg.InViewEntitys.Add(entityInfo);
+			}
+			Monster[] monsters = copyMap.GetComponent<MonsterComponent>().GetAll();
+			Log.Debug($"{monsters.Length}");
+			foreach (var u in monsters)
+			{
+				var entityInfo = new EntiyInfo();
+				entityInfo.BsonBytes = new Google.Protobuf.ByteString();
+				entityInfo.BsonBytes.bytes = MongoHelper.ToBson(u);
+				entityInfo.Type = EntityDefine.GetTypeId<Monster>();
 				inViewUnitsMsg.InViewEntitys.Add(entityInfo);
 			}
 			MessageHelper.BroadcastToOther(unit, enterViewMsg);

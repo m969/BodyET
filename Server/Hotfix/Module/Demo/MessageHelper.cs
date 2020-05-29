@@ -4,20 +4,31 @@ namespace ETHotfix
 {
     public static class MessageHelper
     {
-        public static void OnPropertyChanged(Entity entity, string propertyName, /*string value,*/ byte[] valueBytes)
+        public static void OnPropertyChanged(Entity entity, string propertyName, byte[] valueBytes)
         {
-            var entityType = EntityDefine.EntityIds.GetValueByKey(entity.GetType());
-            if (!EntityDefine.PropertyDefineCollectionMap.ContainsKey(entityType))
+            Log.Error($"{entity} {propertyName} {valueBytes}");
+            var type = entity.GetType();
+            Entity component = null;
+            if (EntityDefine.IsComponent(type))
+            {
+                component = entity;
+                entity = entity.GetParent<Entity>();
+                type = entity.GetType();
+            }
+            var entityTypeId = EntityDefine.GetTypeId(type);
+            if (!EntityDefine.PropertyDefineCollectionMap.ContainsKey(entityTypeId))
                 return;
-            if (!EntityDefine.PropertyDefineCollectionMap[entityType].ContainsKey(propertyName))
+            if (!EntityDefine.PropertyDefineCollectionMap[entityTypeId].ContainsKey(propertyName))
                 return;
 
-            var attr = EntityDefine.PropertyDefineCollectionMap[entityType][propertyName];
+            var attr = EntityDefine.PropertyDefineCollectionMap[entityTypeId][propertyName];
             var msg = new M2C_OnEntityChanged();
             msg.EntityId = entity.Id;
-            msg.EntityType = entityType;
+            msg.EntityType = entityTypeId;
             msg.PropertyId = attr.Id;
             msg.PropertyValue.bytes = valueBytes;
+            if (component != null)
+                msg.ComponentType = EntityDefine.GetTypeId(component.GetType());
 
             if (attr.Flag == SyncFlag.AllClients)
             {
@@ -25,17 +36,11 @@ namespace ETHotfix
             }
             if (attr.Flag == SyncFlag.OtherClients)
             {
-                if (entity is Unit u)
-                {
-                    BroadcastToOther(u, msg);
-                }
+                if (entity is Unit u) BroadcastToOther(u, msg);
             }
             if (attr.Flag == SyncFlag.OwnClient)
             {
-                if (entity is Unit u)
-                {
-                    Send(u, msg);
-                }
+                if (entity is Unit u) Send(u, msg);
             }
         }
 

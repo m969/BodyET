@@ -19,7 +19,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Other\**" />
-    <Compile Include="..\..\Unity\Assets\Hotfix\Module\Demo\OperaType.cs" Link="Module\Demo\Map\OperaType.cs" />
+    <Compile Include="..\..\Unity\Assets\Hotfix\Module\Demo\OperaType.cs" Link="Module\Demo\OperaType.cs" />
     <Compile Include="..\..\Unity\Assets\Model\Module\Message\NetOuterComponentSystem.cs">
       <Link>Module\Message\NetOuterComponentSystem.cs</Link>
     </Compile>

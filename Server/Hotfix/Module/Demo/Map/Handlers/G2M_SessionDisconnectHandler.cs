@@ -8,7 +8,7 @@ namespace ETHotfix
 		protected override async ETTask Run(Unit unit, G2M_SessionDisconnect message)
 		{
 			unit.GetComponent<UnitGateComponent>().IsDisconnect = true;
-			await DBComponent.Instance.Save(unit);
+			await unit.Save();
 			PlayerComponent.Instance.Remove(unit.PlayerId);
 			unit.Domain.GetComponent<UnitComponent>().Remove(unit.Id);
 			await ETTask.CompletedTask;

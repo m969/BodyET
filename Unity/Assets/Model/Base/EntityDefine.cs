@@ -8,24 +8,35 @@ namespace ETModel
 	[AttributeUsage(AttributeTargets.Class)]
 	public class EntityDefineAttribute : BaseAttribute
 	{
-		public ushort EntityTypeId { get; }
+		public int EntityTypeId { get; set; }
 
-		public EntityDefineAttribute(ushort type)
+		public EntityDefineAttribute()
 		{
-			this.EntityTypeId = type;
+			//this.EntityTypeId = type;
+		}
+	}
+
+	[AttributeUsage(AttributeTargets.Class)]
+	public class ComponentDefineAttribute : BaseAttribute
+	{
+		public int ComponentTypeId { get; set; }
+
+		public ComponentDefineAttribute()
+		{
+			//this.EntityTypeId = type;
 		}
 	}
 
 	[AttributeUsage(AttributeTargets.Property)]
 	public class PropertyDefineAttribute : BaseAttribute
 	{
-		public ushort Id { get; }
+		public int Id { get; set; }
 		public Type Type { get; set; }
 		public SyncFlag Flag { get; }
 
-		public PropertyDefineAttribute(ushort id, SyncFlag flag = SyncFlag.OwnClient)
+		public PropertyDefineAttribute(SyncFlag flag = SyncFlag.OwnClient)
 		{
-			this.Id = id;
+			//this.Id = id;
 			this.Flag = flag;
 		}
 	}
@@ -39,21 +50,39 @@ namespace ETModel
 
 	public class EntityDefine
 	{
-		public static DoubleMap<Type, ushort> EntityIds { get; set; } = new DoubleMap<Type, ushort>();
-		public static Dictionary<ushort, Dictionary<string, PropertyDefineAttribute>> PropertyDefineCollectionMap { get; set; } = new Dictionary<ushort, Dictionary<string, PropertyDefineAttribute>>();
-		public static Dictionary<ushort, Dictionary<ushort, PropertyInfo>> PropertyCollectionMap { get; set; } = new Dictionary<ushort, Dictionary<ushort, PropertyInfo>>();
-		public static Dictionary<ushort, Dictionary<ushort, PropertyInfo>> ReactPropertyCollectionMap { get; set; } = new Dictionary<ushort, Dictionary<ushort, PropertyInfo>>();
+		public static DoubleMap<Type, int> TypeIds { get; set; } = new DoubleMap<Type, int>();
+		//public static DoubleMap<Type, int> ComponentTypeIds { get; set; } = new DoubleMap<Type, int>();
+		public static Dictionary<int, Dictionary<string, PropertyDefineAttribute>> PropertyDefineCollectionMap { get; set; } = new Dictionary<int, Dictionary<string, PropertyDefineAttribute>>();
+		public static Dictionary<int, Dictionary<int, PropertyInfo>> PropertyCollectionMap { get; set; } = new Dictionary<int, Dictionary<int, PropertyInfo>>();
+		public static Dictionary<int, Dictionary<int, PropertyInfo>> ReactPropertyCollectionMap { get; set; } = new Dictionary<int, Dictionary<int, PropertyInfo>>();
 		public static Action<Entity, string, byte[]> OnPropertyChanged { get; set; }
 
 
-		public static ushort GetTypeId(Type type)
+		public static Type GetType(int typeId)
 		{
-			return EntityIds.GetValueByKey(type);
+			return TypeIds.GetKeyByValue(typeId);
 		}
 
-		public static ushort GetTypeId<T>()
+		public static int GetTypeId(Type type)
 		{
-			return EntityIds.GetValueByKey(typeof(T));
+			return TypeIds.GetValueByKey(type);
+		}
+
+		public static int GetTypeId<T>()
+		{
+			return TypeIds.GetValueByKey(typeof(T));
+		}
+
+		public static bool IsComponent(Type type)
+		{
+			var conponentDefineAttribute = type.GetCustomAttribute<ComponentDefineAttribute>();
+			return conponentDefineAttribute != null;
+		}
+
+		public static bool IsEntity(Type type)
+		{
+			var conponentDefineAttribute = type.GetCustomAttribute<EntityDefineAttribute>();
+			return conponentDefineAttribute != null;
 		}
 
 		public static void Init()
@@ -65,24 +94,70 @@ namespace ETModel
 				{
 					continue;
 				}
+				var typeId = 0;
 				var entityDefineAttribute = type.GetCustomAttribute<EntityDefineAttribute>();
-				if (entityDefineAttribute == null)
+				if (entityDefineAttribute != null)
+				{
+					var arr = type.Name.ToCharArray();
+					var i = 0;
+					typeId = (int)arr[i];
+					Log.Debug($"{type.Name} {typeId.ToString()}");
+					i++;
+					while (TypeIds.ContainsValue(typeId) && i < arr.Length)
+					{
+						typeId = int.Parse(typeId.ToString() + (int)arr[i]);
+						Log.Debug($"{type.Name} {typeId.ToString()}");
+						i++;
+					}
+					entityDefineAttribute.EntityTypeId = typeId;
+					TypeIds.Add(type, typeId);
+				}
+				var conponentDefineAttribute = type.GetCustomAttribute<ComponentDefineAttribute>();
+				if (conponentDefineAttribute != null)
+				{
+					var arr = type.Name.ToCharArray();
+					var i = 0;
+					typeId = (int)arr[i];
+					Log.Debug($"{type.Name} {typeId.ToString()}");
+					i++;
+					while (TypeIds.ContainsValue(typeId) && i < arr.Length)
+					{
+						typeId = int.Parse(typeId.ToString() + (int)arr[i]);
+						Log.Debug($"{type.Name} {typeId.ToString()}");
+						i++;
+					}
+					conponentDefineAttribute.ComponentTypeId = typeId;
+					TypeIds.Add(type, typeId);
+				}
+				if (typeId == 0)
 					continue;
-				EntityIds.Add(type, entityDefineAttribute.EntityTypeId);
-				PropertyDefineCollectionMap.Add(entityDefineAttribute.EntityTypeId, new Dictionary<string, PropertyDefineAttribute>());
-				PropertyCollectionMap.Add(entityDefineAttribute.EntityTypeId, new Dictionary<ushort, PropertyInfo>());
-				ReactPropertyCollectionMap.Add(entityDefineAttribute.EntityTypeId, new Dictionary<ushort, PropertyInfo>());
+				PropertyDefineCollectionMap.Add(typeId, new Dictionary<string, PropertyDefineAttribute>());
+				PropertyCollectionMap.Add(typeId, new Dictionary<int, PropertyInfo>());
+				ReactPropertyCollectionMap.Add(typeId, new Dictionary<int, PropertyInfo>());
 				foreach (var propertyInfo in type.GetProperties())
 				{
 					var attribute = propertyInfo.GetCustomAttribute<PropertyDefineAttribute>();
 					if (attribute != null)
 					{
 						attribute.Type = propertyInfo.PropertyType;
-						PropertyDefineCollectionMap[entityDefineAttribute.EntityTypeId].Add(propertyInfo.Name, attribute);
-
-						PropertyCollectionMap[entityDefineAttribute.EntityTypeId].Add(attribute.Id, propertyInfo);
+						PropertyDefineCollectionMap[typeId].Add(propertyInfo.Name, attribute);
+						//
+						var arr1 = propertyInfo.Name.ToCharArray();
+						var j = 0;
+						var propertyId = (int)arr1[j];
+						Log.Debug($"{propertyInfo.Name} {propertyId.ToString()}");
+						j++;
+						while (PropertyCollectionMap[typeId].ContainsKey(propertyId) && j < arr1.Length)
+						{
+							propertyId = int.Parse(propertyId.ToString() + (int)arr1[j]);
+							Log.Debug($"{propertyInfo.Name} {propertyId.ToString()}");
+							j++;
+						}
+						attribute.Id = propertyId;
+						//
+						PropertyCollectionMap[typeId].Add(attribute.Id, propertyInfo);
 						var reactPropertyInfo = type.GetProperty($"{propertyInfo.Name}Property");
-						ReactPropertyCollectionMap[entityDefineAttribute.EntityTypeId].Add(attribute.Id, reactPropertyInfo);
+						ReactPropertyCollectionMap[typeId].Add(attribute.Id, reactPropertyInfo);
 					}
 				}
 			}
@@ -124,7 +199,7 @@ namespace ETModel
 		}
 
 
-		public void SetPropertyValue(ushort propertyId, byte[] valueBytes)
+		public void SetPropertyValue(int propertyId, byte[] valueBytes)
 		{
 			var server = false;
 #if SERVER

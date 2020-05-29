@@ -61,8 +61,6 @@ namespace ETHotfix
 	[Message(HotfixOpcode.M2C_OnEntityChanged)]
 	public partial class M2C_OnEntityChanged : IActorLocationMessage {}
 
-// repeated int32 TypeParams = 9;
-// repeated string ValueParams = 10;
 	[Message(HotfixOpcode.C2M_SetEntityProperty)]
 	public partial class C2M_SetEntityProperty : IActorLocationMessage {}
 

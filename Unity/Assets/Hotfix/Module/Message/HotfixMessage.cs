@@ -1957,6 +1957,14 @@ namespace ETHotfix {
       }
     }
 
+    private int componentType_;
+    public int ComponentType {
+      get { return componentType_; }
+      set {
+        componentType_ = value;
+      }
+    }
+
     private int propertyId_;
     public int PropertyId {
       get { return propertyId_; }
@@ -1998,10 +2006,6 @@ namespace ETHotfix {
     }
 
     private int angleY_;
-    /// <summary>
-    /// repeated int32 TypeParams = 9;
-    /// repeated string ValueParams = 10;
-    /// </summary>
     public int AngleY {
       get { return angleY_; }
       set {
@@ -2029,6 +2033,10 @@ namespace ETHotfix {
       if (EntityType != 0) {
         output.WriteRawTag(40);
         output.WriteInt32(EntityType);
+      }
+      if (ComponentType != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(ComponentType);
       }
       if (AngleY != 0) {
         output.WriteRawTag(64);
@@ -2073,6 +2081,9 @@ namespace ETHotfix {
       if (EntityType != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(EntityType);
       }
+      if (ComponentType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ComponentType);
+      }
       if (PropertyId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(PropertyId);
       }
@@ -2100,6 +2111,7 @@ namespace ETHotfix {
       y_ = 0;
       z_ = 0;
       entityType_ = 0;
+      componentType_ = 0;
       angleY_ = 0;
       propertyId_ = 0;
       propertyValue_ = pb::ByteString.Empty;
@@ -2130,6 +2142,10 @@ namespace ETHotfix {
           }
           case 40: {
             EntityType = input.ReadInt32();
+            break;
+          }
+          case 48: {
+            ComponentType = input.ReadInt32();
             break;
           }
           case 64: {

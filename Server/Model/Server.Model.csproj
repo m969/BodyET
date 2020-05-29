@@ -183,7 +183,10 @@
     </Compile>
     <Compile Include="..\..\Unity\Assets\Model\Module\Demo\Bullet\Bullet.cs" Link="Module\Demo\Bullet\Bullet.cs" />
     <Compile Include="..\..\Unity\Assets\Model\Module\Demo\Bullet\BulletComponent.cs" Link="Module\Demo\Bullet\BulletComponent.cs" />
+    <Compile Include="..\..\Unity\Assets\Model\Module\Demo\Monster\Monster.cs" Link="Module\Demo\Monster\Monster.cs" />
+    <Compile Include="..\..\Unity\Assets\Model\Module\Demo\Monster\MonsterComponent.cs" Link="Module\Demo\Monster\MonsterComponent.cs" />
     <Compile Include="..\..\Unity\Assets\Model\Module\Demo\SCCommonComponents\EntityComponent.cs" Link="Module\Demo\SCCommonComponents\EntityComponent.cs" />
+    <Compile Include="..\..\Unity\Assets\Model\Module\Demo\SCCommonComponents\HealthComponent.cs" Link="Module\Demo\SCCommonComponents\HealthComponent.cs" />
     <Compile Include="..\..\Unity\Assets\Model\Module\Demo\SCCommonComponents\ITransform.cs" Link="Module\Demo\SCCommonComponents\ITransform.cs" />
     <Compile Include="..\..\Unity\Assets\Model\Module\Demo\SCCommonComponents\TransformComponent.cs" Link="Module\Demo\SCCommonComponents\TransformComponent.cs" />
     <Compile Include="..\..\Unity\Assets\Model\Module\Demo\Unit\Unit.cs" Link="Module\Demo\Unit\Unit.cs" />

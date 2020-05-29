@@ -4,13 +4,13 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace ETModel
 {
 	[EntityDefine]
-	public partial class Bullet : Entity, ITransform
+	public partial class Monster : Entity, ITransform
 	{
 		public long OwnerId { get; set; }
-		//[BsonIgnore]
-		//public long Interval { get; set; }
-		//[BsonIgnore]
-		//public long Timer { get; set; }
+		[BsonIgnore]
+		public long Interval { get; set; }
+		[BsonIgnore]
+		public long Timer { get; set; }
 
 		[BsonIgnore]
 		public ITransform Transform { get { return (this as ITransform); } }
@@ -19,12 +19,14 @@ namespace ETModel
 		public void Awake()
 		{
 			OwnerId = 0;
-			//Interval = 10;
-			//Timer = 0;
+			Interval = 2000;
+			Timer = 0;
+			Setup();
 		}
+		partial void Setup();
 
 		[BsonIgnore]
-		public ReactProperty<Vector3> PositionProperty { get; set; } = new ReactProperty<Vector3>();
+		public ReactProperty<Vector3> PositionProperty { get; set; } = new ReactProperty<Vector3>(Vector3.zero);
 		public Vector3 Position
 		{
 			get
