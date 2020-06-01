@@ -3,6 +3,8 @@ using UnityEngine;
 using KinematicCharacterController.Examples;
 using KinematicCharacterController;
 using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
 
 namespace ETModel
 {
@@ -66,9 +68,28 @@ namespace ETModel
 			}
 		}
 
+		public bool IsLocalUnit
+		{
+			get
+			{
+				return LocalUnit == this;
+			}
+		}
+
 		private void OnStateChanged(int value)
 		{
 			Log.Debug($"OnStateChanged {value}");
+			if (value == 0)
+			{
+				BodyView.SetActive(false);
+			}
+			else
+			{
+				if (BodyView.activeSelf == false)
+				{
+					BodyView.SetActive(true);
+				}
+			}
 			if (value == 1)
 			{
 				GetComponent<AnimatorComponent>().Play(MotionType.Idle);
@@ -77,6 +98,11 @@ namespace ETModel
 			{
 				GetComponent<AnimatorComponent>().Play(MotionType.Run);
 			}
+		}
+
+		public void Dead(List<object> param)
+		{
+
 		}
 	}
 }

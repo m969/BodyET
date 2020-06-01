@@ -11,6 +11,10 @@ namespace ETHotfix
         protected override async ETTask Run(ETModel.Session session, M2C_InViewUnits message)
         {
             var selfUnit = MongoHelper.FromBson<Unit>(message.SelfUnit.bytes);
+            foreach (var item in selfUnit.Components)
+            {
+                Log.Debug($"selfUnit {item}");
+            }
             var go = UnityEngine.Object.Instantiate(PrefabHelper.GetUnitPrefab("Unit"));
             GameObject.DontDestroyOnLoad(go);
             var unit = ETModel.EntityFactory.CreateWithId<Unit>(ETModel.Game.Scene, selfUnit.Id);

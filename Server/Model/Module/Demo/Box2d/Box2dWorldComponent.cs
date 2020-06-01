@@ -104,40 +104,40 @@ namespace ETModel
 
             if (showProfile)
             {
-                var p = World.Profile;
+                //var p = World.Profile;
 
-                // Track maximum profile times
-                MaxProfile.Step = Math.Max(MaxProfile.Step, p.Step);
-                MaxProfile.Collide = Math.Max(MaxProfile.Collide, p.Collide);
-                MaxProfile.Solve = Math.Max(MaxProfile.Solve, p.Solve);
-                MaxProfile.SolveInit = Math.Max(MaxProfile.SolveInit, p.SolveInit);
-                MaxProfile.SolveVelocity = Math.Max(MaxProfile.SolveVelocity, p.SolveVelocity);
-                MaxProfile.SolvePosition = Math.Max(MaxProfile.SolvePosition, p.SolvePosition);
-                MaxProfile.SolveTOI = Math.Max(MaxProfile.SolveTOI, p.SolveTOI);
-                MaxProfile.Broadphase = Math.Max(MaxProfile.Broadphase, p.Broadphase);
+                //// Track maximum profile times
+                //MaxProfile.Step = Math.Max(MaxProfile.Step, p.Step);
+                //MaxProfile.Collide = Math.Max(MaxProfile.Collide, p.Collide);
+                //MaxProfile.Solve = Math.Max(MaxProfile.Solve, p.Solve);
+                //MaxProfile.SolveInit = Math.Max(MaxProfile.SolveInit, p.SolveInit);
+                //MaxProfile.SolveVelocity = Math.Max(MaxProfile.SolveVelocity, p.SolveVelocity);
+                //MaxProfile.SolvePosition = Math.Max(MaxProfile.SolvePosition, p.SolvePosition);
+                //MaxProfile.SolveTOI = Math.Max(MaxProfile.SolveTOI, p.SolveTOI);
+                //MaxProfile.Broadphase = Math.Max(MaxProfile.Broadphase, p.Broadphase);
 
-                TotalProfile.Step += p.Step;
-                TotalProfile.Collide += p.Collide;
-                TotalProfile.Solve += p.Solve;
-                TotalProfile.SolveInit += p.SolveInit;
-                TotalProfile.SolveVelocity += p.SolveVelocity;
-                TotalProfile.SolvePosition += p.SolvePosition;
-                TotalProfile.SolveTOI += p.SolveTOI;
-                TotalProfile.Broadphase += p.Broadphase;
+                //TotalProfile.Step += p.Step;
+                //TotalProfile.Collide += p.Collide;
+                //TotalProfile.Solve += p.Solve;
+                //TotalProfile.SolveInit += p.SolveInit;
+                //TotalProfile.SolveVelocity += p.SolveVelocity;
+                //TotalProfile.SolvePosition += p.SolvePosition;
+                //TotalProfile.SolveTOI += p.SolveTOI;
+                //TotalProfile.Broadphase += p.Broadphase;
 
-                var aveProfile = new Profile();
-                if (FixedUpdate.TickCount > 0)
-                {
-                    var scale = 1.0f / FixedUpdate.TickCount;
-                    aveProfile.Step = scale * TotalProfile.Step;
-                    aveProfile.Collide = scale * TotalProfile.Collide;
-                    aveProfile.Solve = scale * TotalProfile.Solve;
-                    aveProfile.SolveInit = scale * TotalProfile.SolveInit;
-                    aveProfile.SolveVelocity = scale * TotalProfile.SolveVelocity;
-                    aveProfile.SolvePosition = scale * TotalProfile.SolvePosition;
-                    aveProfile.SolveTOI = scale * TotalProfile.SolveTOI;
-                    aveProfile.Broadphase = scale * TotalProfile.Broadphase;
-                }
+                //var aveProfile = new Profile();
+                //if (FixedUpdate.TickCount > 0)
+                //{
+                //    var scale = 1.0f / FixedUpdate.TickCount;
+                //    aveProfile.Step = scale * TotalProfile.Step;
+                //    aveProfile.Collide = scale * TotalProfile.Collide;
+                //    aveProfile.Solve = scale * TotalProfile.Solve;
+                //    aveProfile.SolveInit = scale * TotalProfile.SolveInit;
+                //    aveProfile.SolveVelocity = scale * TotalProfile.SolveVelocity;
+                //    aveProfile.SolvePosition = scale * TotalProfile.SolvePosition;
+                //    aveProfile.SolveTOI = scale * TotalProfile.SolveTOI;
+                //    aveProfile.Broadphase = scale * TotalProfile.Broadphase;
+                //}
 
                 //_sb.AppendLine($"FPS {FpsCounter.Fps}, ms {FpsCounter.Ms}");
                 //_sb.AppendLine($"step [ave] (max) = {p.Step} [{aveProfile.Step}] ({MaxProfile.Step})");

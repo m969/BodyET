@@ -57,11 +57,11 @@ namespace ETHotfix
 			{
 				if (self.OwnerId != unit.Id)
 				{
-					unit.HP -= 10;
-					if (unit.HP <= 0)
+					if (unit.State == 0)
 					{
-						unit.Dead();
+						return;
 					}
+					unit.GetComponent<HealthComponent>().DoDamage(10);
 					self.Dispose();
 				}
 			}
@@ -69,9 +69,13 @@ namespace ETHotfix
 			{
 				if (self.OwnerId != monster.Id)
 				{
+					//if (monster.State == 0)
+					//{
+					//	return;
+					//}
 					monster.GetComponent<HealthComponent>().DoDamage(10);
-					if (monster.GetComponent<HealthComponent>().HP == 0)
-						MonsterComponent.Instance.Remove(monster.Id);
+					//if (monster.GetComponent<HealthComponent>().HP == 0)
+					//	MonsterComponent.Instance.Remove(monster.Id);
 					self.Dispose();
 				}
 			}

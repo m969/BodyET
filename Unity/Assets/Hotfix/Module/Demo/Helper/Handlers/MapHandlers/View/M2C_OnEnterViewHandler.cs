@@ -29,11 +29,19 @@ namespace ETHotfix
 				if (entityInfo.Type == EntityDefine.GetTypeId<Unit>())
 				{
 					var remoteUnit = MongoHelper.FromBson<Unit>(entityInfo.BsonBytes.bytes);
-					//Log.Debug($"{remoteUnit}");
-					Unit unit = UnitFactory.Create(ETModel.Game.Scene, remoteUnit.Id);
-					unit.Position = remoteUnit.Position;
-					remoteUnit.Dispose();
-					return unit;
+					foreach (var item in remoteUnit.Components)
+						Log.Debug($"remoteUnit {item}");
+					remoteUnit.Domain = ETModel.Game.Scene;
+					ETModel.Game.EventSystem.Awake(remoteUnit);
+					//Unit unit = UnitFactory.Create(ETModel.Game.Scene, remoteUnit.Id);
+					var go = UnityEngine.Object.Instantiate(PrefabHelper.GetUnitPrefab("OtherCharacter"));
+					GameObject.DontDestroyOnLoad(go);
+					//var unit = EntityFactory.CreateWithId<Unit>(domain, id);
+					remoteUnit.Awake(go);
+					UnitComponent.Instance.Add(remoteUnit);
+					remoteUnit.Position = remoteUnit.Position;
+					//remoteUnit.Dispose();
+					return remoteUnit;
 				}
 				if (entityInfo.Type == EntityDefine.GetTypeId<Bullet>())
 				{

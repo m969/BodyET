@@ -6,7 +6,7 @@ namespace ETHotfix
     {
         public static void OnPropertyChanged(Entity entity, string propertyName, byte[] valueBytes)
         {
-            Log.Error($"{entity} {propertyName} {valueBytes}");
+            //Log.Error($"{entity} {propertyName} {valueBytes}");
             var type = entity.GetType();
             Entity component = null;
             if (EntityDefine.IsComponent(type))

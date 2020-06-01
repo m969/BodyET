@@ -23,7 +23,7 @@ namespace ETModel
         // 比方说玩家移动了2500毫秒,玩家有新的目标,这时旧的移动协程结束,将计算250毫秒移动的位置，而不是300毫秒移动的位置
         public async ETTask StartMove(ETCancellationToken cancellationToken)
         {
-            Log.Debug("StartMove");
+            //Log.Debug("StartMove");
             var unit = (GetParent<Entity>() as ITransform);
             this.StartPos = unit.Position;
             this.StartTime = TimeHelper.Now();
@@ -71,7 +71,7 @@ namespace ETModel
         
         public async ETTask MoveToAsync(Vector3 target, ETCancellationToken cancellationToken)
         {
-            Log.Debug($"MoveToAsync {target}");
+            //Log.Debug($"MoveToAsync {target}");
             // 新目标点离旧目标点太近，不设置新的
             if ((target - this.Target).sqrMagnitude < 0.01f)
             {

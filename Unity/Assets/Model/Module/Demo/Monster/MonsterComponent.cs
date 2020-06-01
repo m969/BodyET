@@ -21,5 +21,11 @@ namespace ETModel
 			base.Awake();
 			Instance = this;
 		}
+
+		public override void Dispose()
+		{
+			base.Dispose();
+			Instance = null;
+		}
 	}
 }
