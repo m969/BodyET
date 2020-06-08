@@ -14,7 +14,7 @@ namespace ETModel
 		{
 			Position = new Vector3(-10, 0, -10);
 			LastPosition = new Vector3(-10, 0, -10);
-			Game.EventSystem.RegisterEvent(HealthComponent.DeadEvent, new EventProxy(Dead));
+			//Game.EventSystem.RegisterEvent(HealthComponent.DeadEvent, new EventProxy(Dead));
 		}
 
 		public void Dead(List<object> param)

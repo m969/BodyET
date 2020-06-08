@@ -14,8 +14,8 @@ namespace ETModel
 		{
 			Awake();
 			AddComponent<HealthComponent>();
-			Position = new Vector3(-10, 0, -10);
-			LastPosition = new Vector3(-10, 0, -10);
+			Position = new Vector3(0, 0, 0);
+			LastPosition = new Vector3(0, 0, 0);
 		}
 
 		public void Dead(List<object> param) 

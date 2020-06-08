@@ -33,5 +33,10 @@ namespace ETModel
 			base.Dispose();
 			Instance = null;
 		}
+
+		public void RemoveNoDispose(long id)
+		{
+			this.idEntitys.Remove(id);
+		}
 	}
 }

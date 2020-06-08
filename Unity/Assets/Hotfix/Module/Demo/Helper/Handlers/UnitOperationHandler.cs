@@ -18,7 +18,7 @@ namespace ETHotfix
 			var newPosition = new Vector3(message.X / 100f, message.Y / 100f, message.Z / 100f);
 			//unit.KinematicCharacterMotor.MoveCharacter(newPosition);
 			unit.BodyView.transform.DOMove(newPosition, 0.2f);
-			unit.Rotation = Quaternion.Euler(0, message.AngleY / 100f, 0);
+			unit.Rotation = new Vector3(0, message.AngleY / 100f, 0);
 			//if (message.Operation == OperaType.Fire)
 			//{
 			//	var x = (int)(message.IntParams[0] / 100f);

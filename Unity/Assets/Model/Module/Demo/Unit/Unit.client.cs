@@ -5,6 +5,7 @@ using KinematicCharacterController;
 using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 
 namespace ETModel
 {
@@ -14,8 +15,8 @@ namespace ETModel
 		public GameObject BodyView { get; set; }
 		//public Vector3 LastPosition { get; set; } = Vector3.zero;
 		public Transform SkillDiretorTrm { get; set; }
-		public KinematicCharacterMotor CharacterMotor { get; set; }
-		public ExampleCharacterController CharacterController { get; set; }
+		//public KinematicCharacterMotor CharacterMotor { get; set; }
+		//public ExampleCharacterController CharacterController { get; set; }
 		public ETCancellationTokenSource ETCancellationTokenSource { get; set; }
 		public long LastFireTime { get; set; }
 
@@ -30,8 +31,8 @@ namespace ETModel
 			{
 				SkillDiretorTrm = BodyView.transform.Find("SkillDirector");
 				SkillDiretorTrm.parent = null;
-				CharacterMotor = BodyView.GetComponent<KinematicCharacterMotor>();
-				CharacterController = BodyView.GetComponent<ExampleCharacterController>();
+				//CharacterMotor = BodyView.GetComponent<KinematicCharacterMotor>();
+				//CharacterController = BodyView.GetComponent<ExampleCharacterController>();
 			}
 			AddComponent<AnimatorComponent>().Awake(gameObject.GetComponentInChildren<Animator>());
 			StateProperty.Subscribe(OnStateChanged);
@@ -39,9 +40,7 @@ namespace ETModel
 
 		public void Update()
 		{
-			if (LocalUnit == this)
-				if (SkillDiretorTrm != null)
-					SkillDiretorTrm.position = Position;
+
 		}
 
 		//public Vector3 Position
@@ -56,15 +55,15 @@ namespace ETModel
 		//	}
 		//}
 
-		public Quaternion Rotation
+		public Vector3 Rotation
 		{
 			get
 			{
-				return BodyView.transform.rotation;
+				return BodyView.transform.GetChild(0).localEulerAngles;
 			}
 			set
 			{
-				BodyView.transform.rotation = value;
+				BodyView.transform.GetChild(0).DOLocalRotate(value, 0.2f);
 			}
 		}
 

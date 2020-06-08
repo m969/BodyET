@@ -30,7 +30,9 @@ namespace ETModel
 		public void Dead()
 		{
 			State = 0;
-			Game.EventSystem.Run(DeadEvent, this);
+			if (Parent is Unit unit) unit.Dead(null);
+			//if (Parent is Monster monster) monster.Dead(null);
+			//Game.EventSystem.Run(DeadEvent, this);
 		}
 
 		public async ETTask ReliveLater()

@@ -9,7 +9,6 @@ namespace ETHotfix
 		protected override async ETTask Run(ETModel.Session session, FireRequest message)
 		{
 			Log.Debug($"FireRequestHandler {message}");
-
 			await ETTask.CompletedTask;
 		}
 	}

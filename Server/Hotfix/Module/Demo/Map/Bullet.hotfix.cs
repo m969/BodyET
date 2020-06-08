@@ -47,8 +47,9 @@ namespace ETHotfix
 
 		public static void MoveTo(this Bullet self, Vector3 position)
 		{
+			Log.Debug($"Bullet MoveTo {position}");
 			self.GetComponent<MoveComponent>().Target = self.Transform.Position;
-			self.GetComponent<MoveComponent>().MoveTo(position).Coroutine();
+			self.GetComponent<MoveComponent>().MoveTo(position, true).Coroutine();
 		}
 
 		public static void OnBeginContact(this Bullet self, Body2dComponent other)
@@ -88,6 +89,8 @@ namespace ETHotfix
 
 		public static void Update(this Bullet self)
 		{
+			Log.Debug($"BulletHotfix Position={self.Position}");
+
 			//if (TimeHelper.Now() - self.Timer > self.Interval)
 			//{
 			//	self.Timer = TimeHelper.Now();

@@ -25,7 +25,7 @@ namespace ETHotfix
 		{
 			try
 			{
-				Log.Debug($"{entityInfo.Type}");
+				Log.Debug($"{EntityDefine.GetType(entityInfo.Type).Name}");
 				if (entityInfo.Type == EntityDefine.GetTypeId<Unit>())
 				{
 					var remoteUnit = MongoHelper.FromBson<Unit>(entityInfo.BsonBytes.bytes);
@@ -34,7 +34,7 @@ namespace ETHotfix
 					remoteUnit.Domain = ETModel.Game.Scene;
 					ETModel.Game.EventSystem.Awake(remoteUnit);
 					//Unit unit = UnitFactory.Create(ETModel.Game.Scene, remoteUnit.Id);
-					var go = UnityEngine.Object.Instantiate(PrefabHelper.GetUnitPrefab("OtherCharacter"));
+					var go = UnityEngine.Object.Instantiate(PrefabHelper.GetUnitPrefab("RemoteUnit"));
 					GameObject.DontDestroyOnLoad(go);
 					//var unit = EntityFactory.CreateWithId<Unit>(domain, id);
 					remoteUnit.Awake(go);

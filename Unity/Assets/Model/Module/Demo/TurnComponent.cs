@@ -26,16 +26,16 @@ namespace ETModel
 
 		private void UpdateTurn()
 		{
-			//Log.Debug($"update turn: {this.t} {this.TurnTime}");
-			if (this.t > this.TurnTime)
-			{
-				return;
-			}
+			////Log.Debug($"update turn: {this.t} {this.TurnTime}");
+			//if (this.t > this.TurnTime)
+			//{
+			//	return;
+			//}
 
-			this.t += Time.deltaTime;
+			//this.t += Time.deltaTime;
 
-			Quaternion v = Quaternion.Slerp(this.From, this.To, this.t / this.TurnTime);
-			this.GetParent<Unit>().Rotation = v;
+			//Quaternion v = Quaternion.Slerp(this.From, this.To, this.t / this.TurnTime);
+			//this.GetParent<Unit>().Rotation = v;
 		}
 
 		/// <summary>
@@ -52,12 +52,12 @@ namespace ETModel
 		/// </summary>
 		public void Turn(Vector3 target, float turnTime = 0.1f)
 		{
-			Quaternion quaternion = PositionHelper.GetVector3ToQuaternion(this.GetParent<Unit>().Position, target);
+			//Quaternion quaternion = PositionHelper.GetVector3ToQuaternion(this.GetParent<Unit>().Position, target);
 
-			this.To = quaternion;
-			this.From = this.GetParent<Unit>().Rotation;
-			this.t = 0;
-			this.TurnTime = turnTime;
+			//this.To = quaternion;
+			//this.From = this.GetParent<Unit>().Rotation;
+			//this.t = 0;
+			//this.TurnTime = turnTime;
 		}
 
 		/// <summary>
@@ -66,43 +66,43 @@ namespace ETModel
 		/// <param name="angle">与X轴正方向的夹角</param>
 		public void Turn(float angle, float turnTime = 0.1f)
 		{
-			Quaternion quaternion = PositionHelper.GetAngleToQuaternion(angle);
+			//Quaternion quaternion = PositionHelper.GetAngleToQuaternion(angle);
 
-			this.To = quaternion;
-			this.From = this.GetParent<Unit>().Rotation;
-			this.t = 0;
-			this.TurnTime = turnTime;
+			//this.To = quaternion;
+			//this.From = this.GetParent<Unit>().Rotation;
+			//this.t = 0;
+			//this.TurnTime = turnTime;
 		}
 
 		public void Turn(Quaternion quaternion, float turnTime = 0.1f)
 		{
-			this.To = quaternion;
-			this.From = this.GetParent<Unit>().Rotation;
-			this.t = 0;
-			this.TurnTime = turnTime;
+			//this.To = quaternion;
+			//this.From = this.GetParent<Unit>().Rotation;
+			//this.t = 0;
+			//this.TurnTime = turnTime;
 		}
 
 		public void TurnImmediately(Quaternion quaternion)
 		{
-			this.GetParent<Unit>().Rotation = quaternion;
+			//this.GetParent<Unit>().Rotation = quaternion;
 		}
 
 		public void TurnImmediately(Vector3 target)
 		{
-			Vector3 nowPos = this.GetParent<Unit>().Position;
-			if (nowPos == target)
-			{
-				return;
-			}
+			//Vector3 nowPos = this.GetParent<Unit>().Position;
+			//if (nowPos == target)
+			//{
+			//	return;
+			//}
 
-			Quaternion quaternion = PositionHelper.GetVector3ToQuaternion(this.GetParent<Unit>().Position, target);
-			this.GetParent<Unit>().Rotation = quaternion;
+			//Quaternion quaternion = PositionHelper.GetVector3ToQuaternion(this.GetParent<Unit>().Position, target);
+			//this.GetParent<Unit>().Rotation = quaternion;
 		}
 
 		public void TurnImmediately(float angle)
 		{
-			Quaternion quaternion = PositionHelper.GetAngleToQuaternion(angle);
-			this.GetParent<Unit>().Rotation = quaternion;
+			//Quaternion quaternion = PositionHelper.GetAngleToQuaternion(angle);
+			//this.GetParent<Unit>().Rotation = quaternion;
 		}
 
 		public override void Dispose()

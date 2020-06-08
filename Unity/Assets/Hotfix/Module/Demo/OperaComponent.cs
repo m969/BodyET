@@ -18,7 +18,7 @@ namespace ETHotfix
 	{
 		public override void Update(OperaComponent self)
 		{
-			self.Update().Coroutine();
+			self.Update();
 		}
 	}
 
@@ -34,42 +34,43 @@ namespace ETHotfix
 			_lastDirection = Vector3.zero;
 		}
 
-	    //private readonly Frame_ClickMap frameClickMap = new Frame_ClickMap();
 	    private readonly UnitOperation msg = new UnitOperation();
 		private long lastSendTime;
-		public async ETVoid Update()
+		public void Update()
         {
-			if (Unit.LocalUnit == null)
-				return;
 			var localUnit = Unit.LocalUnit;
-
-			var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			RaycastHit hit;
-			if (Physics.Raycast(ray, out hit, 1000, this.MapMask))
+			if (localUnit == null)
+				return;
+			if (localUnit.BodyView == null)
+				return;
+			if (localUnit.SkillDiretorTrm != null)
 			{
-				if (localUnit.SkillDiretorTrm == null)
+				localUnit.SkillDiretorTrm.position = localUnit.Position;
+				var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+				RaycastHit hit;
+				if (Physics.Raycast(ray, out hit, 1000, this.MapMask))
 				{
-					localUnit.SkillDiretorTrm = localUnit.BodyView.transform.parent.Find("SkillDirector");
-				}
-				localUnit.SkillDiretorTrm.position = localUnit.BodyView.transform.position;
-				var direction = hit.point - localUnit.SkillDiretorTrm.position;
-				var dist = Vector3.Distance(direction, _lastDirection);
-				if (dist > 0.5f)
-				{
-					localUnit.SkillDiretorTrm.forward = _lastDirection = direction;
+					if (localUnit.SkillDiretorTrm != null)
+					{
+						localUnit.SkillDiretorTrm.position = localUnit.BodyView.transform.position;
+						var direction = hit.point - localUnit.SkillDiretorTrm.position;
+						var dist = Vector3.Distance(direction, _lastDirection);
+						//if (dist > 0.5f)
+						{
+							localUnit.SkillDiretorTrm.forward = _lastDirection = direction;
+						}
+					}
 				}
 			}
 
-
 			msg.UnitId = localUnit.Id;
-			//operationMsg.Index++;
+			msg.Index++;
 			msg.Operation = 0;
 			var p = localUnit.Position;
 			msg.X = (int)(p.x * 100);
 			msg.Y = (int)(p.y * 100);
 			msg.Z = (int)(p.z * 100);
-			msg.AngleY = (int)(localUnit.BodyView.transform.eulerAngles.y * 100);
-
+			msg.AngleY = (int)(localUnit.Rotation.y * 100);
 			if (Input.GetMouseButtonDown(0))
 			{
 				localUnit.Firing = true;
@@ -82,43 +83,45 @@ namespace ETHotfix
 			{
 				if (TimeHelper.Now() - localUnit.LastFireTime < 200)
 					return;
-				localUnit.LastFireTime = TimeHelper.Now();
-
-				if (!localUnit.PreviousFiring)
+				if (localUnit.SkillDiretorTrm)
 				{
-					localUnit.PreviousFiring = true;
-					localUnit.CharacterController.MaxStableMoveSpeed = 4;
-					localUnit.CharacterController.LockRotation(localUnit.SkillDiretorTrm.localEulerAngles);
-				}
-				localUnit.CharacterController.SetRotation(localUnit.SkillDiretorTrm.localEulerAngles);
+					localUnit.LastFireTime = TimeHelper.Now();
 
-				msg.Operation = OperaType.Fire;
-				msg.AngleY = (int)(localUnit.BodyView.transform.eulerAngles.y * 100);
-				p = localUnit.SkillDiretorTrm.Find("TargetPoint").position;
-				msg.IntParams.Clear();
-				msg.LongParams.Clear();
-				var x = (int)(p.x * 100);
-				var y = (int)(p.y * 100);
-				var z = (int)(p.z * 100);
-				msg.IntParams.Add(x);
-				msg.IntParams.Add(y);
-				msg.IntParams.Add(z);
-				var bulletId = IdGenerater.GenerateId();
-				msg.IntParams.Add(1);
-				msg.LongParams.Add(bulletId);
-				SessionHelper.HotfixSend(msg);
-				//var bulletObj = localUnit.LocalFire(p, 1, bulletId);
+					//if (!localUnit.PreviousFiring)
+					//{
+					//	localUnit.PreviousFiring = true;
+					//	localUnit.CharacterController.MaxStableMoveSpeed = 4;
+					//	localUnit.CharacterController.LockRotation(localUnit.SkillDiretorTrm.localEulerAngles);
+					//}
+					//localUnit.CharacterController.SetRotation(localUnit.SkillDiretorTrm.localEulerAngles);
+
+					msg.Operation = OperaType.Fire;
+					msg.AngleY = (int)(localUnit.Rotation.y * 100);
+					p = localUnit.SkillDiretorTrm.Find("TargetPoint").position;
+					msg.IntParams.Clear();
+					msg.LongParams.Clear();
+					var x = (int)(p.x * 100);
+					var y = (int)(p.y * 100);
+					var z = (int)(p.z * 100);
+					msg.IntParams.Add(x);
+					msg.IntParams.Add(y);
+					msg.IntParams.Add(z);
+					var bulletId = IdGenerater.GenerateId();
+					msg.IntParams.Add(1);
+					msg.LongParams.Add(bulletId);
+					SessionHelper.HotfixSend(msg);
+				}
 				return;
 			}
 			else
 			{
-				if (localUnit.PreviousFiring)
-				{
-					localUnit.PreviousFiring = false;
-					await TimerComponent.Instance.WaitAsync(100);
-					localUnit.CharacterController.MaxStableMoveSpeed = 10;
-					localUnit.CharacterController.CancelLockRotation();
-				}
+				//if (localUnit.PreviousFiring)
+				//{
+				//	localUnit.PreviousFiring = false;
+				//	await TimerComponent.Instance.WaitAsync(100);
+				//	localUnit.CharacterController.MaxStableMoveSpeed = 10;
+				//	localUnit.CharacterController.CancelLockRotation();
+				//}
 			}
 
 			if (TimeHelper.Now() - lastSendTime > 100)

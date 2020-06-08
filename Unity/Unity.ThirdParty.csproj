@@ -63,6 +63,41 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Animation &amp; Audio\AnimationControl.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Animation &amp; Audio\AudioControl.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Animation &amp; Audio\TurnTowardCameraDirection.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Animation &amp; Audio\TurnTowardControllerVelocity.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Animation &amp; Audio\TurnTowardTransformDirection.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Camera\CameraController.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Camera\CameraDistanceRaycaster.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Camera\ThirdPersonCameraController.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Controllers\AdvancedWalkerController.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Controllers\Controller.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Controllers\SidescrollerController.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Controllers\SimpleWalkerController.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Core scripts\CeilingDetector.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Core scripts\Mover.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Core scripts\Sensor.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Editor\MoverInspector.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Environment\FlipAtRightAngle.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Environment\GravityTunnel.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Environment\MovingPlatform.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Environment\TriggerArea.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Helper\VectorMath.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Input\Camera\CameraInput.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Input\Camera\CameraJoystickInput.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Input\Camera\CameraMouseInput.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Input\Character\CharacterInput.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Input\Character\CharacterJoystickInput.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Input\Character\CharacterKeyboardInput.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Showcase\DemoMenu.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Showcase\DisableShadows.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Showcase\FPSCounter.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Showcase\MouseCursorLock.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Showcase\PlayerData.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Showcase\RotateObject.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Smoothing\SmoothPosition.cs" />
+    <Compile Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Scripts\Smoothing\SmoothRotation.cs" />
     <Compile Include="Assets\ThirdParty\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
     <Compile Include="Assets\ThirdParty\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
     <Compile Include="Assets\ThirdParty\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
@@ -738,8 +773,12 @@
     <Compile Include="Assets\ThirdParty\ThirdPartyArt\Epic Toon FX\Scripts\ETFXRotation.cs" />
     <None Include="Assets\ThirdParty\Demigiant\DOTweenPro\readme.txt" />
     <None Include="Assets\ThirdParty\Unity.ThirdParty.asmdef" />
+    <None Include="Assets\ThirdParty\Character Movement Fundamentals\README.txt" />
     <None Include="Assets\ThirdParty\Demigiant\DOTween\readme.txt" />
+    <None Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Misc\Fonts\Attribution.txt" />
     <None Include="Assets\ThirdParty\Demigiant\DemiLib\Core\DemiLib.xml" />
+    <None Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Misc\Shaders\OneSidedTextShader.shader" />
+    <None Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Misc\Fonts\LICENSE.txt" />
     <None Include="Assets\ThirdParty\ThirdPartyArt\Epic Toon FX\ETFX Readme.txt" />
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -961,49 +1000,49 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.14f1/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="DemiEditor">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Editor/Demigiant/DemiLib/Editor/DemiEditor.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/BodyET/Unity/Assets/Editor/Demigiant/DemiLib/Editor/DemiEditor.dll</HintPath>
     </Reference>
     <Reference Include="DOTweenEditor">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Editor/Demigiant/DOTween/Editor/DOTweenEditor.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/BodyET/Unity/Assets/Editor/Demigiant/DOTween/Editor/DOTweenEditor.dll</HintPath>
     </Reference>
     <Reference Include="DOTweenProEditor">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Editor/Demigiant/DOTweenPro/Editor/DOTweenProEditor.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/BodyET/Unity/Assets/Editor/Demigiant/DOTweenPro/Editor/DOTweenProEditor.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/BodyET/Unity/Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Pathfinding.ClipperLib">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/AstarPathfindingProject/Clipper/Pathfinding.ClipperLib.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/BodyET/Unity/Assets/Plugins/AstarPathfindingProject/Clipper/Pathfinding.ClipperLib.dll</HintPath>
     </Reference>
     <Reference Include="Pathfinding.Ionic.Zip.Reduced">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/AstarPathfindingProject/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/BodyET/Unity/Assets/Plugins/AstarPathfindingProject/DotNetZip/Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
     </Reference>
     <Reference Include="Pathfinding.Poly2Tri">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/AstarPathfindingProject/Poly2Tri/Pathfinding.Poly2Tri.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/BodyET/Unity/Assets/Plugins/AstarPathfindingProject/Poly2Tri/Pathfinding.Poly2Tri.dll</HintPath>
     </Reference>
     <Reference Include="JetBrains.Rider.Unity.Editor.Plugin.Repacked">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/BodyET/Unity/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/Editor/npoi/NPOI.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/BodyET/Unity/Assets/Plugins/Editor/npoi/NPOI.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OOXML">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/Editor/npoi/NPOI.OOXML.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/BodyET/Unity/Assets/Plugins/Editor/npoi/NPOI.OOXML.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXml4Net">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/Editor/npoi/NPOI.OpenXml4Net.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/BodyET/Unity/Assets/Plugins/Editor/npoi/NPOI.OpenXml4Net.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OpenXmlFormats">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/Plugins/Editor/npoi/NPOI.OpenXmlFormats.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/BodyET/Unity/Assets/Plugins/Editor/npoi/NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="DemiLib">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/ThirdParty/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/BodyET/Unity/Assets/ThirdParty/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
     </Reference>
     <Reference Include="DOTween">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/ThirdParty/Demigiant/DOTween/DOTween.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/BodyET/Unity/Assets/ThirdParty/Demigiant/DOTween/DOTween.dll</HintPath>
     </Reference>
     <Reference Include="DOTweenPro">
-      <HintPath>D:/YangChengmin/Projects/GitHub/ET-6.0/Unity/Assets/ThirdParty/Demigiant/DOTweenPro/DOTweenPro.dll</HintPath>
+      <HintPath>D:/YangChengmin/Projects/GitHub/BodyET/Unity/Assets/ThirdParty/Demigiant/DOTweenPro/DOTweenPro.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.14f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

@@ -44,17 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-  - key: Skeleton
-    gameObject: {fileID: 1248987324363926, guid: 9e27b0bdab1ad7242a009899d15c0e67,
+  - key: LocalUnit
+    gameObject: {fileID: 1823403780643940, guid: 714238991d9254a4e9af9321d64b6775,
       type: 3}
-  - key: ExampleCharacter
-    gameObject: {fileID: 5394691835327551891, guid: db64676a31c71f14fb80c9071229ada7,
-      type: 3}
-  - key: Unit
-    gameObject: {fileID: 7873263590065129798, guid: afac99e4a4638914293e703070366101,
-      type: 3}
-  - key: OtherCharacter
-    gameObject: {fileID: 5394691835327551891, guid: f50d68ad0ad38d840922308c53ff027f,
+  - key: RemoteUnit
+    gameObject: {fileID: 1823403780643940, guid: 63177de970c649f49bc604ffb30baa99,
       type: 3}
   - key: Skill_1001
     gameObject: {fileID: 6102341875898683098, guid: 0c2a684a5c3815b42a2af3620ca36a9d,

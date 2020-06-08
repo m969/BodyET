@@ -19,6 +19,8 @@ namespace ETHotfix
 			{
 				var bullet = BulletComponent.Instance.Get(message.EntityId);
 				entity = bullet;
+				if (entity is null)
+					return;
 				if (bullet.BodyView != null)
 					bullet.BodyView.transform.DOMove(new Vector3(message.X / 100f, message.Y / 100f, message.Z / 100f), 0.2f);
 			}
@@ -26,6 +28,8 @@ namespace ETHotfix
 			{
 				var monster = MonsterComponent.Instance.Get(message.EntityId);
 				entity = monster;
+				if (entity is null)
+					return;
 				if (monster.BodyView != null)
 					monster.BodyView.transform.DOMove(new Vector3(message.X / 100f, message.Y / 100f, message.Z / 100f), 0.2f);
 			}

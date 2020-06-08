@@ -33,7 +33,7 @@ namespace ETModel
 			//HP = 100;
 			State = 1;
 			Firing = false;
-			Game.EventSystem.RegisterEvent(HealthComponent.DeadEvent, new EventProxy(Dead));
+			//Game.EventSystem.RegisterEvent(HealthComponent.DeadEvent, new EventProxy(Dead));
 		}
 
 		public override void Dispose()
@@ -58,9 +58,9 @@ namespace ETModel
 			{
 #if !SERVER
 				if (BodyView != null)
-					if (IsLocalUnit)
-						CharacterMotor.SetPosition(value);
-					else
+					//if (IsLocalUnit)
+					//	CharacterMotor.SetPosition(value);
+					//else
 						BodyView.transform.position = value;
 #endif
 				PositionProperty.Value = value;

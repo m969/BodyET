@@ -1,0 +1,180 @@
+fileFormatVersion: 2
+guid: 555b4ed73ed505c41b16dcd0deca550f
+timeCreated: 1545490024
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Capsule.004
+    100004: Hat
+    100006: Head
+    100008: Hip
+    100010: Rig
+    100012: Root
+    100014: Spine_1
+    100016: Spine_2
+    400000: //RootNode
+    400002: Capsule.004
+    400004: Hat
+    400006: Head
+    400008: Hip
+    400010: Rig
+    400012: Root
+    400014: Spine_1
+    400016: Spine_2
+    4300000: Capsule.004
+    7400000: WalkLeft
+    9500000: //RootNode
+    13700000: Capsule.004
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: WalkLeft
+      takeName: Scene
+      firstFrame: 1
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves:
+      - name: FootStep
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 2
+            time: 0
+            value: 0
+            inSlope: 6.8426
+            outSlope: 6.8426
+            tangentMode: 0
+          - serializedVersion: 2
+            time: 0.2475884
+            value: 0.9929369
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+          - serializedVersion: 2
+            time: 0.49696153
+            value: -0.0015706643
+            inSlope: -5.5906177
+            outSlope: -5.5906177
+            tangentMode: 0
+          - serializedVersion: 2
+            time: 0.74144566
+            value: -0.9984184
+            inSlope: -0.14121492
+            outSlope: -0.14121492
+            tangentMode: 0
+          - serializedVersion: 2
+            time: 1
+            value: 0
+            inSlope: 6.9235096
+            outSlope: 6.9235096
+            tangentMode: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 0
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Capsule.004
+        weight: 1
+      - path: Rig
+        weight: 1
+      - path: Rig/Root
+        weight: 1
+      - path: Rig/Root/Hip
+        weight: 1
+      - path: Rig/Root/Hip/Spine_1
+        weight: 1
+      - path: Rig/Root/Hip/Spine_1/Spine_2
+        weight: 1
+      - path: Rig/Root/Hip/Spine_1/Spine_2/Head
+        weight: 1
+      - path: Rig/Root/Hip/Spine_1/Spine_2/Head/Hat
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
