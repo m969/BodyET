@@ -1,5 +1,4 @@
-﻿using KinematicCharacterController.Examples;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ETModel
 {

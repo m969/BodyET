@@ -28,7 +28,7 @@ namespace ETHotfix
                     scene.AddComponent<Box2dWorldComponent>();
                     scene.AddComponent<UnitComponent>();
                     scene.AddComponent<BulletComponent>();
-                    //var comp = scene.AddComponent<MonsterComponent>();
+                    var comp = scene.AddComponent<MonsterComponent>();
                     //var monster = MonsterFactory.Create(scene);
                     //monster.Position = new UnityEngine.Vector3(2, 0, 2);
                     //comp.Add(monster);

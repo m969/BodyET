@@ -45,21 +45,15 @@ namespace ETHotfix
 				return;
 			if (localUnit.SkillDiretorTrm != null)
 			{
-				localUnit.SkillDiretorTrm.position = localUnit.Position;
 				var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				RaycastHit hit;
 				if (Physics.Raycast(ray, out hit, 1000, this.MapMask))
 				{
-					if (localUnit.SkillDiretorTrm != null)
-					{
-						localUnit.SkillDiretorTrm.position = localUnit.BodyView.transform.position;
-						var direction = hit.point - localUnit.SkillDiretorTrm.position;
-						var dist = Vector3.Distance(direction, _lastDirection);
-						//if (dist > 0.5f)
-						{
-							localUnit.SkillDiretorTrm.forward = _lastDirection = direction;
-						}
-					}
+					localUnit.SkillDiretorTrm.position = localUnit.Position;
+					var trmP = localUnit.SkillDiretorTrm.position;
+					var direction = new Vector3(hit.point.x, trmP.y, hit.point.z) - trmP;
+					//var dist = Vector3.Distance(direction, _lastDirection);
+					localUnit.SkillDiretorTrm.forward = _lastDirection = direction;
 				}
 			}
 

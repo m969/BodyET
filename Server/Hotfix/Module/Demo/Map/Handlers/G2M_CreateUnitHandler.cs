@@ -63,8 +63,7 @@ namespace ETHotfix
 				}
 				inViewUnitsMsg.InViewEntitys.Add(entityInfo);
 			}
-			Monster[] monsters = copyMap.GetComponent<MonsterComponent>().GetAll();
-			Log.Debug($"{monsters.Length}");
+			var monsters = copyMap.GetComponent<MonsterComponent>().GetAll();
 			foreach (var u in monsters)
 			{
 				var entityInfo = new EntiyInfo();

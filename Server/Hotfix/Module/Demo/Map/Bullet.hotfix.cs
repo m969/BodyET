@@ -89,7 +89,7 @@ namespace ETHotfix
 
 		public static void Update(this Bullet self)
 		{
-			Log.Debug($"BulletHotfix Position={self.Position}");
+			//Log.Debug($"BulletHotfix Position={self.Position}");
 
 			//if (TimeHelper.Now() - self.Timer > self.Interval)
 			//{

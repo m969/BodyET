@@ -199,7 +199,6 @@
     <Compile Include="Assets\Model\Module\Demo\Bullet\BulletComponent.cs" />
     <Compile Include="Assets\Model\Module\Demo\CameraComponent.cs" />
     <Compile Include="Assets\Model\Module\Demo\Config\UnitConfig.cs" />
-    <Compile Include="Assets\Model\Module\Demo\ExamplePlayer.cs" />
     <Compile Include="Assets\Model\Module\Demo\Monster\Monster.client.cs" />
     <Compile Include="Assets\Model\Module\Demo\Monster\Monster.cs" />
     <Compile Include="Assets\Model\Module\Demo\Monster\MonsterComponent.cs" />

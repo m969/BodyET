@@ -10,7 +10,7 @@ namespace ETHotfix
 		protected override async ETTask Run(Unit unit, UnitOperation message)
 		{
 			Log.Msg(message);
-			unit.Position = new Vector3(message.X / 100f, 0, message.Z / 100f);
+			unit.Position = new Vector3(message.X / 100f, message.Y / 100f, message.Z / 100f);
 			if (message.Operation == OperaType.Fire)
 			{
 				unit.Fire(message);

@@ -1,7 +1,5 @@
 ﻿using PF;
 using UnityEngine;
-using KinematicCharacterController.Examples;
-using KinematicCharacterController;
 using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
