@@ -45,6 +45,7 @@ namespace ETHotfix
 
 				EntityDefine.OnPropertyChanged += (entity, name, value) =>
 				{
+					Log.Debug($"OnPropertyChanged {name}");
 					var propertyDefineCollection = EntityDefine.PropertyDefineCollectionMap[EntityDefine.GetTypeId<Unit>()];
 					var attr = propertyDefineCollection[name];
 					var msg = new C2M_SetEntityProperty();

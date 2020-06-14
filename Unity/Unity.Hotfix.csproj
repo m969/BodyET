@@ -109,8 +109,6 @@
     <Compile Include="Assets\Hotfix\Module\Demo\Helper\LoginHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Demo\Helper\MapHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Demo\Helper\SessionHelper.cs" />
-    <Compile Include="Assets\Hotfix\Module\Demo\OperaComponent.cs" />
-    <Compile Include="Assets\Hotfix\Module\Demo\OperaType.cs" />
     <Compile Include="Assets\Hotfix\Module\Demo\UI\UILobby\Component\UILobbyComponent.cs" />
     <Compile Include="Assets\Hotfix\Module\Demo\UI\UILobby\System\EnterMapFinish_RemoveLobbyUI.cs" />
     <Compile Include="Assets\Hotfix\Module\Demo\UI\UILobby\System\LoginFinish_CreateLobbyUI.cs" />
@@ -119,7 +117,9 @@
     <Compile Include="Assets\Hotfix\Module\Demo\UI\UILogin\System\InitSceneStart_CreateLoginUI.cs" />
     <Compile Include="Assets\Hotfix\Module\Demo\UI\UILogin\System\LoginFinish_RemoveLoginUI.cs" />
     <Compile Include="Assets\Hotfix\Module\Demo\UI\UILogin\System\UILoginFactory.cs" />
-    <Compile Include="Assets\Hotfix\Module\Demo\Unit.hotfix.cs" />
+    <Compile Include="Assets\Hotfix\Module\Demo\Unit\OperaComponent.cs" />
+    <Compile Include="Assets\Hotfix\Module\Demo\Unit\OperaType.cs" />
+    <Compile Include="Assets\Hotfix\Module\Demo\Unit\Unit.hotfix.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\AMHandler.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\HotfixMessage.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\HotfixMessageDispatcher.cs" />

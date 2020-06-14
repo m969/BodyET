@@ -58,7 +58,7 @@ namespace ETHotfix
 			{
 				if (self.OwnerId != unit.Id)
 				{
-					if (unit.State == 0)
+					if (unit.State == 0 || self.IsDisposed)
 					{
 						return;
 					}
@@ -68,7 +68,7 @@ namespace ETHotfix
 			}
 			if (other.Parent is Monster monster)
 			{
-				if (self.OwnerId != monster.Id)
+				if (self.OwnerId != monster.Id || self.IsDisposed)
 				{
 					//if (monster.State == 0)
 					//{

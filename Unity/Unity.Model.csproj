@@ -221,6 +221,7 @@
     <Compile Include="Assets\Model\Module\Demo\Unit\Unit.cs" />
     <Compile Include="Assets\Model\Module\Demo\Unit\UnitComponent.cs" />
     <Compile Include="Assets\Model\Module\Demo\Unit\UnitFactory.cs" />
+    <Compile Include="Assets\Model\Module\Demo\Unit\UnitHUDComponent.cs" />
     <Compile Include="Assets\Model\Module\Demo\Unit\UnitPathComponent.cs" />
     <Compile Include="Assets\Model\Module\Message\AMHandler.cs" />
     <Compile Include="Assets\Model\Module\Message\ErrorCode.cs" />

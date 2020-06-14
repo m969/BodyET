@@ -33,6 +33,7 @@ namespace ETModel
 				//CharacterController = BodyView.GetComponent<ExampleCharacterController>();
 			}
 			AddComponent<AnimatorComponent>().Awake(gameObject.GetComponentInChildren<Animator>());
+			AddComponent<UnitHUDComponent>();
 			StateProperty.Subscribe(OnStateChanged);
 		}
 

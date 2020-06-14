@@ -6,29 +6,46 @@ namespace ETHotfix
     {
         public static void OnPropertyChanged(Entity entity, string propertyName, byte[] valueBytes)
         {
-            //Log.Error($"{entity} {propertyName} {valueBytes}");
             var type = entity.GetType();
             Entity component = null;
             if (EntityDefine.IsComponent(type))
             {
                 component = entity;
                 entity = entity.GetParent<Entity>();
-                type = entity.GetType();
             }
-            var entityTypeId = EntityDefine.GetTypeId(type);
-            if (!EntityDefine.PropertyDefineCollectionMap.ContainsKey(entityTypeId))
-                return;
-            if (!EntityDefine.PropertyDefineCollectionMap[entityTypeId].ContainsKey(propertyName))
-                return;
 
-            var attr = EntityDefine.PropertyDefineCollectionMap[entityTypeId][propertyName];
+            var entityTypeId = EntityDefine.GetTypeId(entity.GetType());
+            //if (component != null)
+            //{
+
+            //}
+            //if (!EntityDefine.PropertyDefineCollectionMap.ContainsKey(entityTypeId))
+            //{
+            //    Log.Error($"EntityDefine.PropertyDefineCollectionMap has no key {entityTypeId}");
+            //    return;
+            //}
+            //if (!EntityDefine.PropertyDefineCollectionMap[entityTypeId].ContainsKey(propertyName))
+            //{
+            //    Log.Error($"EntityDefine.PropertyDefineCollectionMap[{entityTypeId}] has no key {propertyName}");
+            //    return;
+            //}
             var msg = new M2C_OnEntityChanged();
+            PropertyDefineAttribute attr;
+            if (component != null)
+            {
+                msg.ComponentType = EntityDefine.GetTypeId(component.GetType());
+                attr = EntityDefine.PropertyDefineCollectionMap[msg.ComponentType][propertyName];
+            }
+            else
+            {
+                attr = EntityDefine.PropertyDefineCollectionMap[entityTypeId][propertyName];
+            }
             msg.EntityId = entity.Id;
             msg.EntityType = entityTypeId;
             msg.PropertyId = attr.Id;
             msg.PropertyValue.bytes = valueBytes;
-            if (component != null)
-                msg.ComponentType = EntityDefine.GetTypeId(component.GetType());
+
+            Log.Error($"MessageHelper OnPropertyChanged {type} {propertyName} flag={attr.Flag} ");
 
             if (attr.Flag == SyncFlag.AllClients)
             {

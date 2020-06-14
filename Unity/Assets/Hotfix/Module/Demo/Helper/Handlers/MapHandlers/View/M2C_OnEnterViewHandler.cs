@@ -31,12 +31,12 @@ namespace ETHotfix
 					var remoteUnit = MongoHelper.FromBson<Unit>(entityInfo.BsonBytes.bytes);
 					foreach (var item in remoteUnit.Components)
 						Log.Debug($"remoteUnit {item}");
-					remoteUnit.Domain = ETModel.Game.Scene;
-					ETModel.Game.EventSystem.Awake(remoteUnit);
+					//remoteUnit.Domain = ETModel.Game.Scene;
 					//Unit unit = UnitFactory.Create(ETModel.Game.Scene, remoteUnit.Id);
 					var go = UnityEngine.Object.Instantiate(PrefabHelper.GetUnitPrefab("RemoteUnit"));
 					GameObject.DontDestroyOnLoad(go);
 					//var unit = EntityFactory.CreateWithId<Unit>(domain, id);
+					ETModel.Game.EventSystem.Awake(remoteUnit);
 					remoteUnit.Awake(go);
 					UnitComponent.Instance.Add(remoteUnit);
 					remoteUnit.Position = remoteUnit.Position;

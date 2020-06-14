@@ -21,6 +21,7 @@ namespace ETModel
 		public void DoDamage(int damage)
 		{
 			HP = Mathf.Max(0, HP - damage);
+			Log.Debug($"DoDamage {damage}");
 			if (HP <= 0)
 			{
 				Dead();

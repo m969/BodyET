@@ -9,6 +9,7 @@ namespace ETHotfix
 	{
 		protected override async ETTask Run(ETModel.Session session, M2C_OnEntityChanged message)
 		{
+			Log.Debug($"M2C_OnEntityChangedHandler {Dumper.DumpAsString(message)}");
 			var entityType = EntityDefine.TypeIds.GetKeyByValue((ushort)message.EntityType);
 			ETModel.Entity entity = null;
 			if (entityType == typeof(Unit))
