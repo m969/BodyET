@@ -12,8 +12,8 @@ namespace ETModel
 
 		partial void Setup()
 		{
-			Position = new Vector3(-10, 0, -10);
-			LastPosition = new Vector3(-10, 0, -10);
+			//Position = new Vector3(-10, 0, -10);
+			//LastPosition = new Vector3(-10, 0, -10);
 			//Game.EventSystem.RegisterEvent(HealthComponent.DeadEvent, new EventProxy(Dead));
 		}
 

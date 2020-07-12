@@ -13,7 +13,7 @@ namespace ETModel
 		public long Timer { get; set; }
 
 		[BsonIgnore]
-		public ITransform Transform { get { return (this as ITransform); } }
+		public TransformComponent TransformComponent { get { return GetComponent<TransformComponent>(); } }
 
 
 		public void Awake()
@@ -25,30 +25,52 @@ namespace ETModel
 		}
 		partial void Setup();
 
-		[BsonIgnore]
-		public ReactProperty<Vector3> PositionProperty { get; set; } = new ReactProperty<Vector3>(Vector3.zero);
+		//[BsonIgnore]
+		//public ReactProperty<Vector3> PositionProperty { get; set; } = new ReactProperty<Vector3>(Vector3.zero);
 		public Vector3 Position
 		{
 			get
 			{
-#if !SERVER
-				if (BodyView != null)
-					return BodyView.transform.position;
-#endif
-				return PositionProperty.Value;
+//#if !SERVER
+//				if (BodyView != null)
+//					return BodyView.transform.position;
+//#else
+				return TransformComponent.position;
+//#endif
 			}
 			set
 			{
-#if !SERVER
-				if (BodyView != null)
-					BodyView.transform.position = value;
-#endif
-				PositionProperty.Value = value;
+//#if !SERVER
+//				if (BodyView != null)
+//					BodyView.transform.position = value;
+//#else
+				TransformComponent.SetPosition(value);
+//#endif
 			}
 		}
 
-		public Vector3 LastPosition { get; set; }
-		public float Angle			{ get; set; }
-		public float Scale			{ get; set; }
+		public Vector3 LastPosition
+		{
+			get
+			{
+				return TransformComponent.lastPosition;
+			}
+			set
+			{
+				TransformComponent.lastPosition = value;
+			}
+		}
+
+		public float Angle
+		{
+			get
+			{
+				return TransformComponent.angle;
+			}
+			set
+			{
+				TransformComponent.angle = value;
+			}
+		}
 	}
 }

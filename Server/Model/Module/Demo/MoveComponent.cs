@@ -24,8 +24,8 @@ namespace ETModel
         public async ETTask StartMove(ETCancellationToken cancellationToken)
         {
             Log.Debug("StartMove");
-            var unit = (GetParent<Entity>() as ITransform);
-            this.StartPos = unit.Position;
+            var transform = Parent.GetComponent<TransformComponent>();
+            this.StartPos = transform.position;
             this.StartTime = TimeHelper.Now();
             float distance = (this.Target - this.StartPos).magnitude;
             if (Math.Abs(distance) < 0.1f)
@@ -43,46 +43,48 @@ namespace ETModel
                 long timeNow = TimeHelper.Now();
                 if (timeNow - this.StartTime >= this.needTime)
                 {
-                    unit.Position = this.Target;
+                    transform.position = this.Target;
                 }
                 else
                 {
                     float amount = (timeNow - this.StartTime) * 1f / this.needTime;
-                    unit.Position = Vector3.Lerp(this.StartPos, this.Target, amount);
+                    transform.position = Vector3.Lerp(this.StartPos, this.Target, amount);
                 }
             });
 
             while (true)
             {
-                await timerComponent.WaitAsync(50, cancellationToken);
+                await timerComponent.WaitAsync(200, cancellationToken);
                 
                 long timeNow = TimeHelper.Now();
                 
                 if (timeNow - this.StartTime >= this.needTime)
                 {
-                    unit.Position = this.Target;
+                    transform.position = this.Target;
                     break;
                 }
 
                 float amount = (timeNow - this.StartTime) * 1f / this.needTime;
-                unit.Position = Vector3.Lerp(this.StartPos, this.Target, amount);
+                transform.position = Vector3.Lerp(this.StartPos, this.Target, amount);
+                Log.Debug($"{Parent.Id} position={transform.position}");
             }
         }
         
         public async ETTask MoveToAsync(Vector3 target, ETCancellationToken cancellationToken)
         {
-            Log.Debug($"MoveToAsync {target}");
+            var transform = Parent.GetComponent<TransformComponent>();
+            Log.Debug($"MoveToAsync position={transform.position} target={target}");
             // 新目标点离旧目标点太近，不设置新的
             if ((target - this.Target).sqrMagnitude < 0.01f)
             {
-                Log.Error($"新目标点离旧目标点太近，不设置新的 Target={this.Target}");
+                Log.Error($"新目标点离旧目标点太近，不设置新的 旧目标={this.Target} 新目标={target}");
                 return;
             }
 
             // 距离当前位置太近
-            if (((GetParent<Entity>() as ITransform).Position - target).sqrMagnitude < 0.01f)
+            if ((transform.position - target).sqrMagnitude < 0.01f)
             {
-                Log.Error($"距离当前位置太近 Position={(GetParent<Entity>() as ITransform).Position} Target={this.Target}");
+                Log.Error($"距离当前位置太近 当前位置={transform.position} 目标位置={target}");
                 return;
             }
             

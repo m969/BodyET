@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
+using System.Diagnostics;
 
 namespace ETModel
 {
@@ -456,7 +457,8 @@ namespace ETModel
 			}
 			if (GUILayout.Button("启动数据库"))
 			{
-				ProcessHelper.Run("mongod", @"--dbpath=db", "../Database/bin/");
+				//ProcessHelper.Run("mongod", @"--dbpath=db", "../Database/bin/");
+				RunBat("D:/Documents/StartMongoDB.bat", "");
 			}
 			GUILayout.EndHorizontal();
 		}
@@ -464,6 +466,27 @@ namespace ETModel
 		private void OnDestroy()
 		{
 			this.ClearConfig();
+		}
+
+		public static System.Diagnostics.Process CreateShellExProcess(string cmd, string args, string workingDir = "")
+		{
+			var pStartInfo = new System.Diagnostics.ProcessStartInfo(cmd);
+			pStartInfo.Arguments = args;
+			pStartInfo.CreateNoWindow = false;
+			pStartInfo.UseShellExecute = true;
+			// pStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+			pStartInfo.RedirectStandardError = false;
+			pStartInfo.RedirectStandardInput = false;
+			pStartInfo.RedirectStandardOutput = false;
+			if (!string.IsNullOrEmpty(workingDir))
+				pStartInfo.WorkingDirectory = workingDir;
+			return System.Diagnostics.Process.Start(pStartInfo);
+		}
+
+		public void RunBat(string batfile, string args, string workingDir = "")
+		{
+			var p = CreateShellExProcess(batfile, args, workingDir);
+			p.Close();
 		}
 	}
 }

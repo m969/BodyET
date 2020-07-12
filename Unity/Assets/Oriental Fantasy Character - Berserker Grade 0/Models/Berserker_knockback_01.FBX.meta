@@ -1,0 +1,372 @@
+fileFormatVersion: 2
+guid: a83077a079156ed438257051388097e7
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Back_Skirt_01
+    100002: Back_Skirt_02
+    100004: Back_Skirt_03
+    100006: Back_Skirt_04
+    100008: Back_Skirt_05
+    100010: Back_Skirt_06
+    100012: Back_Skirt_Root
+    100014: BackLeft_Skirt_01
+    100016: BackLeft_Skirt_02
+    100018: BackLeft_Skirt_03
+    100020: BackLeft_Skirt_04
+    100022: BackLeft_Skirt_05
+    100024: BackLeft_Skirt_Root
+    100026: BackRight_Skirt_01
+    100028: BackRight_Skirt_02
+    100030: BackRight_Skirt_03
+    100032: BackRight_Skirt_04
+    100034: BackRight_Skirt_05
+    100036: BackRight_Skirt_Root
+    100038: //RootNode
+    100040: Bip001
+    100042: Bip001 Footsteps
+    100044: Bip001 Head
+    100046: Bip001 HeadNub
+    100048: Bip001 L Calf
+    100050: Bip001 L Clavicle
+    100052: Bip001 L Finger0
+    100054: Bip001 L Finger0Nub
+    100056: Bip001 L Foot
+    100058: Bip001 L Forearm
+    100060: Bip001 L Hand
+    100062: Bip001 L Thigh
+    100064: Bip001 L Toe0
+    100066: Bip001 L Toe0Nub
+    100068: Bip001 L UpperArm
+    100070: Bip001 Neck
+    100072: Bip001 Pelvis
+    100074: Bip001 Prop1
+    100076: Bip001 Prop2
+    100078: Bip001 R Calf
+    100080: Bip001 R Clavicle
+    100082: Bip001 R Finger0
+    100084: Bip001 R Finger0Nub
+    100086: Bip001 R Foot
+    100088: Bip001 R Forearm
+    100090: Bip001 R Hand
+    100092: Bip001 R Thigh
+    100094: Bip001 R Toe0
+    100096: Bip001 R Toe0Nub
+    100098: Bip001 R UpperArm
+    100100: Bip001 Spine
+    100102: Bip001 Spine1
+    100104: Cape_01
+    100106: Cape_02
+    100108: Cape_03
+    100110: Cape_04
+    100112: Cape_05
+    100114: Cape_06
+    100116: Cape_07
+    100118: Cape_08
+    100120: Cape_Root
+    100122: ch_swordman_arm_01
+    100124: ch_swordman_head_01
+    100126: ch_swordman_leg_01
+    100128: ch_swordman_lower_01
+    100130: ch_swordman_shoulder_01
+    100132: ch_swordman_upper_01
+    100134: ch_swordman_weapon_01
+    100136: Front_Skirt_01
+    100138: Front_Skirt_02
+    100140: Front_Skirt_03
+    100142: Front_Skirt_04
+    100144: Front_Skirt_05
+    100146: Front_Skirt_06
+    100148: Front_Skirt_Root
+    100150: FrontLeft_Skirt_01
+    100152: FrontLeft_Skirt_02
+    100154: FrontLeft_Skirt_03
+    100156: FrontLeft_Skirt_04
+    100158: FrontLeft_Skirt_05
+    100160: FrontLeft_Skirt_Root
+    100162: FrontRight_Skirt_01
+    100164: FrontRight_Skirt_02
+    100166: FrontRight_Skirt_03
+    100168: FrontRight_Skirt_04
+    100170: FrontRight_Skirt_05
+    100172: FrontRight_Skirt_Root
+    100174: fx_bottom
+    100176: fx_center
+    100178: fx_top
+    100180: fx_weapon_l
+    100182: fx_weapon_r
+    100184: Left_Shoulder
+    100186: lefthandweapon
+    100188: leftshoulder
+    100190: movement
+    100192: Object001
+    100194: Right_Shoulder
+    100196: righthandweapon
+    100198: rightshoulder
+    100200: UP_Hair_01
+    100202: UP_Hair_02
+    100204: UP_Hair_03
+    100206: UP_Hair_04
+    100208: UP_Hair_05
+    100210: UP_Hair_06
+    100212: UP_Hair_07
+    100214: UP_Hair_08
+    100216: UP_Hair_09
+    100218: UP_Hair_Root
+    100220: weapon_l
+    100222: weapon_r
+    400000: Back_Skirt_01
+    400002: Back_Skirt_02
+    400004: Back_Skirt_03
+    400006: Back_Skirt_04
+    400008: Back_Skirt_05
+    400010: Back_Skirt_06
+    400012: Back_Skirt_Root
+    400014: BackLeft_Skirt_01
+    400016: BackLeft_Skirt_02
+    400018: BackLeft_Skirt_03
+    400020: BackLeft_Skirt_04
+    400022: BackLeft_Skirt_05
+    400024: BackLeft_Skirt_Root
+    400026: BackRight_Skirt_01
+    400028: BackRight_Skirt_02
+    400030: BackRight_Skirt_03
+    400032: BackRight_Skirt_04
+    400034: BackRight_Skirt_05
+    400036: BackRight_Skirt_Root
+    400038: //RootNode
+    400040: Bip001
+    400042: Bip001 Footsteps
+    400044: Bip001 Head
+    400046: Bip001 HeadNub
+    400048: Bip001 L Calf
+    400050: Bip001 L Clavicle
+    400052: Bip001 L Finger0
+    400054: Bip001 L Finger0Nub
+    400056: Bip001 L Foot
+    400058: Bip001 L Forearm
+    400060: Bip001 L Hand
+    400062: Bip001 L Thigh
+    400064: Bip001 L Toe0
+    400066: Bip001 L Toe0Nub
+    400068: Bip001 L UpperArm
+    400070: Bip001 Neck
+    400072: Bip001 Pelvis
+    400074: Bip001 Prop1
+    400076: Bip001 Prop2
+    400078: Bip001 R Calf
+    400080: Bip001 R Clavicle
+    400082: Bip001 R Finger0
+    400084: Bip001 R Finger0Nub
+    400086: Bip001 R Foot
+    400088: Bip001 R Forearm
+    400090: Bip001 R Hand
+    400092: Bip001 R Thigh
+    400094: Bip001 R Toe0
+    400096: Bip001 R Toe0Nub
+    400098: Bip001 R UpperArm
+    400100: Bip001 Spine
+    400102: Bip001 Spine1
+    400104: Cape_01
+    400106: Cape_02
+    400108: Cape_03
+    400110: Cape_04
+    400112: Cape_05
+    400114: Cape_06
+    400116: Cape_07
+    400118: Cape_08
+    400120: Cape_Root
+    400122: ch_swordman_arm_01
+    400124: ch_swordman_head_01
+    400126: ch_swordman_leg_01
+    400128: ch_swordman_lower_01
+    400130: ch_swordman_shoulder_01
+    400132: ch_swordman_upper_01
+    400134: ch_swordman_weapon_01
+    400136: Front_Skirt_01
+    400138: Front_Skirt_02
+    400140: Front_Skirt_03
+    400142: Front_Skirt_04
+    400144: Front_Skirt_05
+    400146: Front_Skirt_06
+    400148: Front_Skirt_Root
+    400150: FrontLeft_Skirt_01
+    400152: FrontLeft_Skirt_02
+    400154: FrontLeft_Skirt_03
+    400156: FrontLeft_Skirt_04
+    400158: FrontLeft_Skirt_05
+    400160: FrontLeft_Skirt_Root
+    400162: FrontRight_Skirt_01
+    400164: FrontRight_Skirt_02
+    400166: FrontRight_Skirt_03
+    400168: FrontRight_Skirt_04
+    400170: FrontRight_Skirt_05
+    400172: FrontRight_Skirt_Root
+    400174: fx_bottom
+    400176: fx_center
+    400178: fx_top
+    400180: fx_weapon_l
+    400182: fx_weapon_r
+    400184: Left_Shoulder
+    400186: lefthandweapon
+    400188: leftshoulder
+    400190: movement
+    400192: Object001
+    400194: Right_Shoulder
+    400196: righthandweapon
+    400198: rightshoulder
+    400200: UP_Hair_01
+    400202: UP_Hair_02
+    400204: UP_Hair_03
+    400206: UP_Hair_04
+    400208: UP_Hair_05
+    400210: UP_Hair_06
+    400212: UP_Hair_07
+    400214: UP_Hair_08
+    400216: UP_Hair_09
+    400218: UP_Hair_Root
+    400220: weapon_l
+    400222: weapon_r
+    2100000: 'Material #8827087'
+    2100002: 'Material #8827088'
+    2100004: 'Material #8827084'
+    2100006: 'Material #8827091'
+    2100008: 'Material #8827086'
+    2100010: 'Material #8827093'
+    2100012: 'Material #8827089'
+    2100014: 'Material #8827092'
+    2300000: ch_swordman_shoulder_01
+    2300002: ch_swordman_weapon_01
+    2300004: Object001
+    3300000: ch_swordman_shoulder_01
+    3300002: ch_swordman_weapon_01
+    3300004: Object001
+    4300000: Object001
+    4300002: ch_swordman_shoulder_01
+    4300004: ch_swordman_weapon_01
+    4300006: ch_swordman_leg_01
+    4300008: ch_swordman_upper_01
+    4300010: ch_swordman_arm_01
+    4300012: ch_swordman_lower_01
+    4300014: ch_swordman_head_01
+    7400000: Berserker_knockback_01
+    9500000: //RootNode
+    13700000: ch_swordman_arm_01
+    13700002: ch_swordman_head_01
+    13700004: ch_swordman_leg_01
+    13700006: ch_swordman_lower_01
+    13700008: ch_swordman_upper_01
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Berserker_knockback_01
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

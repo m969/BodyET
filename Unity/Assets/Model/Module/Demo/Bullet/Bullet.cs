@@ -7,46 +7,59 @@ namespace ETModel
 	public partial class Bullet : Entity, ITransform
 	{
 		public long OwnerId { get; set; }
-		//[BsonIgnore]
-		//public long Interval { get; set; }
-		//[BsonIgnore]
-		//public long Timer { get; set; }
-
 		[BsonIgnore]
-		public ITransform Transform { get { return (this as ITransform); } }
+		public TransformComponent TransformComponent { get { return GetComponent<TransformComponent>(); } }
 
 
 		public void Awake()
 		{
 			OwnerId = 0;
-			//Interval = 10;
-			//Timer = 0;
 		}
 
-		[BsonIgnore]
-		public ReactProperty<Vector3> PositionProperty { get; set; } = new ReactProperty<Vector3>();
+		//[BsonIgnore]
+		//public ReactProperty<Vector3> PositionProperty { get; set; } = new ReactProperty<Vector3>();
 		public Vector3 Position
 		{
 			get
 			{
-#if !SERVER
-				if (BodyView != null)
-					return BodyView.transform.position;
-#endif
-				return PositionProperty.Value;
+//#if !SERVER
+//				if (BodyView != null)
+//					return BodyView.transform.position;
+//#endif
+				return TransformComponent.position;
 			}
 			set
 			{
-#if !SERVER
-				if (BodyView != null)
-					BodyView.transform.position = value;
-#endif
-				PositionProperty.Value = value;
+//#if !SERVER
+//				if (BodyView != null)
+//					BodyView.transform.position = value;
+//#endif
+				TransformComponent.SetPosition(value);
 			}
 		}
 
-		public Vector3 LastPosition { get; set; }
-		public float Angle			{ get; set; }
-		public float Scale			{ get; set; }
+		public Vector3 LastPosition
+		{
+			get
+			{
+				return TransformComponent.lastPosition;
+			}
+			set
+			{
+				TransformComponent.lastPosition = value;
+			}
+		}
+
+		public float Angle
+		{
+			get
+			{
+				return TransformComponent.angle;
+			}
+			set
+			{
+				TransformComponent.angle = value;
+			}
+		}
 	}
 }

@@ -41,9 +41,9 @@ namespace ETHotfix
 			{
 				self.Timer = TimeHelper.Now();
 
-				var lp = self.Transform.LastPosition;
-				var p = self.Transform.Position;
-				self.GetComponent<MoveComponent>().MoveTo(p + Vector3.forward * 2).Coroutine();
+				var lp = self.LastPosition;
+				var p = self.Position;
+				//self.GetComponent<MoveComponent>().MoveTo(p + Vector3.forward * 2).Coroutine();
 			}
 		}
 

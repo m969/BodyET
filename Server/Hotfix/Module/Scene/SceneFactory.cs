@@ -25,24 +25,47 @@ namespace ETHotfix
                     scene.AddComponent<GateSessionKeyComponent>();
                     break;
                 case SceneType.Map:
-                    scene.AddComponent<Box2dWorldComponent>();
+                    //scene.AddComponent<Box2dWorldComponent>();
+                    Log.Debug("1");
+                    scene.AddComponent<BulletSharpWorldComponent>();
+                    Log.Debug("2");
                     scene.AddComponent<UnitComponent>();
                     scene.AddComponent<BulletComponent>();
-                    var comp = scene.AddComponent<MonsterComponent>();
-                    //var monster = MonsterFactory.Create(scene);
-                    //monster.Position = new UnityEngine.Vector3(2, 0, 2);
-                    //comp.Add(monster);
-                    //monster = MonsterFactory.Create(scene);
-                    //monster.Position = new UnityEngine.Vector3(3, 0, 3);
-                    //comp.Add(monster);
-                    scene.AddComponent<PathfindingComponent>();
+                    scene.AddComponent<MonsterComponent>();
+                    CreateMonsters(scene);
+                    //scene.AddComponent<PathfindingComponent>();
                     break;
                 case SceneType.Location:
                     scene.AddComponent<LocationComponent>();
                     break;
             }
-
+            await ETTask.CompletedTask;
             return scene;
+        }
+
+        private static void CreateMonsters(Scene scene)
+        {
+            try
+            {
+                Log.Debug("CreateMonsters");
+                var comp = scene.GetComponent<MonsterComponent>();
+                Log.Debug("3");
+                var monster1 = MonsterFactory.Create(scene);
+                Log.Debug("4");
+                monster1.Position = new UnityEngine.Vector3(-5, 0, 0);
+                monster1.GetComponent<MoveComponent>().Speed = 1f;
+                comp.Add(monster1);
+                var monster2 = MonsterFactory.Create(scene);
+                monster2.GetComponent<MoveComponent>().Speed = 1f;
+                monster2.Position = new UnityEngine.Vector3(5, 0, 0);
+                comp.Add(monster2);
+                monster1.GetComponent<MoveComponent>().MoveTo(monster2.Position).Coroutine();
+                monster2.GetComponent<MoveComponent>().MoveTo(monster1.Position).Coroutine();
+            }
+            catch (System.Exception e)
+            {
+                Log.Error(e);
+            }
         }
     }
 }

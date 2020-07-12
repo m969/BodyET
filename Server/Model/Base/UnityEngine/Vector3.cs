@@ -652,5 +652,10 @@ namespace UnityEngine
             vector3.z = value.z * num;
             return vector3;
         }
+
+        //public BulletSharp.Math.Vector3 ToBullet()
+        //{
+        //    return new BulletSharp.Math.Vector3(x, y, z);
+        //}
     }
 }

@@ -37,8 +37,8 @@ namespace ETHotfix
 	{
 		public static void Setup(this Bullet self, Vector3 position)
 		{
-			//self.AddComponent<TransformComponent>().Position = position;
-			self.Position = position;
+			//self.Position = position;
+			self.AddComponent<TransformComponent>().position = position;
 			self.AddComponent<MoveComponent>().Speed = 30;
 			self.AddComponent<EntitySyncComponent>();
 			self.AddComponent<Body2dComponent>().CreateBody(.2f, .2f);
@@ -48,7 +48,7 @@ namespace ETHotfix
 		public static void MoveTo(this Bullet self, Vector3 position)
 		{
 			Log.Debug($"Bullet MoveTo {position}");
-			self.GetComponent<MoveComponent>().Target = self.Transform.Position;
+			self.GetComponent<MoveComponent>().Target = self.Position;
 			self.GetComponent<MoveComponent>().MoveTo(position, true).Coroutine();
 		}
 

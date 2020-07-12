@@ -32,7 +32,7 @@ namespace ETHotfix
             UnitComponent.Instance.Add(localUnit);
             //go.transform.GetChild(2).parent = null;
             //go.transform.GetChild(1).parent = null;
-            localUnit.Position = localUnit.PositionProperty.Value;
+            localUnit.Position = localUnit.Position;
             Game.Scene.AddComponent<OperaComponent>();
         }
 

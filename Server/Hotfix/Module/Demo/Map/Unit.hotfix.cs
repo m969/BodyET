@@ -36,7 +36,7 @@ namespace ETHotfix
 			msg.EnterEntity = new EntiyInfo();
 			msg.EnterEntity.Type = EntityDefine.GetTypeId<Bullet>();
 			msg.EnterEntity.BsonBytes.bytes = MongoHelper.ToBson(bullet);
-			var p = bullet.Transform.Position;
+			var p = bullet.Position;
 			msg.X = (int)(p.x * 100);
 			msg.Y = (int)(p.y * 100);
 			msg.Z = (int)(p.z * 100);

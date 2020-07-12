@@ -36,12 +36,12 @@ namespace ETHotfix
 			if (TimeHelper.Now() - self.Timer > self.Interval)
 			{
 				self.Timer = TimeHelper.Now();
-				var transform = self.Parent as ETModel.ITransform;
-				var lp = transform.LastPosition;
-				var p = transform.Position;
+				var transform = self.Parent.GetComponent<TransformComponent>();
+				var lp = transform.lastPosition;
+				var p = transform.position;
 				if (Vector3.Distance(lp, p) < 0.1f)
 					return;
-				transform.LastPosition = p;
+				transform.lastPosition = p;
 
 				var msg = new M2C_OnEntityChanged();
 				msg.EntityId = self.Id;

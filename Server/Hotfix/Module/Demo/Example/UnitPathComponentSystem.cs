@@ -38,7 +38,6 @@ namespace ETHotfix
 
             Unit unit = self.GetParent<Unit>();
             
-            
             PathfindingComponent pathfindingComponent = self.Domain.GetComponent<PathfindingComponent>();
             self.ABPath = EntityFactory.Create<ABPathWrap, Vector3, Vector3>(self.Domain, unit.Position, new Vector3(target.x, target.y, target.z));
             pathfindingComponent.Search(self.ABPath);
@@ -54,9 +53,9 @@ namespace ETHotfix
         // 从index找接下来3个点，广播
         public static void BroadcastPath(this UnitPathComponent self, List<Vector3> path, int index, int offset)
         {
-            Unit unit = self.GetParent<Unit>();
-            Vector3 unitPos = unit.Position;
-            M2C_PathfindingResult m2CPathfindingResult = new M2C_PathfindingResult();
+            var unit = self.GetParent<Unit>();
+            var unitPos = unit.Position;
+            var m2CPathfindingResult = new M2C_PathfindingResult();
             m2CPathfindingResult.X = unitPos.x;
             m2CPathfindingResult.Y = unitPos.y;
             m2CPathfindingResult.Z = unitPos.z;

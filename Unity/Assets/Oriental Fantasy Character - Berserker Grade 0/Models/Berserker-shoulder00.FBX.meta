@@ -1,0 +1,616 @@
+fileFormatVersion: 2
+guid: 974c52c07a2ac624a99718c6c27cd402
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Back_Skirt_01
+    100002: Back_Skirt_02
+    100004: Back_Skirt_03
+    100006: Back_Skirt_04
+    100008: Back_Skirt_05
+    100010: Back_Skirt_06
+    100012: Back_Skirt_Root
+    100014: BackLeft_Skirt_01
+    100016: BackLeft_Skirt_02
+    100018: BackLeft_Skirt_03
+    100020: BackLeft_Skirt_04
+    100022: BackLeft_Skirt_05
+    100024: BackLeft_Skirt_Root
+    100026: BackRight_Skirt_01
+    100028: BackRight_Skirt_02
+    100030: BackRight_Skirt_03
+    100032: BackRight_Skirt_04
+    100034: BackRight_Skirt_05
+    100036: BackRight_Skirt_Root
+    100038: //RootNode
+    100040: Bip001
+    100042: Bip001 Footsteps
+    100044: Bip001 Head
+    100046: Bip001 HeadNub
+    100048: Bip001 L Calf
+    100050: Bip001 L Clavicle
+    100052: Bip001 L Finger0
+    100054: Bip001 L Finger0Nub
+    100056: Bip001 L Foot
+    100058: Bip001 L Forearm
+    100060: Bip001 L Hand
+    100062: Bip001 L Thigh
+    100064: Bip001 L Toe0
+    100066: Bip001 L Toe0Nub
+    100068: Bip001 L UpperArm
+    100070: Bip001 Neck
+    100072: Bip001 Pelvis
+    100074: Bip001 Prop1
+    100076: Bip001 Prop2
+    100078: Bip001 R Calf
+    100080: Bip001 R Clavicle
+    100082: Bip001 R Finger0
+    100084: Bip001 R Finger0Nub
+    100086: Bip001 R Foot
+    100088: Bip001 R Forearm
+    100090: Bip001 R Hand
+    100092: Bip001 R Thigh
+    100094: Bip001 R Toe0
+    100096: Bip001 R Toe0Nub
+    100098: Bip001 R UpperArm
+    100100: Bip001 Spine
+    100102: Bip001 Spine1
+    100104: Cape_01
+    100106: Cape_02
+    100108: Cape_03
+    100110: Cape_04
+    100112: Cape_05
+    100114: Cape_06
+    100116: Cape_07
+    100118: Cape_08
+    100120: Cape_Root
+    100122: ch_swordman_shoulder_01
+    100124: CtrlSpring003
+    100126: CtrlSpring004
+    100128: CtrlSpring005
+    100130: CtrlSpring006
+    100132: CtrlSpring007
+    100134: CtrlSpring008
+    100136: CtrlSpring009
+    100138: CtrlSpring010
+    100140: CtrlSpring011
+    100142: CtrlSpring014
+    100144: CtrlSpring015
+    100146: CtrlSpring016
+    100148: CtrlSpring017
+    100150: CtrlSpring018
+    100152: CtrlSpring019
+    100154: CtrlSpring020
+    100156: CtrlSpring021
+    100158: CtrlSpring024
+    100160: CtrlSpring025
+    100162: CtrlSpring026
+    100164: CtrlSpring027
+    100166: CtrlSpring028
+    100168: CtrlSpring029
+    100170: CtrlSpring032
+    100172: CtrlSpring033
+    100174: CtrlSpring034
+    100176: CtrlSpring035
+    100178: CtrlSpring036
+    100180: CtrlSpring039
+    100182: CtrlSpring040
+    100184: CtrlSpring041
+    100186: CtrlSpring042
+    100188: CtrlSpring043
+    100190: CtrlSpring046
+    100192: CtrlSpring047
+    100194: CtrlSpring048
+    100196: CtrlSpring049
+    100198: CtrlSpring050
+    100200: CtrlSpring051
+    100202: CtrlSpring054
+    100204: CtrlSpring055
+    100206: CtrlSpring056
+    100208: CtrlSpring057
+    100210: CtrlSpring058
+    100212: CtrlSpring061
+    100214: CtrlSpring062
+    100216: CtrlSpring063
+    100218: CtrlSpring064
+    100220: CtrlSpring065
+    100222: Front_Skirt_01
+    100224: Front_Skirt_02
+    100226: Front_Skirt_03
+    100228: Front_Skirt_04
+    100230: Front_Skirt_05
+    100232: Front_Skirt_06
+    100234: Front_Skirt_Root
+    100236: FrontLeft_Skirt_01
+    100238: FrontLeft_Skirt_02
+    100240: FrontLeft_Skirt_03
+    100242: FrontLeft_Skirt_04
+    100244: FrontLeft_Skirt_05
+    100246: FrontLeft_Skirt_Root
+    100248: FrontRight_Skirt_01
+    100250: FrontRight_Skirt_02
+    100252: FrontRight_Skirt_03
+    100254: FrontRight_Skirt_04
+    100256: FrontRight_Skirt_05
+    100258: FrontRight_Skirt_Root
+    100260: fx_bottom
+    100262: fx_center
+    100264: fx_top
+    100266: fx_weapon_l
+    100268: fx_weapon_r
+    100270: IK Chain001
+    100272: IK Chain002
+    100274: IK Chain003
+    100276: IK Chain004
+    100278: IK Chain005
+    100280: IK Chain006
+    100282: IK Chain007
+    100284: IK Chain008
+    100286: IK Chain009
+    100288: IK Chain010
+    100290: IK Chain011
+    100292: IK Chain012
+    100294: IK Chain013
+    100296: IK Chain014
+    100298: IK Chain015
+    100300: IK Chain016
+    100302: IK Chain017
+    100304: IK Chain018
+    100306: IK Chain019
+    100308: IK Chain020
+    100310: IK Chain021
+    100312: IK Chain022
+    100314: IK Chain023
+    100316: IK Chain024
+    100318: IK Chain025
+    100320: IK Chain026
+    100322: IK Chain027
+    100324: IK Chain028
+    100326: IK Chain029
+    100328: IK Chain030
+    100330: IK Chain031
+    100332: IK Chain032
+    100334: IK Chain033
+    100336: IK Chain034
+    100338: IK Chain035
+    100340: IK Chain036
+    100342: IK Chain037
+    100344: IK Chain038
+    100346: IK Chain039
+    100348: IK Chain040
+    100350: IK Chain041
+    100352: IK Chain042
+    100354: IK Chain043
+    100356: IK Chain044
+    100358: IK Chain045
+    100360: IK Chain046
+    100362: IK Chain047
+    100364: IK Chain048
+    100366: IK Chain049
+    100368: Left_Shoulder
+    100370: lefthandweapon
+    100372: leftshoulder
+    100374: movement
+    100376: Point003
+    100378: Point004
+    100380: Point005
+    100382: Point006
+    100384: Point007
+    100386: Point008
+    100388: Point009
+    100390: Point010
+    100392: Point011
+    100394: Point014
+    100396: Point015
+    100398: Point016
+    100400: Point017
+    100402: Point018
+    100404: Point019
+    100406: Point020
+    100408: Point021
+    100410: Point024
+    100412: Point025
+    100414: Point026
+    100416: Point027
+    100418: Point028
+    100420: Point029
+    100422: Point032
+    100424: Point033
+    100426: Point034
+    100428: Point035
+    100430: Point036
+    100432: Point039
+    100434: Point040
+    100436: Point041
+    100438: Point042
+    100440: Point043
+    100442: Point046
+    100444: Point047
+    100446: Point048
+    100448: Point049
+    100450: Point050
+    100452: Point051
+    100454: Point054
+    100456: Point055
+    100458: Point056
+    100460: Point057
+    100462: Point058
+    100464: Point061
+    100466: Point062
+    100468: Point063
+    100470: Point064
+    100472: Point065
+    100474: Right_Shoulder
+    100476: righthandweapon
+    100478: rightshoulder
+    100480: TempEndBone001
+    100482: TempEndBone002
+    100484: TempEndBone003
+    100486: TempEndBone004
+    100488: TempEndBone005
+    100490: TempEndBone006
+    100492: TempEndBone007
+    100494: TempEndBone008
+    100496: UP_Hair_01
+    100498: UP_Hair_02
+    100500: UP_Hair_03
+    100502: UP_Hair_04
+    100504: UP_Hair_05
+    100506: UP_Hair_06
+    100508: UP_Hair_07
+    100510: UP_Hair_08
+    100512: UP_Hair_09
+    100514: UP_Hair_Root
+    100516: weapon_l
+    100518: weapon_r
+    400000: Back_Skirt_01
+    400002: Back_Skirt_02
+    400004: Back_Skirt_03
+    400006: Back_Skirt_04
+    400008: Back_Skirt_05
+    400010: Back_Skirt_06
+    400012: Back_Skirt_Root
+    400014: BackLeft_Skirt_01
+    400016: BackLeft_Skirt_02
+    400018: BackLeft_Skirt_03
+    400020: BackLeft_Skirt_04
+    400022: BackLeft_Skirt_05
+    400024: BackLeft_Skirt_Root
+    400026: BackRight_Skirt_01
+    400028: BackRight_Skirt_02
+    400030: BackRight_Skirt_03
+    400032: BackRight_Skirt_04
+    400034: BackRight_Skirt_05
+    400036: BackRight_Skirt_Root
+    400038: //RootNode
+    400040: Bip001
+    400042: Bip001 Footsteps
+    400044: Bip001 Head
+    400046: Bip001 HeadNub
+    400048: Bip001 L Calf
+    400050: Bip001 L Clavicle
+    400052: Bip001 L Finger0
+    400054: Bip001 L Finger0Nub
+    400056: Bip001 L Foot
+    400058: Bip001 L Forearm
+    400060: Bip001 L Hand
+    400062: Bip001 L Thigh
+    400064: Bip001 L Toe0
+    400066: Bip001 L Toe0Nub
+    400068: Bip001 L UpperArm
+    400070: Bip001 Neck
+    400072: Bip001 Pelvis
+    400074: Bip001 Prop1
+    400076: Bip001 Prop2
+    400078: Bip001 R Calf
+    400080: Bip001 R Clavicle
+    400082: Bip001 R Finger0
+    400084: Bip001 R Finger0Nub
+    400086: Bip001 R Foot
+    400088: Bip001 R Forearm
+    400090: Bip001 R Hand
+    400092: Bip001 R Thigh
+    400094: Bip001 R Toe0
+    400096: Bip001 R Toe0Nub
+    400098: Bip001 R UpperArm
+    400100: Bip001 Spine
+    400102: Bip001 Spine1
+    400104: Cape_01
+    400106: Cape_02
+    400108: Cape_03
+    400110: Cape_04
+    400112: Cape_05
+    400114: Cape_06
+    400116: Cape_07
+    400118: Cape_08
+    400120: Cape_Root
+    400122: ch_swordman_shoulder_01
+    400124: CtrlSpring003
+    400126: CtrlSpring004
+    400128: CtrlSpring005
+    400130: CtrlSpring006
+    400132: CtrlSpring007
+    400134: CtrlSpring008
+    400136: CtrlSpring009
+    400138: CtrlSpring010
+    400140: CtrlSpring011
+    400142: CtrlSpring014
+    400144: CtrlSpring015
+    400146: CtrlSpring016
+    400148: CtrlSpring017
+    400150: CtrlSpring018
+    400152: CtrlSpring019
+    400154: CtrlSpring020
+    400156: CtrlSpring021
+    400158: CtrlSpring024
+    400160: CtrlSpring025
+    400162: CtrlSpring026
+    400164: CtrlSpring027
+    400166: CtrlSpring028
+    400168: CtrlSpring029
+    400170: CtrlSpring032
+    400172: CtrlSpring033
+    400174: CtrlSpring034
+    400176: CtrlSpring035
+    400178: CtrlSpring036
+    400180: CtrlSpring039
+    400182: CtrlSpring040
+    400184: CtrlSpring041
+    400186: CtrlSpring042
+    400188: CtrlSpring043
+    400190: CtrlSpring046
+    400192: CtrlSpring047
+    400194: CtrlSpring048
+    400196: CtrlSpring049
+    400198: CtrlSpring050
+    400200: CtrlSpring051
+    400202: CtrlSpring054
+    400204: CtrlSpring055
+    400206: CtrlSpring056
+    400208: CtrlSpring057
+    400210: CtrlSpring058
+    400212: CtrlSpring061
+    400214: CtrlSpring062
+    400216: CtrlSpring063
+    400218: CtrlSpring064
+    400220: CtrlSpring065
+    400222: Front_Skirt_01
+    400224: Front_Skirt_02
+    400226: Front_Skirt_03
+    400228: Front_Skirt_04
+    400230: Front_Skirt_05
+    400232: Front_Skirt_06
+    400234: Front_Skirt_Root
+    400236: FrontLeft_Skirt_01
+    400238: FrontLeft_Skirt_02
+    400240: FrontLeft_Skirt_03
+    400242: FrontLeft_Skirt_04
+    400244: FrontLeft_Skirt_05
+    400246: FrontLeft_Skirt_Root
+    400248: FrontRight_Skirt_01
+    400250: FrontRight_Skirt_02
+    400252: FrontRight_Skirt_03
+    400254: FrontRight_Skirt_04
+    400256: FrontRight_Skirt_05
+    400258: FrontRight_Skirt_Root
+    400260: fx_bottom
+    400262: fx_center
+    400264: fx_top
+    400266: fx_weapon_l
+    400268: fx_weapon_r
+    400270: IK Chain001
+    400272: IK Chain002
+    400274: IK Chain003
+    400276: IK Chain004
+    400278: IK Chain005
+    400280: IK Chain006
+    400282: IK Chain007
+    400284: IK Chain008
+    400286: IK Chain009
+    400288: IK Chain010
+    400290: IK Chain011
+    400292: IK Chain012
+    400294: IK Chain013
+    400296: IK Chain014
+    400298: IK Chain015
+    400300: IK Chain016
+    400302: IK Chain017
+    400304: IK Chain018
+    400306: IK Chain019
+    400308: IK Chain020
+    400310: IK Chain021
+    400312: IK Chain022
+    400314: IK Chain023
+    400316: IK Chain024
+    400318: IK Chain025
+    400320: IK Chain026
+    400322: IK Chain027
+    400324: IK Chain028
+    400326: IK Chain029
+    400328: IK Chain030
+    400330: IK Chain031
+    400332: IK Chain032
+    400334: IK Chain033
+    400336: IK Chain034
+    400338: IK Chain035
+    400340: IK Chain036
+    400342: IK Chain037
+    400344: IK Chain038
+    400346: IK Chain039
+    400348: IK Chain040
+    400350: IK Chain041
+    400352: IK Chain042
+    400354: IK Chain043
+    400356: IK Chain044
+    400358: IK Chain045
+    400360: IK Chain046
+    400362: IK Chain047
+    400364: IK Chain048
+    400366: IK Chain049
+    400368: Left_Shoulder
+    400370: lefthandweapon
+    400372: leftshoulder
+    400374: movement
+    400376: Point003
+    400378: Point004
+    400380: Point005
+    400382: Point006
+    400384: Point007
+    400386: Point008
+    400388: Point009
+    400390: Point010
+    400392: Point011
+    400394: Point014
+    400396: Point015
+    400398: Point016
+    400400: Point017
+    400402: Point018
+    400404: Point019
+    400406: Point020
+    400408: Point021
+    400410: Point024
+    400412: Point025
+    400414: Point026
+    400416: Point027
+    400418: Point028
+    400420: Point029
+    400422: Point032
+    400424: Point033
+    400426: Point034
+    400428: Point035
+    400430: Point036
+    400432: Point039
+    400434: Point040
+    400436: Point041
+    400438: Point042
+    400440: Point043
+    400442: Point046
+    400444: Point047
+    400446: Point048
+    400448: Point049
+    400450: Point050
+    400452: Point051
+    400454: Point054
+    400456: Point055
+    400458: Point056
+    400460: Point057
+    400462: Point058
+    400464: Point061
+    400466: Point062
+    400468: Point063
+    400470: Point064
+    400472: Point065
+    400474: Right_Shoulder
+    400476: righthandweapon
+    400478: rightshoulder
+    400480: TempEndBone001
+    400482: TempEndBone002
+    400484: TempEndBone003
+    400486: TempEndBone004
+    400488: TempEndBone005
+    400490: TempEndBone006
+    400492: TempEndBone007
+    400494: TempEndBone008
+    400496: UP_Hair_01
+    400498: UP_Hair_02
+    400500: UP_Hair_03
+    400502: UP_Hair_04
+    400504: UP_Hair_05
+    400506: UP_Hair_06
+    400508: UP_Hair_07
+    400510: UP_Hair_08
+    400512: UP_Hair_09
+    400514: UP_Hair_Root
+    400516: weapon_l
+    400518: weapon_r
+    2100000: 'Material #8827088'
+    2100002: 'Material #8827087'
+    4300000: ch_swordman_shoulder_01
+    9500000: //RootNode
+    13700000: ch_swordman_shoulder_01
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

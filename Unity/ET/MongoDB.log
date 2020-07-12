@@ -1,0 +1,34 @@
+2020-06-25T16:23:52.487+0800 I CONTROL  [initandlisten] MongoDB starting : pid=5628 port=27017 dbpath=ET 64-bit host=SKY-20180119DKH
+2020-06-25T16:23:52.488+0800 I CONTROL  [initandlisten] targetMinOS: Windows 7/Windows Server 2008 R2
+2020-06-25T16:23:52.488+0800 I CONTROL  [initandlisten] db version v3.4.9
+2020-06-25T16:23:52.488+0800 I CONTROL  [initandlisten] git version: 876ebee8c7dd0e2d992f36a848ff4dc50ee6603e
+2020-06-25T16:23:52.488+0800 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1u-fips  22 Sep 2016
+2020-06-25T16:23:52.488+0800 I CONTROL  [initandlisten] allocator: tcmalloc
+2020-06-25T16:23:52.488+0800 I CONTROL  [initandlisten] modules: none
+2020-06-25T16:23:52.489+0800 I CONTROL  [initandlisten] build environment:
+2020-06-25T16:23:52.489+0800 I CONTROL  [initandlisten]     distmod: 2008plus-ssl
+2020-06-25T16:23:52.489+0800 I CONTROL  [initandlisten]     distarch: x86_64
+2020-06-25T16:23:52.489+0800 I CONTROL  [initandlisten]     target_arch: x86_64
+2020-06-25T16:23:52.489+0800 I CONTROL  [initandlisten] options: { storage: { dbPath: "ET" }, systemLog: { destination: "file", path: "ET\MongoDB.log" } }
+2020-06-25T16:23:52.492+0800 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=7651M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+2020-06-25T16:23:53.030+0800 I CONTROL  [initandlisten] 
+2020-06-25T16:23:53.030+0800 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2020-06-25T16:23:53.030+0800 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2020-06-25T16:23:53.031+0800 I CONTROL  [initandlisten] 
+2020-06-25T16:23:53.733+0800 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory 'ET/diagnostic.data'
+2020-06-25T16:23:53.952+0800 I INDEX    [initandlisten] build index on: admin.system.version properties: { v: 2, key: { version: 1 }, name: "incompatible_with_version_32", ns: "admin.system.version" }
+2020-06-25T16:23:53.952+0800 I INDEX    [initandlisten] 	 building index using bulk method; build may temporarily use up to 500 megabytes of RAM
+2020-06-25T16:23:53.961+0800 I INDEX    [initandlisten] build index done.  scanned 0 total records. 0 secs
+2020-06-25T16:23:53.961+0800 I COMMAND  [initandlisten] setting featureCompatibilityVersion to 3.4
+2020-06-25T16:23:53.962+0800 I NETWORK  [thread1] waiting for connections on port 27017
+2020-06-25T16:23:55.402+0800 I CONTROL  [thread2] CTRL_CLOSE_EVENT signal
+2020-06-25T16:23:55.402+0800 I CONTROL  [consoleTerminate] got CTRL_CLOSE_EVENT, will terminate after current cmd ends
+2020-06-25T16:23:55.402+0800 I NETWORK  [consoleTerminate] shutdown: going to close listening sockets...
+2020-06-25T16:23:55.402+0800 I NETWORK  [consoleTerminate] closing listening socket: 596
+2020-06-25T16:23:55.402+0800 I NETWORK  [consoleTerminate] shutdown: going to flush diaglog...
+2020-06-25T16:23:55.402+0800 I FTDC     [consoleTerminate] Shutting down full-time diagnostic data capture
+2020-06-25T16:23:55.403+0800 I STORAGE  [consoleTerminate] WiredTigerKVEngine shutting down
+2020-06-25T16:23:55.844+0800 I STORAGE  [consoleTerminate] shutdown: removing fs lock...
+2020-06-25T16:23:55.844+0800 I CONTROL  [consoleTerminate] now exiting
+2020-06-25T16:23:55.844+0800 I CONTROL  [consoleTerminate] shutting down with code:12
+2020-06-25T16:23:55.844+0800 

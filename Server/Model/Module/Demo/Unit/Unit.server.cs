@@ -13,6 +13,7 @@ namespace ETModel
 		public void Setup()
 		{
 			Awake();
+			AddComponent<TransformComponent>();
 			AddComponent<HealthComponent>();
 			Position = new Vector3(0, 0, 0);
 			LastPosition = new Vector3(0, 0, 0);
