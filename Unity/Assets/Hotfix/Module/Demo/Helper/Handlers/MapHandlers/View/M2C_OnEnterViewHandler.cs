@@ -16,7 +16,8 @@ namespace ETHotfix
 			{
 				bullet.BodyView = GameObject.Instantiate(PrefabHelper.GetUnitPrefab("BulletSmallBlue"));
 				bullet.BodyView.name = $"Bullet#{bullet.Id}";
-				bullet.Position = new Vector3(message.X / 100f, message.Y / 100f, message.Z / 100f);
+				bullet.TransformComponent.transform = bullet.BodyView.transform;
+				bullet.TransformComponent.SetPosition(new Vector3(message.X / 100f, message.Y / 100f, message.Z / 100f));
 			}
 			await ETTask.CompletedTask;
 		}
@@ -34,8 +35,10 @@ namespace ETHotfix
 					//remoteUnit.Domain = ETModel.Game.Scene;
 					//Unit unit = UnitFactory.Create(ETModel.Game.Scene, remoteUnit.Id);
 					var go = UnityEngine.Object.Instantiate(PrefabHelper.GetUnitPrefab("RemoteUnit"));
+					go.transform.position = remoteUnit.Position;
 					GameObject.DontDestroyOnLoad(go);
 					//var unit = EntityFactory.CreateWithId<Unit>(domain, id);
+					ETModel.Game.EventSystem.RegisterSystem(remoteUnit);
 					ETModel.Game.EventSystem.Awake(remoteUnit);
 					remoteUnit.Awake(go);
 					UnitComponent.Instance.Add(remoteUnit);
@@ -47,10 +50,13 @@ namespace ETHotfix
 				{
 					var remoteBullet = MongoHelper.FromBson<Bullet>(entityInfo.BsonBytes.bytes);
 					//Log.Debug($"{remoteBullet}");
-					var bullet = ETModel.EntityFactory.CreateWithId<Bullet>(ETModel.Game.Scene, remoteBullet.Id);
-					BulletComponent.Instance.Add(bullet);
-					remoteBullet.Dispose();
-					return bullet;
+					//var bullet = ETModel.EntityFactory.CreateWithId<Bullet>(ETModel.Game.Scene, remoteBullet.Id);
+					Log.Debug($"{remoteBullet.Components.Count}");
+					ETModel.Game.EventSystem.RegisterSystem(remoteBullet);
+					ETModel.Game.EventSystem.Awake(remoteBullet);
+					BulletComponent.Instance.Add(remoteBullet);
+					//remoteBullet.Dispose();
+					return remoteBullet;
 				}
 				if (entityInfo.Type == EntityDefine.GetTypeId<Monster>())
 				{

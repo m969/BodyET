@@ -16,8 +16,9 @@ namespace ETHotfix
 			if (unit.BodyView == null)
 				return;
 			var newPosition = new Vector3(message.X / 100f, message.Y / 100f, message.Z / 100f);
+			Log.Debug($"UnitOperationHandler newPosition {newPosition}");
 			//unit.KinematicCharacterMotor.MoveCharacter(newPosition);
-			unit.BodyView.transform.DOMove(newPosition, 0.2f);
+			unit.TransformComponent.SetPosition(newPosition);
 			unit.Rotation = new Vector3(0, message.AngleY / 100f, 0);
 			//if (message.Operation == OperaType.Fire)
 			//{

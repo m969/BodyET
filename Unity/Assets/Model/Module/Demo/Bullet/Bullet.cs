@@ -34,7 +34,7 @@ namespace ETModel
 //				if (BodyView != null)
 //					BodyView.transform.position = value;
 //#endif
-				TransformComponent.SetPosition(value);
+				if (TransformComponent != null) TransformComponent.SetPosition(value);
 			}
 		}
 
@@ -46,7 +46,7 @@ namespace ETModel
 			}
 			set
 			{
-				TransformComponent.lastPosition = value;
+				if (TransformComponent != null) TransformComponent.lastPosition = value;
 			}
 		}
 
@@ -58,7 +58,7 @@ namespace ETModel
 			}
 			set
 			{
-				TransformComponent.angle = value;
+				if (TransformComponent != null) TransformComponent.angle = value;
 			}
 		}
 	}

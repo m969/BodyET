@@ -54,7 +54,7 @@ namespace ETModel
 
             while (true)
             {
-                await timerComponent.WaitAsync(200, cancellationToken);
+                await timerComponent.WaitAsync(50, cancellationToken);
                 
                 long timeNow = TimeHelper.Now();
                 
@@ -66,7 +66,7 @@ namespace ETModel
 
                 float amount = (timeNow - this.StartTime) * 1f / this.needTime;
                 transform.position = Vector3.Lerp(this.StartPos, this.Target, amount);
-                Log.Debug($"{Parent.Id} position={transform.position}");
+                //Log.Debug($"{Parent.Id} position={transform.position}");
             }
         }
         

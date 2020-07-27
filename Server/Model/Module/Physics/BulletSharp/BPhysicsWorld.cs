@@ -7,6 +7,24 @@ using UnityEngine;
 
 namespace ETModel
 {
+    [ObjectSystem]
+    public class BPhysicsWorldAwakeSystem : AwakeSystem<BPhysicsWorld>
+    {
+        public override void Awake(BPhysicsWorld self)
+        {
+            //self.Awake();
+        }
+    }
+
+    [ObjectSystem]
+    public class BPhysicsWorldUpdateSystem : UpdateSystem<BPhysicsWorld>
+    {
+        public override void Update(BPhysicsWorld self)
+        {
+            //self.Update();
+        }
+    }
+
     public class BPhysicsWorld : Entity
     {
         public enum WorldType
@@ -344,7 +362,7 @@ namespace ETModel
 
         //It is critical that Awake be called before any other scripts call BPhysicsWorld.Get()
         //Set this script and any derived classes very early in script execution order.
-        protected virtual void Awake()
+        public virtual void Awake()
         {
             _isDisposed = false;
             singleton = BPhysicsWorld.Get();
@@ -407,26 +425,26 @@ namespace ETModel
             //    return AddSoftBody((BSoftBody)co);
             //}
 
-            //if (!_isDisposed)
-            //{
-            //    //if (debugType >= BDebug.DebugType.Debug) Log.LogFormat("Adding collision object {0} to world", co);
-            //    if (co._BuildCollisionObject())
-            //    {
-            //        m_world.AddCollisionObject(co.GetCollisionObject(), co.groupsIBelongTo, co.collisionMask);
-            //        co.isInWorld = true;
-            //        if (ghostPairCallback == null && co is BGhostObject && world is DynamicsWorld)
-            //        {
-            //            ghostPairCallback = new GhostPairCallback();
-            //            ((DynamicsWorld)world).PairCache.SetInternalGhostPairCallback(ghostPairCallback);
-            //        }
-            //        if (co is BCharacterController && world is DynamicsWorld)
-            //        {
-            //            AddAction(((BCharacterController)co).GetKinematicCharacterController());
-            //        }
+            if (!_isDisposed)
+            {
+                //if (debugType >= BDebug.DebugType.Debug) Log.LogFormat("Adding collision object {0} to world", co);
+                if (co._BuildCollisionObject())
+                {
+                    m_world.AddCollisionObject(co.GetCollisionObject(), co.groupsIBelongTo, co.collisionMask);
+                    co.isInWorld = true;
+                    //if (ghostPairCallback == null && co is BGhostObject && world is DynamicsWorld)
+                    //{
+                    //    ghostPairCallback = new GhostPairCallback();
+                    //    ((DynamicsWorld)world).PairCache.SetInternalGhostPairCallback(ghostPairCallback);
+                    //}
+                    //if (co is BCharacterController && world is DynamicsWorld)
+                    //{
+                    //    AddAction(((BCharacterController)co).GetKinematicCharacterController());
+                    //}
 
-            //    }
-            //    return true;
-            //}
+                }
+                return true;
+            }
             return false;
         }
 
@@ -434,7 +452,7 @@ namespace ETModel
         {
             if (co is BRigidBody)
             {
-                RemoveRigidBody((RigidBody)co.GetCollisionObject());
+                RemoveRigidBody(RigidBody.Upcast(co.GetCollisionObject()));
                 return;
             }
             //if (co is BSoftBody)
@@ -442,16 +460,16 @@ namespace ETModel
             //    RemoveSoftBody((SoftBody)co.GetCollisionObject());
             //    return;
             //}
-            //if (!_isDisposed)
-            //{
-            //    if (co is BCharacterController && world is DynamicsWorld)
-            //    {
-            //        RemoveAction(((BCharacterController)co).GetKinematicCharacterController());
-            //    }
-            //    //if (debugType >= BDebug.DebugType.Debug) Log.LogFormat("Removing collisionObject {0} from world", co);
-            //    m_world.RemoveCollisionObject(co.GetCollisionObject());
-            //    co.isInWorld = false;
-            //}
+            if (!_isDisposed)
+            {
+                //if (co is BCharacterController && world is DynamicsWorld)
+                //{
+                //    RemoveAction(((BCharacterController)co).GetKinematicCharacterController());
+                //}
+                //if (debugType >= BDebug.DebugType.Debug) Log.LogFormat("Removing collisionObject {0} from world", co);
+                m_world.RemoveCollisionObject(co.GetCollisionObject());
+                co.isInWorld = false;
+            }
         }
 
         public bool AddRigidBody(BRigidBody rb)
@@ -465,7 +483,7 @@ namespace ETModel
                 //if (debugType >= BDebug.DebugType.Debug) Log.LogFormat(rb, "Adding rigidbody {0} to world", rb.name);
                 if (rb._BuildCollisionObject())
                 {
-                    ((DiscreteDynamicsWorld)m_world).AddRigidBody((RigidBody)rb.GetCollisionObject(), rb.groupsIBelongTo, rb.collisionMask);
+                    ((DiscreteDynamicsWorld)m_world).AddRigidBody(RigidBody.Upcast(rb.GetCollisionObject()), rb.groupsIBelongTo, rb.collisionMask);
                     rb.isInWorld = true;
                 }
                 return true;

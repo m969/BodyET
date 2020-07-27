@@ -36,7 +36,8 @@ namespace ETModel
         {
 			if (UnitHUDTrm == null)
 				return;
-			UnitHUDTrm.forward = Camera.main.transform.position - UnitHUDTrm.position;
+			UnitHUDTrm.eulerAngles = Camera.main.transform.eulerAngles;
+			//UnitHUDTrm.forward = Camera.main.transform.position - UnitHUDTrm.position;
 		}
 
 		private void OnHPChanged(int value)

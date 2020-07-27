@@ -42,7 +42,7 @@ namespace ETModel
         {
             get
             {
-                return (RigidBody)m_collisionObject;
+                return RigidBody.Upcast(m_collisionObject);
             }
         }
 
@@ -539,7 +539,7 @@ namespace ETModel
             BPhysicsWorld pw = BPhysicsWorld.Get();
             if (pw != null && m_rigidBody != null && isInWorld)
             {
-                pw.RemoveRigidBody((RigidBody)m_collisionObject);
+                pw.RemoveRigidBody(RigidBody.Upcast(m_collisionObject));
             }
         }
 

@@ -64,7 +64,7 @@ namespace ETModel
 
             microTimer = new MicroTimer();
             microTimer.MicroTimerElapsed += new MicroTimer.MicroTimerElapsedEventHandler(OnTimedEvent);
-            microTimer.Interval = (long)(FixedTimeStep * 1000 * 1000);
+            microTimer.Interval = (long)(FixedTimeStep * 1000 * 1000 * 10);
             microTimer.Enabled = true;
         }
 
@@ -72,7 +72,7 @@ namespace ETModel
                               MicroTimerEventArgs timerEventArgs)
         {
             currentTime = timerEventArgs.ElapsedMicroseconds;
-            PhysicsUpdate((currentTime - lastTime) / (1000f * 1000f));
+            PhysicsUpdate((currentTime - lastTime) / (1000f * 1000f * 10f));
             lastTime = currentTime;
         }
 

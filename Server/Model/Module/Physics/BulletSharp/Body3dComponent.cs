@@ -197,6 +197,7 @@ namespace ETModel
 
         public void OnFinishedVisitingManifolds()
         {
+            //Log.Debug($"Body3dComponent OnFinishedVisitingManifolds {this.myCollisionObject}");
             if (myCollisionObject == null)
                 return;
 

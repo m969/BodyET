@@ -16,9 +16,11 @@ namespace ETModel
 				monster.AddComponent<MoveComponent>();
 				monster.AddComponent<EntitySyncComponent>();
 				monster.AddComponent<HealthComponent>();
-				//Log.Debug($"MonsterFactory.Create {monster}");
+#if !BODY3D
+				monster.AddComponent<Body2dComponent>().CreateBody(1, 1);
+#else
 				monster.AddComponent<Body3dComponent>();
-				//monster.AddComponent<Body2dComponent>().CreateBody(1, 1);
+#endif
 			}
 			catch (System.Exception e)
 			{

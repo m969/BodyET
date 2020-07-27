@@ -46,18 +46,16 @@ namespace ETModel
 			get
 			{
 //#if !SERVER
-//				if (BodyView != null)
-//					return BodyView.transform.position;
+//				if (BodyView != null) return BodyView.transform.position;
 //#endif
 				return TransformComponent.position;
 			}
 			set
 			{
 //#if !SERVER
-//				if (BodyView != null)
-//					BodyView.transform.position = value;
+//				if (BodyView != null) BodyView.transform.position = value;
 //#endif
-				TransformComponent.SetPosition(value);
+				if (TransformComponent != null) TransformComponent.SetPosition(value);
 			}
 		}
 
@@ -69,7 +67,7 @@ namespace ETModel
 			}
 			set
 			{
-				TransformComponent.lastPosition = value;
+				if (TransformComponent != null) TransformComponent.lastPosition = value;
 			}
 		}
 
@@ -81,7 +79,7 @@ namespace ETModel
 			}
 			set
 			{
-				TransformComponent.angle = value;
+				if (TransformComponent != null) TransformComponent.angle = value;
 			}
 		}
 	}

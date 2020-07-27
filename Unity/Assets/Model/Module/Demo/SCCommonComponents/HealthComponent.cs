@@ -2,6 +2,7 @@
 using System.Threading;
 using UnityEngine;
 using System.Collections.Generic;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace ETModel
 {
@@ -10,10 +11,12 @@ namespace ETModel
 	{
 		public const string DeadEvent = nameof(DeadEvent);
 		public ReactProperty<int> HPProperty { get; } = new ReactProperty<int>(100);
+		[BsonIgnore]
 		[PropertyDefine(SyncFlag.AllClients)]
 		public int HP { get { return HPProperty.Value; } set { HPProperty.Value = value; PublishProperty(nameof(HP), value); } }
 
 		public ReactProperty<int> StateProperty { get; } = new ReactProperty<int>(1);
+		[BsonIgnore]
 		[PropertyDefine(SyncFlag.AllClients)]
 		public int State { get { return StateProperty.Value; } set { StateProperty.Value = value; PublishProperty(nameof(State), value); } }
 

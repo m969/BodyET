@@ -25,6 +25,7 @@ namespace ETModel
 			//this.ViewGO = gameObject;
 			//this.ViewGO.AddComponent<ComponentView>().Component = this;
 			BodyView = gameObject;
+			TransformComponent.transform = BodyView.transform;
 			if (LocalUnit == this)
 			{
 				SkillDiretorTrm = BodyView.transform.Find("SkillDirector");

@@ -161,7 +161,7 @@ namespace ETModel
             {
                 var bodyA = bodyComponents[contact.FixtureA.Body];
                 var bodyB = bodyComponents[contact.FixtureB.Body];
-                if (bodyA.Parent?.GetType() != bodyB.Parent?.GetType())
+                //if (bodyA.Parent?.GetType() != bodyB.Parent?.GetType())
                 {
                     bodyA.BeginContact(contact, bodyB);
                     bodyB.BeginContact(contact, bodyA);
