@@ -14,10 +14,12 @@ namespace ETHotfix
 			var entity = await OnEnterView(message.EnterEntity);
 			if (entity is Bullet bullet)
 			{
-				bullet.BodyView = GameObject.Instantiate(PrefabHelper.GetUnitPrefab("BulletSmallBlue"));
+				var pos = new Vector3(message.X / 100f, message.Y / 100f, message.Z / 100f);
+				bullet.BodyView = GameObject.Instantiate(PrefabHelper.GetUnitPrefab("BulletSmallBlue"), pos, Quaternion.identity);
 				bullet.BodyView.name = $"Bullet#{bullet.Id}";
 				bullet.TransformComponent.transform = bullet.BodyView.transform;
-				bullet.TransformComponent.SetPosition(new Vector3(message.X / 100f, message.Y / 100f, message.Z / 100f));
+				bullet.TransformComponent.SetPosition(pos);
+				Log.Debug($"bullet {pos}");
 			}
 			await ETTask.CompletedTask;
 		}
@@ -31,7 +33,7 @@ namespace ETHotfix
 				{
 					var remoteUnit = MongoHelper.FromBson<Unit>(entityInfo.BsonBytes.bytes);
 					foreach (var item in remoteUnit.Components)
-						Log.Debug($"remoteUnit {item}");
+						Log.Debug($"remoteUnit {item.GetType().Name}");
 					//remoteUnit.Domain = ETModel.Game.Scene;
 					//Unit unit = UnitFactory.Create(ETModel.Game.Scene, remoteUnit.Id);
 					var go = UnityEngine.Object.Instantiate(PrefabHelper.GetUnitPrefab("RemoteUnit"));

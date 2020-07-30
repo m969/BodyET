@@ -41,7 +41,7 @@ namespace ETHotfix
 			self.AddComponent<TransformComponent>().position = position;
 			self.AddComponent<MoveComponent>().Speed = 30;
 			self.AddComponent<EntitySyncComponent>();
-			self.AddComponent<Body2dComponent>().CreateBody(.2f, .2f);
+			self.AddComponent<Body2dComponent>().CreateBody(.1f, .1f);
 			self.GetComponent<Body2dComponent>().OnBeginContactAction += self.OnBeginContact;
 		}
 
