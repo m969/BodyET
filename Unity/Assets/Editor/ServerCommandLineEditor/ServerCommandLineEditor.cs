@@ -62,7 +62,7 @@ namespace ETModel
 
 		public bool OnGUI()
 		{
-			StartConfig startConfig = this.GetParent<StartConfig>();
+            StartConfig startConfig = this.GetParent<StartConfig>();
 			GUILayout.BeginHorizontal(GUILayout.Height(16));
 
 			if (this.level > 0)
@@ -248,7 +248,7 @@ namespace ETModel
 			{
 				GUILayout.BeginHorizontal(GUILayout.Width(200), GUILayout.Height(16));
 				this.st = (StartConfigComponentType) EditorGUILayout.EnumPopup(this.st, GUILayout.Width(100));
-
+                
 				if (GUILayout.Button("添加组件", GUILayout.Height(16)))
 				{
 					Assembly assembly = Assembly.GetAssembly(typeof(Init));
