@@ -66,7 +66,7 @@ namespace ETModel
 		{
 			if (Position != lastPosition)
 			{
-				Log.Debug("Position = " + Position.ToString());
+				//Log.Debug("Position = " + Position.ToString());
 				lastPosition = Position;
 			}
 			this.Body.SetTransform(new System.Numerics.Vector2(Position.x, Position.y), Angle);

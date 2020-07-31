@@ -38,7 +38,7 @@ namespace ETHotfix
 			}
 
 			unit.AddComponent<MoveComponent>();
-			unit.AddComponent<Body2dComponent>().CreateBody(.5f, .5f);
+			unit.AddComponent<Body2dComponent>().CreateBody(.2f, .2f);
 			unit.AddComponent<MailBoxComponent>();
 			await unit.AddLocation();
 			unit.AddComponent<UnitGateComponent, long>(request.GateSessionId);
