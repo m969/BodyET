@@ -17,8 +17,19 @@ public class IdName
     public string Name;
 }
 
-public class IdNameTableObject : ScriptableObject
+[Serializable]
+public class MapData
+{
+    [DictionaryDrawerSettings]
+    Dictionary<string, int> Maps;
+}
+
+public class IdNameTableObject : SerializedScriptableObject
 {
     [SerializeField]
-    public List<IdName> IdNames;
+    public string[] Names;
+    //[SerializeField]
+    //Dictionary<string, string> Maps = new Dictionary<string, string>() {
+    //    {"ss", "ss" }
+    //};
 }

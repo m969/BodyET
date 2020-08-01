@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10541e66c4a69ba4186d901471437c0a, type: 3}
-  m_Name: "\u72B6\u6001\u8868\u914D\u7F6E"
+  m_Name: "\u6761\u4EF6\u914D\u7F6E"
   m_EditorClassIdentifier: 
-  IdNames:
-  - Id: 0
-    Name: "\uFF08\u7A7A\uFF09"
-  - Id: 1
-    Name: "\u7729\u6655"
-  - Id: 2
-    Name: "\u71C3\u70E7"
-  - Id: 3
-    Name: "\u6C89\u9ED8"
-  - Id: 4
-    Name: "\u6DF7\u4E71"
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  Names: []

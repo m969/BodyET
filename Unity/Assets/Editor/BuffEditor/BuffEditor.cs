@@ -76,11 +76,34 @@ public class BuffEditor : EditorWindow
         GetWindow(typeof(BuffEditor));
     }
 
-    [MenuItem("Tools/Buff编辑器/创建状态表配置文件")]
-    public static void CreateMyAsset()
+    [MenuItem("Tools/Buff编辑器/创建状态配置文件")]
+    public static void CreateStateTableAsset()
+    {
+        CreateAsset("状态配置");
+    }
+
+    [MenuItem("Tools/Buff编辑器/创建属性配置文件")]
+    public static void CreateNumericTableAsset()
+    {
+        CreateAsset("属性配置");
+    }
+
+    [MenuItem("Tools/Buff编辑器/创建动作配置文件")]
+    public static void CreateActionTableAsset()
+    {
+        CreateAsset("动作配置");
+    }
+
+    [MenuItem("Tools/Buff编辑器/创建条件配置文件")]
+    public static void CreateConditionTableAsset()
+    {
+        CreateAsset("条件配置");
+    }
+
+    public static void CreateAsset(string name)
     {
         var asset = ScriptableObject.CreateInstance<IdNameTableObject>();
-        AssetDatabase.CreateAsset(asset, "Assets/状态表配置.asset");
+        AssetDatabase.CreateAsset(asset, $"Assets/{name}.asset");
         AssetDatabase.SaveAssets();
         EditorUtility.FocusProjectWindow();
         Selection.activeObject = asset;
@@ -92,14 +115,29 @@ public class BuffEditor : EditorWindow
         this.style.alignment = TextAnchor.MiddleLeft;
         //this.style.fixedHeight = 16;
         //this.style.fixedWidth = 20;
+        col = Color.white * 0.5f;
+    }
 
+    private void OnGUI()
+    {
         buffTypeKArr = buffTypes.Values.ToArray();
         buffTypeVArr = buffTypes.Keys.ToArray();
 
-        var data = AssetDatabase.LoadAssetAtPath<IdNameTableObject>("Assets/状态表配置.asset");
+        var data = AssetDatabase.LoadAssetAtPath<IdNameTableObject>("Assets/状态配置.asset");
 
-        stateTypeKArr = data.IdNames.Select(x=> x.Name).ToArray();
-        stateTypeVArr = data.IdNames.Select(x => x.Id).ToArray();
+        //stateTypeKArr = data.Names.Select(x => x).ToArray();
+        stateTypeKArr = new string[data.Names.Length+1];
+        stateTypeKArr[0] = "（空）";
+        stateTypeVArr = new int[data.Names.Length+1];
+        for (int i = 0; i < data.Names.Length; i++)
+        {
+            stateTypeKArr[i+1] = data.Names[i];
+        }
+        for (int i = 0; i < stateTypeVArr.Length; i++)
+        {
+            stateTypeVArr[i] = i;
+        }
+        //stateTypeVArr = data.Names.Select(x => x.Id).ToArray();
 
         numericTypeKArr = numericTypes.Values.ToArray();
         numericTypeVArr = numericTypes.Keys.ToArray();
@@ -107,11 +145,7 @@ public class BuffEditor : EditorWindow
         actionTypeVArr = actionTypes.Keys.ToArray();
         conditionTypeKArr = conditionTypes.Values.ToArray();
         conditionTypeVArr = conditionTypes.Keys.ToArray();
-        col = Color.white * 0.5f;
-    }
 
-    private void OnGUI()
-    {
         //var type = EditorGUILayout.IntPopup(0, buffTypes.Values.ToArray(), buffTypes.Keys.ToArray());
         //if (GUILayout.Button("+"))
         //{
