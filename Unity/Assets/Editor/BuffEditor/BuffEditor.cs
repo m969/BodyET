@@ -10,7 +10,7 @@ public class BuffEditor : EditorWindow
 {
     private Dictionary<int, string> buffTypes = new Dictionary<int, string>()
     {
-        {0, "（空）"  },
+        {0, "（请选择功能效果）"  },
         {1, "改变状态"  },
         {2, "改变数值"  },
         {3, "动作式触发"  },
@@ -18,38 +18,38 @@ public class BuffEditor : EditorWindow
         {5, "条件式触发"  },
         {6, "执行逻辑"  },
     };
-    private Dictionary<int, string> stateTypes = new Dictionary<int, string>()
-    {
-        {0, "（空）"  },
-        {1, "眩晕"  },
-        {2, "中毒"  },
-        {3, "燃烧"  },
-        {4, "沉默"  },
-        {5, "混乱"  },
-    };
-    private Dictionary<int, string> numericTypes = new Dictionary<int, string>()
-    {
-        {0, "（空）"  },
-        {1, "攻击力"  },
-        {2, "防御力"  },
-        {3, "百分比攻击力"  },
-        {4, "百分比防御力"  },
-        {5, "生命回复"  },
-    };
-    private Dictionary<int, string> actionTypes = new Dictionary<int, string>()
-    {
-        {0, "（空）"  },
-        {1, "发出普攻"  },
-        {2, "遭受普攻"  },
-    };
-    private Dictionary<int, string> conditionTypes = new Dictionary<int, string>()
-    {
-        {0, "（空）"  },
-        {1, "当生命低于"  },
-        {2, "当生命低于百分比"  },
-        {3, "当法力低于"  },
-        {4, "当法力低于百分比"  },
-    };
+    //private Dictionary<int, string> stateTypes = new Dictionary<int, string>()
+    //{
+    //    {0, "（空）"  },
+    //    {1, "眩晕"  },
+    //    {2, "中毒"  },
+    //    {3, "燃烧"  },
+    //    {4, "沉默"  },
+    //    {5, "混乱"  },
+    //};
+    //private Dictionary<int, string> numericTypes = new Dictionary<int, string>()
+    //{
+    //    {0, "（空）"  },
+    //    {1, "攻击力"  },
+    //    {2, "防御力"  },
+    //    {3, "百分比攻击力"  },
+    //    {4, "百分比防御力"  },
+    //    {5, "生命回复"  },
+    //};
+    //private Dictionary<int, string> actionTypes = new Dictionary<int, string>()
+    //{
+    //    {0, "（空）"  },
+    //    {1, "发出普攻"  },
+    //    {2, "遭受普攻"  },
+    //};
+    //private Dictionary<int, string> conditionTypes = new Dictionary<int, string>()
+    //{
+    //    {0, "（空）"  },
+    //    {1, "当生命低于"  },
+    //    {2, "当生命低于百分比"  },
+    //    {3, "当法力低于"  },
+    //    {4, "当法力低于百分比"  },
+    //};
     private List<BuffConfig> buffConfigs = new List<BuffConfig>() { new BuffConfig() };
     public GUIStyle style = new GUIStyle();
     private string[] buffTypeKArr;
@@ -118,39 +118,36 @@ public class BuffEditor : EditorWindow
         col = Color.white * 0.5f;
     }
 
+    private (string[], int[]) LoadConfig(string configName)
+    {
+        var data = AssetDatabase.LoadAssetAtPath<IdNameTableObject>($"Assets/{configName}.asset");
+        var kArr = new string[data.Names.Length + 1];
+        kArr[0] = "（空）";
+        var vArr = new int[data.Names.Length + 1];
+        for (int i = 0; i < data.Names.Length; i++)
+        {
+            kArr[i + 1] = data.Names[i];
+        }
+        for (int i = 0; i < vArr.Length; i++)
+        {
+            vArr[i] = i;
+        }
+        return (kArr, vArr);
+    }
+
     private void OnGUI()
     {
         buffTypeKArr = buffTypes.Values.ToArray();
         buffTypeVArr = buffTypes.Keys.ToArray();
 
-        var data = AssetDatabase.LoadAssetAtPath<IdNameTableObject>("Assets/状态配置.asset");
-
-        //stateTypeKArr = data.Names.Select(x => x).ToArray();
-        stateTypeKArr = new string[data.Names.Length+1];
-        stateTypeKArr[0] = "（空）";
-        stateTypeVArr = new int[data.Names.Length+1];
-        for (int i = 0; i < data.Names.Length; i++)
-        {
-            stateTypeKArr[i+1] = data.Names[i];
-        }
-        for (int i = 0; i < stateTypeVArr.Length; i++)
-        {
-            stateTypeVArr[i] = i;
-        }
-        //stateTypeVArr = data.Names.Select(x => x.Id).ToArray();
-
-        numericTypeKArr = numericTypes.Values.ToArray();
-        numericTypeVArr = numericTypes.Keys.ToArray();
-        actionTypeKArr = actionTypes.Values.ToArray();
-        actionTypeVArr = actionTypes.Keys.ToArray();
-        conditionTypeKArr = conditionTypes.Values.ToArray();
-        conditionTypeVArr = conditionTypes.Keys.ToArray();
-
-        //var type = EditorGUILayout.IntPopup(0, buffTypes.Values.ToArray(), buffTypes.Keys.ToArray());
-        //if (GUILayout.Button("+"))
-        //{
-        //    buffTypes.Add(buffTypes.Count, "newType" + buffTypes.Count);
-        //}
+        (stateTypeKArr, stateTypeVArr) = LoadConfig("状态配置");
+        stateTypeKArr[0] = "（请选择状态）";
+        (numericTypeKArr, numericTypeVArr) = LoadConfig("属性配置");
+        numericTypeKArr[0] = "（请选择属性）";
+        (actionTypeKArr, actionTypeVArr) = LoadConfig("动作配置");
+        actionTypeKArr[0] = "（请选择动作）";
+        (conditionTypeKArr, conditionTypeVArr) = LoadConfig("条件配置");
+        conditionTypeKArr[0] = "（请选择条件）";
 
         BuffConfig removeBuff = null;
         foreach (var item in buffConfigs)
@@ -170,6 +167,7 @@ public class BuffEditor : EditorWindow
                 EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
                 GUILayout.Label("时间:");
                 item.Duration = EditorGUILayout.FloatField(item.Duration, GUILayout.Width(60));
+                GUILayout.Label("：");
                 EditorGUILayout.EndHorizontal();
 
                 if (item.Functions == null)
@@ -223,106 +221,126 @@ public class BuffEditor : EditorWindow
         }
     }
 
+    private int IntPopupDecorate(int value, string[] kArr, int[] vArr, int width = 100)
+    {
+        if (value == 0)
+        {
+            GUI.skin.textField.normal.textColor = Color.grey * 0.5f;
+            value = EditorGUILayout.IntPopup(value, kArr, vArr, GUI.skin.textField, GUILayout.Width(width));
+            GUI.skin.textField.normal.textColor = Color.black;
+        }
+        else
+        {
+            value = EditorGUILayout.IntPopup(value, kArr, vArr, GUILayout.Width(width));
+        }
+        return value;
+    }
+
+    private void MiddleCenterLabel(string label)
+    {
+        GUI.skin.label.alignment = TextAnchor.MiddleCenter;
+        GUILayout.Label(label);
+        GUI.skin.label.alignment = TextAnchor.MiddleLeft;
+    }
+
+    private string DefaultTextField(string defaultText, string text)
+    {
+        if (string.IsNullOrEmpty(text))
+        {
+            text = defaultText;
+        }
+        if (text == defaultText)
+        {
+            GUI.skin.textField.normal.textColor = Color.grey * 0.5f;
+            text = EditorGUILayout.TextField(text, GUI.skin.textField, GUILayout.Width(100));
+            GUI.skin.textField.normal.textColor = Color.black;
+        }
+        else
+        {
+            text = EditorGUILayout.TextField(text, GUILayout.Width(100));
+        }
+        return text;
+    }
+
     private void OnFuncDraw(FunctionConfig func)
     {
-        EditorGUILayout.BeginHorizontal(GUILayout.Width(150));
-        GUILayout.Label("功能:");
-        func.Type = EditorGUILayout.IntPopup(func.Type, buffTypeKArr, buffTypeVArr, GUILayout.Width(100));
+        EditorGUILayout.BeginHorizontal(GUILayout.Width(120));
+        func.Type = IntPopupDecorate(func.Type, buffTypeKArr, buffTypeVArr, 120);
         EditorGUILayout.EndHorizontal();
 
         if (func.Type == 1)
         {
             if (func.ChangeState == null) func.ChangeState = new ChangeState();
             var changeState = func.ChangeState;
-            EditorGUILayout.BeginHorizontal(GUILayout.Width(150));
-            GUI.color = Color.blue + col;
-            GUILayout.Label("状态:");
-            GUI.color = Color.white;
-            changeState.State = EditorGUILayout.IntPopup(changeState.State, stateTypeKArr, stateTypeVArr, GUILayout.Width(100));
+            EditorGUILayout.BeginHorizontal(GUILayout.Width(130));
+            changeState.State = IntPopupDecorate(changeState.State, stateTypeKArr, stateTypeVArr);
+            MiddleCenterLabel("->");
             EditorGUILayout.EndHorizontal();
 
-            EditorGUILayout.BeginHorizontal(GUILayout.Width(150));
-            GUILayout.Label("数值表达式:");
-            changeState.Value = EditorGUILayout.TextField(changeState.Value, GUILayout.Width(100));
+            EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
+            changeState.Value = DefaultTextField("（数值表达式）", changeState.Value);
             EditorGUILayout.EndHorizontal();
         }
         if (func.Type == 2)
         {
             if (func.ChangeNumeric == null) func.ChangeNumeric = new ChangeNumeric();
             var changeNumeric = func.ChangeNumeric;
-            EditorGUILayout.BeginHorizontal(GUILayout.Width(150));
-            GUI.color = Color.green + col;
-            GUILayout.Label("属性:");
-            GUI.color = Color.white;
-            changeNumeric.Numeric = EditorGUILayout.IntPopup(changeNumeric.Numeric, numericTypeKArr, numericTypeVArr, GUILayout.Width(100));
+            EditorGUILayout.BeginHorizontal(GUILayout.Width(130));
+            changeNumeric.Numeric = IntPopupDecorate(changeNumeric.Numeric, numericTypeKArr, numericTypeVArr);
+            MiddleCenterLabel("+");
             EditorGUILayout.EndHorizontal();
 
-            EditorGUILayout.BeginHorizontal(GUILayout.Width(150));
-            GUILayout.Label("数值表达式:");
-            changeNumeric.Value = EditorGUILayout.TextField(changeNumeric.Value, GUILayout.Width(100));
+            EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
+            changeNumeric.Value = DefaultTextField("（数值表达式）", changeNumeric.Value);
             EditorGUILayout.EndHorizontal();
         }
         if (func.Type == 3)
         {
             if (func.ActionTrigger == null) func.ActionTrigger = new ActionTrigger();
             var actionTrigger = func.ActionTrigger;
-            EditorGUILayout.BeginHorizontal(GUILayout.Width(150));
-            GUI.color = Color.red + col;
-            GUILayout.Label("动作:");
-            GUI.color = Color.white;
-            actionTrigger.Action = EditorGUILayout.IntPopup(actionTrigger.Action, actionTypeKArr, actionTypeVArr, GUILayout.Width(100));
+            EditorGUILayout.BeginHorizontal(GUILayout.Width(130));
+            actionTrigger.Action = IntPopupDecorate(actionTrigger.Action, actionTypeKArr, actionTypeVArr);
+            MiddleCenterLabel(">");
             EditorGUILayout.EndHorizontal();
 
-            EditorGUILayout.BeginHorizontal(GUILayout.Width(150));
-            GUILayout.Label("功能:");
-            //actionTrigger.Logic = EditorGUILayout.TextField(actionTrigger.Logic, GUILayout.Width(100));
-            actionTrigger.Logic = EditorGUILayout.IntPopup(actionTrigger.Logic, buffTypeKArr, buffTypeVArr, GUILayout.Width(100));
-            EditorGUILayout.EndHorizontal();
+            OnFuncDraw(actionTrigger.LogicFunc);
         }
         if (func.Type == 4)
         {
             if (func.IntervalTrigger == null) func.IntervalTrigger = new IntervalTrigger();
             var intervalTrigger = func.IntervalTrigger;
-            EditorGUILayout.BeginHorizontal(GUILayout.Width(150));
-            GUI.color = Color.yellow + col;
-            GUILayout.Label("间隔:");
-            GUI.color = Color.white;
-            intervalTrigger.Interval = EditorGUILayout.IntField(intervalTrigger.Interval, GUILayout.Width(100));
+            EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
+            //GUI.color = Color.yellow + col;
+            //GUILayout.Label("间隔:");
+            //GUI.color = Color.white;
+            intervalTrigger.Interval = EditorGUILayout.IntField(intervalTrigger.Interval, GUILayout.Width(60));
+            GUILayout.Label("(秒)");
+            MiddleCenterLabel(">");
             EditorGUILayout.EndHorizontal();
 
-            EditorGUILayout.BeginHorizontal(GUILayout.Width(150));
-            GUILayout.Label("功能:");
-            //intervalTrigger.Logic = EditorGUILayout.TextField(intervalTrigger.Logic, GUILayout.Width(100));
-            intervalTrigger.Logic = EditorGUILayout.IntPopup(intervalTrigger.Logic, buffTypeKArr, buffTypeVArr, GUILayout.Width(100));
-            EditorGUILayout.EndHorizontal();
+            OnFuncDraw(intervalTrigger.LogicFunc);
         }
         if (func.Type == 5)
         {
             if (func.ConditionTrigger == null) func.ConditionTrigger = new ConditionTrigger();
             var conditionTrigger = func.ConditionTrigger;
 
-            EditorGUILayout.BeginHorizontal(GUILayout.Width(150));
-            GUI.color = Color.yellow + col;
-            GUILayout.Label("条件:");
-            GUI.color = Color.white;
-            conditionTrigger.Condition = EditorGUILayout.IntPopup(conditionTrigger.Condition, conditionTypeKArr, conditionTypeVArr, GUILayout.Width(100));
+            EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
+            conditionTrigger.Condition = IntPopupDecorate(conditionTrigger.Condition, conditionTypeKArr, conditionTypeVArr);
+            //GUI.color = Color.yellow + col;
+            //GUILayout.Label("条件:");
+            //GUI.color = Color.white;
+            //conditionTrigger.Condition = EditorGUILayout.IntPopup(conditionTrigger.Condition, conditionTypeKArr, conditionTypeVArr, GUILayout.Width(100));
             EditorGUILayout.EndHorizontal();
 
-            EditorGUILayout.BeginHorizontal(GUILayout.Width(150));
-            GUILayout.Label("判定表达式:");
-            conditionTrigger.Value = EditorGUILayout.TextField(conditionTrigger.Value, GUILayout.Width(100));
+            EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
+            conditionTrigger.Value = DefaultTextField("（判定表达式）", conditionTrigger.Value);
+            //GUILayout.Label("判定表达式:");
+            //conditionTrigger.Value = EditorGUILayout.TextField(conditionTrigger.Value, GUILayout.Width(100));
+            MiddleCenterLabel(">");
             EditorGUILayout.EndHorizontal();
 
-            //GUILayout.Label("功能:");
-            //conditionTrigger.Logic = EditorGUILayout.TextField(conditionTrigger.Logic, GUILayout.Width(100));
-            //conditionTrigger.LogicFunc.Type = EditorGUILayout.IntPopup(conditionTrigger.LogicFunc.Type, buffTypeKArr, buffTypeVArr, GUILayout.Width(100));
-            //EditorGUILayout.BeginVertical();
-            {
-                //EditorGUILayout.BeginHorizontal();
-                OnFuncDraw(conditionTrigger.LogicFunc);
-                //EditorGUILayout.EndHorizontal();
-            }
-            //EditorGUILayout.EndVertical();
+            OnFuncDraw(conditionTrigger.LogicFunc);
         }
     }
 }
@@ -372,13 +390,15 @@ public class ChangeNumeric : Function
 public class ActionTrigger : Function
 {
     public int Action;
-    public int Logic;
+    //public int Logic;
+    public FunctionConfig LogicFunc = new FunctionConfig();
 }
 
 public class IntervalTrigger : Function
 {
     public int Interval;
-    public int Logic;
+    //public int Logic;
+    public FunctionConfig LogicFunc = new FunctionConfig();
 }
 
 public class ConditionTrigger : Function

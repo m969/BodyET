@@ -21,4 +21,6 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  Names: []
+  Names:
+  - "\u53D1\u51FA\u666E\u653B"
+  - "\u906D\u53D7\u666E\u653B"
