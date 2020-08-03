@@ -10,17 +10,15 @@ public class BuffEditor : EditorWindow
 {
     private Dictionary<int, string> buffTypes = new Dictionary<int, string>()
     {
-        {0, "（请选择功能效果）"  },
-        {1, "改变状态（功能）"  },
-        {2, "改变数值（功能）"  },
-        {3, "动作式触发（功能）"  },
-        {4, "间隔式触发（功能）"  },
-        {5, "条件式触发（功能）"  },
-        {6, "逻辑执行（功能）"  },
+        {0, "（功能效果）"  },
+        {1, "逻辑执行（功能）"  },
+        {2, "动作式触发（功能）"  },
+        {3, "间隔式触发（功能）"  },
+        {4, "条件式触发（功能）"  },
     };
     private Dictionary<int, string> logicTypes = new Dictionary<int, string>()
     {
-        {0, "（请选择逻辑类型）"  },
+        {0, "（逻辑类型）"  },
         {1, "改变状态"  },
         {2, "改变数值"  },
         {3, "自定义"  },
@@ -254,31 +252,47 @@ public class BuffEditor : EditorWindow
 
         if (func.Type == 1)
         {
-            if (func.ChangeState == null) func.ChangeState = new ChangeState();
-            var changeState = func.ChangeState;
-            EditorGUILayout.BeginHorizontal(GUILayout.Width(130));
-            changeState.State = IntPopupDecorate(changeState.State, stateTypeKArr, stateTypeVArr);
-            MiddleCenterLabel("->");
-            EditorGUILayout.EndHorizontal();
+            if (func.ExecuteLogic == null) func.ExecuteLogic = new ExecuteLogic();
+            var executeLogic = func.ExecuteLogic;
 
             EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
-            changeState.Value = DefaultTextField("（数值表达式）", changeState.Value);
+            executeLogic.Type = IntPopupDecorate(executeLogic.Type, logicTypeKArr, logicTypeVArr);
             EditorGUILayout.EndHorizontal();
+
+            if (executeLogic.Type == 1)
+            {
+                if (executeLogic.ChangeState == null) executeLogic.ChangeState = new ChangeState();
+                var changeState = executeLogic.ChangeState;
+                EditorGUILayout.BeginHorizontal(GUILayout.Width(130));
+                changeState.State = IntPopupDecorate(changeState.State, stateTypeKArr, stateTypeVArr);
+                MiddleCenterLabel("->");
+                EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
+                changeState.Value = DefaultTextField("（数值表达式）", changeState.Value);
+                EditorGUILayout.EndHorizontal();
+            }
+            if (executeLogic.Type == 2)
+            {
+                if (executeLogic.ChangeNumeric == null) executeLogic.ChangeNumeric = new ChangeNumeric();
+                var changeNumeric = executeLogic.ChangeNumeric;
+                EditorGUILayout.BeginHorizontal(GUILayout.Width(130));
+                changeNumeric.Numeric = IntPopupDecorate(changeNumeric.Numeric, numericTypeKArr, numericTypeVArr);
+                MiddleCenterLabel("+");
+                EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
+                changeNumeric.Value = DefaultTextField("（数值表达式）", changeNumeric.Value);
+                EditorGUILayout.EndHorizontal();
+            }
+            if (executeLogic.Type == 3)
+            {
+                EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
+                executeLogic.Value = DefaultTextField("（逻辑类型）", executeLogic.Value);
+                EditorGUILayout.EndHorizontal();
+            }
         }
         if (func.Type == 2)
-        {
-            if (func.ChangeNumeric == null) func.ChangeNumeric = new ChangeNumeric();
-            var changeNumeric = func.ChangeNumeric;
-            EditorGUILayout.BeginHorizontal(GUILayout.Width(130));
-            changeNumeric.Numeric = IntPopupDecorate(changeNumeric.Numeric, numericTypeKArr, numericTypeVArr);
-            MiddleCenterLabel("+");
-            EditorGUILayout.EndHorizontal();
-
-            EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
-            changeNumeric.Value = DefaultTextField("（数值表达式）", changeNumeric.Value);
-            EditorGUILayout.EndHorizontal();
-        }
-        if (func.Type == 3)
         {
             if (func.ActionTrigger == null) func.ActionTrigger = new ActionTrigger();
             var actionTrigger = func.ActionTrigger;
@@ -289,7 +303,7 @@ public class BuffEditor : EditorWindow
 
             OnFuncDraw(actionTrigger.LogicFunc);
         }
-        if (func.Type == 4)
+        if (func.Type == 3)
         {
             if (func.IntervalTrigger == null) func.IntervalTrigger = new IntervalTrigger();
             var intervalTrigger = func.IntervalTrigger;
@@ -301,7 +315,7 @@ public class BuffEditor : EditorWindow
 
             OnFuncDraw(intervalTrigger.LogicFunc);
         }
-        if (func.Type == 5)
+        if (func.Type == 4)
         {
             if (func.ConditionTrigger == null) func.ConditionTrigger = new ConditionTrigger();
             var conditionTrigger = func.ConditionTrigger;
@@ -317,19 +331,7 @@ public class BuffEditor : EditorWindow
 
             OnFuncDraw(conditionTrigger.LogicFunc);
         }
-        if (func.Type == 6)
-        {
-            if (func.ExecuteLogic == null) func.ExecuteLogic = new ExecuteLogic();
-            var executeLogic = func.ExecuteLogic;
 
-            EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
-            executeLogic.Logic = IntPopupDecorate(executeLogic.Logic, logicTypeKArr, logicTypeVArr);
-            EditorGUILayout.EndHorizontal();
-
-            //EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
-            //executeLogic.Value = DefaultTextField("（逻辑类型）", executeLogic.Value);
-            //EditorGUILayout.EndHorizontal();
-        }
     }
 }
 
@@ -345,12 +347,17 @@ public class BuffConfig
 public class FunctionConfig
 {
     public int Type;
-    public ChangeState ChangeState;
-    public ChangeNumeric ChangeNumeric;
     public ActionTrigger ActionTrigger;
     public IntervalTrigger IntervalTrigger;
     public ConditionTrigger ConditionTrigger;
     public ExecuteLogic ExecuteLogic;
+}
+
+public class LogicConfig
+{
+    public int Type;
+    public ChangeState ChangeState;
+    public ChangeNumeric ChangeNumeric;
 }
 
 public abstract class Function
@@ -398,6 +405,10 @@ public class ConditionTrigger : Function
 
 public class ExecuteLogic : Function
 {
-    public int Logic;
+    //public int Logic;
+    //public LogicConfig LogicConfig = new LogicConfig();
+    public int Type;
+    public ChangeState ChangeState;
+    public ChangeNumeric ChangeNumeric;
     public string Value;
 }
