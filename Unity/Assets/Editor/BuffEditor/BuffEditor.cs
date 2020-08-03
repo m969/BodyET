@@ -11,49 +11,28 @@ public class BuffEditor : EditorWindow
     private Dictionary<int, string> buffTypes = new Dictionary<int, string>()
     {
         {0, "（请选择功能效果）"  },
+        {1, "改变状态（功能）"  },
+        {2, "改变数值（功能）"  },
+        {3, "动作式触发（功能）"  },
+        {4, "间隔式触发（功能）"  },
+        {5, "条件式触发（功能）"  },
+        {6, "逻辑执行（功能）"  },
+    };
+    private Dictionary<int, string> logicTypes = new Dictionary<int, string>()
+    {
+        {0, "（请选择逻辑类型）"  },
         {1, "改变状态"  },
         {2, "改变数值"  },
-        {3, "动作式触发"  },
-        {4, "间隔式触发"  },
-        {5, "条件式触发"  },
-        {6, "执行逻辑"  },
+        {3, "自定义"  },
     };
-    //private Dictionary<int, string> stateTypes = new Dictionary<int, string>()
-    //{
-    //    {0, "（空）"  },
-    //    {1, "眩晕"  },
-    //    {2, "中毒"  },
-    //    {3, "燃烧"  },
-    //    {4, "沉默"  },
-    //    {5, "混乱"  },
-    //};
-    //private Dictionary<int, string> numericTypes = new Dictionary<int, string>()
-    //{
-    //    {0, "（空）"  },
-    //    {1, "攻击力"  },
-    //    {2, "防御力"  },
-    //    {3, "百分比攻击力"  },
-    //    {4, "百分比防御力"  },
-    //    {5, "生命回复"  },
-    //};
-    //private Dictionary<int, string> actionTypes = new Dictionary<int, string>()
-    //{
-    //    {0, "（空）"  },
-    //    {1, "发出普攻"  },
-    //    {2, "遭受普攻"  },
-    //};
-    //private Dictionary<int, string> conditionTypes = new Dictionary<int, string>()
-    //{
-    //    {0, "（空）"  },
-    //    {1, "当生命低于"  },
-    //    {2, "当生命低于百分比"  },
-    //    {3, "当法力低于"  },
-    //    {4, "当法力低于百分比"  },
-    //};
     private List<BuffConfig> buffConfigs = new List<BuffConfig>() { new BuffConfig() };
     public GUIStyle style = new GUIStyle();
+
     private string[] buffTypeKArr;
     private int[] buffTypeVArr;
+
+    private string[] logicTypeKArr;
+    private int[] logicTypeVArr;
 
     private string[] stateTypeKArr;
     private int[] stateTypeVArr;
@@ -68,6 +47,7 @@ public class BuffEditor : EditorWindow
     private int[] conditionTypeVArr;
 
     private Color col;
+    private Color textColor;
 
 
     [MenuItem("Tools/Buff编辑器/Buff编辑器窗口")]
@@ -137,8 +117,11 @@ public class BuffEditor : EditorWindow
 
     private void OnGUI()
     {
+        textColor = GUI.skin.textField.normal.textColor;
         buffTypeKArr = buffTypes.Values.ToArray();
         buffTypeVArr = buffTypes.Keys.ToArray();
+        logicTypeKArr = logicTypes.Values.ToArray();
+        logicTypeVArr = logicTypes.Keys.ToArray();
 
         (stateTypeKArr, stateTypeVArr) = LoadConfig("状态配置");
         stateTypeKArr[0] = "（请选择状态）";
@@ -225,9 +208,9 @@ public class BuffEditor : EditorWindow
     {
         if (value == 0)
         {
-            GUI.skin.textField.normal.textColor = Color.grey * 0.5f;
+            GUI.skin.textField.normal.textColor = Color.grey * 0.8f;
             value = EditorGUILayout.IntPopup(value, kArr, vArr, GUI.skin.textField, GUILayout.Width(width));
-            GUI.skin.textField.normal.textColor = Color.black;
+            GUI.skin.textField.normal.textColor = textColor;
         }
         else
         {
@@ -251,9 +234,9 @@ public class BuffEditor : EditorWindow
         }
         if (text == defaultText)
         {
-            GUI.skin.textField.normal.textColor = Color.grey * 0.5f;
+            GUI.skin.textField.normal.textColor = Color.grey * 0.8f;
             text = EditorGUILayout.TextField(text, GUI.skin.textField, GUILayout.Width(100));
-            GUI.skin.textField.normal.textColor = Color.black;
+            GUI.skin.textField.normal.textColor = textColor;
         }
         else
         {
@@ -265,6 +248,7 @@ public class BuffEditor : EditorWindow
     private void OnFuncDraw(FunctionConfig func)
     {
         EditorGUILayout.BeginHorizontal(GUILayout.Width(120));
+        GUILayout.Label("附加");
         func.Type = IntPopupDecorate(func.Type, buffTypeKArr, buffTypeVArr, 120);
         EditorGUILayout.EndHorizontal();
 
@@ -310,9 +294,6 @@ public class BuffEditor : EditorWindow
             if (func.IntervalTrigger == null) func.IntervalTrigger = new IntervalTrigger();
             var intervalTrigger = func.IntervalTrigger;
             EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
-            //GUI.color = Color.yellow + col;
-            //GUILayout.Label("间隔:");
-            //GUI.color = Color.white;
             intervalTrigger.Interval = EditorGUILayout.IntField(intervalTrigger.Interval, GUILayout.Width(60));
             GUILayout.Label("(秒)");
             MiddleCenterLabel(">");
@@ -327,20 +308,27 @@ public class BuffEditor : EditorWindow
 
             EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
             conditionTrigger.Condition = IntPopupDecorate(conditionTrigger.Condition, conditionTypeKArr, conditionTypeVArr);
-            //GUI.color = Color.yellow + col;
-            //GUILayout.Label("条件:");
-            //GUI.color = Color.white;
-            //conditionTrigger.Condition = EditorGUILayout.IntPopup(conditionTrigger.Condition, conditionTypeKArr, conditionTypeVArr, GUILayout.Width(100));
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
             conditionTrigger.Value = DefaultTextField("（判定表达式）", conditionTrigger.Value);
-            //GUILayout.Label("判定表达式:");
-            //conditionTrigger.Value = EditorGUILayout.TextField(conditionTrigger.Value, GUILayout.Width(100));
             MiddleCenterLabel(">");
             EditorGUILayout.EndHorizontal();
 
             OnFuncDraw(conditionTrigger.LogicFunc);
+        }
+        if (func.Type == 6)
+        {
+            if (func.ExecuteLogic == null) func.ExecuteLogic = new ExecuteLogic();
+            var executeLogic = func.ExecuteLogic;
+
+            EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
+            executeLogic.Logic = IntPopupDecorate(executeLogic.Logic, logicTypeKArr, logicTypeVArr);
+            EditorGUILayout.EndHorizontal();
+
+            //EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
+            //executeLogic.Value = DefaultTextField("（逻辑类型）", executeLogic.Value);
+            //EditorGUILayout.EndHorizontal();
         }
     }
 }
