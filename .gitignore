@@ -50,3 +50,4 @@ Server/.DS_Store
 /Unity/.gradle
 /*.user
 /Unity2
+/Unity/ProjectSettings/ProjectVersion.txt
