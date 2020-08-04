@@ -11,17 +11,18 @@ public class BuffEditor : EditorWindow
     private Dictionary<int, string> buffTypes = new Dictionary<int, string>()
     {
         {0, "（功能效果）"  },
-        {1, "逻辑执行（功能）"  },
-        {2, "动作式触发（功能）"  },
-        {3, "间隔式触发（功能）"  },
-        {4, "条件式触发（功能）"  },
+        {1, "立即执行逻辑"  },
+        {2, "条件执行逻辑"  },
+        {3, "动作式触发（功能）"  },
+        {4, "间隔式触发（功能）"  },
+        {5, "条件式触发（功能）"  },
     };
     private Dictionary<int, string> logicTypes = new Dictionary<int, string>()
     {
         {0, "（逻辑类型）"  },
         {1, "改变状态"  },
         {2, "改变数值"  },
-        {3, "自定义"  },
+        {3, "执行逻辑"  },
     };
     private List<BuffConfig> buffConfigs = new List<BuffConfig>() { new BuffConfig() };
     public GUIStyle style = new GUIStyle();
@@ -46,7 +47,7 @@ public class BuffEditor : EditorWindow
 
     private Color col;
     private Color textColor;
-
+    private Vector2 scrollPos;
 
     [MenuItem("Tools/Buff编辑器/Buff编辑器窗口")]
     private static void ShowWindow()
@@ -130,6 +131,8 @@ public class BuffEditor : EditorWindow
         (conditionTypeKArr, conditionTypeVArr) = LoadConfig("条件配置");
         conditionTypeKArr[0] = "（请选择条件）";
 
+        scrollPos = EditorGUILayout.BeginScrollView(scrollPos); // 组开始
+
         BuffConfig removeBuff = null;
         foreach (var item in buffConfigs)
         {
@@ -200,6 +203,8 @@ public class BuffEditor : EditorWindow
         {
             buffConfigs.Add(new BuffConfig() { Id = buffConfigs.Count });
         }
+
+        EditorGUILayout.EndScrollView(); // 组结束
     }
 
     private int IntPopupDecorate(int value, string[] kArr, int[] vArr, int width = 100)
@@ -246,7 +251,10 @@ public class BuffEditor : EditorWindow
     private void OnFuncDraw(FunctionConfig func)
     {
         EditorGUILayout.BeginHorizontal(GUILayout.Width(120));
-        GUILayout.Label("附加");
+        if (func.Type == 1)
+            GUILayout.Label("执行");
+        else
+            GUILayout.Label("附加");
         func.Type = IntPopupDecorate(func.Type, buffTypeKArr, buffTypeVArr, 120);
         EditorGUILayout.EndHorizontal();
 
