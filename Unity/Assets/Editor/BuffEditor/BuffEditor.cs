@@ -8,42 +8,8 @@ using UnityEngine;
 
 public class BuffEditor : EditorWindow
 {
-    private Dictionary<int, string> buffTypes = new Dictionary<int, string>()
-    {
-        {0, "（功能效果）"  },
-        {1, "立即执行逻辑"  },
-        {2, "条件执行逻辑"  },
-        {3, "动作式触发（功能）"  },
-        {4, "间隔式触发（功能）"  },
-        {5, "条件式触发（功能）"  },
-    };
-    private Dictionary<int, string> logicTypes = new Dictionary<int, string>()
-    {
-        {0, "（逻辑类型）"  },
-        {1, "改变状态"  },
-        {2, "改变数值"  },
-        {3, "执行逻辑"  },
-    };
     private List<BuffConfig> buffConfigs = new List<BuffConfig>() { new BuffConfig() };
     public GUIStyle style = new GUIStyle();
-
-    private string[] buffTypeKArr;
-    private int[] buffTypeVArr;
-
-    private string[] logicTypeKArr;
-    private int[] logicTypeVArr;
-
-    private string[] stateTypeKArr;
-    private int[] stateTypeVArr;
-
-    private string[] numericTypeKArr;
-    private int[] numericTypeVArr;
-
-    private string[] actionTypeKArr;
-    private int[] actionTypeVArr;
-
-    private string[] conditionTypeKArr;
-    private int[] conditionTypeVArr;
 
     private Color col;
     private Color textColor;
@@ -97,40 +63,42 @@ public class BuffEditor : EditorWindow
         col = Color.white * 0.5f;
     }
 
-    private (string[], int[]) LoadConfig(string configName)
-    {
-        var data = AssetDatabase.LoadAssetAtPath<IdNameTableObject>($"Assets/{configName}.asset");
-        var kArr = new string[data.Names.Length + 1];
-        kArr[0] = "（空）";
-        var vArr = new int[data.Names.Length + 1];
-        for (int i = 0; i < data.Names.Length; i++)
-        {
-            kArr[i + 1] = data.Names[i];
-        }
-        for (int i = 0; i < vArr.Length; i++)
-        {
-            vArr[i] = i;
-        }
-        return (kArr, vArr);
-    }
+    //private (string[], int[]) LoadConfig(string configName)
+    //{
+    //    var data = AssetDatabase.LoadAssetAtPath<IdNameTableObject>($"Assets/{configName}.asset");
+    //    var kArr = new string[data.Names.Length + 1];
+    //    kArr[0] = "（空）";
+    //    var vArr = new int[data.Names.Length + 1];
+    //    for (int i = 0; i < data.Names.Length; i++)
+    //    {
+    //        kArr[i + 1] = data.Names[i];
+    //    }
+    //    for (int i = 0; i < vArr.Length; i++)
+    //    {
+    //        vArr[i] = i;
+    //    }
+    //    return (kArr, vArr);
+    //}
 
     private void OnGUI()
     {
+        BuffHelper.Init();
+        //textColor = GUI.skin.textField.normal.textColor;
+        //BuffHelper.buffTypeKArr =  BuffHelper.buffTypes.Values.ToArray();
+        //BuffHelper.buffTypeVArr =  BuffHelper.buffTypes.Keys.ToArray();
+        //BuffHelper.logicTypeKArr = BuffHelper.logicTypes.Values.ToArray();
+        //BuffHelper.logicTypeVArr = BuffHelper.logicTypes.Keys.ToArray();
+
+        //(BuffHelper.stateTypeKArr, BuffHelper.stateTypeVArr) = LoadConfig("状态配置");
+        //BuffHelper.stateTypeKArr[0] = "（请选择状态）";
+        //(BuffHelper.numericTypeKArr, BuffHelper.numericTypeVArr) = LoadConfig("属性配置");
+        //BuffHelper.numericTypeKArr[0] = "（请选择属性）";
+        //(BuffHelper.actionTypeKArr, BuffHelper.actionTypeVArr) = LoadConfig("动作配置");
+        //BuffHelper.actionTypeKArr[0] = "（请选择动作）";
+        //(BuffHelper.conditionTypeKArr, BuffHelper.conditionTypeVArr) = LoadConfig("条件配置");
+        //BuffHelper.conditionTypeKArr[0] = "（请选择条件）";
+
         textColor = GUI.skin.textField.normal.textColor;
-        buffTypeKArr = buffTypes.Values.ToArray();
-        buffTypeVArr = buffTypes.Keys.ToArray();
-        logicTypeKArr = logicTypes.Values.ToArray();
-        logicTypeVArr = logicTypes.Keys.ToArray();
-
-        (stateTypeKArr, stateTypeVArr) = LoadConfig("状态配置");
-        stateTypeKArr[0] = "（请选择状态）";
-        (numericTypeKArr, numericTypeVArr) = LoadConfig("属性配置");
-        numericTypeKArr[0] = "（请选择属性）";
-        (actionTypeKArr, actionTypeVArr) = LoadConfig("动作配置");
-        actionTypeKArr[0] = "（请选择动作）";
-        (conditionTypeKArr, conditionTypeVArr) = LoadConfig("条件配置");
-        conditionTypeKArr[0] = "（请选择条件）";
-
         scrollPos = EditorGUILayout.BeginScrollView(scrollPos); // 组开始
 
         BuffConfig removeBuff = null;
@@ -255,7 +223,7 @@ public class BuffEditor : EditorWindow
             GUILayout.Label("执行");
         else
             GUILayout.Label("附加");
-        func.Type = IntPopupDecorate(func.Type, buffTypeKArr, buffTypeVArr, 120);
+        func.Type = IntPopupDecorate(func.Type, BuffHelper.buffTypeKArr, BuffHelper.buffTypeVArr, 120);
         EditorGUILayout.EndHorizontal();
 
         if (func.Type == 1)
@@ -264,7 +232,7 @@ public class BuffEditor : EditorWindow
             var executeLogic = func.ExecuteLogic;
 
             EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
-            executeLogic.Type = IntPopupDecorate(executeLogic.Type, logicTypeKArr, logicTypeVArr);
+            executeLogic.Type = IntPopupDecorate(executeLogic.Type, BuffHelper.logicTypeKArr, BuffHelper.logicTypeVArr);
             EditorGUILayout.EndHorizontal();
 
             if (executeLogic.Type == 1)
@@ -272,7 +240,7 @@ public class BuffEditor : EditorWindow
                 if (executeLogic.ChangeState == null) executeLogic.ChangeState = new ChangeState();
                 var changeState = executeLogic.ChangeState;
                 EditorGUILayout.BeginHorizontal(GUILayout.Width(130));
-                changeState.State = IntPopupDecorate(changeState.State, stateTypeKArr, stateTypeVArr);
+                changeState.State = IntPopupDecorate(changeState.State, BuffHelper.stateTypeKArr, BuffHelper.stateTypeVArr);
                 MiddleCenterLabel("->");
                 EditorGUILayout.EndHorizontal();
 
@@ -285,7 +253,7 @@ public class BuffEditor : EditorWindow
                 if (executeLogic.ChangeNumeric == null) executeLogic.ChangeNumeric = new ChangeNumeric();
                 var changeNumeric = executeLogic.ChangeNumeric;
                 EditorGUILayout.BeginHorizontal(GUILayout.Width(130));
-                changeNumeric.Numeric = IntPopupDecorate(changeNumeric.Numeric, numericTypeKArr, numericTypeVArr);
+                changeNumeric.Numeric = IntPopupDecorate(changeNumeric.Numeric, BuffHelper.numericTypeKArr, BuffHelper.numericTypeVArr);
                 MiddleCenterLabel("+");
                 EditorGUILayout.EndHorizontal();
 
@@ -305,7 +273,7 @@ public class BuffEditor : EditorWindow
             if (func.ActionTrigger == null) func.ActionTrigger = new ActionTrigger();
             var actionTrigger = func.ActionTrigger;
             EditorGUILayout.BeginHorizontal(GUILayout.Width(130));
-            actionTrigger.Action = IntPopupDecorate(actionTrigger.Action, actionTypeKArr, actionTypeVArr);
+            actionTrigger.Action = IntPopupDecorate(actionTrigger.Action, BuffHelper.actionTypeKArr, BuffHelper.actionTypeVArr);
             MiddleCenterLabel(">");
             EditorGUILayout.EndHorizontal();
 
@@ -329,7 +297,7 @@ public class BuffEditor : EditorWindow
             var conditionTrigger = func.ConditionTrigger;
 
             EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
-            conditionTrigger.Condition = IntPopupDecorate(conditionTrigger.Condition, conditionTypeKArr, conditionTypeVArr);
+            conditionTrigger.Condition = IntPopupDecorate(conditionTrigger.Condition, BuffHelper.conditionTypeKArr, BuffHelper.conditionTypeVArr);
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
@@ -339,84 +307,5 @@ public class BuffEditor : EditorWindow
 
             OnFuncDraw(conditionTrigger.LogicFunc);
         }
-
     }
-}
-
-public class BuffConfig
-{
-    public int Id;
-    public int Type;
-    public string Name;
-    public float Duration;
-    public List<FunctionConfig> Functions;
-}
-
-public class FunctionConfig
-{
-    public int Type;
-    public ActionTrigger ActionTrigger;
-    public IntervalTrigger IntervalTrigger;
-    public ConditionTrigger ConditionTrigger;
-    public ExecuteLogic ExecuteLogic;
-}
-
-public class LogicConfig
-{
-    public int Type;
-    public ChangeState ChangeState;
-    public ChangeNumeric ChangeNumeric;
-}
-
-public abstract class Function
-{
-    //public string ParamValue;
-}
-
-public abstract class Buff
-{
-
-}
-
-public class ChangeState : Function
-{
-    public int State;
-    public string Value;
-}
-
-public class ChangeNumeric : Function
-{
-    public int Numeric;
-    public string Value;
-}
-
-public class ActionTrigger : Function
-{
-    public int Action;
-    //public int Logic;
-    public FunctionConfig LogicFunc = new FunctionConfig();
-}
-
-public class IntervalTrigger : Function
-{
-    public int Interval;
-    //public int Logic;
-    public FunctionConfig LogicFunc = new FunctionConfig();
-}
-
-public class ConditionTrigger : Function
-{
-    public int Condition;
-    public string Value;
-    public FunctionConfig LogicFunc = new FunctionConfig();
-}
-
-public class ExecuteLogic : Function
-{
-    //public int Logic;
-    //public LogicConfig LogicConfig = new LogicConfig();
-    public int Type;
-    public ChangeState ChangeState;
-    public ChangeNumeric ChangeNumeric;
-    public string Value;
 }

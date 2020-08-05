@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c81b993b3f0f243a50c243abdb6ef9, type: 3}
+  m_Name: Skill_1001
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  ID: 1001
+  Name: "\u706B\u7403\u672F"
+  SkillSpellType: 0
+  SkillType: 0
+  TargetSelectType: 0
+  TargetSelect: 1
+  TargetGroupTitle: "\u76EE\u6807\u7C7B\u578B"
+  AffectTargetType: 2
+  TargetType: 0
+  Cold: 0
+  ColdGroupTitle: "\u51B7\u5374\u65F6\u95F4"
+  ColdTime: 0
+  DamageToggleGroup:
+    Enabled: 1
+    DamageType: 2
+    DamageValue: 56
+  CureToggleGroup:
+    Enabled: 0
+    CureValue: 

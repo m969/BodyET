@@ -84,15 +84,15 @@
     <Compile Include="Assets\Plugins\Sirenix\Demos\Custom Drawers\Scripts\ReflectionExample.cs" />
     <Compile Include="Assets\Plugins\Sirenix\Demos\Custom Drawers\Scripts\StringMemberHelperExample.cs" />
     <Compile Include="Assets\Plugins\Sirenix\Demos\Custom Drawers\Scripts\ValidationExample.cs" />
-    <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.xml" />
+    <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.Config.xml" />
     <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.xml" />
+    <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.xml" />
+    <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.xml" />
     <None Include="Assets\Plugins\AstarPathfindingProject\Clipper\ClipperLicense.txt" />
     <None Include="Assets\Plugins\AstarPathfindingProject\DotNetZip\DotNetZipLicense.txt" />
     <None Include="Assets\Plugins\Sirenix\Readme.txt" />
-    <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Serialization.Config.xml" />
-    <None Include="Assets\Plugins\Sirenix\Assemblies\link.xml" />
     <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.Utilities.Editor.xml" />
-    <None Include="Assets\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Editor.xml" />
+    <None Include="Assets\Plugins\Sirenix\Assemblies\link.xml" />
     <None Include="Assets\Plugins\AstarPathfindingProject\Poly2Tri\Poly2TriLicense.txt" />
     <None Include="Assets\Plugins\AstarPathfindingProject\dependencies.txt" />
     <Reference Include="UnityEngine">
@@ -710,6 +710,9 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>E:/Github Projects/BodyET/Unity/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.UI.Builder.Editor">
+      <HintPath>E:/Github Projects/BodyET/Unity/Library/ScriptAssemblies/Unity.UI.Builder.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>E:/Github Projects/BodyET/Unity/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
@@ -721,9 +724,6 @@
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Runtime">
       <HintPath>E:/Github Projects/BodyET/Unity/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.UI.Builder.Editor">
-      <HintPath>E:/Github Projects/BodyET/Unity/Library/ScriptAssemblies/Unity.UI.Builder.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
