@@ -304,10 +304,10 @@ MonoBehaviour:
     _taskWindow_ShowSubtask: 0
     _treeWindow_SearchShow: 1
     treeWindowShowSubtasksAnimation:
-      m_Target: 0
+      m_Target: 1
       speed: 2
-      m_Value: 0
-    _treeWindow_ShowSubtasks: 0
+      m_Value: 1
+    _treeWindow_ShowSubtasks: 1
   - _id: c401be0cd516746e57e007fc0290149f3e4edaef-b66a9f42-c732-4769-8e7c-0e4c711f7d71
     _parentID: c401be0cd516746e57e007fc0290149f3e4edaef-64ec90c4-cabc-4a65-999e-721301ee6e2f
     _lock: 0
@@ -571,16 +571,16 @@ MonoBehaviour:
     _screenshot: []
     _showScreenshots: 0
     _createdTicks: 637322438546723764
-    _updatedTicks: 637322438546723764
+    _updatedTicks: 637322671390245456
     _scrollPosition: {x: 0, y: 0}
     _boardWindow_SearchShow: 1
     _taskWindow_ShowSubtask: 0
     _treeWindow_SearchShow: 1
     treeWindowShowSubtasksAnimation:
-      m_Target: 0
+      m_Target: 1
       speed: 2
-      m_Value: 0
-    _treeWindow_ShowSubtasks: 0
+      m_Value: 1
+    _treeWindow_ShowSubtasks: 1
   - _id: c401be0cd516746e57e007fc0290149f3e4edaef-ed6c5834-c859-447a-9035-0b997e973f0f
     _parentID: c401be0cd516746e57e007fc0290149f3e4edaef-bd420e8e-2b21-40dd-8ead-02536e1022de
     _lock: 0
@@ -600,7 +600,7 @@ MonoBehaviour:
     _screenshot: []
     _showScreenshots: 0
     _createdTicks: 637322438546803504
-    _updatedTicks: 637322438546803504
+    _updatedTicks: 637322671447759883
     _scrollPosition: {x: 0, y: 0}
     _boardWindow_SearchShow: 1
     _taskWindow_ShowSubtask: 1
@@ -1038,6 +1038,93 @@ MonoBehaviour:
     _showScreenshots: 0
     _createdTicks: 637322438548409196
     _updatedTicks: 637322438548409196
+    _scrollPosition: {x: 0, y: 0}
+    _boardWindow_SearchShow: 1
+    _taskWindow_ShowSubtask: 0
+    _treeWindow_SearchShow: 1
+    treeWindowShowSubtasksAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowSubtasks: 0
+  - _id: b2568c2110f4b8fa3ecc89a1ad338635102852a7-b11364ff-d5f7-4499-905c-f8453bb24c03
+    _parentID: b2568c2110f4b8fa3ecc89a1ad338635102852a7-28733475-d42f-4a59-8986-e2ddfddce79a
+    _lock: 0
+    _done: 0
+    _isParentSubtask: 0
+    _name: "Buff\u7F16\u8F91\u5668"
+    _description: 
+    _showSubtasks: 1
+    _tasksIds: []
+    _hideCompletedChecklistItems: 0
+    _showTags: 0
+    _tagIds: []
+    _showAssets: 0
+    _assets: []
+    _showColors: 0
+    _colorIds: []
+    _screenshot: []
+    _showScreenshots: 0
+    _createdTicks: 637322673001153666
+    _updatedTicks: 637322673216897981
+    _scrollPosition: {x: 0, y: 0}
+    _boardWindow_SearchShow: 1
+    _taskWindow_ShowSubtask: 0
+    _treeWindow_SearchShow: 1
+    treeWindowShowSubtasksAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowSubtasks: 0
+  - _id: b2568c2110f4b8fa3ecc89a1ad338635102852a7-7d6b55bf-c7b4-41cd-a89c-64e717bc2ed3
+    _parentID: b2568c2110f4b8fa3ecc89a1ad338635102852a7-28733475-d42f-4a59-8986-e2ddfddce79a
+    _lock: 0
+    _done: 0
+    _isParentSubtask: 0
+    _name: "\u6280\u80FD\u7F16\u8F91\u5668"
+    _description: 
+    _showSubtasks: 0
+    _tasksIds: []
+    _hideCompletedChecklistItems: 0
+    _showTags: 0
+    _tagIds: []
+    _showAssets: 0
+    _assets: []
+    _showColors: 0
+    _colorIds: []
+    _screenshot: []
+    _showScreenshots: 0
+    _createdTicks: 637322673279060268
+    _updatedTicks: 637322677285259998
+    _scrollPosition: {x: 0, y: 0}
+    _boardWindow_SearchShow: 1
+    _taskWindow_ShowSubtask: 0
+    _treeWindow_SearchShow: 1
+    treeWindowShowSubtasksAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowSubtasks: 0
+  - _id: b2568c2110f4b8fa3ecc89a1ad338635102852a7-fefd8996-a46c-4cf1-a891-a1e7e7e7d2fd
+    _parentID: b2568c2110f4b8fa3ecc89a1ad338635102852a7-af79abf1-1aef-45fb-82dd-24f0893e3f4b
+    _lock: 0
+    _done: 0
+    _isParentSubtask: 0
+    _name: "demo\u6B7B\u4EA1\u590D\u6D3B\u6D41\u7A0B"
+    _description: 
+    _showSubtasks: 1
+    _tasksIds: []
+    _hideCompletedChecklistItems: 0
+    _showTags: 0
+    _tagIds: []
+    _showAssets: 0
+    _assets: []
+    _showColors: 0
+    _colorIds: []
+    _screenshot: []
+    _showScreenshots: 0
+    _createdTicks: 637322674530356122
+    _updatedTicks: 637322674722052906
     _scrollPosition: {x: 0, y: 0}
     _boardWindow_SearchShow: 1
     _taskWindow_ShowSubtask: 0

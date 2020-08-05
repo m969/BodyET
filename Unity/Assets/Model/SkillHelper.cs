@@ -60,15 +60,24 @@ public enum SkillTargetType
 [LabelText("伤害类型")]
 public enum DamageType
 {
-    [LabelText("(空)")]
-    None = 0,
     [HideLabel]
     [LabelText("物理伤害")]
-    Physic = 1,
+    Physic = 0,
     [LabelText("魔法伤害")]
-    Magic = 2,
+    Magic = 1,
     [LabelText("真实伤害")]
-    Real = 3,
+    Real = 2,
+}
+
+[LabelText("效果类型")]
+public enum SkillEffectType
+{
+    [LabelText("(空)")]
+    None = 0,
+    [LabelText("造成伤害")]
+    CauseDamage = 1,
+    [LabelText("治疗英雄")]
+    CureHero = 2,
 }
 
 //[Flags]

@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using System;
 
-[CreateAssetMenu(/*"Tools/Buff编辑器/BuffObject"*/)]
+[CreateAssetMenu()]
 public class SkillConfigObject : SerializedScriptableObject
 {
     [LabelText("技能ID")]
@@ -32,27 +32,23 @@ public class SkillConfigObject : SerializedScriptableObject
     public bool Cold = false;
     [ToggleGroup("Cold")]
     [HideInInspector]
-    public string ColdGroupTitle = "冷却时间";
+    public string ColdGroupTitle = "技能冷却";
     [ToggleGroup("Cold")]
     [LabelText("冷却时间")]
     [SuffixLabel("毫秒", true)]
     public int ColdTime;
 
-    //[ToggleGroup("CauseDamage", "$DamageGroupTitle")]
-    //public bool CauseDamage = false;
-    //[ToggleGroup("CauseDamage")]
-    //[HideInInspector]
-    //public string DamageGroupTitle = "造成伤害";
-    //[ToggleGroup("CauseDamage")]
-    //public DamageType DamageType;
+    //[Toggle("Enabled")]
+    //[LabelText("造成伤害")]
+    //public DamageToggleGroup DamageToggleGroup = new DamageToggleGroup();
 
-    [Toggle("Enabled")]
-    [LabelText("造成伤害")]
-    public DamageToggleGroup DamageToggleGroup = new DamageToggleGroup();
+    //[Toggle("Enabled")]
+    //[LabelText("治疗英雄")]
+    //public CureToggleGroup CureToggleGroup = new CureToggleGroup();
 
-    [Toggle("Enabled")]
-    [LabelText("治疗英雄")]
-    public CureToggleGroup CureToggleGroup = new CureToggleGroup();
+    [Space(10)]
+    [LabelText("效果列表")]
+    public SkillEffectToggleGroup[] EffectGroupList;
 
 
     protected override void OnBeforeSerialize()
@@ -155,14 +151,33 @@ public class DamageToggleGroup : MyToggleObject
 //    public string Text;
 //}
 
-//[Serializable]
-//public class MyToggleC
-//{
-//    [ToggleGroup("Enabled", "$Label")]
-//    public bool Enabled;
+[Serializable]
+public class SkillEffectToggleGroup
+{
+    [ToggleGroup("Enabled", "$Label")]
+    public bool Enabled;
+    public string Label { get {
+            switch (SkillEffectType)
+            {
+                case SkillEffectType.None: return "（空）";
+                case SkillEffectType.CauseDamage: return "造成伤害";
+                case SkillEffectType.CureHero: return "治疗英雄";
+                default: return "（空）";
+            }
+        } }
+    [ToggleGroup("Enabled")]
+    public SkillEffectType SkillEffectType;
 
-//    public string Label { get { return this.Test.ToString(); } }
+    [ToggleGroup("Enabled")]
+    [ShowIf("SkillEffectType", SkillEffectType.CauseDamage)]
+    public DamageType DamageType;
+    [ToggleGroup("Enabled")]
+    [ShowIf("SkillEffectType", SkillEffectType.CauseDamage)]
+    [LabelText("伤害参数")]
+    public string DamageValue;
 
-//    [ToggleGroup("Enabled")]
-//    public float Test;
-//}
+    [ToggleGroup("Enabled")]
+    [ShowIf("SkillEffectType", SkillEffectType.CureHero)]
+    [LabelText("治疗参数")]
+    public string CureValue;
+}

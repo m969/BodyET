@@ -27,3 +27,17 @@ MonoBehaviour:
       speed: 2
       m_Value: 1
     _treeWindow_ShowGroups: 1
+  - _id: b2568c2110f4b8fa3ecc89a1ad338635102852a7-d2afa1de-0bd2-4600-afce-2eb83cb25d0e
+    _name: Board
+    _groupIds:
+    - b2568c2110f4b8fa3ecc89a1ad338635102852a7-af79abf1-1aef-45fb-82dd-24f0893e3f4b
+    - b2568c2110f4b8fa3ecc89a1ad338635102852a7-28733475-d42f-4a59-8986-e2ddfddce79a
+    - b2568c2110f4b8fa3ecc89a1ad338635102852a7-8ad14ca2-c919-4612-8dbb-7414e8cf0ab1
+    - b2568c2110f4b8fa3ecc89a1ad338635102852a7-c983ea19-c57e-4797-a9f3-216f3fa92bb5
+    _scrollPosition: {x: 0, y: 0}
+    _treeWindow_SearchShow: 1
+    treeWindowShowGroupsAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowGroups: 0

@@ -24,10 +24,10 @@ MonoBehaviour:
     _scrollPosition: {x: 0, y: 0}
     _treeWindow_SearchShow: 1
     TreeWindowShowAnimation:
-      m_Target: 1
+      m_Target: 0
       speed: 2
-      m_Value: 1
-    _treeWindow_ShowTasks: 1
+      m_Value: 0
+    _treeWindow_ShowTasks: 0
   - _id: c401be0cd516746e57e007fc0290149f3e4edaef-20db87ce-96d3-4faa-bae7-90c845caa1cb
     _boardID: c401be0cd516746e57e007fc0290149f3e4edaef-bbf8783e-68ed-4725-aa3b-9697bb2805c1
     _name: Task features
@@ -56,10 +56,10 @@ MonoBehaviour:
     _scrollPosition: {x: 0, y: 0}
     _treeWindow_SearchShow: 1
     TreeWindowShowAnimation:
-      m_Target: 1
+      m_Target: 0
       speed: 2
-      m_Value: 1
-    _treeWindow_ShowTasks: 1
+      m_Value: 0
+    _treeWindow_ShowTasks: 0
   - _id: c401be0cd516746e57e007fc0290149f3e4edaef-43c31864-0909-469f-8155-8dec63497f4b
     _boardID: c401be0cd516746e57e007fc0290149f3e4edaef-bbf8783e-68ed-4725-aa3b-9697bb2805c1
     _name: Tasks for searching
@@ -77,7 +77,54 @@ MonoBehaviour:
     _scrollPosition: {x: 0, y: 0}
     _treeWindow_SearchShow: 1
     TreeWindowShowAnimation:
-      m_Target: 1
+      m_Target: 0
       speed: 2
-      m_Value: 1
-    _treeWindow_ShowTasks: 1
+      m_Value: 0
+    _treeWindow_ShowTasks: 0
+  - _id: b2568c2110f4b8fa3ecc89a1ad338635102852a7-af79abf1-1aef-45fb-82dd-24f0893e3f4b
+    _boardID: b2568c2110f4b8fa3ecc89a1ad338635102852a7-d2afa1de-0bd2-4600-afce-2eb83cb25d0e
+    _name: Planned
+    _taskIds:
+    - b2568c2110f4b8fa3ecc89a1ad338635102852a7-fefd8996-a46c-4cf1-a891-a1e7e7e7d2fd
+    _scrollPosition: {x: 0, y: 0}
+    _treeWindow_SearchShow: 1
+    TreeWindowShowAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowTasks: 0
+  - _id: b2568c2110f4b8fa3ecc89a1ad338635102852a7-28733475-d42f-4a59-8986-e2ddfddce79a
+    _boardID: b2568c2110f4b8fa3ecc89a1ad338635102852a7-d2afa1de-0bd2-4600-afce-2eb83cb25d0e
+    _name: In Progress
+    _taskIds:
+    - b2568c2110f4b8fa3ecc89a1ad338635102852a7-7d6b55bf-c7b4-41cd-a89c-64e717bc2ed3
+    - b2568c2110f4b8fa3ecc89a1ad338635102852a7-b11364ff-d5f7-4499-905c-f8453bb24c03
+    _scrollPosition: {x: 0, y: 0}
+    _treeWindow_SearchShow: 1
+    TreeWindowShowAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowTasks: 0
+  - _id: b2568c2110f4b8fa3ecc89a1ad338635102852a7-8ad14ca2-c919-4612-8dbb-7414e8cf0ab1
+    _boardID: b2568c2110f4b8fa3ecc89a1ad338635102852a7-d2afa1de-0bd2-4600-afce-2eb83cb25d0e
+    _name: Testing
+    _taskIds: []
+    _scrollPosition: {x: 0, y: 0}
+    _treeWindow_SearchShow: 1
+    TreeWindowShowAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowTasks: 0
+  - _id: b2568c2110f4b8fa3ecc89a1ad338635102852a7-c983ea19-c57e-4797-a9f3-216f3fa92bb5
+    _boardID: b2568c2110f4b8fa3ecc89a1ad338635102852a7-d2afa1de-0bd2-4600-afce-2eb83cb25d0e
+    _name: Completed
+    _taskIds: []
+    _scrollPosition: {x: 0, y: 0}
+    _treeWindow_SearchShow: 1
+    TreeWindowShowAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowTasks: 0

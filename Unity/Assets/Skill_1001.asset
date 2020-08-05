@@ -33,10 +33,14 @@ MonoBehaviour:
   Cold: 0
   ColdGroupTitle: "\u51B7\u5374\u65F6\u95F4"
   ColdTime: 0
-  DamageToggleGroup:
-    Enabled: 1
-    DamageType: 2
-    DamageValue: 56
-  CureToggleGroup:
-    Enabled: 0
+  EffectGroupList:
+  - Enabled: 1
+    SkillEffectType: 1
+    DamageType: 1
+    DamageValue: 
+    CureValue: 
+  - Enabled: 1
+    SkillEffectType: 2
+    DamageType: 0
+    DamageValue: 
     CureValue: 
