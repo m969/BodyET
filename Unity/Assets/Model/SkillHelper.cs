@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
-using System;
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
 
 public class SkillHelper
 {
@@ -78,6 +73,38 @@ public enum SkillEffectType
     CauseDamage = 1,
     [LabelText("治疗英雄")]
     CureHero = 2,
+    [LabelText("移除Buff")]
+    RemoveBuff = 3,
+    [LabelText("施加Buff")]
+    AddBuff = 4,
+    [LabelText("改变状态")]
+    ChangeState = 5,
+    [LabelText("改变数值")]
+    ChangeNumeric = 6,
+}
+
+[LabelText("状态类型")]
+public enum StateType
+{
+    [LabelText("眩晕")]
+    Vertigo = 0,
+    [LabelText("沉默")]
+    Silent = 1,
+    [LabelText("中毒")]
+    Poison = 2,
+}
+
+[LabelText("数值类型")]
+public enum NumericType
+{
+    [LabelText("物理攻击")]
+    PhysicAttack = 0,
+    [LabelText("护甲")]
+    Defense = 1,
+    [LabelText("法术强度")]
+    SpellPower = 2,
+    [LabelText("魔抗")]
+    MagicDefense= 3,
 }
 
 //[Flags]

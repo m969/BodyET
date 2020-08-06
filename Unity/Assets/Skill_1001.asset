@@ -39,8 +39,20 @@ MonoBehaviour:
     DamageType: 1
     DamageValue: 
     CureValue: 
+    AddBuff: {fileID: 0}
+    RemoveBuffConfigObject: {fileID: 0}
+    StateType: 0
+    StateValue: 
+    NumericType: 0
+    NumericValue: 
   - Enabled: 1
-    SkillEffectType: 2
+    SkillEffectType: 4
     DamageType: 0
     DamageValue: 
     CureValue: 
+    AddBuff: {fileID: 11400000, guid: e9f6e9afe434d2b47b41c70f8c214017, type: 2}
+    RemoveBuffConfigObject: {fileID: 0}
+    StateType: 0
+    StateValue: 
+    NumericType: 0
+    NumericValue: 
