@@ -4,13 +4,30 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using System;
+using Sirenix.OdinInspector.Editor;
+using UnityEngine.PlayerLoop;
+using ETModel;
+using Sirenix.Utilities.Editor;
+
+#if UNITY_EDITOR
+using UnityEditor;
+[CustomEditor(typeof(SkillConfigObject))]
+public class SkillConfigObjectInspector: OdinEditor
+{
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        var skillConfigObject = target as SkillConfigObject;
+    }
+}
+#endif
 
 [CreateAssetMenu()]
 [LabelText("技能配置")]
 public class SkillConfigObject : SerializedScriptableObject
 {
     [LabelText("技能ID")]
-    public int ID;
+    public uint ID;
     [LabelText("技能名称")]
     public string Name;
     public SkillSpellType SkillSpellType;
@@ -37,35 +54,11 @@ public class SkillConfigObject : SerializedScriptableObject
     [ToggleGroup("Cold")]
     [LabelText("冷却时间")]
     [SuffixLabel("毫秒", true)]
-    public int ColdTime;
-
-    //[Toggle("Enabled")]
-    //[LabelText("造成伤害")]
-    //public DamageToggleGroup DamageToggleGroup = new DamageToggleGroup();
-
-    //[Toggle("Enabled")]
-    //[LabelText("治疗英雄")]
-    //public CureToggleGroup CureToggleGroup = new CureToggleGroup();
+    public uint ColdTime;
 
     [Space(10)]
     [LabelText("效果列表")]
     public SkillEffectToggleGroup[] EffectGroupList;
-
-
-    //protected override void OnBeforeSerialize()
-    //{
-    //    base.OnBeforeSerialize();
-    //}
-
-    //protected override void OnAfterDeserialize()
-    //{
-    //    base.OnAfterDeserialize();
-    //}
-
-    //private void OnEnable()
-    //{
-    //    this.name = $"Skill_{ID}_{Name}";
-    //}
 }
 
 [Serializable]
@@ -74,86 +67,19 @@ public class MyToggleObject
     public bool Enabled;
 }
 
-[Serializable]
-public class CureToggleGroup : MyToggleObject
-{
-    [LabelText("治疗参数")]
-    public string CureValue;
-}
-
-[Serializable]
-public class DamageToggleGroup : MyToggleObject
-{
-    public DamageType DamageType;
-    [LabelText("伤害参数")]
-    public string DamageValue;
-}
-
-//// Simple Toggle Group
-//[ToggleGroup("MyToggle")]
-//public bool MyToggle;
-
-//[ToggleGroup("MyToggle")]
-//public float A;
-
-//[ToggleGroup("MyToggle")]
-//[HideLabel, Multiline]
-//public string B;
-
-//// Toggle for custom data.
-//[ToggleGroup("EnableGroupOne", "$GroupOneTitle")]
-//public bool EnableGroupOne = true;
-
-//[ToggleGroup("EnableGroupOne")]
-//public string GroupOneTitle = "One";
-
-//[ToggleGroup("EnableGroupOne")]
-//public float GroupOneA;
-
-//[ToggleGroup("EnableGroupOne")]
-//public float GroupOneB;
-
-//// Toggle for individual objects.
-//[Toggle("Enabled")]
-//public MyToggleObject Three = new MyToggleObject();
-
-//[Toggle("Enabled")]
-//public MyToggleA Four = new MyToggleA();
-
-//[Toggle("Enabled")]
-//public MyToggleB Five = new MyToggleB();
-
-//public MyToggleC[] ToggleList = new MyToggleC[]
-//{
-//    new MyToggleC(){ Test = 2f, Enabled = true, },
-//    new MyToggleC(){ Test = 5f, },
-//    new MyToggleC(){ Test = 7f, },
-//};
-
 //[Serializable]
-//public class MyToggleObject
+//public class CureToggleGroup : MyToggleObject
 //{
-//    public bool Enabled;
-
-//    [HideInInspector]
-//    public string Title;
-
-//    public int A;
-//    public int B;
+//    [LabelText("治疗参数")]
+//    public string CureValue;
 //}
 
 //[Serializable]
-//public class MyToggleA : MyToggleObject
+//public class DamageToggleGroup : MyToggleObject
 //{
-//    public float C;
-//    public float D;
-//    public float F;
-//}
-
-//[Serializable]
-//public class MyToggleB : MyToggleObject
-//{
-//    public string Text;
+//    public DamageType DamageType;
+//    [LabelText("伤害参数")]
+//    public string DamageValue;
 //}
 
 [Serializable]
@@ -207,12 +133,18 @@ public class SkillEffectToggleGroup
     [ToggleGroup("Enabled")]
     [ShowIf("SkillEffectType", SkillEffectType.AddBuff)]
     public BuffConfigObject AddBuff;
+    [ToggleGroup("Enabled")]
+    [ShowIf("SkillEffectType", SkillEffectType.AddBuff)]
+    public AddBuffTargetType AddBuffTargetType;
     #endregion
 
     #region 移除Buff
     [ToggleGroup("Enabled")]
     [ShowIf("SkillEffectType", SkillEffectType.RemoveBuff)]
     public BuffConfigObject RemoveBuffConfigObject;
+    [ToggleGroup("Enabled")]
+    [ShowIf("SkillEffectType", SkillEffectType.RemoveBuff)]
+    public AddBuffTargetType RemoveBuffTargetType;
     #endregion
 
     #region 改变状态

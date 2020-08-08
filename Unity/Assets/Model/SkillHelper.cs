@@ -28,6 +28,8 @@ public enum SkillTargetSelectType
 {
     [LabelText("自动")]
     Auto,
+    [LabelText("指定")]
+    Select,
     [LabelText("其他")]
     Other,
 }
@@ -41,6 +43,15 @@ public enum SkillAffectTargetType
     SelfTeam = 1,
     [LabelText("敌方")]
     EnemyTeam = 2,
+}
+
+[LabelText("作用对象")]
+public enum AddBuffTargetType
+{
+    [LabelText("技能目标")]
+    SkillTarget = 0,
+    [LabelText("自身")]
+    Self = 1,
 }
 
 [LabelText("目标类型")]
@@ -67,16 +78,16 @@ public enum DamageType
 [LabelText("效果类型")]
 public enum SkillEffectType
 {
-    [LabelText("(空)")]
+    [LabelText("(选择效果)")]
     None = 0,
     [LabelText("造成伤害")]
     CauseDamage = 1,
     [LabelText("治疗英雄")]
     CureHero = 2,
-    [LabelText("移除Buff")]
-    RemoveBuff = 3,
     [LabelText("施加Buff")]
-    AddBuff = 4,
+    AddBuff = 3,
+    [LabelText("移除Buff")]
+    RemoveBuff = 4,
     [LabelText("改变状态")]
     ChangeState = 5,
     [LabelText("改变数值")]

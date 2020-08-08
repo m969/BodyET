@@ -25,7 +25,7 @@ MonoBehaviour:
   Name: "\u706B\u7403\u672F"
   SkillSpellType: 0
   SkillType: 0
-  TargetSelectType: 0
+  TargetSelectType: 1
   TargetSelect: 1
   TargetGroupTitle: "\u76EE\u6807\u7C7B\u578B"
   AffectTargetType: 2
@@ -37,21 +37,25 @@ MonoBehaviour:
   - Enabled: 1
     SkillEffectType: 1
     DamageType: 1
-    DamageValue: 
+    DamageValue: 80
     CureValue: 
     AddBuff: {fileID: 0}
+    AddBuffTargetType: 0
     RemoveBuffConfigObject: {fileID: 0}
+    RemoveBuffTargetType: 0
     StateType: 0
     StateValue: 
     NumericType: 0
     NumericValue: 
   - Enabled: 1
-    SkillEffectType: 4
+    SkillEffectType: 3
     DamageType: 0
     DamageValue: 
     CureValue: 
     AddBuff: {fileID: 11400000, guid: e9f6e9afe434d2b47b41c70f8c214017, type: 2}
+    AddBuffTargetType: 0
     RemoveBuffConfigObject: {fileID: 0}
+    RemoveBuffTargetType: 0
     StateType: 0
     StateValue: 
     NumericType: 0

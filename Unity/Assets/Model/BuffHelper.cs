@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Sirenix.OdinInspector;
 
 public static class BuffHelper
 {
@@ -9,10 +10,10 @@ public static class BuffHelper
     {
         {0, "（功能效果）"  },
         {1, "立即执行逻辑"  },
-        {2, "条件执行逻辑"  },
-        {3, "动作式触发（功能）"  },
-        {4, "间隔式触发（功能）"  },
-        {5, "条件式触发（功能）"  },
+        //{2, "条件执行逻辑"  },
+        {2, "动作式触发（功能）"  },
+        {3, "间隔式触发（功能）"  },
+        {4, "条件式触发（功能）"  },
     };
     public static Dictionary<int, string> logicTypes = new Dictionary<int, string>()
     {
@@ -152,4 +153,33 @@ public class ExecuteLogic : Function
     public ChangeState ChangeState;
     public ChangeNumeric ChangeNumeric;
     public string Value;
+}
+
+[LabelText("Buff效果触发机制")]
+public enum BuffTriggerType
+{
+    [LabelText("条件触发")]
+    Condition,
+    [LabelText("动作触发")]
+    Action,
+    [LabelText("间隔触发")]
+    Interval,
+}
+
+[LabelText("动作类型")]
+public enum ActionType
+{
+    [LabelText("发出普攻")]
+    Attack,
+    [LabelText("遭受普攻")]
+    BeAttack,
+}
+
+[LabelText("条件类型")]
+public enum ConditionType
+{
+    [LabelText("当生命值低于")]
+    WhenHPLower,
+    [LabelText("当生命值低于百分比")]
+    WhenHPPctLower,
 }

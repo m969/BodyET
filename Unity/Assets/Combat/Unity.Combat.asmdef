@@ -1,12 +1,9 @@
 {
-    "name": "Unity.Model",
-    "references": [
-        "Unity.ThirdParty",
-        "Unity.Combat"
-    ],
+    "name": "Unity.Combat",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
-    "allowUnsafeCode": true,
+    "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,

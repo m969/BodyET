@@ -21,6 +21,40 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  ID: 0
-  Name: 
-  ShowInBuffList: 0
+  ID: 1001
+  Name: "\u707C\u70E7"
+  ShowInBuffList: 1
+  DurationToggleGroup:
+    Enabled: 1
+    Duration: 3000
+  BuffTriggerType: 2
+  ConditionType: 0
+  ActionType: 0
+  Interval: 100
+  EffectGroupList:
+  - Enabled: 1
+    SkillEffectType: 1
+    DamageType: 1
+    DamageValue: 10
+    CureValue: 
+    AddBuff: {fileID: 0}
+    AddBuffTargetType: 0
+    RemoveBuffConfigObject: {fileID: 0}
+    RemoveBuffTargetType: 0
+    StateType: 0
+    StateValue: 
+    NumericType: 0
+    NumericValue: 
+  - Enabled: 1
+    SkillEffectType: 3
+    DamageType: 0
+    DamageValue: 
+    CureValue: 
+    AddBuff: {fileID: 11400000}
+    AddBuffTargetType: 0
+    RemoveBuffConfigObject: {fileID: 0}
+    RemoveBuffTargetType: 0
+    StateType: 0
+    StateValue: 
+    NumericType: 0
+    NumericValue: 

@@ -12,4 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: -2086225651, guid: 33f035bd53bea494e9cae9f5258d89d0, type: 3}
   m_Name: Boards
   m_EditorClassIdentifier: 
-  _all: []
+  _all:
+  - _id: c401be0cd516746e57e007fc0290149f3e4edaef-bbf8783e-68ed-4725-aa3b-9697bb2805c1
+    _name: DEMO
+    _groupIds:
+    - c401be0cd516746e57e007fc0290149f3e4edaef-a27c2014-cb8b-4158-8c67-60f8c95292d5
+    - c401be0cd516746e57e007fc0290149f3e4edaef-20db87ce-96d3-4faa-bae7-90c845caa1cb
+    - c401be0cd516746e57e007fc0290149f3e4edaef-bf694efd-f5d0-49e0-8468-f08603c33254
+    - c401be0cd516746e57e007fc0290149f3e4edaef-43c31864-0909-469f-8155-8dec63497f4b
+    _scrollPosition: {x: 0, y: 0}
+    _treeWindow_SearchShow: 1
+    treeWindowShowGroupsAnimation:
+      m_Target: 1
+      speed: 2
+      m_Value: 1
+    _treeWindow_ShowGroups: 1
+  - _id: b2568c2110f4b8fa3ecc89a1ad338635102852a7-d2afa1de-0bd2-4600-afce-2eb83cb25d0e
+    _name: BodyET
+    _groupIds:
+    - b2568c2110f4b8fa3ecc89a1ad338635102852a7-af79abf1-1aef-45fb-82dd-24f0893e3f4b
+    - b2568c2110f4b8fa3ecc89a1ad338635102852a7-28733475-d42f-4a59-8986-e2ddfddce79a
+    - b2568c2110f4b8fa3ecc89a1ad338635102852a7-8ad14ca2-c919-4612-8dbb-7414e8cf0ab1
+    - b2568c2110f4b8fa3ecc89a1ad338635102852a7-c983ea19-c57e-4797-a9f3-216f3fa92bb5
+    _scrollPosition: {x: 0, y: 0}
+    _treeWindow_SearchShow: 1
+    treeWindowShowGroupsAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowGroups: 0
