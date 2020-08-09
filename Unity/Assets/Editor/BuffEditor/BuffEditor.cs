@@ -47,7 +47,7 @@ public class BuffEditor : EditorWindow
 
     public static void CreateAsset(string name)
     {
-        var asset = ScriptableObject.CreateInstance<IdNameTableObject>();
+        var asset = ScriptableObject.CreateInstance<NameArrayObject>();
         AssetDatabase.CreateAsset(asset, $"Assets/{name}.asset");
         AssetDatabase.SaveAssets();
         EditorUtility.FocusProjectWindow();

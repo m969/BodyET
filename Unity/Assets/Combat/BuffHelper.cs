@@ -43,7 +43,7 @@ public static class BuffHelper
 
     private static (string[], int[]) LoadConfig(string configName)
     {
-        var data = UnityEditor.AssetDatabase.LoadAssetAtPath<IdNameTableObject>($"Assets/{configName}.asset");
+        var data = UnityEditor.AssetDatabase.LoadAssetAtPath<NameArrayObject>($"Assets/{configName}.asset");
         var kArr = new string[data.Names.Length + 1];
         kArr[0] = "（空）";
         var vArr = new int[data.Names.Length + 1];

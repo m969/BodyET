@@ -1,0 +1,390 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c54c625e10b5b042bf28330b71e6b6c, type: 3}
+  m_Name: HotfixMessage
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  MessageClasses:
+  - Enabled: 1
+    MessageType: 2
+    ClassName: C2R_Login
+    TagName: C2R_Login
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 3
+    ClassName: R2C_Login
+    TagName: R2C_Login
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Error
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Message
+      ParamType: 3
+      MessageClassName: 
+    - ParamName: Address
+      ParamType: 3
+      MessageClassName: 
+    - ParamName: Key
+      ParamType: 1
+      MessageClassName: 
+    - ParamName: GateId
+      ParamType: 1
+      MessageClassName: 
+  - Enabled: 1
+    MessageType: 2
+    ClassName: C2G_LoginGate
+    TagName: C2G_LoginGate
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Key
+      ParamType: 1
+      MessageClassName: 
+    - ParamName: GateId
+      ParamType: 1
+      MessageClassName: 
+  - Enabled: 1
+    MessageType: 3
+    ClassName: G2C_LoginGate
+    TagName: G2C_LoginGate
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Error
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Message
+      ParamType: 3
+      MessageClassName: 
+    - ParamName: PlayerId
+      ParamType: 1
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 1
+    ClassName: G2C_TestHotfixMessage
+    TagName: G2C_TestHotfixMessage
+    MessageParamConfigs:
+    - ParamName: Info
+      ParamType: 3
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 7
+    ClassName: MessageResponse
+    TagName: MessageResponse
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Error
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Message
+      ParamType: 3
+      MessageClassName: 
+  - Enabled: 1
+    MessageType: 6
+    ClassName: C2M_TestActorRequest
+    TagName: C2M_TestActorRequest
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      MessageClassName: 
+    - ParamName: Info
+      ParamType: 3
+      MessageClassName: 
+  - Enabled: 1
+    MessageType: 7
+    ClassName: M2C_TestActorResponse
+    TagName: M2C_TestActorResponse
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Error
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Message
+      ParamType: 3
+      MessageClassName: 
+    - ParamName: Info
+      ParamType: 3
+      MessageClassName: 
+  - Enabled: 1
+    MessageType: 1
+    ClassName: PlayerInfo
+    TagName: PlayerInfo
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      MessageClassName: 
+  - Enabled: 1
+    MessageType: 2
+    ClassName: C2G_PlayerInfo
+    TagName: C2G_PlayerInfo
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      MessageClassName: 
+  - Enabled: 1
+    MessageType: 3
+    ClassName: G2C_PlayerInfo
+    TagName: G2C_PlayerInfo
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Error
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Message
+      ParamType: 3
+      MessageClassName: 
+    - ParamName: TestRepeatedString
+      ParamType: 9
+      MessageClassName: 
+    - ParamName: TestRepeatedInt32
+      ParamType: 6
+      MessageClassName: 
+    - ParamName: TestRepeatedInt64
+      ParamType: 7
+      MessageClassName: 
+  - Enabled: 1
+    MessageType: 0
+    ClassName: UnitInfo
+    TagName: UnitInfo
+    MessageParamConfigs:
+    - ParamName: UnitId
+      ParamType: 1
+      MessageClassName: 
+    - ParamName: X
+      ParamType: 2
+      MessageClassName: 
+    - ParamName: Y
+      ParamType: 2
+      MessageClassName: 
+    - ParamName: Z
+      ParamType: 2
+      MessageClassName: 
+    - ParamName: AngleY
+      ParamType: 0
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 5
+    ClassName: UnitOperation
+    TagName: UnitOperation
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      MessageClassName: 
+    - ParamName: Id
+      ParamType: 1
+      MessageClassName: 
+    - ParamName: Index
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Time
+      ParamType: 1
+      MessageClassName: 
+    - ParamName: UnitId
+      ParamType: 1
+      MessageClassName: 
+    - ParamName: X
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Y
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Z
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: AngleY
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Operation
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: IntParams
+      ParamType: 6
+      MessageClassName: 
+    - ParamName: StringParams
+      ParamType: 9
+      MessageClassName: 
+    - ParamName: LongParams
+      ParamType: 7
+      MessageClassName: 
+  - Enabled: 1
+    MessageType: 0
+    ClassName: EntiyInfo
+    TagName: EntiyInfo
+    MessageParamConfigs:
+    - ParamName: Type
+      ParamType: 0
+      MessageClassName: 
+  - Enabled: 1
+    MessageType: 4
+    ClassName: M2C_InViewUnits
+    TagName: M2C_InViewUnits
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      MessageClassName: 
+    - ParamName: SpaceType
+      ParamType: 0
+      MessageClassName: 
+  - Enabled: 1
+    MessageType: 4
+    ClassName: M2C_OnEnterView
+    TagName: M2C_OnEnterView
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      MessageClassName: 
+    - ParamName: X
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Y
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Z
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: AngleY
+      ParamType: 0
+      MessageClassName: 
+  - Enabled: 1
+    MessageType: 4
+    ClassName: M2C_OnLeaveView
+    TagName: M2C_OnLeaveView
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      MessageClassName: 
+    - ParamName: LeaveEntity
+      ParamType: 1
+      MessageClassName: 
+    - ParamName: EntityType
+      ParamType: 0
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 5
+    ClassName: M2C_OnEntityChanged
+    TagName: M2C_OnEntityChanged
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      MessageClassName: 
+    - ParamName: Id
+      ParamType: 1
+      MessageClassName: 
+    - ParamName: EntityId
+      ParamType: 1
+      MessageClassName: 
+    - ParamName: EntityType
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: ComponentType
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: PropertyId
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: X
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Y
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Z
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: AngleY
+      ParamType: 0
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 5
+    ClassName: C2M_SetEntityProperty
+    TagName: C2M_SetEntityProperty
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      MessageClassName: 
+    - ParamName: Id
+      ParamType: 1
+      MessageClassName: 
+    - ParamName: PropertyId
+      ParamType: 0
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 6
+    ClassName: FireRequest
+    TagName: FireRequest
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      MessageClassName: 
+    - ParamName: X
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Y
+      ParamType: 0
+      MessageClassName: 
+    - ParamName: Z
+      ParamType: 0
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 2
+    ClassName: G2M_GetCopyMap
+    TagName: G2M_GetCopyMap
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      MessageClassName: 
