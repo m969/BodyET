@@ -38,6 +38,7 @@ MonoBehaviour:
     SkillEffectType: 1
     DamageType: 1
     DamageValue: 80
+    CanCrit: 0
     CureValue: 
     AddBuff: {fileID: 0}
     AddBuffTargetType: 0
@@ -47,10 +48,14 @@ MonoBehaviour:
     StateValue: 
     NumericType: 0
     NumericValue: 
+    ShieldType: 0
+    ShieldValue: 0
+    ShieldDuration: 0
   - Enabled: 1
     SkillEffectType: 3
     DamageType: 0
     DamageValue: 
+    CanCrit: 0
     CureValue: 
     AddBuff: {fileID: 11400000, guid: e9f6e9afe434d2b47b41c70f8c214017, type: 2}
     AddBuffTargetType: 0
@@ -60,3 +65,26 @@ MonoBehaviour:
     StateValue: 
     NumericType: 0
     NumericValue: 
+    ShieldType: 0
+    ShieldValue: 0
+    ShieldDuration: 0
+  - Enabled: 1
+    SkillEffectType: 7
+    DamageType: 0
+    DamageValue: 
+    CanCrit: 0
+    CureValue: 
+    AddBuff: {fileID: 0}
+    AddBuffTargetType: 0
+    RemoveBuffConfigObject: {fileID: 0}
+    RemoveBuffTargetType: 0
+    StateType: 0
+    StateValue: 
+    NumericType: 0
+    NumericValue: 
+    ShieldType: 0
+    ShieldValue: 0
+    ShieldDuration: 0
+  SkillAnimationClip: {fileID: 0}
+  SkillParticleEffect: {fileID: 0}
+  SkillAudio: {fileID: 0}

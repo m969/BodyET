@@ -45,6 +45,9 @@ MonoBehaviour:
     StateValue: 
     NumericType: 0
     NumericValue: 
+    ShieldType: 0
+    ShieldValue: 0
+    ShieldDuration: 0
   - Enabled: 1
     SkillEffectType: 3
     DamageType: 0
@@ -58,3 +61,22 @@ MonoBehaviour:
     StateValue: 
     NumericType: 0
     NumericValue: 
+    ShieldType: 0
+    ShieldValue: 0
+    ShieldDuration: 0
+  - Enabled: 1
+    SkillEffectType: 7
+    DamageType: 0
+    DamageValue: 
+    CureValue: 
+    AddBuff: {fileID: 0}
+    AddBuffTargetType: 0
+    RemoveBuffConfigObject: {fileID: 0}
+    RemoveBuffTargetType: 0
+    StateType: 0
+    StateValue: 
+    NumericType: 0
+    NumericValue: 
+    ShieldType: 0
+    ShieldValue: 144
+    ShieldDuration: 25

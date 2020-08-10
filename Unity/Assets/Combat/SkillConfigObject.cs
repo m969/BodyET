@@ -8,20 +8,39 @@ using Sirenix.OdinInspector.Editor;
 using UnityEngine.PlayerLoop;
 using Sirenix.Utilities.Editor;
 
-//#if UNITY_EDITOR
-//using UnityEditor;
-//[CustomEditor(typeof(SkillConfigObject))]
-//public class SkillConfigObjectInspector: OdinEditor
-//{
-//    public override void OnInspectorGUI()
-//    {
-//        base.OnInspectorGUI();
-//        var skillConfigObject = target as SkillConfigObject;
-//    }
-//}
-//#endif
+
 namespace Combat
 {
+//#if UNITY_EDITOR
+//    using UnityEditor;
+//    [CustomEditor(typeof(SkillConfigObject))]
+//    public class SkillConfigObjectInspector : OdinEditor
+//    {
+//        public override void OnInspectorGUI()
+//        {
+//            base.OnInspectorGUI();
+//            var skillConfigObject = target as SkillConfigObject;
+//            //var rect = SirenixEditorGUI.BeginVerticalList();
+//            //EditorGUILayout.PropertyField(serializedObject.FindProperty("MyToggleObjectList"));
+//            //SirenixEditorFields.Dropdown(rect, new GUIContent(""), skillConfigObject.MyToggleObjectList[0], skillConfigObject.MyToggleObjectList);
+//            //foreach (var item in skillConfigObject.MyToggleObjectList)
+//            //{
+//            //    var visible = true;
+//            //    var isToggle = SirenixEditorGUI.BeginToggleGroup(item, ref item.Enabled, ref visible, "");
+//            //    if (isToggle)
+//            //    {
+//            //        if (item is CureToggleGroup CureToggleGroup)
+//            //        {
+//            //            EditorGUILayout.TextField(CureToggleGroup.CureValue);
+//            //        }
+//            //    }
+//            //    SirenixEditorGUI.EndToggleGroup();
+//            //}
+//            //SirenixEditorGUI.EndVerticalList();
+//        }
+//    }
+//#endif
+
 
     [CreateAssetMenu()]
     [LabelText("技能配置")]
@@ -60,24 +79,40 @@ namespace Combat
         [Space(10)]
         [LabelText("效果列表")]
         public SkillEffectToggleGroup[] EffectGroupList;
-    } 
+
+        //public List<MyToggleObject> MyToggleObjectList = new List<MyToggleObject>()
+        //{
+        //    new CureToggleGroup(),
+        //    new DamageToggleGroup(),
+        //};
+
+        [Space(40)]
+        [LabelText("技能动作")]
+        public AnimationClip SkillAnimationClip;
+
+        [LabelText("技能特效")]
+        public GameObject SkillParticleEffect;
+
+        [LabelText("技能音效")]
+        public AudioClip SkillAudio;
+    }
+
+
+    //[Serializable]
+    //public class CureToggleGroup : MyToggleObject
+    //{
+    //    [LabelText("治疗参数")]
+    //    public string CureValue;
+    //}
+
+    //[Serializable]
+    //public class DamageToggleGroup : MyToggleObject
+    //{
+    //    public DamageType DamageType;
+    //    [LabelText("伤害参数")]
+    //    public string DamageValue;
+    //}
 }
-
-
-//[Serializable]
-//public class CureToggleGroup : MyToggleObject
-//{
-//    [LabelText("治疗参数")]
-//    public string CureValue;
-//}
-
-//[Serializable]
-//public class DamageToggleGroup : MyToggleObject
-//{
-//    public DamageType DamageType;
-//    [LabelText("伤害参数")]
-//    public string DamageValue;
-//}
 
 namespace Combat
 {
@@ -97,6 +132,8 @@ namespace Combat
                     case SkillEffectType.CureHero: return "治疗英雄";
                     case SkillEffectType.AddBuff: return "施加Buff";
                     case SkillEffectType.RemoveBuff: return "移除Buff";
+                    case SkillEffectType.AddShield: return "添加护盾";
+                    case SkillEffectType.ChangeNumeric: return "改变数值";
                     case SkillEffectType.ChangeState:
                         {
                             switch (StateType)
@@ -107,12 +144,12 @@ namespace Combat
                                 default: return "改变状态";
                             }
                         }
-                    case SkillEffectType.ChangeNumeric: return "改变数值";
                     default: return "（空）";
                 }
             }
         }
         [ToggleGroup("Enabled")]
+        [ShowIf("SkillEffectType", SkillEffectType.None)]
         public SkillEffectType SkillEffectType;
 
         #region 造成伤害
@@ -123,6 +160,10 @@ namespace Combat
         [ShowIf("SkillEffectType", SkillEffectType.CauseDamage)]
         [LabelText("伤害参数")]
         public string DamageValue;
+        [ToggleGroup("Enabled")]
+        [ShowIf("SkillEffectType", SkillEffectType.CauseDamage)]
+        [LabelText("是否可以暴击")]
+        public bool CanCrit;
         #endregion
 
         #region 治疗英雄
@@ -169,5 +210,33 @@ namespace Combat
         [LabelText("数值参数")]
         public string NumericValue;
         #endregion
-    } 
+
+        #region 添加护盾
+        [ToggleGroup("Enabled")]
+        [ShowIf("SkillEffectType", SkillEffectType.AddShield)]
+        public ShieldType ShieldType;
+        [ToggleGroup("Enabled")]
+        [ShowIf("SkillEffectType", SkillEffectType.AddShield)]
+        [LabelText("护盾值")]
+        public uint ShieldValue;
+        [ToggleGroup("Enabled")]
+        [ShowIf("SkillEffectType", SkillEffectType.AddShield)]
+        [LabelText("护盾持续时间")]
+        [SuffixLabel("毫秒", true)]
+        public uint ShieldDuration;
+        #endregion
+    }
+
+    [LabelText("护盾类型")]
+    public enum ShieldType
+    {
+        [LabelText("普通护盾")]
+        Shield,
+        [LabelText("物理护盾")]
+        PhysicShield,
+        [LabelText("魔法护盾")]
+        MagicShield,
+        [LabelText("技能护盾")]
+        SkillShield,
+    }
 }
