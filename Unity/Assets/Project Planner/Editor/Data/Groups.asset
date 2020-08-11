@@ -95,7 +95,7 @@ MonoBehaviour:
     TreeWindowShowAnimation:
       m_Target: 0
       speed: 2
-      m_Value: 0
+      m_Value: 1
     _treeWindow_ShowTasks: 0
   - _id: b2568c2110f4b8fa3ecc89a1ad338635102852a7-28733475-d42f-4a59-8986-e2ddfddce79a
     _boardID: b2568c2110f4b8fa3ecc89a1ad338635102852a7-d2afa1de-0bd2-4600-afce-2eb83cb25d0e

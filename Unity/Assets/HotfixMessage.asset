@@ -22,7 +22,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   MessageClasses:
-  - Enabled: 1
+  - Enabled: 0
     MessageType: 2
     ClassName: C2R_Login
     TagName: C2R_Login
@@ -53,7 +53,7 @@ MonoBehaviour:
     - ParamName: GateId
       ParamType: 1
       MessageClassName: 
-  - Enabled: 1
+  - Enabled: 0
     MessageType: 2
     ClassName: C2G_LoginGate
     TagName: C2G_LoginGate
@@ -67,7 +67,7 @@ MonoBehaviour:
     - ParamName: GateId
       ParamType: 1
       MessageClassName: 
-  - Enabled: 1
+  - Enabled: 0
     MessageType: 3
     ClassName: G2C_LoginGate
     TagName: G2C_LoginGate
@@ -106,7 +106,7 @@ MonoBehaviour:
     - ParamName: Message
       ParamType: 3
       MessageClassName: 
-  - Enabled: 1
+  - Enabled: 0
     MessageType: 6
     ClassName: C2M_TestActorRequest
     TagName: C2M_TestActorRequest
@@ -120,7 +120,7 @@ MonoBehaviour:
     - ParamName: Info
       ParamType: 3
       MessageClassName: 
-  - Enabled: 1
+  - Enabled: 0
     MessageType: 7
     ClassName: M2C_TestActorResponse
     TagName: M2C_TestActorResponse
@@ -137,7 +137,7 @@ MonoBehaviour:
     - ParamName: Info
       ParamType: 3
       MessageClassName: 
-  - Enabled: 1
+  - Enabled: 0
     MessageType: 1
     ClassName: PlayerInfo
     TagName: PlayerInfo
@@ -145,7 +145,7 @@ MonoBehaviour:
     - ParamName: RpcId
       ParamType: 0
       MessageClassName: 
-  - Enabled: 1
+  - Enabled: 0
     MessageType: 2
     ClassName: C2G_PlayerInfo
     TagName: C2G_PlayerInfo
@@ -153,7 +153,7 @@ MonoBehaviour:
     - ParamName: RpcId
       ParamType: 0
       MessageClassName: 
-  - Enabled: 1
+  - Enabled: 0
     MessageType: 3
     ClassName: G2C_PlayerInfo
     TagName: G2C_PlayerInfo
@@ -167,6 +167,12 @@ MonoBehaviour:
     - ParamName: Message
       ParamType: 3
       MessageClassName: 
+    - ParamName: PlayerInfo
+      ParamType: 5
+      MessageClassName: PlayerInfo
+    - ParamName: PlayerInfos
+      ParamType: 11
+      MessageClassName: PlayerInfo
     - ParamName: TestRepeatedString
       ParamType: 9
       MessageClassName: 
@@ -176,7 +182,7 @@ MonoBehaviour:
     - ParamName: TestRepeatedInt64
       ParamType: 7
       MessageClassName: 
-  - Enabled: 1
+  - Enabled: 0
     MessageType: 0
     ClassName: UnitInfo
     TagName: UnitInfo
@@ -243,7 +249,7 @@ MonoBehaviour:
     - ParamName: LongParams
       ParamType: 7
       MessageClassName: 
-  - Enabled: 1
+  - Enabled: 0
     MessageType: 0
     ClassName: EntiyInfo
     TagName: EntiyInfo
@@ -251,7 +257,10 @@ MonoBehaviour:
     - ParamName: Type
       ParamType: 0
       MessageClassName: 
-  - Enabled: 1
+    - ParamName: BsonBytes
+      ParamType: 4
+      MessageClassName: 
+  - Enabled: 0
     MessageType: 4
     ClassName: M2C_InViewUnits
     TagName: M2C_InViewUnits
@@ -262,10 +271,16 @@ MonoBehaviour:
     - ParamName: ActorId
       ParamType: 1
       MessageClassName: 
+    - ParamName: InViewEntitys
+      ParamType: 11
+      MessageClassName: EntiyInfo
+    - ParamName: SelfUnit
+      ParamType: 4
+      MessageClassName: 
     - ParamName: SpaceType
       ParamType: 0
       MessageClassName: 
-  - Enabled: 1
+  - Enabled: 0
     MessageType: 4
     ClassName: M2C_OnEnterView
     TagName: M2C_OnEnterView
@@ -276,6 +291,9 @@ MonoBehaviour:
     - ParamName: ActorId
       ParamType: 1
       MessageClassName: 
+    - ParamName: EnterEntity
+      ParamType: 5
+      MessageClassName: EntiyInfo
     - ParamName: X
       ParamType: 0
       MessageClassName: 
@@ -288,7 +306,7 @@ MonoBehaviour:
     - ParamName: AngleY
       ParamType: 0
       MessageClassName: 
-  - Enabled: 1
+  - Enabled: 0
     MessageType: 4
     ClassName: M2C_OnLeaveView
     TagName: M2C_OnLeaveView
@@ -331,6 +349,9 @@ MonoBehaviour:
     - ParamName: PropertyId
       ParamType: 0
       MessageClassName: 
+    - ParamName: PropertyValue
+      ParamType: 4
+      MessageClassName: 
     - ParamName: X
       ParamType: 0
       MessageClassName: 
@@ -359,6 +380,9 @@ MonoBehaviour:
       MessageClassName: 
     - ParamName: PropertyId
       ParamType: 0
+      MessageClassName: 
+    - ParamName: PropertyValue
+      ParamType: 4
       MessageClassName: 
   - Enabled: 0
     MessageType: 6

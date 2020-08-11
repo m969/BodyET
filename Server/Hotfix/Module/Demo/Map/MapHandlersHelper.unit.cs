@@ -10,10 +10,9 @@ namespace ETHotfix
 	{
 		public static MapHandlersHelper Instance { get; set; }
 
-		public override async ETTask G2M_CreateUnitsHandler(Scene scene, G2M_CreateUnit request, M2G_CreateUnit response, Action reply)
-		{
-
-			await ETTask.CompletedTask;
-		}
-	}
+        public override ETTask C2G_LoginGateHandler(Scene scene, C2G_LoginGate request, G2C_LoginGate response, Action reply)
+        {
+            return base.C2G_LoginGateHandler(scene, request, response, reply);
+        }
+    }
 }

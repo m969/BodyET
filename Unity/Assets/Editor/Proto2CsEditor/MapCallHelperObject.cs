@@ -117,17 +117,22 @@ public class MapCallHelperObject : SerializedScriptableObject
     public List<MessageClass> MessageClasses;
     //public List<MessageParamConfig> MessageParamConfigs = new List<MessageParamConfig>();
 
-    //[Button("生成消息类代码", ButtonHeight = 30)]
+    [Button("生成消息类代码", ButtonHeight = 30)]
     public void GenerateMessage()
     {
 
     }
 
-    //[Button("反向导入消息类配置", ButtonHeight = 30)]
-    public void ImportMessage()
+    [Button("反向导入消息类配置", ButtonHeight = 30)]
+    public void ImportMessages()
     {
+        MessageClasses = ParseMessages();
+    }
+
+    public static List<MessageClass> ParseMessages()
+    {
+        var MessageClasses = new List<MessageClass>();
         var lines = File.ReadAllLines("./../Proto/HotfixMessage.proto");
-        MessageClasses.Clear();
         MessageClass message = null;
         foreach (var item in lines)
         {
@@ -179,6 +184,7 @@ public class MapCallHelperObject : SerializedScriptableObject
             if (message == null)
                 continue;
             var paramName = "";
+            var messageType = "";
             var paramType = Proto3Type.Int32;
             //Debug.Log(str);
             if (str.StartsWith("int32 "))
@@ -209,13 +215,35 @@ public class MapCallHelperObject : SerializedScriptableObject
                 paramType = Proto3Type.String;
                 if (repeated) paramType = Proto3Type.RepeatedString;
             }
+            else if (str.StartsWith("bytes "))
+            {
+                var match = Regex.Match(str, @"(?<=bytes ).*?(?==)");
+                paramName = match.Value;
+                paramType = Proto3Type.Bytes;
+                if (repeated) paramType = Proto3Type.RepeatedBytes;
+            }
             else
             {
-                continue;
+                if (!str.StartsWith("//") && str.EndsWith(";"))
+                {
+                    var arr = str.Split(' ');
+                    if (arr.Length > 2)
+                    {
+                        paramName = arr[1];
+                        messageType = arr[0];
+                        paramType = Proto3Type.Message;
+                        if (repeated) paramType = Proto3Type.RepeatedMessage;
+                    }
+                }
+                else
+                {
+                    continue;
+                }
             }
             //Debug.Log(paramName);
-            message.MessageParamConfigs.Add(new MessageParamConfig() { ParamName = paramName.Trim(), ParamType = paramType });
+            message.MessageParamConfigs.Add(new MessageParamConfig() { ParamName = paramName.Trim(), ParamType = paramType, MessageClassName = messageType });
         }
+        return MessageClasses;
     }
 }
 
@@ -249,7 +277,7 @@ public class MessageParamConfig
     [HideLabel]
     public string ParamName;
 
-    [HorizontalGroup(80)]
+    [HorizontalGroup(100)]
     [HideLabel]
     public Proto3Type ParamType;
 

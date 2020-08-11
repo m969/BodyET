@@ -23,10 +23,10 @@ MonoBehaviour:
     _scrollPosition: {x: 0, y: 0}
     _treeWindow_SearchShow: 1
     treeWindowShowGroupsAnimation:
-      m_Target: 1
+      m_Target: 0
       speed: 2
-      m_Value: 1
-    _treeWindow_ShowGroups: 1
+      m_Value: 0
+    _treeWindow_ShowGroups: 0
   - _id: b2568c2110f4b8fa3ecc89a1ad338635102852a7-d2afa1de-0bd2-4600-afce-2eb83cb25d0e
     _name: BodyET
     _groupIds:
@@ -37,7 +37,7 @@ MonoBehaviour:
     _scrollPosition: {x: 0, y: 0}
     _treeWindow_SearchShow: 1
     treeWindowShowGroupsAnimation:
-      m_Target: 0
+      m_Target: 1
       speed: 2
-      m_Value: 0
-    _treeWindow_ShowGroups: 0
+      m_Value: 1
+    _treeWindow_ShowGroups: 1
