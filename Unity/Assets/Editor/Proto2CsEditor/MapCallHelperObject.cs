@@ -123,6 +123,10 @@ public class MapCallHelperObject : SerializedScriptableObject
 
     }
 
+    [ToggleGroup("ImportMessagesGroup")]
+    public bool ImportMessagesGroup;
+
+    [ToggleGroup("ImportMessagesGroup")]
     [Button("反向导入消息类配置", ButtonHeight = 30)]
     public void ImportMessages()
     {

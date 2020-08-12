@@ -45,8 +45,8 @@ public enum SkillAffectTargetType
     EnemyTeam = 2,
 }
 
-[LabelText("作用对象")]
-public enum AddBuffTargetType
+[LabelText("施加对象")]
+public enum AddEffetTargetType
 {
     [LabelText("技能目标")]
     SkillTarget = 0,

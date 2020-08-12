@@ -134,16 +134,16 @@ namespace Combat
                     case SkillEffectType.RemoveBuff: return "移除Buff";
                     case SkillEffectType.AddShield: return "添加护盾";
                     case SkillEffectType.ChangeNumeric: return "改变数值";
-                    case SkillEffectType.ChangeState:
-                        {
-                            switch (StateType)
-                            {
-                                case StateType.Vertigo: return $"改变[眩晕]状态";
-                                case StateType.Silent: return $"改变[沉默]状态";
-                                case StateType.Poison: return $"改变[中毒]状态";
-                                default: return "改变状态";
-                            }
-                        }
+                    //case SkillEffectType.ChangeState:
+                    //    {
+                    //        switch (StateType)
+                    //        {
+                    //            case StateType.Vertigo: return $"改变[眩晕]状态";
+                    //            case StateType.Silent: return $"改变[沉默]状态";
+                    //            case StateType.Poison: return $"改变[中毒]状态";
+                    //            default: return "改变状态";
+                    //        }
+                    //    }
                     default: return "（空）";
                 }
             }
@@ -151,6 +151,10 @@ namespace Combat
         [ToggleGroup("Enabled")]
         [ShowIf("SkillEffectType", SkillEffectType.None)]
         public SkillEffectType SkillEffectType;
+
+        [ToggleGroup("Enabled")]
+        //[ShowIf("SkillEffectType", SkillEffectType.AddBuff)]
+        public AddEffetTargetType AddBuffTargetType;
 
         #region 造成伤害
         [ToggleGroup("Enabled")]
@@ -177,9 +181,6 @@ namespace Combat
         [ToggleGroup("Enabled")]
         [ShowIf("SkillEffectType", SkillEffectType.AddBuff)]
         public BuffConfigObject AddBuff;
-        [ToggleGroup("Enabled")]
-        [ShowIf("SkillEffectType", SkillEffectType.AddBuff)]
-        public AddBuffTargetType AddBuffTargetType;
         #endregion
 
         #region 移除Buff
@@ -188,18 +189,18 @@ namespace Combat
         public BuffConfigObject RemoveBuffConfigObject;
         [ToggleGroup("Enabled")]
         [ShowIf("SkillEffectType", SkillEffectType.RemoveBuff)]
-        public AddBuffTargetType RemoveBuffTargetType;
+        public AddEffetTargetType RemoveBuffTargetType;
         #endregion
 
-        #region 改变状态
-        [ToggleGroup("Enabled")]
-        [ShowIf("SkillEffectType", SkillEffectType.ChangeState)]
-        public StateType StateType;
-        [ToggleGroup("Enabled")]
-        [ShowIf("SkillEffectType", SkillEffectType.ChangeState)]
-        [LabelText("状态参数")]
-        public string StateValue;
-        #endregion
+        //#region 改变状态
+        //[ToggleGroup("Enabled")]
+        //[ShowIf("SkillEffectType", SkillEffectType.ChangeState)]
+        //public StateType StateType;
+        //[ToggleGroup("Enabled")]
+        //[ShowIf("SkillEffectType", SkillEffectType.ChangeState)]
+        //[LabelText("状态参数")]
+        //public string StateValue;
+        //#endregion
 
         #region 改变数值
         [ToggleGroup("Enabled")]
@@ -225,6 +226,21 @@ namespace Combat
         [SuffixLabel("毫秒", true)]
         public uint ShieldDuration;
         #endregion
+
+        //#region 施加中毒效果
+        //[ToggleGroup("Enabled")]
+        //[ShowIf("SkillEffectType", SkillEffectType.AddShield)]
+        //public ShieldType ShieldType;
+        //[ToggleGroup("Enabled")]
+        //[ShowIf("SkillEffectType", SkillEffectType.AddShield)]
+        //[LabelText("护盾值")]
+        //public uint ShieldValue;
+        //[ToggleGroup("Enabled")]
+        //[ShowIf("SkillEffectType", SkillEffectType.AddShield)]
+        //[LabelText("中毒持续时间")]
+        //[SuffixLabel("毫秒", true)]
+        //public uint PoisonDuration;
+        //#endregion
     }
 
     [LabelText("护盾类型")]

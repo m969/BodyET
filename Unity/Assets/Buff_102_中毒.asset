@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 179f1b93668139542837378f98986303, type: 3}
-  m_Name: Buff_1001
+  m_Name: "Buff_102_\u4E2D\u6BD2"
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,62 +21,29 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  ID: 1001
-  Name: "\u707C\u70E7"
+  ID: 102
+  Name: "\u4E2D\u6BD2"
   ShowInBuffList: 1
   DurationToggleGroup:
     Enabled: 1
-    Duration: 3000
+    Duration: 10000
   BuffTriggerType: 2
   ConditionType: 0
   ActionType: 0
-  Interval: 100
+  Interval: 1000
   EffectGroupList:
   - Enabled: 1
     SkillEffectType: 1
-    DamageType: 1
+    AddBuffTargetType: 0
+    DamageType: 0
     DamageValue: 10
+    CanCrit: 0
     CureValue: 
     AddBuff: {fileID: 0}
-    AddBuffTargetType: 0
     RemoveBuffConfigObject: {fileID: 0}
     RemoveBuffTargetType: 0
-    StateType: 0
-    StateValue: 
     NumericType: 0
     NumericValue: 
     ShieldType: 0
     ShieldValue: 0
     ShieldDuration: 0
-  - Enabled: 1
-    SkillEffectType: 3
-    DamageType: 0
-    DamageValue: 
-    CureValue: 
-    AddBuff: {fileID: 11400000}
-    AddBuffTargetType: 0
-    RemoveBuffConfigObject: {fileID: 0}
-    RemoveBuffTargetType: 0
-    StateType: 0
-    StateValue: 
-    NumericType: 0
-    NumericValue: 
-    ShieldType: 0
-    ShieldValue: 0
-    ShieldDuration: 0
-  - Enabled: 1
-    SkillEffectType: 7
-    DamageType: 0
-    DamageValue: 
-    CureValue: 
-    AddBuff: {fileID: 0}
-    AddBuffTargetType: 0
-    RemoveBuffConfigObject: {fileID: 0}
-    RemoveBuffTargetType: 0
-    StateType: 0
-    StateValue: 
-    NumericType: 0
-    NumericValue: 
-    ShieldType: 0
-    ShieldValue: 144
-    ShieldDuration: 25

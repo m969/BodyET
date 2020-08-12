@@ -3,6 +3,7 @@ using ETModel;
 using UnityEditor;
 using System.IO;
 using System.Text;
+using System.Collections.Generic;
 
 namespace ETEditor
 {
@@ -32,62 +33,15 @@ namespace ETEditor
 			sb.AppendLine("{");
 			sb.AppendLine($"\tpublic class HandlersHelperBase");
 			sb.AppendLine("\t{");
+			sb.AppendLine("\t\tpublic static HandlersHelperBase Instance { get; set; }");
 
 			var messages = MapCallHelperObject.ParseMessages();
-			foreach (MessageClass messageClass in messages)
-			{
-				if (messageClass.MessageType == ETMessageType.IMessage
-					|| messageClass.MessageType == ETMessageType.IRequest
-					|| messageClass.MessageType == ETMessageType.IActorLocationMessage
-					|| messageClass.MessageType == ETMessageType.IActorLocationRequest
-                    )
-                {
-					var responseClass = $"MessageResponse";
-					if (messageClass.ClassName.Contains("_"))
-					{
-						var arr = messageClass.ClassName.Split('_');
-						var rev = Reverse1(arr[0]);
-						responseClass = $"{rev}_{arr[1]}";
-						var result = messages.Find(x => x.ClassName == responseClass);
-						if (result == null)
-                        {
-							responseClass = "MessageResponse";
-						}
-					}
-					sb.AppendLine($"\t\t public virtual async ETTask {messageClass.ClassName}Handler(Scene scene, {messageClass.ClassName} request, {responseClass} response, Action reply){{}}");
-				}
-			}
+			ParseMessages(sb, messages, 1);
 			sb.AppendLine("\t}");
 
-			//foreach (MessageClass messageClass in messages)
-			//{
-			//	if (messageClass.MessageType == ETMessageType.IMessage
-			//		|| messageClass.MessageType == ETMessageType.IRequest
-			//		|| messageClass.MessageType == ETMessageType.IActorLocationMessage
-			//		|| messageClass.MessageType == ETMessageType.IActorLocationRequest
-			//		)
-			//	{
-			//		var responseClass = $"MessageResponse";
-			//		if (messageClass.ClassName.Contains("_"))
-			//		{
-			//			var arr = messageClass.ClassName.Split('_');
-			//			var rev = Reverse1(arr[0]);
-			//			responseClass = $"{rev}_{arr[1]}";
-			//			var result = messages.Find(x => x.ClassName == responseClass);
-			//			if (result == null)
-			//			{
-			//				responseClass = "MessageResponse";
-			//			}
-			//		}
-			//		sb.AppendLine($"\tpublic class {messageClass.ClassName}Handler : AMRpcHandler<{messageClass.ClassName}, {responseClass}>");
-			//		sb.AppendLine("\t{");
-			//		sb.AppendLine($"\t\t public async ETTask {messageClass.ClassName}Handler(Scene scene, {messageClass.ClassName} request, {responseClass} response, Action reply){{}}");
-			//		sb.AppendLine("\t}");
+			ParseMessages(sb, messages, 2);
 
-			//	}
-			//}
-
-			sb.AppendLine("}");
+            sb.AppendLine("}");
 
 			string csPath = Path.Combine("../Server/Hotfix/Module/Demo/", "HandlersHelperBase.generate.cs");
 			File.WriteAllText(csPath, sb.ToString());
@@ -98,6 +52,176 @@ namespace ETEditor
 			char[] arr = original.ToCharArray();
 			System.Array.Reverse(arr);
 			return new string(arr);
+		}
+
+		private static void ParseMessages(StringBuilder sb, List<MessageClass> messages, int tag)
+        {
+			foreach (MessageClass messageClass in messages)
+			{
+				if (messageClass.MessageType == ETMessageType.IMessage
+					|| messageClass.MessageType == ETMessageType.IRequest
+					|| messageClass.MessageType == ETMessageType.IActorMessage
+					|| messageClass.MessageType == ETMessageType.IActorLocationMessage
+					|| messageClass.MessageType == ETMessageType.IActorLocationRequest
+					)
+				{
+					var responseClass = $"MessageResponse";
+					if (messageClass.ClassName.Contains("_"))
+					{
+						var arr = messageClass.ClassName.Split('_');
+						var rev = Reverse1(arr[0]);
+						responseClass = $"{rev}_{arr[1]}";
+						responseClass = responseClass.Replace("Request", "Response");
+						var result = messages.Find(x => x.ClassName == responseClass);
+						if (result == null)
+						{
+							//Log.Error($"{responseClass} is null");
+							responseClass = "MessageResponse";
+						}
+					}
+					var attr = "ActorMessageHandler";
+					var baseHandler = "AMActorLocationRpcHandler";
+					if (messageClass.MessageType == ETMessageType.IMessage)
+					{
+						attr = "MessageHandler";
+						baseHandler = "AMHandler";
+					}
+					if (messageClass.MessageType == ETMessageType.IRequest)
+					{
+						attr = "MessageHandler";
+						baseHandler = "AMRpcHandler";
+					}
+					if (messageClass.MessageType == ETMessageType.IActorMessage)
+					{
+						attr = "ActorMessageHandler";
+						baseHandler = "AMActorHandler";
+					}
+					if (messageClass.MessageType == ETMessageType.IActorLocationMessage)
+					{
+						attr = "ActorMessageHandler";
+						baseHandler = "AMActorLocationHandler";
+					}
+					if (messageClass.MessageType == ETMessageType.IActorLocationRequest)
+					{
+						attr = "ActorMessageHandler";
+						baseHandler = "AMActorLocationRpcHandler";
+					}
+					if (tag !=1)
+                    {
+						sb.AppendLine($"\t[{attr}]");
+					}
+
+					if (baseHandler.Contains("Actor"))
+					{
+						if (baseHandler.Contains("Rpc"))
+						{
+							if (baseHandler.Contains("Location"))
+                            {
+								if (tag ==1 )
+									sb.AppendLine($"\t\tpublic virtual async ETTask {messageClass.ClassName}Handler(Unit unit, {messageClass.ClassName} request, {responseClass} response, Action reply){{}}");
+								else
+									sb.AppendLine($"\tpublic class {messageClass.ClassName}Handler : {baseHandler}<Unit, {messageClass.ClassName}, {responseClass}>");
+							}
+							else
+                            {
+								if (tag == 1)
+									sb.AppendLine($"\t\tpublic virtual async ETTask {messageClass.ClassName}Handler(Scene scene, {messageClass.ClassName} request, {responseClass} response, Action reply){{}}");
+								else
+									sb.AppendLine($"\tpublic class {messageClass.ClassName}Handler : {baseHandler}<Scene, {messageClass.ClassName}, {responseClass}>");
+							}
+						}
+						else
+						{
+							if (baseHandler.Contains("Location"))
+                            {
+								if (tag == 1)
+									sb.AppendLine($"\t\tpublic virtual async ETTask {messageClass.ClassName}Handler(Unit unit, {messageClass.ClassName} message){{}}");
+								else
+									sb.AppendLine($"\tpublic class {messageClass.ClassName}Handler : {baseHandler}<Unit, {messageClass.ClassName}>");
+							}
+                            else
+                            {
+								if (tag == 1)
+									sb.AppendLine($"\t\tpublic virtual async ETTask {messageClass.ClassName}Handler(Scene scene, {messageClass.ClassName} message){{}}");
+								else
+									sb.AppendLine($"\tpublic class {messageClass.ClassName}Handler : {baseHandler}<Scene, {messageClass.ClassName}>");
+							}
+						}
+
+						if (tag != 1)
+                        {
+							sb.AppendLine("\t{");
+							if (baseHandler.Contains("Rpc"))
+							{
+								if (baseHandler.Contains("Location"))
+								{
+									sb.AppendLine($"\t\t protected override async ETTask Run(Unit unit, {messageClass.ClassName} request, {responseClass} response, Action reply){{");
+									sb.AppendLine($"\t\tawait HandlersHelperBase.Instance.{messageClass.ClassName}Handler(unit, request, response, reply);");
+									sb.AppendLine("\t}");
+								}
+								else
+								{
+									sb.AppendLine($"\t\t protected override async ETTask Run(Scene scene, {messageClass.ClassName} request, {responseClass} response, Action reply){{");
+									sb.AppendLine($"\t\tawait HandlersHelperBase.Instance.{messageClass.ClassName}Handler(scene, request, response, reply);");
+									sb.AppendLine("\t}");
+								}
+							}
+							else
+							{
+								if (baseHandler.Contains("Location"))
+								{
+									sb.AppendLine($"\t\t protected override async ETTask Run(Unit unit, {messageClass.ClassName} request){{");
+									sb.AppendLine($"\t\tawait HandlersHelperBase.Instance.{messageClass.ClassName}Handler(unit, request);");
+									sb.AppendLine("\t}");
+								}
+								else
+								{
+									sb.AppendLine($"\t\t protected override async ETTask Run(Scene scene, {messageClass.ClassName} request){{");
+									sb.AppendLine($"\t\tawait HandlersHelperBase.Instance.{messageClass.ClassName}Handler(scene, request);");
+									sb.AppendLine("\t}");
+								}
+							}
+						}
+					}
+					else
+					{
+						if (baseHandler.Contains("Rpc"))
+						{
+							if (tag == 1)
+								sb.AppendLine($"\t\tpublic virtual async ETTask {messageClass.ClassName}Handler(Session session, {messageClass.ClassName} request, {responseClass} response, Action reply){{}}");
+							else
+								sb.AppendLine($"\tpublic class {messageClass.ClassName}Handler : {baseHandler}<{messageClass.ClassName}, {responseClass}>");
+						}
+						else
+						{
+							if (tag == 1)
+								sb.AppendLine($"\t\tpublic virtual async ETTask {messageClass.ClassName}Handler(Session session, {messageClass.ClassName} request){{}}");
+							else
+								sb.AppendLine($"\tpublic class {messageClass.ClassName}Handler : {baseHandler}<{messageClass.ClassName}>");
+						}
+						if (tag != 1)
+                        {
+							sb.AppendLine("\t{");
+							if (baseHandler.Contains("Rpc"))
+							{
+								sb.AppendLine($"\t\t protected override async ETTask Run(Session session, {messageClass.ClassName} request, {responseClass} response, Action reply){{");
+								sb.AppendLine($"\t\tawait HandlersHelperBase.Instance.{messageClass.ClassName}Handler(session, request, response, reply);");
+								sb.AppendLine("\t}");
+							}
+							else
+							{
+								sb.AppendLine($"\t\t protected override async ETTask Run(Session session, {messageClass.ClassName} request){{");
+								sb.AppendLine($"\t\tawait HandlersHelperBase.Instance.{messageClass.ClassName}Handler(session, request);");
+								sb.AppendLine("\t}");
+							}
+						}
+					}
+					if (tag != 1)
+                    {
+						sb.AppendLine("\t}");
+					}
+				}
+			}
 		}
 	}
 }

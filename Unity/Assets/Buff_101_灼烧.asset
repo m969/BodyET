@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21c81b993b3f0f243a50c243abdb6ef9, type: 3}
-  m_Name: Skill_1001
+  m_Script: {fileID: 11500000, guid: 179f1b93668139542837378f98986303, type: 3}
+  m_Name: "Buff_101_\u707C\u70E7"
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -22,23 +22,21 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   ID: 1001
-  Name: "\u706B\u7403\u672F"
-  SkillSpellType: 0
-  SkillType: 0
-  TargetSelectType: 1
-  TargetSelect: 1
-  TargetGroupTitle: "\u76EE\u6807\u7C7B\u578B"
-  AffectTargetType: 2
-  TargetType: 0
-  Cold: 0
-  ColdGroupTitle: "\u51B7\u5374\u65F6\u95F4"
-  ColdTime: 0
+  Name: "\u707C\u70E7"
+  ShowInBuffList: 1
+  DurationToggleGroup:
+    Enabled: 1
+    Duration: 3000
+  BuffTriggerType: 2
+  ConditionType: 0
+  ActionType: 0
+  Interval: 100
   EffectGroupList:
   - Enabled: 1
     SkillEffectType: 1
     AddBuffTargetType: 0
     DamageType: 1
-    DamageValue: 80
+    DamageValue: 10
     CanCrit: 0
     CureValue: 
     AddBuff: {fileID: 0}
@@ -56,22 +54,7 @@ MonoBehaviour:
     DamageValue: 
     CanCrit: 0
     CureValue: 
-    AddBuff: {fileID: 11400000, guid: b8c91eb546ede34438b6e5f3aefa1734, type: 2}
-    RemoveBuffConfigObject: {fileID: 0}
-    RemoveBuffTargetType: 0
-    NumericType: 0
-    NumericValue: 
-    ShieldType: 0
-    ShieldValue: 0
-    ShieldDuration: 0
-  - Enabled: 1
-    SkillEffectType: 3
-    AddBuffTargetType: 0
-    DamageType: 0
-    DamageValue: 
-    CanCrit: 0
-    CureValue: 
-    AddBuff: {fileID: 11400000, guid: e9f6e9afe434d2b47b41c70f8c214017, type: 2}
+    AddBuff: {fileID: 11400000}
     RemoveBuffConfigObject: {fileID: 0}
     RemoveBuffTargetType: 0
     NumericType: 0
@@ -81,7 +64,7 @@ MonoBehaviour:
     ShieldDuration: 0
   - Enabled: 1
     SkillEffectType: 7
-    AddBuffTargetType: 1
+    AddBuffTargetType: 0
     DamageType: 0
     DamageValue: 
     CanCrit: 0
@@ -92,8 +75,5 @@ MonoBehaviour:
     NumericType: 0
     NumericValue: 
     ShieldType: 0
-    ShieldValue: 0
-    ShieldDuration: 0
-  SkillAnimationClip: {fileID: 0}
-  SkillParticleEffect: {fileID: 0}
-  SkillAudio: {fileID: 0}
+    ShieldValue: 144
+    ShieldDuration: 25

@@ -7,6 +7,7 @@ namespace ETHotfix
     {
         public override void Run()
         {
+            HandlersHelper.Instance = new HandlersHelper();
             RunInner().Coroutine();
         }
 
