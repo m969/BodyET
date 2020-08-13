@@ -4,10 +4,11 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using System;
+using System.IO;
 using Sirenix.OdinInspector.Editor;
 using UnityEngine.PlayerLoop;
 using Sirenix.Utilities.Editor;
-
+using UnityEngine.Serialization;
 
 namespace Combat
 {
@@ -47,8 +48,10 @@ namespace Combat
     public class SkillConfigObject : SerializedScriptableObject
     {
         [LabelText("技能ID")]
+        [DelayedProperty]
         public uint ID;
         [LabelText("技能名称")]
+        [DelayedProperty]
         public string Name;
         public SkillSpellType SkillSpellType;
         public SkillType SkillType;
@@ -95,8 +98,30 @@ namespace Combat
 
         [LabelText("技能音效")]
         public AudioClip SkillAudio;
-    }
 
+        [OnInspectorGUI]
+        private void OnInspectorGUI()
+        {
+            foreach (var item in this.EffectGroupList)
+            {
+                item.IsSkillEffect = true;
+            }
+            string[] guids=UnityEditor.Selection.assetGUIDs;
+            int i=guids.Length;
+            if (i == 1)
+            {
+                string guid=guids[0];
+                string assetPath=UnityEditor.AssetDatabase.GUIDToAssetPath(guid);
+                var fileName = Path.GetFileName(assetPath);
+                var newName = $"Skill_{this.ID}_{this.Name}";
+                if (!fileName.StartsWith(newName))
+                {
+                    Debug.Log(assetPath);
+                    UnityEditor.AssetDatabase.RenameAsset(assetPath, newName);
+                }
+            }
+        }
+    }
 
     //[Serializable]
     //public class CureToggleGroup : MyToggleObject
@@ -152,9 +177,12 @@ namespace Combat
         [ShowIf("SkillEffectType", SkillEffectType.None)]
         public SkillEffectType SkillEffectType;
 
+        [HideInInspector]
+        public bool IsSkillEffect;
+        
         [ToggleGroup("Enabled")]
-        //[ShowIf("SkillEffectType", SkillEffectType.AddBuff)]
-        public AddEffetTargetType AddBuffTargetType;
+        [ShowIf("IsSkillEffect", true)]
+        public AddSkillEffetTargetType AddSkillEffectTargetType;
 
         #region 造成伤害
         [ToggleGroup("Enabled")]
@@ -189,18 +217,8 @@ namespace Combat
         public BuffConfigObject RemoveBuffConfigObject;
         [ToggleGroup("Enabled")]
         [ShowIf("SkillEffectType", SkillEffectType.RemoveBuff)]
-        public AddEffetTargetType RemoveBuffTargetType;
+        public AddSkillEffetTargetType RemoveBuffTargetType;
         #endregion
-
-        //#region 改变状态
-        //[ToggleGroup("Enabled")]
-        //[ShowIf("SkillEffectType", SkillEffectType.ChangeState)]
-        //public StateType StateType;
-        //[ToggleGroup("Enabled")]
-        //[ShowIf("SkillEffectType", SkillEffectType.ChangeState)]
-        //[LabelText("状态参数")]
-        //public string StateValue;
-        //#endregion
 
         #region 改变数值
         [ToggleGroup("Enabled")]
@@ -226,21 +244,6 @@ namespace Combat
         [SuffixLabel("毫秒", true)]
         public uint ShieldDuration;
         #endregion
-
-        //#region 施加中毒效果
-        //[ToggleGroup("Enabled")]
-        //[ShowIf("SkillEffectType", SkillEffectType.AddShield)]
-        //public ShieldType ShieldType;
-        //[ToggleGroup("Enabled")]
-        //[ShowIf("SkillEffectType", SkillEffectType.AddShield)]
-        //[LabelText("护盾值")]
-        //public uint ShieldValue;
-        //[ToggleGroup("Enabled")]
-        //[ShowIf("SkillEffectType", SkillEffectType.AddShield)]
-        //[LabelText("中毒持续时间")]
-        //[SuffixLabel("毫秒", true)]
-        //public uint PoisonDuration;
-        //#endregion
     }
 
     [LabelText("护盾类型")]

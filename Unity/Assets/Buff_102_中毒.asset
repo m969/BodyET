@@ -27,6 +27,9 @@ MonoBehaviour:
   DurationToggleGroup:
     Enabled: 1
     Duration: 10000
+  StateToggleGroup:
+    Enabled: 1
+    StateType: 2
   BuffTriggerType: 2
   ConditionType: 0
   ActionType: 0
@@ -34,9 +37,10 @@ MonoBehaviour:
   EffectGroupList:
   - Enabled: 1
     SkillEffectType: 1
-    AddBuffTargetType: 0
-    DamageType: 0
-    DamageValue: 10
+    IsSkillEffect: 0
+    AddSkillEffectTargetType: 0
+    DamageType: 1
+    DamageValue: 
     CanCrit: 0
     CureValue: 
     AddBuff: {fileID: 0}

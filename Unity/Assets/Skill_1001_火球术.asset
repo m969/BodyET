@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21c81b993b3f0f243a50c243abdb6ef9, type: 3}
-  m_Name: Skill_1001
+  m_Name: "Skill_1001_\u706B\u7403\u672F"
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -36,7 +36,8 @@ MonoBehaviour:
   EffectGroupList:
   - Enabled: 1
     SkillEffectType: 1
-    AddBuffTargetType: 0
+    IsSkillEffect: 1
+    AddSkillEffectTargetType: 0
     DamageType: 1
     DamageValue: 80
     CanCrit: 0
@@ -51,7 +52,8 @@ MonoBehaviour:
     ShieldDuration: 0
   - Enabled: 1
     SkillEffectType: 3
-    AddBuffTargetType: 0
+    IsSkillEffect: 1
+    AddSkillEffectTargetType: 0
     DamageType: 0
     DamageValue: 
     CanCrit: 0
@@ -66,7 +68,8 @@ MonoBehaviour:
     ShieldDuration: 0
   - Enabled: 1
     SkillEffectType: 3
-    AddBuffTargetType: 0
+    IsSkillEffect: 1
+    AddSkillEffectTargetType: 0
     DamageType: 0
     DamageValue: 
     CanCrit: 0
@@ -81,7 +84,8 @@ MonoBehaviour:
     ShieldDuration: 0
   - Enabled: 1
     SkillEffectType: 7
-    AddBuffTargetType: 1
+    IsSkillEffect: 1
+    AddSkillEffectTargetType: 1
     DamageType: 0
     DamageValue: 
     CanCrit: 0

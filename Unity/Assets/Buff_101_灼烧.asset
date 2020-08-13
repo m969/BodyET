@@ -27,6 +27,9 @@ MonoBehaviour:
   DurationToggleGroup:
     Enabled: 1
     Duration: 3000
+  StateToggleGroup:
+    Enabled: 1
+    StateType: 3
   BuffTriggerType: 2
   ConditionType: 0
   ActionType: 0
@@ -34,9 +37,10 @@ MonoBehaviour:
   EffectGroupList:
   - Enabled: 1
     SkillEffectType: 1
-    AddBuffTargetType: 0
+    IsSkillEffect: 0
+    AddSkillEffectTargetType: 0
     DamageType: 1
-    DamageValue: 10
+    DamageValue: 
     CanCrit: 0
     CureValue: 
     AddBuff: {fileID: 0}
@@ -47,33 +51,3 @@ MonoBehaviour:
     ShieldType: 0
     ShieldValue: 0
     ShieldDuration: 0
-  - Enabled: 1
-    SkillEffectType: 3
-    AddBuffTargetType: 0
-    DamageType: 0
-    DamageValue: 
-    CanCrit: 0
-    CureValue: 
-    AddBuff: {fileID: 11400000}
-    RemoveBuffConfigObject: {fileID: 0}
-    RemoveBuffTargetType: 0
-    NumericType: 0
-    NumericValue: 
-    ShieldType: 0
-    ShieldValue: 0
-    ShieldDuration: 0
-  - Enabled: 1
-    SkillEffectType: 7
-    AddBuffTargetType: 0
-    DamageType: 0
-    DamageValue: 
-    CanCrit: 0
-    CureValue: 
-    AddBuff: {fileID: 0}
-    RemoveBuffConfigObject: {fileID: 0}
-    RemoveBuffTargetType: 0
-    NumericType: 0
-    NumericValue: 
-    ShieldType: 0
-    ShieldValue: 144
-    ShieldDuration: 25

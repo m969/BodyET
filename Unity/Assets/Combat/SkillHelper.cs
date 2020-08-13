@@ -46,7 +46,7 @@ public enum SkillAffectTargetType
 }
 
 [LabelText("施加对象")]
-public enum AddEffetTargetType
+public enum AddSkillEffetTargetType
 {
     [LabelText("技能目标")]
     SkillTarget = 0,
@@ -105,6 +105,8 @@ public enum StateType
     Silent = 1,
     [LabelText("中毒")]
     Poison = 2,
+    [LabelText("灼烧")]
+    Burn = 3,
 }
 
 [LabelText("数值类型")]

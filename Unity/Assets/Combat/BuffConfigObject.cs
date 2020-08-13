@@ -20,6 +20,9 @@ namespace Combat
 
         [Toggle("Enabled")]
         public DurationToggleGroup DurationToggleGroup = new DurationToggleGroup();
+        
+        [Toggle("Enabled")]
+        public StateToggleGroup StateToggleGroup = new StateToggleGroup();
 
         [Space(10)]
         [LabelText("Buff效果触发机制")]
@@ -51,5 +54,13 @@ namespace Combat
         [LabelText("持续时间")]
         [SuffixLabel("毫秒", true)]
         public uint Duration;
-    } 
+    }
+    
+    [Serializable]
+    [LabelText("设置状态")]
+    public class StateToggleGroup : MyToggleObject
+    {
+        [LabelText("设置")]
+        public StateType StateType;
+    }
 }
