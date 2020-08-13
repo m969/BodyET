@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
+using System.IO;
 
 namespace Combat
 {
@@ -12,9 +13,13 @@ namespace Combat
     public class BuffConfigObject : SerializedScriptableObject
     {
         [LabelText("BuffID")]
+        [DelayedProperty]
         public int ID;
         [LabelText("Buff名称")]
+        [DelayedProperty]
         public string Name;
+        [LabelText("Buff/Debuff类型")]
+        public BuffType BuffType;
         [LabelText("是否在Buff状态栏显示")]
         public bool ShowInBuffList;
 
@@ -38,6 +43,33 @@ namespace Combat
 
         [LabelText("效果列表")]
         public SkillEffectToggleGroup[] EffectGroupList;
+
+        [Space(40)]
+        [LabelText("Buff特效")]
+        public GameObject SkillParticleEffect;
+
+        [LabelText("Buff音效")]
+        public AudioClip SkillAudio;
+
+
+        [OnInspectorGUI]
+        private void OnInspectorGUI()
+        {
+            string[] guids = UnityEditor.Selection.assetGUIDs;
+            int i = guids.Length;
+            if (i == 1)
+            {
+                string guid = guids[0];
+                string assetPath = UnityEditor.AssetDatabase.GUIDToAssetPath(guid);
+                var fileName = Path.GetFileName(assetPath);
+                var newName = $"Buff_{this.ID}_{this.Name}";
+                if (!fileName.StartsWith(newName))
+                {
+                    Debug.Log(assetPath);
+                    UnityEditor.AssetDatabase.RenameAsset(assetPath, newName);
+                }
+            }
+        }
     }
 
     [Serializable]

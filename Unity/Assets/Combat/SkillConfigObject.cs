@@ -99,6 +99,7 @@ namespace Combat
         [LabelText("技能音效")]
         public AudioClip SkillAudio;
 
+
         [OnInspectorGUI]
         private void OnInspectorGUI()
         {
@@ -155,9 +156,15 @@ namespace Combat
                     case SkillEffectType.None: return "（空）";
                     case SkillEffectType.CauseDamage: return "造成伤害";
                     case SkillEffectType.CureHero: return "治疗英雄";
-                    case SkillEffectType.AddBuff: return "施加Buff";
+                    case SkillEffectType.AddBuff:
+                        if (AddBuff != null)
+                        {
+                            return $"施加 [ {AddBuff.Name} ] Buff";
+                        }
+                        return "施加Buff";
                     case SkillEffectType.RemoveBuff: return "移除Buff";
                     case SkillEffectType.AddShield: return "添加护盾";
+                    case SkillEffectType.AddTag: return "标记叠加";
                     case SkillEffectType.ChangeNumeric: return "改变数值";
                     //case SkillEffectType.ChangeState:
                     //    {
@@ -244,6 +251,21 @@ namespace Combat
         [SuffixLabel("毫秒", true)]
         public uint ShieldDuration;
         #endregion
+
+        #region 标记叠加
+        [ToggleGroup("Enabled")]
+        [ShowIf("SkillEffectType", SkillEffectType.AddTag)]
+        public TagType TagType;
+        [ToggleGroup("Enabled")]
+        [ShowIf("SkillEffectType", SkillEffectType.AddTag)]
+        [LabelText("标记数量")]
+        public uint TagCount = 1;
+        [ToggleGroup("Enabled")]
+        [ShowIf("SkillEffectType", SkillEffectType.AddTag)]
+        [LabelText("标记停留时间")]
+        [SuffixLabel("毫秒", true)]
+        public uint TagDuration;
+        #endregion
     }
 
     [LabelText("护盾类型")]
@@ -257,5 +279,12 @@ namespace Combat
         MagicShield,
         [LabelText("技能护盾")]
         SkillShield,
+    }
+
+    [LabelText("标记类型")]
+    public enum TagType
+    {
+        [LabelText("能量标记")]
+        Power,
     }
 }

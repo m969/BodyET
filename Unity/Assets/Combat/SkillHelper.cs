@@ -94,6 +94,8 @@ public enum SkillEffectType
     ChangeNumeric = 6,
     [LabelText("添加护盾")]
     AddShield = 7,
+    [LabelText("标记叠加")]
+    AddTag = 8,
 }
 
 [LabelText("状态类型")]

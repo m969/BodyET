@@ -23,6 +23,7 @@ MonoBehaviour:
     SerializationNodes: []
   ID: 102
   Name: "\u4E2D\u6BD2"
+  BuffType: 1
   ShowInBuffList: 1
   DurationToggleGroup:
     Enabled: 1
@@ -30,7 +31,7 @@ MonoBehaviour:
   StateToggleGroup:
     Enabled: 1
     StateType: 2
-  BuffTriggerType: 2
+  BuffTriggerType: 3
   ConditionType: 0
   ActionType: 0
   Interval: 1000

@@ -155,9 +155,17 @@ public class ExecuteLogic : Function
     public string Value;
 }
 
+public enum BuffType
+{
+    Buff,
+    Debuff,
+}
+
 [LabelText("Buff效果触发机制")]
 public enum BuffTriggerType
 {
+    [LabelText("立即触发")]
+    Immediate,
     [LabelText("条件触发")]
     Condition,
     [LabelText("动作触发")]

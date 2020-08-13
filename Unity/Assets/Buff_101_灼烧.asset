@@ -21,8 +21,9 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  ID: 1001
+  ID: 101
   Name: "\u707C\u70E7"
+  BuffType: 1
   ShowInBuffList: 1
   DurationToggleGroup:
     Enabled: 1
@@ -30,7 +31,7 @@ MonoBehaviour:
   StateToggleGroup:
     Enabled: 1
     StateType: 3
-  BuffTriggerType: 2
+  BuffTriggerType: 3
   ConditionType: 0
   ActionType: 0
   Interval: 100
@@ -51,3 +52,6 @@ MonoBehaviour:
     ShieldType: 0
     ShieldValue: 0
     ShieldDuration: 0
+    TagType: 0
+    TagCount: 0
+    TagDuration: 0
