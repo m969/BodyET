@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 179f1b93668139542837378f98986303, type: 3}
-  m_Name: "Buff_102_\u4E2D\u6BD2"
+  m_Name: "Status_Poison_\u4E2D\u6BD2"
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,21 +21,23 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  ID: 102
+  ID: Poison
   Name: "\u4E2D\u6BD2"
-  BuffType: 1
-  ShowInBuffList: 1
+  StatusType: 1
+  ShowInStatusIconList: 1
+  MaxStack: 1
   DurationToggleGroup:
     Enabled: 1
     Duration: 10000
   StateToggleGroup:
     Enabled: 1
-    StateType: 2
-  BuffTriggerType: 3
+    StateType: 6
+  EffectTriggerType: 0
   ConditionType: 0
   ActionType: 0
   Interval: 1000
-  EffectGroupList:
+  StartEffectGroupList: []
+  RunningEffectGroupList:
   - Enabled: 1
     SkillEffectType: 1
     IsSkillEffect: 0
@@ -44,11 +46,17 @@ MonoBehaviour:
     DamageValue: 
     CanCrit: 0
     CureValue: 
-    AddBuff: {fileID: 0}
-    RemoveBuffConfigObject: {fileID: 0}
+    AddStatus: {fileID: 0}
+    RemoveStatusConfigObject: {fileID: 0}
     RemoveBuffTargetType: 0
     NumericType: 0
     NumericValue: 
     ShieldType: 0
     ShieldValue: 0
     ShieldDuration: 0
+    TagType: 0
+    TagCount: 1
+    TagDuration: 0
+  EndEffectGroupList: []
+  SkillParticleEffect: {fileID: 0}
+  SkillAudio: {fileID: 0}

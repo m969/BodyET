@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using System;
+using Sirenix.OdinInspector;
 
 public class SkillHelper
 {
@@ -98,17 +99,27 @@ public enum SkillEffectType
     AddTag = 8,
 }
 
+[Flags]
 [LabelText("状态类型")]
 public enum StateType
 {
+    [LabelText("（空）")]
+    None = 0,
+    [LabelText("移动禁止")]
+    MoveForbid = 1 << 1,
+    [LabelText("技能禁止")]
+    SkillForbid = 1 << 2,
+    
+    [LabelText("禁锢")]
+    Immobility = MoveForbid,
     [LabelText("眩晕")]
-    Vertigo = 0,
+    Vertigo = MoveForbid | SkillForbid,
     [LabelText("沉默")]
-    Silent = 1,
+    Silent = SkillForbid,
     [LabelText("中毒")]
-    Poison = 2,
+    Poison = 1 << 21,
     [LabelText("灼烧")]
-    Burn = 3,
+    Burn = 1 << 22,
 }
 
 [LabelText("数值类型")]

@@ -42,8 +42,8 @@ MonoBehaviour:
     DamageValue: 80
     CanCrit: 0
     CureValue: 
-    AddBuff: {fileID: 0}
-    RemoveBuffConfigObject: {fileID: 0}
+    AddStatus: {fileID: 0}
+    RemoveStatusConfigObject: {fileID: 0}
     RemoveBuffTargetType: 0
     NumericType: 0
     NumericValue: 
@@ -61,8 +61,8 @@ MonoBehaviour:
     DamageValue: 
     CanCrit: 0
     CureValue: 
-    AddBuff: {fileID: 11400000, guid: b8c91eb546ede34438b6e5f3aefa1734, type: 2}
-    RemoveBuffConfigObject: {fileID: 0}
+    AddStatus: {fileID: 11400000, guid: e9f6e9afe434d2b47b41c70f8c214017, type: 2}
+    RemoveStatusConfigObject: {fileID: 0}
     RemoveBuffTargetType: 0
     NumericType: 0
     NumericValue: 
@@ -80,8 +80,8 @@ MonoBehaviour:
     DamageValue: 
     CanCrit: 0
     CureValue: 
-    AddBuff: {fileID: 11400000, guid: e9f6e9afe434d2b47b41c70f8c214017, type: 2}
-    RemoveBuffConfigObject: {fileID: 0}
+    AddStatus: {fileID: 11400000, guid: b8c91eb546ede34438b6e5f3aefa1734, type: 2}
+    RemoveStatusConfigObject: {fileID: 0}
     RemoveBuffTargetType: 0
     NumericType: 0
     NumericValue: 
@@ -99,8 +99,8 @@ MonoBehaviour:
     DamageValue: 
     CanCrit: 0
     CureValue: 
-    AddBuff: {fileID: 0}
-    RemoveBuffConfigObject: {fileID: 0}
+    AddStatus: {fileID: 0}
+    RemoveStatusConfigObject: {fileID: 0}
     RemoveBuffTargetType: 0
     NumericType: 0
     NumericValue: 
@@ -118,8 +118,8 @@ MonoBehaviour:
     DamageValue: 
     CanCrit: 0
     CureValue: 
-    AddBuff: {fileID: 0}
-    RemoveBuffConfigObject: {fileID: 0}
+    AddStatus: {fileID: 0}
+    RemoveStatusConfigObject: {fileID: 0}
     RemoveBuffTargetType: 0
     NumericType: 0
     NumericValue: 

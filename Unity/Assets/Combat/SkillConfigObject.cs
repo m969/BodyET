@@ -43,7 +43,7 @@ namespace Combat
 //#endif
 
 
-    [CreateAssetMenu()]
+    [CreateAssetMenu(fileName = "技能配置", menuName = "技能|状态/技能配置")]
     [LabelText("技能配置")]
     public class SkillConfigObject : SerializedScriptableObject
     {
@@ -52,7 +52,7 @@ namespace Combat
         public uint ID;
         [LabelText("技能名称")]
         [DelayedProperty]
-        public string Name;
+        public string Name = "技能1";
         public SkillSpellType SkillSpellType;
         public SkillType SkillType;
         public SkillTargetSelectType TargetSelectType;
@@ -79,23 +79,22 @@ namespace Combat
         [SuffixLabel("毫秒", true)]
         public uint ColdTime;
 
-        [Space(10)]
+        [Space(30)]
         [LabelText("效果列表")]
+        [OnInspectorGUI("DrawSpace", append:true)]
         public SkillEffectToggleGroup[] EffectGroupList;
+        private void DrawSpace()
+        {
+            GUILayout.Space(30);
+        }
 
-        //public List<MyToggleObject> MyToggleObjectList = new List<MyToggleObject>()
-        //{
-        //    new CureToggleGroup(),
-        //    new DamageToggleGroup(),
-        //};
-
-        [Space(40)]
+        [BoxGroup("技能表现")]
         [LabelText("技能动作")]
         public AnimationClip SkillAnimationClip;
-
+        [BoxGroup("技能表现")]
         [LabelText("技能特效")]
         public GameObject SkillParticleEffect;
-
+        [BoxGroup("技能表现")]
         [LabelText("技能音效")]
         public AudioClip SkillAudio;
 
@@ -157,12 +156,12 @@ namespace Combat
                     case SkillEffectType.CauseDamage: return "造成伤害";
                     case SkillEffectType.CureHero: return "治疗英雄";
                     case SkillEffectType.AddBuff:
-                        if (AddBuff != null)
+                        if (this.AddStatus != null)
                         {
-                            return $"施加 [ {AddBuff.Name} ] Buff";
+                            return $"施加 [ {this.AddStatus.Name} ] 状态";
                         }
-                        return "施加Buff";
-                    case SkillEffectType.RemoveBuff: return "移除Buff";
+                        return "施加状态";
+                    case SkillEffectType.RemoveBuff: return "移除状态";
                     case SkillEffectType.AddShield: return "添加护盾";
                     case SkillEffectType.AddTag: return "标记叠加";
                     case SkillEffectType.ChangeNumeric: return "改变数值";
@@ -197,7 +196,7 @@ namespace Combat
         public DamageType DamageType;
         [ToggleGroup("Enabled")]
         [ShowIf("SkillEffectType", SkillEffectType.CauseDamage)]
-        [LabelText("伤害参数")]
+        [LabelText("伤害取值")]
         public string DamageValue;
         [ToggleGroup("Enabled")]
         [ShowIf("SkillEffectType", SkillEffectType.CauseDamage)]
@@ -215,13 +214,13 @@ namespace Combat
         #region 施加Buff
         [ToggleGroup("Enabled")]
         [ShowIf("SkillEffectType", SkillEffectType.AddBuff)]
-        public BuffConfigObject AddBuff;
+        public StatusConfigObject AddStatus;
         #endregion
 
         #region 移除Buff
         [ToggleGroup("Enabled")]
         [ShowIf("SkillEffectType", SkillEffectType.RemoveBuff)]
-        public BuffConfigObject RemoveBuffConfigObject;
+        public StatusConfigObject RemoveStatusConfigObject;
         [ToggleGroup("Enabled")]
         [ShowIf("SkillEffectType", SkillEffectType.RemoveBuff)]
         public AddSkillEffetTargetType RemoveBuffTargetType;

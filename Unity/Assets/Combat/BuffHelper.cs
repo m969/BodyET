@@ -155,14 +155,18 @@ public class ExecuteLogic : Function
     public string Value;
 }
 
-public enum BuffType
+public enum StatusType
 {
+    [LabelText("Buff(增益)")]
     Buff,
+    [LabelText("Debuff(减益)")]
     Debuff,
+    [LabelText("其他")]
+    Other,
 }
 
-[LabelText("Buff效果触发机制")]
-public enum BuffTriggerType
+[LabelText("效果触发机制")]
+public enum EffectTriggerType
 {
     [LabelText("立即触发")]
     Immediate,

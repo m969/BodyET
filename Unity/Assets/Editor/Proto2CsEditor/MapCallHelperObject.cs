@@ -110,7 +110,7 @@ public class MapCallHelperObjectInspector : OdinEditor
 }
 #endif
 
-[CreateAssetMenu()]
+[CreateAssetMenu(fileName = "消息协议配置", menuName = "消息协议/消息协议配置")]
 public class MapCallHelperObject : SerializedScriptableObject
 {
     [LabelText("消息类列表")]
