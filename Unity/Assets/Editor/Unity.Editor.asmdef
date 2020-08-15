@@ -3,7 +3,7 @@
     "references": [
         "Unity.Model",
         "Unity.ThirdParty",
-        "Unity.Combat"
+        "UnityGame.Combat"
     ],
     "includePlatforms": [
         "Editor"

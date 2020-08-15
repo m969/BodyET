@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
+using UnityGame.Combat;
 
 public class BuffEditor : EditorWindow
 {

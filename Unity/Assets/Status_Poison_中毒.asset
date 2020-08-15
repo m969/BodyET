@@ -29,19 +29,12 @@ MonoBehaviour:
   DurationToggleGroup:
     Enabled: 1
     Duration: 10000
-  StateToggleGroup:
-    Enabled: 1
-    StateType: 6
-  EffectTriggerType: 0
-  ConditionType: 0
-  ActionType: 0
-  Interval: 1000
-  StartEffectGroupList: []
   RunningEffectGroupList:
   - Enabled: 1
     SkillEffectType: 1
     IsSkillEffect: 0
     AddSkillEffectTargetType: 0
+    EffectTriggerType: 0
     DamageType: 1
     DamageValue: 
     CanCrit: 0
@@ -54,9 +47,5 @@ MonoBehaviour:
     ShieldType: 0
     ShieldValue: 0
     ShieldDuration: 0
-    TagType: 0
-    TagCount: 1
-    TagDuration: 0
-  EndEffectGroupList: []
   SkillParticleEffect: {fileID: 0}
   SkillAudio: {fileID: 0}

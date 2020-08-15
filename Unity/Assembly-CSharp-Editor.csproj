@@ -760,10 +760,6 @@
       <Project>{686145E0-A51B-685E-EF99-A1034C8B63AB}</Project>
       <Name>Sirenix.OdinInspector.CompatibilityLayer.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.Combat.csproj">
-      <Project>{2D5C12C4-FDB2-04FB-177D-0BADD45A13D0}</Project>
-      <Name>Unity.Combat</Name>
-    </ProjectReference>
     <ProjectReference Include="Sirenix.OdinInspector.CompatibilityLayer.csproj">
       <Project>{E387569F-725F-F5C8-517B-584709B7D5D8}</Project>
       <Name>Sirenix.OdinInspector.CompatibilityLayer</Name>
@@ -779,6 +775,10 @@
     <ProjectReference Include="Sirenix.OdinValidator.csproj">
       <Project>{A315CBBB-F9CB-FB80-1F01-767A894B6CFD}</Project>
       <Name>Sirenix.OdinValidator</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityGame.Combat.csproj">
+      <Project>{07BD3B98-5034-8DA4-3657-06E10C2453C9}</Project>
+      <Name>UnityGame.Combat</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

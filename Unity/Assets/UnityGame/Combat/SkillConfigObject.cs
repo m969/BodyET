@@ -10,39 +10,8 @@ using UnityEngine.PlayerLoop;
 using Sirenix.Utilities.Editor;
 using UnityEngine.Serialization;
 
-namespace Combat
+namespace UnityGame.Combat
 {
-//#if UNITY_EDITOR
-//    using UnityEditor;
-//    [CustomEditor(typeof(SkillConfigObject))]
-//    public class SkillConfigObjectInspector : OdinEditor
-//    {
-//        public override void OnInspectorGUI()
-//        {
-//            base.OnInspectorGUI();
-//            var skillConfigObject = target as SkillConfigObject;
-//            //var rect = SirenixEditorGUI.BeginVerticalList();
-//            //EditorGUILayout.PropertyField(serializedObject.FindProperty("MyToggleObjectList"));
-//            //SirenixEditorFields.Dropdown(rect, new GUIContent(""), skillConfigObject.MyToggleObjectList[0], skillConfigObject.MyToggleObjectList);
-//            //foreach (var item in skillConfigObject.MyToggleObjectList)
-//            //{
-//            //    var visible = true;
-//            //    var isToggle = SirenixEditorGUI.BeginToggleGroup(item, ref item.Enabled, ref visible, "");
-//            //    if (isToggle)
-//            //    {
-//            //        if (item is CureToggleGroup CureToggleGroup)
-//            //        {
-//            //            EditorGUILayout.TextField(CureToggleGroup.CureValue);
-//            //        }
-//            //    }
-//            //    SirenixEditorGUI.EndToggleGroup();
-//            //}
-//            //SirenixEditorGUI.EndVerticalList();
-//        }
-//    }
-//#endif
-
-
     [CreateAssetMenu(fileName = "技能配置", menuName = "技能|状态/技能配置")]
     [LabelText("技能配置")]
     public class SkillConfigObject : SerializedScriptableObject
@@ -137,10 +106,7 @@ namespace Combat
     //    [LabelText("伤害参数")]
     //    public string DamageValue;
     //}
-}
 
-namespace Combat
-{
     [Serializable]
     public class SkillEffectToggleGroup
     {
@@ -163,7 +129,7 @@ namespace Combat
                         return "施加状态";
                     case SkillEffectType.RemoveBuff: return "移除状态";
                     case SkillEffectType.AddShield: return "添加护盾";
-                    case SkillEffectType.AddTag: return "标记叠加";
+                    //case SkillEffectType.AddTag: return "标记叠加";
                     case SkillEffectType.ChangeNumeric: return "改变数值";
                     //case SkillEffectType.ChangeState:
                     //    {
@@ -190,6 +156,10 @@ namespace Combat
         [ShowIf("IsSkillEffect", true)]
         public AddSkillEffetTargetType AddSkillEffectTargetType;
 
+        [ToggleGroup("Enabled")]
+        [HideIf("IsSkillEffect", true)]
+        public EffectTriggerType EffectTriggerType;
+
         #region 造成伤害
         [ToggleGroup("Enabled")]
         [ShowIf("SkillEffectType", SkillEffectType.CauseDamage)]
@@ -211,13 +181,13 @@ namespace Combat
         public string CureValue;
         #endregion
 
-        #region 施加Buff
+        #region 施加状态
         [ToggleGroup("Enabled")]
         [ShowIf("SkillEffectType", SkillEffectType.AddBuff)]
         public StatusConfigObject AddStatus;
         #endregion
 
-        #region 移除Buff
+        #region 移除状态
         [ToggleGroup("Enabled")]
         [ShowIf("SkillEffectType", SkillEffectType.RemoveBuff)]
         public StatusConfigObject RemoveStatusConfigObject;
@@ -251,20 +221,20 @@ namespace Combat
         public uint ShieldDuration;
         #endregion
 
-        #region 标记叠加
-        [ToggleGroup("Enabled")]
-        [ShowIf("SkillEffectType", SkillEffectType.AddTag)]
-        public TagType TagType;
-        [ToggleGroup("Enabled")]
-        [ShowIf("SkillEffectType", SkillEffectType.AddTag)]
-        [LabelText("标记数量")]
-        public uint TagCount = 1;
-        [ToggleGroup("Enabled")]
-        [ShowIf("SkillEffectType", SkillEffectType.AddTag)]
-        [LabelText("标记停留时间")]
-        [SuffixLabel("毫秒", true)]
-        public uint TagDuration;
-        #endregion
+        //#region 标记叠加
+        //[ToggleGroup("Enabled")]
+        //[ShowIf("SkillEffectType", SkillEffectType.AddTag)]
+        //public TagType TagType;
+        //[ToggleGroup("Enabled")]
+        //[ShowIf("SkillEffectType", SkillEffectType.AddTag)]
+        //[LabelText("标记数量")]
+        //public uint TagCount = 1;
+        //[ToggleGroup("Enabled")]
+        //[ShowIf("SkillEffectType", SkillEffectType.AddTag)]
+        //[LabelText("标记停留时间")]
+        //[SuffixLabel("毫秒", true)]
+        //public uint TagDuration;
+        //#endregion
     }
 
     [LabelText("护盾类型")]

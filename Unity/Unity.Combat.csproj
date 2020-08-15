@@ -63,12 +63,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Combat\BuffHelper.cs" />
-    <Compile Include="Assets\Combat\NameArrayObject.cs" />
-    <Compile Include="Assets\Combat\SkillConfigObject.cs" />
-    <Compile Include="Assets\Combat\SkillHelper.cs" />
-    <Compile Include="Assets\Combat\StatusConfigObject.cs" />
-    <None Include="Assets\Combat\Unity.Combat.asmdef" />
+    <Compile Include="Assets\UnityGame\BuffHelper.cs" />
+    <Compile Include="Assets\UnityGame\NameArrayObject.cs" />
+    <Compile Include="Assets\UnityGame\SkillConfigObject.cs" />
+    <Compile Include="Assets\UnityGame\SkillHelper.cs" />
+    <Compile Include="Assets\UnityGame\StatusConfigObject.cs" />
+    <None Include="Assets\UnityGame\Unity.Combat.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity 2019.4.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
