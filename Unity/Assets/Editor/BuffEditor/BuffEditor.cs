@@ -19,7 +19,7 @@ public class BuffEditor : EditorWindow
     [MenuItem("Tools/Buff编辑器/Buff编辑器窗口")]
     private static void ShowWindow()
     {
-        GetWindow(typeof(BuffEditor));
+        GetWindowWithRect<BuffEditor>(new Rect(0, 0, 800, 600), true);
     }
 
     [MenuItem("Tools/Buff编辑器/创建状态配置文件")]

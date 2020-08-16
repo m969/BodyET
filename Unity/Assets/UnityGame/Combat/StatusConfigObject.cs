@@ -15,10 +15,10 @@ namespace UnityGame.Combat
     {
         [LabelText("状态ID")]
         [DelayedProperty]
-        public string ID = "状态1";
+        public string ID = "Status1";
         [LabelText("状态名称")]
         [DelayedProperty]
-        public string Name;
+        public string Name = "状态1";
         [LabelText("状态类型")]
         public StatusType StatusType;
         [LabelText("是否在状态栏显示")]

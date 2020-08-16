@@ -254,22 +254,22 @@ public class MapCallHelperObject : SerializedScriptableObject
 [Serializable]
 public class MessageClass
 {
-    [ToggleGroup("Enabled", "$TagName")]
+    [ToggleGroup("Enabled", "$TagName", CollapseOthersOnExpand = false)]
     public bool Enabled;
 
-    [ToggleGroup("Enabled")]
+    [ToggleGroup("Enabled", CollapseOthersOnExpand = false)]
     [LabelText("消息类型")]
     public ETMessageType MessageType;
 
-    [ToggleGroup("Enabled")]
+    [ToggleGroup("Enabled", CollapseOthersOnExpand = false)]
     [LabelText("类名")]
     public string ClassName = "C2M_Message";
 
-    [ToggleGroup("Enabled")]
+    [ToggleGroup("Enabled", CollapseOthersOnExpand = false)]
     [LabelText("别名")]
     public string TagName = "消息类";
 
-    [ToggleGroup("Enabled")]
+    [ToggleGroup("Enabled", CollapseOthersOnExpand = true)]
     [LabelText("消息参数列表")]
     public List<MessageParamConfig> MessageParamConfigs = new List<MessageParamConfig>();
 }

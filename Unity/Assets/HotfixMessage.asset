@@ -106,7 +106,7 @@ MonoBehaviour:
     - ParamName: Message
       ParamType: 3
       MessageClassName: 
-  - Enabled: 1
+  - Enabled: 0
     MessageType: 6
     ClassName: C2M_TestActorRequest
     TagName: C2M_TestActorRequest
@@ -120,7 +120,7 @@ MonoBehaviour:
     - ParamName: Info
       ParamType: 3
       MessageClassName: 
-  - Enabled: 1
+  - Enabled: 0
     MessageType: 7
     ClassName: M2C_TestActorResponse
     TagName: M2C_TestActorResponse
@@ -153,7 +153,7 @@ MonoBehaviour:
     - ParamName: RpcId
       ParamType: 0
       MessageClassName: 
-  - Enabled: 1
+  - Enabled: 0
     MessageType: 3
     ClassName: G2C_PlayerInfo
     TagName: G2C_PlayerInfo
