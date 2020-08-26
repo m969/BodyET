@@ -748,6 +748,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{2662B409-6332-1E56-D797-C9025C53BDD6}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
       <Project>{F534D6C4-3368-032B-289C-A943CC171719}</Project>
       <Name>Assembly-CSharp-Editor-firstpass</Name>
@@ -780,13 +784,13 @@
       <Project>{B4BF9894-F5D9-41C4-13E3-3F26F7700E29}</Project>
       <Name>Unity.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="Sirenix.OdinValidator.csproj">
-      <Project>{A315CBBB-F9CB-FB80-1F01-767A894B6CFD}</Project>
-      <Name>Sirenix.OdinValidator</Name>
-    </ProjectReference>
     <ProjectReference Include="UnityGame.Editor.csproj">
       <Project>{0AD36B80-53AC-B7BA-1837-E03103D1C883}</Project>
       <Name>UnityGame.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Sirenix.OdinValidator.csproj">
+      <Project>{A315CBBB-F9CB-FB80-1F01-767A894B6CFD}</Project>
+      <Name>Sirenix.OdinValidator</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
