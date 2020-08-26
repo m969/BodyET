@@ -137,7 +137,7 @@ MonoBehaviour:
     - ParamName: Info
       ParamType: 3
       MessageClassName: 
-  - Enabled: 0
+  - Enabled: 1
     MessageType: 1
     ClassName: PlayerInfo
     TagName: PlayerInfo
