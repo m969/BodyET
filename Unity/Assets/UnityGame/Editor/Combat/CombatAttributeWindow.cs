@@ -13,8 +13,8 @@
 
     public class CombatAttributeWindow : OdinEditorWindow
 	{
-		[EnumToggleButtons]
-		public ViewTool SomeField;
+		//[EnumToggleButtons]
+		//public ViewTool SomeField;
 
 		public List<AttributeConfig> AttributeConfigs = new List<AttributeConfig>();
 		//[Button("+")]
@@ -32,9 +32,60 @@
 			StateConfigs.Add(new StateConfig() { Guid = string.Concat(arr) });
 		}
 
+		//[HorizontalGroup("Split")]
+		//[LabelText("魔免")]
+		//public string Label;
 
-		[TableMatrix(HorizontalTitle = "Custom Cell Drawing", DrawElementMethod = "DrawColoredEnumElement", ResizableColumns = false, RowHeight = 16)]
-		public bool[,] CustomCellDrawing;
+		public void DrawStateList()
+		{
+			//EditorGUILayout.BeginHorizontal();
+			//{
+			//	//EditorGUILayout.BeginHorizontal(GUILayout.Width(20));
+			//	{
+			//		EditorGUILayout.BeginVertical(GUILayout.Width(20));
+			//		EditorGUILayout.LabelField("");
+			//		EditorGUILayout.LabelField("魔免");
+			//		EditorGUILayout.LabelField("魔免");
+			//		EditorGUILayout.LabelField("魔免");
+			//		EditorGUILayout.LabelField("魔免");
+			//		EditorGUILayout.EndVertical();
+			//	}
+			//	//EditorGUILayout.EndHorizontal();
+			//}
+			EditorGUILayout.BeginVertical();
+			for (int i = 0; i < 4; i++)
+			{
+				EditorGUILayout.BeginHorizontal();
+				EditorGUILayout.LabelField("魔免", GUILayout.Width(40));
+				for (int j = 0; j < 4; j++)
+				{
+					//Debug.Log($"{CustomCellDrawing}");
+					CustomCellDrawing[i, j] = EditorGUILayout.Toggle(CustomCellDrawing[i, j], GUILayout.Width(20));
+				}
+				EditorGUILayout.EndHorizontal();
+			}
+			EditorGUILayout.EndVertical();
+			//this.BeginWindows();
+
+		}
+
+		////[HorizontalGroup("Split")]
+		//[OnInspectorGUI(PrependMethodName ="DrawStateList", AppendMethodName = "EndDrawStateMatrix")]
+		//[HideLabel]
+		//[TableMatrix(/*HorizontalTitle = "状态排斥表",*/ DrawElementMethod = "DrawColoredEnumElement", ResizableColumns = true, /*RowHeight = 16,*/ HideColumnIndices =true, HideRowIndices =true)]
+		private bool[,] CustomCellDrawing = new bool[4, 4] {
+			{false,false,false,false },
+			{false,false,false,false },
+			{false,false,false,false },
+			{false,false,false,false },
+		};
+
+
+		public void EndDrawStateMatrix()
+		{
+			//this.EndWindows();
+			EditorGUILayout.EndHorizontal();
+		}
 
 		//[ShowInInspector, DoNotDrawAsReference]
 		//[TableMatrix(HorizontalTitle = "Transposed Custom Cell Drawing", DrawElementMethod = "DrawColoredEnumElement", ResizableColumns = false, RowHeight = 16, Transpose = true)]
@@ -49,7 +100,8 @@
 				Event.current.Use();
 			}
 
-			UnityEditor.EditorGUI.DrawRect(rect.Padding(1), value ? new Color(0.1f, 0.8f, 0.2f) : new Color(0, 0, 0, 0.5f));
+			//EditorGUI.Toggle(rect.Padding(1), value);
+			UnityEditor.EditorGUI.DrawRect(rect.Padding(1), value ? new Color(0.8f, 0.2f, 0.2f) : new Color(0, 0, 0, 0.5f));
 
 			return value;
 		}
@@ -58,7 +110,7 @@
 		public void TransposeTableMatrixExample()
 		{
 			// =)
-			this.CustomCellDrawing = new bool[15, 15];
+			//this.CustomCellDrawing = new bool[15, 15];
 			//this.CustomCellDrawing[6, 5] = true;
 			//this.CustomCellDrawing[6, 6] = true;
 			//this.CustomCellDrawing[6, 7] = true;
@@ -82,11 +134,12 @@
             window.position = GUIHelper.GetEditorWindowRect().AlignCenter(700, 700);
 		}
 
-   //     protected override void OnGUI()
-   //     {
-			//base.OnGUI();
-   //     }
-    }
+		protected override void OnGUI()
+		{
+			base.OnGUI();
+			DrawStateList();
+		}
+	}
 
 	[Serializable]
 	public class AttributeConfig
