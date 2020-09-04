@@ -21,6 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
+  FileName: HotfixMessage
   MessageClasses:
   - Enabled: 0
     MessageType: 2
@@ -137,7 +138,7 @@ MonoBehaviour:
     - ParamName: Info
       ParamType: 3
       MessageClassName: 
-  - Enabled: 1
+  - Enabled: 0
     MessageType: 1
     ClassName: PlayerInfo
     TagName: PlayerInfo

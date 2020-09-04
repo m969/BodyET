@@ -31,8 +31,14 @@
     {
         [LabelText("自动")]
         Auto,
-        [LabelText("指定")]
-        Select,
+        [LabelText("手动锁定")]
+        PlayerSelect,
+        [LabelText("弹体碰撞指定")]
+        BodyCollideSelect,
+        [LabelText("区域场指定")]
+        AreaSelect,
+        [LabelText("条件指定")]
+        ConditionSelect,
         [LabelText("其他")]
         Other,
     }

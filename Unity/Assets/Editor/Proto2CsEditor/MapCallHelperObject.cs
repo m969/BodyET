@@ -113,6 +113,8 @@ public class MapCallHelperObjectInspector : OdinEditor
 [CreateAssetMenu(fileName = "消息协议配置", menuName = "消息协议/消息协议配置")]
 public class MapCallHelperObject : SerializedScriptableObject
 {
+    [LabelText("导出文件名")]
+    public string FileName = "HotfixMessage";
     [LabelText("消息类列表")]
     public List<MessageClass> MessageClasses;
     //public List<MessageParamConfig> MessageParamConfigs = new List<MessageParamConfig>();
@@ -120,7 +122,64 @@ public class MapCallHelperObject : SerializedScriptableObject
     [Button("生成消息类代码", ButtonHeight = 30)]
     public void GenerateMessage()
     {
-
+        var path = $"../Proto/{FileName}.proto";
+		var sb = new StringBuilder();
+        sb.Append("syntax = \"proto3\";\n");
+        sb.Append("package ETHotfix;\n");
+        foreach (var message in MessageClasses)
+        {
+            sb.Append($"message {message.ClassName} // {message.MessageType}\n");
+            sb.Append("{\n");
+            var i = 0;
+            foreach (var paramConfig in message.MessageParamConfigs)
+            {
+                var type = "int32";
+                switch (paramConfig.ParamType)
+                {
+                    case Proto3Type.Int32:
+                        type = "int32";
+                        break;
+                    case Proto3Type.Int64:
+                        type = "int64";
+                        break;
+                    case Proto3Type.Float:
+                        type = "float";
+                        break;
+                    case Proto3Type.String:
+                        type = "string";
+                        break;
+                    case Proto3Type.Bytes:
+                        type = "bytes";
+                        break;
+                    case Proto3Type.Message:
+                        type = paramConfig.MessageClassName;
+                        break;
+                    case Proto3Type.RepeatedInt32:
+                        type = "repeated int32";
+                        break;
+                    case Proto3Type.RepeatedInt64:
+                        type = "repeated int64";
+                        break;
+                    case Proto3Type.RepeatedFloat:
+                        type = "repeated float";
+                        break;
+                    case Proto3Type.RepeatedString:
+                        type = "string";
+                        break;
+                    case Proto3Type.RepeatedBytes:
+                        type = "repeated bytes";
+                        break;
+                    case Proto3Type.RepeatedMessage:
+                        type = $"repeated {paramConfig.MessageClassName}";
+                        break;
+                    default:
+                        break;
+                }
+                sb.Append($"\t{type} {paramConfig.ParamName} = {++i};\n");
+            }
+            sb.Append("}\n");
+        }
+		File.WriteAllText(path, sb.ToString());
     }
 
     [ToggleGroup("ImportMessagesGroup")]
@@ -136,7 +195,7 @@ public class MapCallHelperObject : SerializedScriptableObject
     public static List<MessageClass> ParseMessages()
     {
         var MessageClasses = new List<MessageClass>();
-        var lines = File.ReadAllLines("./../Proto/HotfixMessage.proto");
+        var lines = File.ReadAllLines("../Proto/HotfixMessage.proto");
         MessageClass message = null;
         foreach (var item in lines)
         {

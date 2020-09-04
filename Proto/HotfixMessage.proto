@@ -1,191 +1,160 @@
 syntax = "proto3";
 package ETHotfix;
-
 message C2R_Login // IRequest
 {
-	int32 RpcId = 90;
-	string	Account	 = 1;	// 帐号
-	string	Password = 2;	// 密码
+	int32 RpcId = 1;
 }
-
 message R2C_Login // IResponse
 {
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-	string Address = 1;
-	int64 Key	    = 2;
-	int64 GateId = 3;
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	string Address = 4;
+	int64 Key = 5;
+	int64 GateId = 6;
 }
-
 message C2G_LoginGate // IRequest
 {
-	int32 RpcId = 90;
-	int64 Key = 1;	// 帐号
-	int64 GateId = 2;
+	int32 RpcId = 1;
+	int64 Key = 2;
+	int64 GateId = 3;
 }
-
 message G2C_LoginGate // IResponse
 {
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-	int64 PlayerId = 1;
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	int64 PlayerId = 4;
 }
-
 message G2C_TestHotfixMessage // IMessage
 {
 	string Info = 1;
 }
-
 message MessageResponse // IActorLocationResponse
 {
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
 }
-
 message C2M_TestActorRequest // IActorLocationRequest
 {
-	int32 RpcId = 90;
-	int64 ActorId = 91;
-	string Info = 1;
+	int32 RpcId = 1;
+	int64 ActorId = 2;
+	string Info = 3;
 }
-
 message M2C_TestActorResponse // IActorLocationResponse
 {
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-	string Info = 1;
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	string Info = 4;
 }
-
 message PlayerInfo // IMessage
 {
-	int32 RpcId = 90;
+	int32 RpcId = 1;
 }
-
 message C2G_PlayerInfo // IRequest
 {
-	int32 RpcId = 90;
+	int32 RpcId = 1;
 }
-
 message G2C_PlayerInfo // IResponse
 {
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-	PlayerInfo PlayerInfo = 1;
-	repeated PlayerInfo PlayerInfos = 2;
-    repeated string TestRepeatedString = 3;
-    repeated int32 TestRepeatedInt32 = 4;
-    repeated int64 TestRepeatedInt64 = 5;
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	PlayerInfo PlayerInfo = 4;
+	repeated PlayerInfo PlayerInfos = 5;
+	string TestRepeatedString = 6;
+	repeated int32 TestRepeatedInt32 = 7;
+	repeated int64 TestRepeatedInt64 = 8;
 }
-
-message UnitInfo
+message UnitInfo // None
 {
-	int64 UnitId  = 1;
-
+	int64 UnitId = 1;
 	float X = 2;
 	float Y = 3;
 	float Z = 4;
-	int32 AngleY = 8;
+	int32 AngleY = 5;
 }
-
 message UnitOperation // IActorLocationMessage
 {
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-	int64 Id = 94;
-
-	int32 Index  = 6;
-	int64 Time  = 7;
-	int64 UnitId  = 1;
-	int32 X = 2;
-	int32 Y = 3;
-	int32 Z = 4;
-	int32 AngleY = 5;
-
-	int32 Operation = 8;
-	repeated int32 IntParams = 9;
-	repeated string StringParams = 10;
-	repeated int64 LongParams = 11;
+	int32 RpcId = 1;
+	int64 ActorId = 2;
+	int64 Id = 3;
+	int32 Index = 4;
+	int64 Time = 5;
+	int64 UnitId = 6;
+	int32 X = 7;
+	int32 Y = 8;
+	int32 Z = 9;
+	int32 AngleY = 10;
+	int32 Operation = 11;
+	repeated int32 IntParams = 12;
+	string StringParams = 13;
+	repeated int64 LongParams = 14;
 }
-
-message EntiyInfo
+message EntiyInfo // None
 {
 	int32 Type = 1;
 	bytes BsonBytes = 2;
 }
-//当玩家第一次进入某个场景，得到场景内的所有玩家信息
 message M2C_InViewUnits // IActorMessage
 {
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-	// repeated string InViewEntitys = 1;
-	repeated EntiyInfo InViewEntitys = 1;
-	// string SelfUnit = 2;
-	bytes SelfUnit = 2;
-	int32 SpaceType = 3;
+	int32 RpcId = 1;
+	int64 ActorId = 2;
+	repeated EntiyInfo InViewEntitys = 3;
+	bytes SelfUnit = 4;
+	int32 SpaceType = 5;
 }
-//当玩家进入视野
 message M2C_OnEnterView // IActorMessage
 {
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-	// string EnterEntity = 1;
-	EntiyInfo EnterEntity = 1;
-	int32 X = 2;
-	int32 Y = 3;
-	int32 Z = 4;
-	int32 AngleY = 8;
+	int32 RpcId = 1;
+	int64 ActorId = 2;
+	EntiyInfo EnterEntity = 3;
+	int32 X = 4;
+	int32 Y = 5;
+	int32 Z = 6;
+	int32 AngleY = 7;
 }
-//当玩家离开视野
 message M2C_OnLeaveView // IActorMessage
 {
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-	int64 LeaveEntity = 1;
-	int32 EntityType = 2;
+	int32 RpcId = 1;
+	int64 ActorId = 2;
+	int64 LeaveEntity = 3;
+	int32 EntityType = 4;
 }
-
 message M2C_OnEntityChanged // IActorLocationMessage
 {
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-	int64 Id = 94;
-
-	int64 EntityId  = 1;
+	int32 RpcId = 1;
+	int64 ActorId = 2;
+	int64 Id = 3;
+	int64 EntityId = 4;
 	int32 EntityType = 5;
 	int32 ComponentType = 6;
-	int32 PropertyId = 11;
-	bytes PropertyValue = 12;
-	int32 X = 2;
-	int32 Y = 3;
-	int32 Z = 4;
-	int32 AngleY = 8;
+	int32 PropertyId = 7;
+	bytes PropertyValue = 8;
+	int32 X = 9;
+	int32 Y = 10;
+	int32 Z = 11;
+	int32 AngleY = 12;
 }
-
 message C2M_SetEntityProperty // IActorLocationMessage
 {
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-	int64 Id = 94;
-	
-	int32 PropertyId = 11;
-	bytes PropertyValue = 12;
+	int32 RpcId = 1;
+	int64 ActorId = 2;
+	int64 Id = 3;
+	int32 PropertyId = 4;
+	bytes PropertyValue = 5;
 }
-
 message FireRequest // IActorLocationRequest
 {
-	int32 RpcId = 90;
-	int64 ActorId = 91;
-	int32 X = 1;
-	int32 Y = 2;
-	int32 Z = 3;
+	int32 RpcId = 1;
+	int64 ActorId = 2;
+	int32 X = 3;
+	int32 Y = 4;
+	int32 Z = 5;
 }
-
 message G2M_GetCopyMap // IRequest
 {
-	int32 RpcId = 90;
+	int32 RpcId = 1;
 }
