@@ -3,6 +3,8 @@ package ETHotfix;
 message C2R_Login // IRequest
 {
 	int32 RpcId = 1;
+	string Account = 2;
+	string Password = 3;
 }
 message R2C_Login // IResponse
 {
@@ -68,7 +70,7 @@ message G2C_PlayerInfo // IResponse
 	repeated int32 TestRepeatedInt32 = 7;
 	repeated int64 TestRepeatedInt64 = 8;
 }
-message UnitInfo // None
+message UnitInfo
 {
 	int64 UnitId = 1;
 	float X = 2;
@@ -93,7 +95,7 @@ message UnitOperation // IActorLocationMessage
 	string StringParams = 13;
 	repeated int64 LongParams = 14;
 }
-message EntiyInfo // None
+message EntiyInfo
 {
 	int32 Type = 1;
 	bytes BsonBytes = 2;

@@ -19,8 +19,6 @@ namespace ETModel
 	[Message(OuterOpcode.G2C_EnterMap)]
 	public partial class G2C_EnterMap : IResponse {}
 
-// 自己的unit id
-// 所有的unit
 	[Message(OuterOpcode.UnitInfo)]
 	public partial class UnitInfo {}
 

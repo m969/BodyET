@@ -1,180 +1,153 @@
 syntax = "proto3";
 package ETModel;
-
-/// <summary>
-/// 传送unit
-/// </summary>
 message M2M_TrasferUnitRequest // IActorRequest
 {
-    int32 RpcId = 90;
-    int64 ActorId = 93;
-    Unit Unit = 1;
+	int32 RpcId = 1;
+	int64 ActorId = 2;
+	Unit Unit = 3;
 }
-
 message M2M_TrasferUnitResponse // IActorResponse
 {
-    int32 RpcId = 90;
-    int32 Error = 91;
-    string Message = 92;
-
-    int64 InstanceId = 1;
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	int64 InstanceId = 4;
 }
-
 message M2A_Reload // IActorRequest
 {
-    int32 RpcId = 90;
-    int64 ActorId = 93;
+	int32 RpcId = 1;
+	int64 ActorId = 2;
 }
-
 message A2M_Reload // IActorResponse
 {
-    int32 RpcId = 90;
-    int32 Error = 91;
-    string Message = 92;
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
 }
-
 message G2G_LockRequest // IActorRequest
 {
-    int32 RpcId = 90;
-    int64 ActorId = 93;
-    int64 Id = 1;
-    string Address = 2;
+	int32 RpcId = 1;
+	int64 ActorId = 2;
+	int64 Id = 3;
+	string Address = 4;
 }
-
 message G2G_LockResponse // IActorResponse
 {
-    int32 RpcId = 90;
-    int32 Error = 91;
-    string Message = 92;
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
 }
-
 message G2G_LockReleaseRequest // IActorRequest
 {
-    int32 RpcId = 90;
-    int64 ActorId = 93;
-    int64 Id = 1;
-    string Address = 2;
+	int32 RpcId = 1;
+	int64 ActorId = 2;
+	int64 Id = 3;
+	string Address = 4;
 }
-
 message G2G_LockReleaseResponse // IActorResponse
 {
-    int32 RpcId = 90;
-    int32 Error = 91;
-    string Message = 92;
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
 }
-
 message ObjectAddRequest // IActorRequest
 {
-    int32 RpcId = 90;
-    int64 ActorId = 93;
-    int64 Key = 1;
-    int64 InstanceId = 2;
+	int32 RpcId = 1;
+	int64 ActorId = 2;
+	int64 Key = 3;
+	int64 InstanceId = 4;
 }
-
 message ObjectAddResponse // IActorResponse
 {
-    int32 RpcId = 90;
-    int32 Error = 91;
-    string Message = 92;
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
 }
 message ObjectLockRequest // IActorRequest
 {
-    int32 RpcId = 90;
-    int64 ActorId = 93;
-    int64 Key = 1;
-    int64 InstanceId = 2;
-    int32 Time = 3;
+	int32 RpcId = 1;
+	int64 ActorId = 2;
+	int64 Key = 3;
+	int64 InstanceId = 4;
+	int32 Time = 5;
 }
 message ObjectLockResponse // IActorResponse
 {
-    int32 RpcId = 90;
-    int32 Error = 91;
-    string Message = 92;
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
 }
-
 message ObjectUnLockRequest // IActorRequest
 {
-    int32 RpcId = 90;
-    int64 ActorId = 93;
-    int64 Key = 1;
-    int64 OldInstanceId = 2;
-    int64 InstanceId = 3;
+	int32 RpcId = 1;
+	int64 ActorId = 2;
+	int64 Key = 3;
+	int64 OldInstanceId = 4;
+	int64 InstanceId = 5;
 }
 message ObjectUnLockResponse // IActorResponse
 {
-    int32 RpcId = 90;
-    int32 Error = 91;
-    string Message = 92;
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
 }
-
 message ObjectRemoveRequest // IActorRequest
 {
-    int32 RpcId = 90;
-    int64 ActorId = 93;
-    int64 Key = 1;
+	int32 RpcId = 1;
+	int64 ActorId = 2;
+	int64 Key = 3;
 }
 message ObjectRemoveResponse // IActorResponse
 {
-    int32 RpcId = 90;
-    int32 Error = 91;
-    string Message = 92;
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
 }
-
 message ObjectGetRequest // IActorRequest
 {
-    int32 RpcId = 90;
-    int64 ActorId = 93;
-    int64 Key = 1;
+	int32 RpcId = 1;
+	int64 ActorId = 2;
+	int64 Key = 3;
 }
 message ObjectGetResponse // IActorResponse
 {
-    int32 RpcId = 90;
-    int32 Error = 91;
-    string Message = 92;
-
-    int64 InstanceId = 1;
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	int64 InstanceId = 4;
 }
-
 message R2G_GetLoginKey // IActorRequest
 {
-    int32 RpcId = 90;
-    int64 ActorId = 93;
-    string Account = 1;
+	int32 RpcId = 1;
+	int64 ActorId = 2;
+	string Account = 3;
 }
-
 message G2R_GetLoginKey // IActorResponse
 {
-    int32 RpcId = 90;
-    int32 Error = 91;
-    string Message = 92;
-
-    int64 Key = 1;
-    int64 GateId = 2;
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	int64 Key = 4;
+	int64 GateId = 5;
 }
-
 message G2M_CreateUnit // IActorRequest
 {
-    int32 RpcId = 90;
-    int64 ActorId = 93;
-    int64 PlayerId = 1;
-    int64 GateSessionId = 2;
-    int64 UnitId = 3;
+	int32 RpcId = 1;
+	int64 ActorId = 2;
+	int64 PlayerId = 3;
+	int64 GateSessionId = 4;
+	int64 UnitId = 5;
 }
-
 message M2G_CreateUnit // IActorResponse
 {
-    int32 RpcId = 90;
-    int32 Error = 91;
-    string Message = 92;
-
-    // 自己的unit id
-    int64 UnitId = 1;
-    // 所有的unit
-    repeated UnitInfo Units = 2;
+	int32 RpcId = 1;
+	int32 Error = 2;
+	string Message = 3;
+	int64 UnitId = 4;
+	repeated UnitInfo Units = 5;
 }
-
 message G2M_SessionDisconnect // IActorLocationMessage
 {
-    int32 RpcId = 90;
-    int64 ActorId = 94;
+	int32 RpcId = 1;
+	int64 ActorId = 2;
 }

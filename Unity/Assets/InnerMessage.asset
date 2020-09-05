@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c54c625e10b5b042bf28330b71e6b6c, type: 3}
-  m_Name: HotfixMessage
+  m_Name: InnerMessage
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,32 +21,32 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  FileName: 0
+  FileName: 1
   MessageClasses:
   - Enabled: 0
-    MessageType: 2
-    ClassName: C2R_Login
-    TagName: C2R_Login
+    MessageType: 5
+    ClassName: M2M_TrasferUnitRequest
+    TagName: M2M_TrasferUnitRequest
     MessageParamConfigs:
     - ParamName: RpcId
       ParamType: 0
       Custom: 0
       CustomMessageClassName: 
       MessageClassName: 
-    - ParamName: Account
-      ParamType: 3
+    - ParamName: ActorId
+      ParamType: 1
       Custom: 0
       CustomMessageClassName: 
       MessageClassName: 
-    - ParamName: Password
-      ParamType: 3
+    - ParamName: Unit
+      ParamType: 5
       Custom: 0
       CustomMessageClassName: 
-      MessageClassName: 
+      MessageClassName: Unit
   - Enabled: 0
-    MessageType: 3
-    ClassName: R2C_Login
-    TagName: R2C_Login
+    MessageType: 6
+    ClassName: M2M_TrasferUnitResponse
+    TagName: M2M_TrasferUnitResponse
     MessageParamConfigs:
     - ParamName: RpcId
       ParamType: 0
@@ -60,6 +60,66 @@ MonoBehaviour:
       MessageClassName: 
     - ParamName: Message
       ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: InstanceId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 5
+    ClassName: M2A_Reload
+    TagName: M2A_Reload
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 6
+    ClassName: A2M_Reload
+    TagName: A2M_Reload
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Error
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Message
+      ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 5
+    ClassName: G2G_LockRequest
+    TagName: G2G_LockRequest
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Id
+      ParamType: 1
       Custom: 0
       CustomMessageClassName: 
       MessageClassName: 
@@ -68,40 +128,10 @@ MonoBehaviour:
       Custom: 0
       CustomMessageClassName: 
       MessageClassName: 
-    - ParamName: Key
-      ParamType: 1
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: GateId
-      ParamType: 1
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
   - Enabled: 0
-    MessageType: 2
-    ClassName: C2G_LoginGate
-    TagName: C2G_LoginGate
-    MessageParamConfigs:
-    - ParamName: RpcId
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Key
-      ParamType: 1
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: GateId
-      ParamType: 1
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-  - Enabled: 0
-    MessageType: 3
-    ClassName: G2C_LoginGate
-    TagName: G2C_LoginGate
+    MessageType: 6
+    ClassName: G2G_LockResponse
+    TagName: G2G_LockResponse
     MessageParamConfigs:
     - ParamName: RpcId
       ParamType: 0
@@ -115,6 +145,346 @@ MonoBehaviour:
       MessageClassName: 
     - ParamName: Message
       ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 5
+    ClassName: G2G_LockReleaseRequest
+    TagName: G2G_LockReleaseRequest
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Id
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Address
+      ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 6
+    ClassName: G2G_LockReleaseResponse
+    TagName: G2G_LockReleaseResponse
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Error
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Message
+      ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 5
+    ClassName: ObjectAddRequest
+    TagName: ObjectAddRequest
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Key
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: InstanceId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 6
+    ClassName: ObjectAddResponse
+    TagName: ObjectAddResponse
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Error
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Message
+      ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 5
+    ClassName: ObjectLockRequest
+    TagName: ObjectLockRequest
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Key
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: InstanceId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Time
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 6
+    ClassName: ObjectLockResponse
+    TagName: ObjectLockResponse
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Error
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Message
+      ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 5
+    ClassName: ObjectUnLockRequest
+    TagName: ObjectUnLockRequest
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Key
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: OldInstanceId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: InstanceId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 6
+    ClassName: ObjectUnLockResponse
+    TagName: ObjectUnLockResponse
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Error
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Message
+      ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 5
+    ClassName: ObjectRemoveRequest
+    TagName: ObjectRemoveRequest
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Key
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 6
+    ClassName: ObjectRemoveResponse
+    TagName: ObjectRemoveResponse
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Error
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Message
+      ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 5
+    ClassName: ObjectGetRequest
+    TagName: ObjectGetRequest
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Key
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 6
+    ClassName: ObjectGetResponse
+    TagName: ObjectGetResponse
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Error
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Message
+      ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: InstanceId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 5
+    ClassName: R2G_GetLoginKey
+    TagName: R2G_GetLoginKey
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Account
+      ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 6
+    ClassName: G2R_GetLoginKey
+    TagName: G2R_GetLoginKey
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Error
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Message
+      ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Key
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: GateId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 5
+    ClassName: G2M_CreateUnit
+    TagName: G2M_CreateUnit
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
       Custom: 0
       CustomMessageClassName: 
       MessageClassName: 
@@ -123,202 +493,7 @@ MonoBehaviour:
       Custom: 0
       CustomMessageClassName: 
       MessageClassName: 
-  - Enabled: 0
-    MessageType: 1
-    ClassName: G2C_TestHotfixMessage
-    TagName: G2C_TestHotfixMessage
-    MessageParamConfigs:
-    - ParamName: Info
-      ParamType: 3
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-  - Enabled: 0
-    MessageType: 9
-    ClassName: MessageResponse
-    TagName: MessageResponse
-    MessageParamConfigs:
-    - ParamName: RpcId
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Error
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Message
-      ParamType: 3
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-  - Enabled: 0
-    MessageType: 8
-    ClassName: C2M_TestActorRequest
-    TagName: C2M_TestActorRequest
-    MessageParamConfigs:
-    - ParamName: RpcId
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: ActorId
-      ParamType: 1
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Info
-      ParamType: 3
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-  - Enabled: 0
-    MessageType: 9
-    ClassName: M2C_TestActorResponse
-    TagName: M2C_TestActorResponse
-    MessageParamConfigs:
-    - ParamName: RpcId
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Error
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Message
-      ParamType: 3
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Info
-      ParamType: 3
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-  - Enabled: 0
-    MessageType: 1
-    ClassName: PlayerInfo
-    TagName: PlayerInfo
-    MessageParamConfigs:
-    - ParamName: RpcId
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-  - Enabled: 0
-    MessageType: 2
-    ClassName: C2G_PlayerInfo
-    TagName: C2G_PlayerInfo
-    MessageParamConfigs:
-    - ParamName: RpcId
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-  - Enabled: 0
-    MessageType: 3
-    ClassName: G2C_PlayerInfo
-    TagName: G2C_PlayerInfo
-    MessageParamConfigs:
-    - ParamName: RpcId
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Error
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Message
-      ParamType: 3
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: PlayerInfo
-      ParamType: 5
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: PlayerInfo
-    - ParamName: PlayerInfos
-      ParamType: 11
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: PlayerInfo
-    - ParamName: TestRepeatedString
-      ParamType: 3
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: TestRepeatedInt32
-      ParamType: 6
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: TestRepeatedInt64
-      ParamType: 7
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-  - Enabled: 0
-    MessageType: 0
-    ClassName: UnitInfo
-    TagName: UnitInfo
-    MessageParamConfigs:
-    - ParamName: UnitId
-      ParamType: 1
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: X
-      ParamType: 2
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Y
-      ParamType: 2
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Z
-      ParamType: 2
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: AngleY
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-  - Enabled: 0
-    MessageType: 7
-    ClassName: UnitOperation
-    TagName: UnitOperation
-    MessageParamConfigs:
-    - ParamName: RpcId
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: ActorId
-      ParamType: 1
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Id
-      ParamType: 1
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Index
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Time
+    - ParamName: GateSessionId
       ParamType: 1
       Custom: 0
       CustomMessageClassName: 
@@ -328,160 +503,40 @@ MonoBehaviour:
       Custom: 0
       CustomMessageClassName: 
       MessageClassName: 
-    - ParamName: X
+  - Enabled: 0
+    MessageType: 6
+    ClassName: M2G_CreateUnit
+    TagName: M2G_CreateUnit
+    MessageParamConfigs:
+    - ParamName: RpcId
       ParamType: 0
       Custom: 0
       CustomMessageClassName: 
       MessageClassName: 
-    - ParamName: Y
+    - ParamName: Error
       ParamType: 0
       Custom: 0
       CustomMessageClassName: 
       MessageClassName: 
-    - ParamName: Z
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: AngleY
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Operation
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: IntParams
-      ParamType: 6
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: StringParams
+    - ParamName: Message
       ParamType: 3
       Custom: 0
       CustomMessageClassName: 
       MessageClassName: 
-    - ParamName: LongParams
-      ParamType: 7
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-  - Enabled: 0
-    MessageType: 0
-    ClassName: EntiyInfo
-    TagName: EntiyInfo
-    MessageParamConfigs:
-    - ParamName: Type
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: BsonBytes
-      ParamType: 4
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-  - Enabled: 0
-    MessageType: 4
-    ClassName: M2C_InViewUnits
-    TagName: M2C_InViewUnits
-    MessageParamConfigs:
-    - ParamName: RpcId
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: ActorId
+    - ParamName: UnitId
       ParamType: 1
       Custom: 0
       CustomMessageClassName: 
       MessageClassName: 
-    - ParamName: InViewEntitys
+    - ParamName: Units
       ParamType: 11
       Custom: 0
       CustomMessageClassName: 
-      MessageClassName: EntiyInfo
-    - ParamName: SelfUnit
-      ParamType: 4
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: SpaceType
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-  - Enabled: 0
-    MessageType: 4
-    ClassName: M2C_OnEnterView
-    TagName: M2C_OnEnterView
-    MessageParamConfigs:
-    - ParamName: RpcId
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: ActorId
-      ParamType: 1
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: EnterEntity
-      ParamType: 5
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: EntiyInfo
-    - ParamName: X
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Y
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Z
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: AngleY
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-  - Enabled: 0
-    MessageType: 4
-    ClassName: M2C_OnLeaveView
-    TagName: M2C_OnLeaveView
-    MessageParamConfigs:
-    - ParamName: RpcId
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: ActorId
-      ParamType: 1
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: LeaveEntity
-      ParamType: 1
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: EntityType
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
+      MessageClassName: UnitInfo
   - Enabled: 0
     MessageType: 7
-    ClassName: M2C_OnEntityChanged
-    TagName: M2C_OnEntityChanged
+    ClassName: G2M_SessionDisconnect
+    TagName: G2M_SessionDisconnect
     MessageParamConfigs:
     - ParamName: RpcId
       ParamType: 0
@@ -490,126 +545,6 @@ MonoBehaviour:
       MessageClassName: 
     - ParamName: ActorId
       ParamType: 1
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Id
-      ParamType: 1
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: EntityId
-      ParamType: 1
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: EntityType
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: ComponentType
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: PropertyId
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: PropertyValue
-      ParamType: 4
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: X
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Y
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Z
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: AngleY
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-  - Enabled: 0
-    MessageType: 7
-    ClassName: C2M_SetEntityProperty
-    TagName: C2M_SetEntityProperty
-    MessageParamConfigs:
-    - ParamName: RpcId
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: ActorId
-      ParamType: 1
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Id
-      ParamType: 1
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: PropertyId
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: PropertyValue
-      ParamType: 4
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-  - Enabled: 0
-    MessageType: 8
-    ClassName: FireRequest
-    TagName: FireRequest
-    MessageParamConfigs:
-    - ParamName: RpcId
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: ActorId
-      ParamType: 1
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: X
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Y
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-    - ParamName: Z
-      ParamType: 0
-      Custom: 0
-      CustomMessageClassName: 
-      MessageClassName: 
-  - Enabled: 0
-    MessageType: 2
-    ClassName: G2M_GetCopyMap
-    TagName: G2M_GetCopyMap
-    MessageParamConfigs:
-    - ParamName: RpcId
-      ParamType: 0
       Custom: 0
       CustomMessageClassName: 
       MessageClassName: 

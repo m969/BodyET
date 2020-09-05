@@ -111,24 +111,33 @@ public class MapCallHelperObjectInspector : OdinEditor
 #endif
 
 [CreateAssetMenu(fileName = "消息协议配置", menuName = "消息协议/消息协议配置")]
-public class MapCallHelperObject : SerializedScriptableObject
+public class ETMessageDefineObject : SerializedScriptableObject
 {
-    [LabelText("导出文件名")]
-    public string FileName = "HotfixMessage";
+    [LabelText("协议文件类型")]
+    public ETProtoFileType FileName = ETProtoFileType.HotfixMessage;
+    //[LabelText("包名")]
+    //public ETProtoPackageType PackageName = ETProtoPackageType.ETHotfix;
+    [Space(20)]
     [LabelText("消息类列表")]
     public List<MessageClass> MessageClasses;
     //public List<MessageParamConfig> MessageParamConfigs = new List<MessageParamConfig>();
 
-    [Button("生成消息类代码", ButtonHeight = 30)]
+    //[Button("生成消息协议文件及代码", ButtonHeight = 30)]
     public void GenerateMessage()
     {
         var path = $"../Proto/{FileName}.proto";
 		var sb = new StringBuilder();
         sb.Append("syntax = \"proto3\";\n");
-        sb.Append("package ETHotfix;\n");
+        var PackageName = ETProtoPackageType.ETModel;
+        if (FileName == ETProtoFileType.HotfixMessage)
+            PackageName = ETProtoPackageType.ETHotfix;
+        sb.Append($"package {PackageName};\n");
         foreach (var message in MessageClasses)
         {
-            sb.Append($"message {message.ClassName} // {message.MessageType}\n");
+            if (message.MessageType == ETMessageType.None)
+                sb.Append($"message {message.ClassName}\n");
+            else
+                sb.Append($"message {message.ClassName} // {message.MessageType}\n");
             sb.Append("{\n");
             var i = 0;
             foreach (var paramConfig in message.MessageParamConfigs)
@@ -170,7 +179,10 @@ public class MapCallHelperObject : SerializedScriptableObject
                         type = "repeated bytes";
                         break;
                     case Proto3Type.RepeatedMessage:
-                        type = $"repeated {paramConfig.MessageClassName}";
+                        if (paramConfig.Custom)
+                            type = $"repeated {paramConfig.CustomMessageClassName}";
+                        else
+                            type = $"repeated {paramConfig.MessageClassName}";
                         break;
                     default:
                         break;
@@ -182,6 +194,7 @@ public class MapCallHelperObject : SerializedScriptableObject
 		File.WriteAllText(path, sb.ToString());
     }
 
+    [Space(20)]
     [ToggleGroup("ImportMessagesGroup")]
     public bool ImportMessagesGroup;
 
@@ -189,13 +202,13 @@ public class MapCallHelperObject : SerializedScriptableObject
     [Button("反向导入消息类配置", ButtonHeight = 30)]
     public void ImportMessages()
     {
-        MessageClasses = ParseMessages();
+        MessageClasses = ParseMessages(FileName.ToString());
     }
 
-    public static List<MessageClass> ParseMessages()
+    public static List<MessageClass> ParseMessages(string fileName)
     {
         var MessageClasses = new List<MessageClass>();
-        var lines = File.ReadAllLines("../Proto/HotfixMessage.proto");
+        var lines = File.ReadAllLines($"../Proto/{fileName}.proto");
         MessageClass message = null;
         foreach (var item in lines)
         {
@@ -229,6 +242,8 @@ public class MapCallHelperObject : SerializedScriptableObject
                     case "IRequest": type = ETMessageType.IRequest;break;
                     case "IResponse": type = ETMessageType.IResponse;break;
                     case "IActorMessage": type = ETMessageType.IActorMessage;break;
+                    case "IActorRequest": type = ETMessageType.IActorRequest;break;
+                    case "IActorResponse": type = ETMessageType.IActorResponse;break;
                     case "IActorLocationMessage": type = ETMessageType.IActorLocationMessage;break;
                     case "IActorLocationRequest": type = ETMessageType.IActorLocationRequest;break;
                     case "IActorLocationResponse": type = ETMessageType.IActorLocationResponse; break;
@@ -304,7 +319,7 @@ public class MapCallHelperObject : SerializedScriptableObject
                 }
             }
             //Debug.Log(paramName);
-            message.MessageParamConfigs.Add(new MessageParamConfig() { ParamName = paramName.Trim(), ParamType = paramType, MessageClassName = messageType });
+            message.MessageParamConfigs.Add(new MessageParamConfig() { ParamName = paramName.Trim(), ParamType = paramType, MessageClassName = messageType, CustomMessageClassName = messageType });
         }
         return MessageClasses;
     }
@@ -344,23 +359,43 @@ public class MessageParamConfig
     [HideLabel]
     public Proto3Type ParamType;
 
-    [HorizontalGroup(100)]
+    [HorizontalGroup(20)]
+    [HideLabel]
+    [ShowIf("ShowMessageCustom", true)]
+    //[LabelText("指定")]
+    public bool Custom = false;
+
+    [HorizontalGroup()]
+    [HideLabel]
+    [ShowIf("Custom", true)]
+    public string CustomMessageClassName;
+
+    [HorizontalGroup()]
     [HideLabel]
     [ShowIf("ShowMessageClassName", true)]
-    [ValueDropdown("GetAllMessages", DropdownWidth = 150, NumberOfItemsBeforeEnablingSearch = 3)]
+    [ValueDropdown("GetAllMessages", DropdownWidth = 150, NumberOfItemsBeforeEnablingSearch = 10)]
     public string MessageClassName;
 
     public bool ShowMessageClassName
     {
         get
         {
-            return ParamType == Proto3Type.Message || ParamType == Proto3Type.RepeatedMessage;
+            return ShowMessageCustom && Custom == false;
+        }
+    }
+
+    public bool ShowMessageCustom
+    {
+        get
+        {
+            return (ParamType == Proto3Type.Message || ParamType == Proto3Type.RepeatedMessage);
         }
     }
 
     public static IEnumerable GetAllMessages()
     {
-        return UnityEditor.AssetDatabase.LoadAssetAtPath<MapCallHelperObject>("Assets/HotfixMessage.asset").MessageClasses.Select(x => new ValueDropdownItem(x.ClassName, x.ClassName));
+        var obj = (ETMessageDefineObject)UnityEditor.Selection.activeObject;
+        return obj.MessageClasses.Select(x => new ValueDropdownItem(x.ClassName, x.ClassName));
     }
 }
 
@@ -372,6 +407,8 @@ public enum ETMessageType
     IRequest,
     IResponse,
     IActorMessage,
+    IActorRequest,
+    IActorResponse,
     IActorLocationMessage,
     IActorLocationRequest,
     IActorLocationResponse,
@@ -392,4 +429,19 @@ public enum Proto3Type
     RepeatedString,
     RepeatedBytes,
     RepeatedMessage,
+}
+
+[Serializable]
+public enum ETProtoFileType
+{
+    HotfixMessage,
+    InnerMessage,
+    OuterMessage,
+}
+
+[Serializable]
+public enum ETProtoPackageType
+{
+    ETHotfix,
+    ETModel,
 }

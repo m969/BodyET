@@ -43,18 +43,12 @@ namespace ETHotfix
 	[Message(HotfixOpcode.EntiyInfo)]
 	public partial class EntiyInfo {}
 
-//当玩家第一次进入某个场景，得到场景内的所有玩家信息
 	[Message(HotfixOpcode.M2C_InViewUnits)]
 	public partial class M2C_InViewUnits : IActorMessage {}
 
-// repeated string InViewEntitys = 1;
-// string SelfUnit = 2;
-//当玩家进入视野
 	[Message(HotfixOpcode.M2C_OnEnterView)]
 	public partial class M2C_OnEnterView : IActorMessage {}
 
-// string EnterEntity = 1;
-//当玩家离开视野
 	[Message(HotfixOpcode.M2C_OnLeaveView)]
 	public partial class M2C_OnLeaveView : IActorMessage {}
 

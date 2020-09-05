@@ -116,8 +116,8 @@
     <Compile Include="Assets\Editor\GlobalConfigEditor\GlobalConfigEditor.cs" />
     <Compile Include="Assets\Editor\Helper\EditorResHelper.cs" />
     <Compile Include="Assets\Editor\ILRuntimeEditor\ILRuntimeCLRBinding.cs" />
+    <Compile Include="Assets\Editor\Proto2CsEditor\ETMessageDefineObject.cs" />
     <Compile Include="Assets\Editor\Proto2CsEditor\InnerProto2CS.cs" />
-    <Compile Include="Assets\Editor\Proto2CsEditor\MapCallHelperObject.cs" />
     <Compile Include="Assets\Editor\Proto2CsEditor\Proto2CSEditor.cs" />
     <Compile Include="Assets\Editor\ReferenceCollectorEditor\ReferenceCollectorEditor.cs" />
     <Compile Include="Assets\Editor\RsyncEditor\RsyncConfig.cs" />

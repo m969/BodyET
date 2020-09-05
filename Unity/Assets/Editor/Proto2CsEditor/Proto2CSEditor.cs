@@ -18,7 +18,14 @@ namespace ETEditor
 		[MenuItem("Tools/Proto2CS")]
 		public static void AllProto2CS()
 		{
-			Process process = ProcessHelper.Run("dotnet", "Proto2CS.dll", "../Proto/", true);
+            var arr = AssetDatabase.FindAssets("t:ETMessageDefineObject");
+            foreach (var item in arr)
+            {
+                var path = AssetDatabase.GUIDToAssetPath(item);
+                var obj = AssetDatabase.LoadAssetAtPath<ETMessageDefineObject>(path);
+                obj.GenerateMessage();
+            }
+            Process process = ProcessHelper.Run("dotnet", "Proto2CS.dll", "../Proto/", true);
 			Log.Info(process.StandardOutput.ReadToEnd());
 			AssetDatabase.Refresh();
 			GenerateHandlersHelperBase();
@@ -35,7 +42,7 @@ namespace ETEditor
 			sb.AppendLine("\t{");
 			sb.AppendLine("\t\tpublic static HandlersHelperBase Instance { get; set; }");
 
-			var messages = MapCallHelperObject.ParseMessages();
+			var messages = ETMessageDefineObject.ParseMessages("HotfixMessage");
 			ParseMessages(sb, messages, 1);
 			sb.AppendLine("\t}");
 

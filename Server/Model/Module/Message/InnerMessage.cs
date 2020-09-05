@@ -2,9 +2,6 @@ using ETModel;
 using System.Collections.Generic;
 namespace ETModel
 {
-/// <summary>
-/// 传送unit
-/// </summary>
 	[Message(InnerOpcode.M2M_TrasferUnitRequest)]
 	public partial class M2M_TrasferUnitRequest: IActorRequest
 	{
@@ -269,12 +266,8 @@ namespace ETModel
 
 		public string Message { get; set; }
 
-// 自己的unit id
-// 自己的unit id
 		public long UnitId { get; set; }
 
-// 所有的unit
-// 所有的unit
 		public List<UnitInfo> Units = new List<UnitInfo>();
 
 	}

@@ -1,0 +1,361 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c54c625e10b5b042bf28330b71e6b6c, type: 3}
+  m_Name: OuterMessage
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  FileName: 2
+  MessageClasses:
+  - Enabled: 0
+    MessageType: 8
+    ClassName: C2M_TestRequest
+    TagName: C2M_TestRequest
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: request
+      ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 9
+    ClassName: M2C_TestResponse
+    TagName: M2C_TestResponse
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Error
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Message
+      ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: response
+      ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 8
+    ClassName: Actor_TransferRequest
+    TagName: Actor_TransferRequest
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: MapIndex
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 9
+    ClassName: Actor_TransferResponse
+    TagName: Actor_TransferResponse
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Error
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Message
+      ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 2
+    ClassName: C2G_EnterMap
+    TagName: C2G_EnterMap
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 3
+    ClassName: G2C_EnterMap
+    TagName: G2C_EnterMap
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Error
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Message
+      ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: UnitId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Units
+      ParamType: 11
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: UnitInfo
+  - Enabled: 0
+    MessageType: 0
+    ClassName: UnitInfo
+    TagName: UnitInfo
+    MessageParamConfigs:
+    - ParamName: UnitId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: X
+      ParamType: 2
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Y
+      ParamType: 2
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Z
+      ParamType: 2
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: AngleY
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 4
+    ClassName: M2C_CreateUnits
+    TagName: M2C_CreateUnits
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Units
+      ParamType: 11
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: UnitInfo
+    - ParamName: SelfUnitId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 7
+    ClassName: Frame_ClickMap
+    TagName: Frame_ClickMap
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: ActorId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Id
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: X
+      ParamType: 2
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Y
+      ParamType: 2
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Z
+      ParamType: 2
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 4
+    ClassName: M2C_PathfindingResult
+    TagName: M2C_PathfindingResult
+    MessageParamConfigs:
+    - ParamName: ActorId
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Id
+      ParamType: 1
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: X
+      ParamType: 2
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Y
+      ParamType: 2
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Z
+      ParamType: 2
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Xs
+      ParamType: 8
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Ys
+      ParamType: 8
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Zs
+      ParamType: 8
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 2
+    ClassName: C2R_Ping
+    TagName: C2R_Ping
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 3
+    ClassName: R2C_Ping
+    TagName: R2C_Ping
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Error
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Message
+      ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 1
+    ClassName: G2C_Test
+    TagName: G2C_Test
+    MessageParamConfigs: []
+  - Enabled: 0
+    MessageType: 2
+    ClassName: C2M_Reload
+    TagName: C2M_Reload
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Account
+      ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Password
+      ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  - Enabled: 0
+    MessageType: 3
+    ClassName: M2C_Reload
+    TagName: M2C_Reload
+    MessageParamConfigs:
+    - ParamName: RpcId
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Error
+      ParamType: 0
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+    - ParamName: Message
+      ParamType: 3
+      Custom: 0
+      CustomMessageClassName: 
+      MessageClassName: 
+  ImportMessagesGroup: 0
