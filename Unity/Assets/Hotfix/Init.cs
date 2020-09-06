@@ -43,6 +43,7 @@ namespace ETHotfix
 
 				Game.EventSystem.Run(EventIdType.InitSceneStart);
 
+				HandlersHelper.Instance = new HandlersHelper();
 				EntityDefine.OnPropertyChanged += (entity, name, value) =>
 				{
 					Log.Debug($"OnPropertyChanged {name}");
