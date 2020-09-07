@@ -103,5 +103,5 @@ MonoBehaviour:
     ShieldValue: 0
     ShieldDuration: 0
   SkillAnimationClip: {fileID: 0}
-  SkillParticleEffect: {fileID: 0}
+  SkillEffectObject: {fileID: 11400000, guid: 62856a91c7a028c4eae2042f80c97c97, type: 2}
   SkillAudio: {fileID: 0}

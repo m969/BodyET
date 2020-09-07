@@ -16,6 +16,7 @@
 		//[EnumToggleButtons]
 		//public ViewTool SomeField;
 
+		[LabelText("属性配置")]
 		public List<AttributeConfig> AttributeConfigs = new List<AttributeConfig>();
 		//[Button("+")]
 		private void AddAttributeConfig()
@@ -24,6 +25,7 @@
 			AttributeConfigs.Add(new AttributeConfig() { Guid = string.Concat(arr) });
 		}
 
+		[LabelText("状态配置")]
 		public List<StateConfig> StateConfigs = new List<StateConfig>();
 		//[Button("+")]
 		private void AddStateConfig()

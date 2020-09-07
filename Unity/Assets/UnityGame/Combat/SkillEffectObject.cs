@@ -13,11 +13,11 @@ namespace UnityGame.Combat
     [LabelText("技能特效配置")]
     public class SkillEffectObject : SerializedScriptableObject
     {
-        [LabelText("技能ID")]
-        [DelayedProperty]
-        public uint ID;
-        [LabelText("技能名称")]
-        [DelayedProperty]
-        public string Name;
+        [LabelText("技能特效")]
+        public GameObject SkillParticleEffect;
+
+        [Space(20)]
+        [LabelText("射弹")]
+        public ProjectileEffectObject Projectile;
     }
 }

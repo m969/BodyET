@@ -62,7 +62,7 @@ namespace UnityGame.Combat
         public AnimationClip SkillAnimationClip;
         [BoxGroup("技能表现")]
         [LabelText("技能特效")]
-        public GameObject SkillParticleEffect;
+        public SkillEffectObject SkillEffectObject;
         [BoxGroup("技能表现")]
         [LabelText("技能音效")]
         public AudioClip SkillAudio;

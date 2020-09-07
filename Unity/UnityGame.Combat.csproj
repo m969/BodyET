@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\UnityGame\Combat\BuffHelper.cs" />
     <Compile Include="Assets\UnityGame\Combat\NameArrayObject.cs" />
+    <Compile Include="Assets\UnityGame\Combat\ProjectileEffectObject.cs" />
     <Compile Include="Assets\UnityGame\Combat\SkillConfigObject.cs" />
     <Compile Include="Assets\UnityGame\Combat\SkillEffectObject.cs" />
     <Compile Include="Assets\UnityGame\Combat\SkillHelper.cs" />
