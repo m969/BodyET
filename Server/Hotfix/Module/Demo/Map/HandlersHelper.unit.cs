@@ -9,86 +9,10 @@ namespace ETHotfix
 {
 	public partial class HandlersHelper: HandlersHelperBase
 	{
-        public override async ETTask C2R_LoginHandler(Session session, C2R_Login request, R2C_Login response, Action reply)
-        {
-            Console.WriteLine("C2R_LoginHandler");
-            // 随机分配一个Gate
-            StartConfig config = RealmGateAddressHelper.GetGate();
-            //Log.Debug($"gate address: {MongoHelper.ToJson(config)}");
-
-            // 向gate请求一个key,客户端可以拿着这个key连接gate
-            G2R_GetLoginKey g2RGetLoginKey = (G2R_GetLoginKey)await ActorMessageSenderComponent.Instance.Call(
-                config.SceneInstanceId, new R2G_GetLoginKey() { Account = request.Account });
-
-            string outerAddress = config.GetParent<StartConfig>().GetComponent<OuterConfig>().Address2;
-
-            response.Address = outerAddress;
-            response.Key = g2RGetLoginKey.Key;
-            response.GateId = g2RGetLoginKey.GateId;
-            reply();
-        }
-
-		public override async ETTask C2G_LoginGateHandler(Session session, C2G_LoginGate request, G2C_LoginGate response, Action reply)
-        {
-			Console.WriteLine("C2G_LoginGateHandler");
-			Scene scene = Game.Scene.Get(request.GateId);
-			if (scene == null)
-			{
-				return;
-			}
-
-			string account = scene.GetComponent<GateSessionKeyComponent>().Get(request.Key);
-			if (account == null)
-			{
-				response.Error = ErrorCode.ERR_ConnectGateKeyError;
-				response.Message = "Gate key验证失败!";
-				reply();
-				return;
-			}
-
-			var results = await DBComponent.Instance.Query<Player>(x => x.Account == account);
-			Player player = null;
-			if (results.Count > 0)
-			{
-				player = results[0];
-			}
-			else
-			{
-				player = EntityFactory.Create<Player, string>(Game.Scene, account);
-				DBComponent.Instance.Save(player).Coroutine();
-			}
-			scene.GetComponent<PlayerComponent>().Add(player);
-			session.AddComponent<SessionPlayerComponent>().Player = player;
-			session.AddComponent<MailBoxComponent, MailboxType>(MailboxType.GateSession);
-
-			response.PlayerId = player.Id;
-			reply();
-
-			//session.Send(new G2C_TestHotfixMessage() { Info = "recv hotfix message success" });
-			await ETTask.CompletedTask;
-		}
-
         public override async ETTask C2M_TestActorRequestHandler(Unit unit, C2M_TestActorRequest request, M2C_TestActorResponse response, Action reply)
         {
             response.Info = "actor rpc response";
             reply();
-			await ETTask.CompletedTask;
-        }
-
-        public override async ETTask C2G_PlayerInfoHandler(Session session, C2G_PlayerInfo request, G2C_PlayerInfo response, Action reply)
-        {
-			response.PlayerInfo = new PlayerInfo();
-			response.PlayerInfos.Add(new PlayerInfo() { RpcId = 1 });
-			response.PlayerInfos.Add(new PlayerInfo() { RpcId = 2 });
-			response.PlayerInfos.Add(new PlayerInfo() { RpcId = 3 });
-			response.TestRepeatedInt32.Add(4);
-			response.TestRepeatedInt32.Add(5);
-			response.TestRepeatedInt32.Add(6);
-			response.TestRepeatedInt64.Add(7);
-			response.TestRepeatedInt64.Add(8);
-			response.TestRepeatedString.Add("9");
-			response.TestRepeatedString.Add("10");
-			reply();
 			await ETTask.CompletedTask;
         }
 
@@ -113,5 +37,89 @@ namespace ETHotfix
 				unit.SetPropertyValue((ushort)message.PropertyId, message.PropertyValue.bytes);
 			await ETTask.CompletedTask;
         }
-    }
+
+		public override async ETTask FireRequestHandler(Unit unit, FireRequest request, MessageResponse response, Action reply)
+		{
+			MessageHelper.Broadcast(unit, request);
+			reply();
+			await ETTask.CompletedTask;
+		}
+
+		public override async ETTask G2M_CreateUnitHandler(Scene scene, G2M_CreateUnit request, M2G_CreateUnit response, Action reply)
+		{
+			var copyMap = Game.Scene.Children.Values.ToList().Find((x) =>
+			{
+				if (x is Scene s)
+					return s.Name == "CopyMap1";
+				return false;
+			});
+			if (copyMap == null)
+			{
+				var copyMapConfig = StartConfigComponent.Instance.GetByName("CopyMap1");
+				copyMap = await SceneFactory.Create(Game.Scene, copyMapConfig.GetComponent<SceneConfig>().Name, SceneType.Map);
+			}
+
+			Unit unit = null;
+			if (request.UnitId != 0)
+			{
+				unit = await DBComponent.Instance.Query<Unit>(request.UnitId);
+				unit.Domain = copyMap;
+			}
+			else
+			{
+				unit = EntityFactory.CreateWithId<Unit>(copyMap, IdGenerater.GenerateId());
+				unit.PlayerId = request.PlayerId;
+				unit.Setup();
+				unit.Save().Coroutine();
+			}
+
+			unit.AddComponent<MoveComponent>();
+			unit.AddComponent<Body2dComponent>().CreateBody(.2f, .2f);
+			unit.AddComponent<MailBoxComponent>();
+			await unit.AddLocation();
+			unit.AddComponent<UnitGateComponent, long>(request.GateSessionId);
+			copyMap.GetComponent<UnitComponent>().Add(unit);
+			response.UnitId = unit.Id;
+
+			// 广播创建的unit
+			var inViewUnitsMsg = new M2C_InViewUnits();
+			var enterViewMsg = new M2C_OnEnterView();
+			Unit[] units = copyMap.GetComponent<UnitComponent>().GetAll();
+			foreach (Unit u in units)
+			{
+				var entityInfo = new EntiyInfo();
+				entityInfo.BsonBytes = new Google.Protobuf.ByteString();
+				entityInfo.BsonBytes.bytes = MongoHelper.ToBson(u);
+				entityInfo.Type = EntityDefine.GetTypeId<Unit>();
+				if (u.Id == unit.Id)
+				{
+					enterViewMsg.EnterEntity = entityInfo;
+					inViewUnitsMsg.SelfUnit = entityInfo.BsonBytes;
+					continue;
+				}
+				inViewUnitsMsg.InViewEntitys.Add(entityInfo);
+			}
+			var monsters = copyMap.GetComponent<MonsterComponent>().GetAll();
+			foreach (var u in monsters)
+			{
+				var entityInfo = new EntiyInfo();
+				entityInfo.BsonBytes = new Google.Protobuf.ByteString();
+				entityInfo.BsonBytes.bytes = MongoHelper.ToBson(u);
+				entityInfo.Type = EntityDefine.GetTypeId<Monster>();
+				inViewUnitsMsg.InViewEntitys.Add(entityInfo);
+			}
+			MessageHelper.BroadcastToOther(unit, enterViewMsg);
+			MessageHelper.Send(unit, inViewUnitsMsg);
+			reply();
+		}
+
+		public override async ETTask G2M_SessionDisconnectHandler(Unit unit, G2M_SessionDisconnect message)
+		{
+			unit.GetComponent<UnitGateComponent>().IsDisconnect = true;
+			await unit.Save();
+			PlayerComponent.Instance.Remove(unit.PlayerId);
+			unit.Domain.GetComponent<UnitComponent>().Remove(unit.Id);
+			await ETTask.CompletedTask;
+		}
+	}
 }

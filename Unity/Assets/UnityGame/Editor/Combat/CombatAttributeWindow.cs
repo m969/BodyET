@@ -25,7 +25,8 @@
 			AttributeConfigs.Add(new AttributeConfig() { Guid = string.Concat(arr) });
 		}
 
-		[LabelText("状态配置")]
+		[OnInspectorGUI(AppendMethodName = "DrawStateList"/*, AppendMethodName = "EndDrawStateMatrix"*/)]
+[LabelText("状态配置")]
 		public List<StateConfig> StateConfigs = new List<StateConfig>();
 		//[Button("+")]
 		private void AddStateConfig()
@@ -34,9 +35,10 @@
 			StateConfigs.Add(new StateConfig() { Guid = string.Concat(arr) });
 		}
 
-		//[HorizontalGroup("Split")]
-		//[LabelText("魔免")]
-		//public string Label;
+		//[HideLabel]
+		//[ReadOnly]
+		//[OnInspectorGUI(PrependMethodName = "DrawStateList"/*, AppendMethodName = "EndDrawStateMatrix"*/)]
+		//public string SplitTitle = "";
 
 		public void DrawStateList()
 		{
@@ -54,15 +56,25 @@
 			//	}
 			//	//EditorGUILayout.EndHorizontal();
 			//}
-			EditorGUILayout.BeginVertical();
-			for (int i = 0; i < 4; i++)
+			EditorGUILayout.BeginHorizontal();
+			EditorGUILayout.LabelField("", GUILayout.Width(40));
+			for (int j = 0; j < 8; j++)
 			{
-				EditorGUILayout.BeginHorizontal();
+				EditorGUILayout.LabelField("魔免", GUILayout.Width(60));
+			}
+			EditorGUILayout.EndHorizontal();
+			EditorGUILayout.BeginVertical();
+			var style = new GUIStyle(GUI.skin.toggle);
+			style.alignment = TextAnchor.MiddleCenter;
+			for (int i = 0; i < 8; i++)
+			{
+				EditorGUILayout.BeginHorizontal(GUILayout.Height(30));
 				EditorGUILayout.LabelField("魔免", GUILayout.Width(40));
-				for (int j = 0; j < 4; j++)
+				for (int j = 0; j < 8; j++)
 				{
 					//Debug.Log($"{CustomCellDrawing}");
-					CustomCellDrawing[i, j] = EditorGUILayout.Toggle(CustomCellDrawing[i, j], GUILayout.Width(20));
+					//SirenixEditorGUI.IndentSpace();
+					CustomCellDrawing[i, j] = EditorGUILayout.Toggle(CustomCellDrawing[i, j], /*style,*/ GUILayout.Width(60));
 				}
 				EditorGUILayout.EndHorizontal();
 			}
@@ -75,11 +87,15 @@
 		//[OnInspectorGUI(PrependMethodName ="DrawStateList", AppendMethodName = "EndDrawStateMatrix")]
 		//[HideLabel]
 		//[TableMatrix(/*HorizontalTitle = "状态排斥表",*/ DrawElementMethod = "DrawColoredEnumElement", ResizableColumns = true, /*RowHeight = 16,*/ HideColumnIndices =true, HideRowIndices =true)]
-		private bool[,] CustomCellDrawing = new bool[4, 4] {
-			{false,false,false,false },
-			{false,false,false,false },
-			{false,false,false,false },
-			{false,false,false,false },
+		private bool[,] CustomCellDrawing = new bool[, ] {
+			{false,false,false,false,false,false,false,false, },
+			{false,false,false,false,false,false,false,false, },
+			{false,false,false,false,false,false,false,false, },
+			{false,false,false,false,false,false,false,false, },
+			{false,false,false,false,false,false,false,false, },
+			{false,false,false,false,false,false,false,false, },
+			{false,false,false,false,false,false,false,false, },
+			{false,false,false,false,false,false,false,false, },
 		};
 
 
@@ -108,7 +124,7 @@
 			return value;
 		}
 
-		[Button("Set")]
+		//[Button("Set")]
 		public void TransposeTableMatrixExample()
 		{
 			// =)
@@ -139,7 +155,7 @@
 		protected override void OnGUI()
 		{
 			base.OnGUI();
-			DrawStateList();
+			//DrawStateList();
 		}
 	}
 

@@ -123,7 +123,7 @@ public class ETMessageDefineObject : SerializedScriptableObject
     //public List<MessageParamConfig> MessageParamConfigs = new List<MessageParamConfig>();
 
     //[Button("生成消息协议文件及代码", ButtonHeight = 30)]
-    public void GenerateMessage()
+    public static void GenerateMessage(ETProtoFileType FileName, List<MessageClass> MessageClasses)
     {
         var path = $"../Proto/{FileName}.proto";
 		var sb = new StringBuilder();

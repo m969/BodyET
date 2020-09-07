@@ -249,7 +249,7 @@ MonoBehaviour:
       CustomMessageClassName: 
       MessageClassName: PlayerInfo
     - ParamName: TestRepeatedString
-      ParamType: 3
+      ParamType: 9
       Custom: 0
       CustomMessageClassName: 
       MessageClassName: 
