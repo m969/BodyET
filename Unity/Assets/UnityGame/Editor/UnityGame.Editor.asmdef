@@ -1,6 +1,8 @@
 {
     "name": "UnityGame.Editor",
-    "references": [],
+    "references": [
+        "GUID:6e851b320268d76448f1a83d6bc35620"
+    ],
     "includePlatforms": [
         "Editor"
     ],

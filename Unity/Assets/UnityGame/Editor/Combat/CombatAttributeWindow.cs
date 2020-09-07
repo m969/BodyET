@@ -16,31 +16,44 @@
 		//[EnumToggleButtons]
 		//public ViewTool SomeField;
 
+		private AttributeConfigObject attributeConfigObject;
+
 		[LabelText("属性配置")]
-		public List<AttributeConfig> AttributeConfigs = new List<AttributeConfig>();
+		public List<AttributeConfig> AttributeConfigs;
 		//[Button("+")]
-		private void AddAttributeConfig()
-		{
-			var arr = System.DateTime.Now.Ticks.ToString().Reverse();
-			AttributeConfigs.Add(new AttributeConfig() { Guid = string.Concat(arr) });
-		}
+		//private void AddAttributeConfig()
+		//{
+		//	var arr = System.DateTime.Now.Ticks.ToString().Reverse();
+		//	AttributeConfigs.Add(new AttributeConfig() { Guid = string.Concat(arr) });
+		//}
 
 		[OnInspectorGUI(AppendMethodName = "DrawStateList"/*, AppendMethodName = "EndDrawStateMatrix"*/)]
-[LabelText("状态配置")]
-		public List<StateConfig> StateConfigs = new List<StateConfig>();
+		[LabelText("状态配置")]
+		public List<StateConfig> StateConfigs;
 		//[Button("+")]
-		private void AddStateConfig()
-		{
-			var arr = System.DateTime.Now.Ticks.ToString().Reverse();
-			StateConfigs.Add(new StateConfig() { Guid = string.Concat(arr) });
+		//private void AddStateConfig()
+		//{
+		//	var arr = System.DateTime.Now.Ticks.ToString().Reverse();
+		//	StateConfigs.Add(new StateConfig() { Guid = string.Concat(arr) });
+		//}
+
+        //[HideLabel]
+        //[ReadOnly]
+        //[OnInspectorGUI(PrependMethodName = "DrawStateList"/*, AppendMethodName = "EndDrawStateMatrix"*/)]
+        //public string SplitTitle = "";
+
+        private void OnEnable()
+        {
+			attributeConfigObject = AssetDatabase.LoadAssetAtPath<AttributeConfigObject>("Assets/UnityGame/CombatConfigs/战斗属性配置.asset");
+			if (attributeConfigObject == null)
+            {
+
+            }
+			AttributeConfigs = attributeConfigObject.AttributeConfigs;
+			StateConfigs = attributeConfigObject.StateConfigs;
 		}
 
-		//[HideLabel]
-		//[ReadOnly]
-		//[OnInspectorGUI(PrependMethodName = "DrawStateList"/*, AppendMethodName = "EndDrawStateMatrix"*/)]
-		//public string SplitTitle = "";
-
-		public void DrawStateList()
+        public void DrawStateList()
 		{
 			//EditorGUILayout.BeginHorizontal();
 			//{
@@ -57,30 +70,40 @@
 			//	//EditorGUILayout.EndHorizontal();
 			//}
 			EditorGUILayout.BeginHorizontal();
-			EditorGUILayout.LabelField("", GUILayout.Width(40));
-			for (int j = 0; j < 8; j++)
-			{
-				EditorGUILayout.LabelField("魔免", GUILayout.Width(60));
+			EditorGUILayout.LabelField("", GUILayout.Width(100));
+            foreach (var item in StateConfigs)
+            {
+				EditorGUILayout.LabelField($"{item.AliasName}", GUILayout.Width(100));
 			}
+			//for (int j = 0; j < 8; j++)
+			//{
+			//	EditorGUILayout.LabelField("魔免", GUILayout.Width(60));
+			//}
 			EditorGUILayout.EndHorizontal();
 			EditorGUILayout.BeginVertical();
-			var style = new GUIStyle(GUI.skin.toggle);
-			style.alignment = TextAnchor.MiddleCenter;
-			for (int i = 0; i < 8; i++)
+			attributeConfigObject.StateMutexTable.SetLength(StateConfigs.Count);
+			for (int i = 0; i < StateConfigs.Count; i++)
 			{
+				//if (attributeConfigObject.StateMutexTable.Count <= i)
+    //            {
+				//	attributeConfigObject.StateMutexTable.Add(new List<bool>(StateConfigs.Count));
+    //            }
+				if (attributeConfigObject.StateMutexTable[i] == null)
+                {
+					attributeConfigObject.StateMutexTable[i] = new List<bool>();
+				}
+				attributeConfigObject.StateMutexTable[i].SetLength(StateConfigs.Count);
+				var item = StateConfigs[i];
 				EditorGUILayout.BeginHorizontal(GUILayout.Height(30));
-				EditorGUILayout.LabelField("魔免", GUILayout.Width(40));
-				for (int j = 0; j < 8; j++)
+				EditorGUILayout.LabelField($"{item.AliasName}", GUILayout.Width(100));
+				for (int j = 0; j < StateConfigs.Count; j++)
 				{
-					//Debug.Log($"{CustomCellDrawing}");
-					//SirenixEditorGUI.IndentSpace();
-					CustomCellDrawing[i, j] = EditorGUILayout.Toggle(CustomCellDrawing[i, j], /*style,*/ GUILayout.Width(60));
+					attributeConfigObject.StateMutexTable[i][j] = EditorGUILayout.Toggle(attributeConfigObject.StateMutexTable[i][j], GUILayout.Width(100));
 				}
 				EditorGUILayout.EndHorizontal();
 			}
 			EditorGUILayout.EndVertical();
 			//this.BeginWindows();
-
 		}
 
 		////[HorizontalGroup("Split")]
@@ -98,6 +121,7 @@
 			{false,false,false,false,false,false,false,false, },
 		};
 
+		private List<List<bool>> StateMutexTable = new List<List<bool>>();
 
 		public void EndDrawStateMatrix()
 		{
@@ -157,35 +181,5 @@
 			base.OnGUI();
 			//DrawStateList();
 		}
-	}
-
-	[Serializable]
-	public class AttributeConfig
-    {
-		[ToggleGroup("Enable", "@AliasName")]
-		public bool Enable;
-		[ToggleGroup("Enable")]
-		[LabelText("属性名")]
-		public string AttributeName = "NewAttribute";
-		[ToggleGroup("Enable")]
-		[LabelText("属性别名")]
-		public string AliasName = "NewAttribute";
-		[HideInInspector]
-		public string Guid;
-	}
-
-	[Serializable]
-	public class StateConfig
-	{
-		[ToggleGroup("Enable", "@AliasName")]
-		public bool Enable;
-		[ToggleGroup("Enable")]
-		[LabelText("状态名")]
-		public string StateName = "NewState";
-		[ToggleGroup("Enable")]
-		[LabelText("状态别名")]
-		public string AliasName = "NewState";
-		[HideInInspector]
-		public string Guid;
 	}
 }
