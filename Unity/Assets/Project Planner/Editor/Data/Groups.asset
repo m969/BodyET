@@ -85,10 +85,8 @@ MonoBehaviour:
     _boardID: b2568c2110f4b8fa3ecc89a1ad338635102852a7-d2afa1de-0bd2-4600-afce-2eb83cb25d0e
     _name: Planned
     _taskIds:
+    - c401be0cd516746e57e007fc0290149f3e4edaef-8531b744-e7e3-452f-990c-da5aa09c2c03
     - b2568c2110f4b8fa3ecc89a1ad338635102852a7-fefd8996-a46c-4cf1-a891-a1e7e7e7d2fd
-    - c401be0cd516746e57e007fc0290149f3e4edaef-7f4fab80-2154-4984-8182-4325d7804d3b
-    - c401be0cd516746e57e007fc0290149f3e4edaef-2aad513b-62fd-4d30-8ff6-7c71d4861e43
-    - c401be0cd516746e57e007fc0290149f3e4edaef-ed6d0d27-42f3-4e11-a6b9-c3485df17b1f
     _scrollPosition: {x: 0, y: 0}
     _treeWindow_SearchShow: 1
     TreeWindowShowAnimation:
@@ -100,8 +98,8 @@ MonoBehaviour:
     _boardID: b2568c2110f4b8fa3ecc89a1ad338635102852a7-d2afa1de-0bd2-4600-afce-2eb83cb25d0e
     _name: In Progress
     _taskIds:
+    - c401be0cd516746e57e007fc0290149f3e4edaef-ed6d0d27-42f3-4e11-a6b9-c3485df17b1f
     - b2568c2110f4b8fa3ecc89a1ad338635102852a7-7d6b55bf-c7b4-41cd-a89c-64e717bc2ed3
-    - c401be0cd516746e57e007fc0290149f3e4edaef-8531b744-e7e3-452f-990c-da5aa09c2c03
     - c401be0cd516746e57e007fc0290149f3e4edaef-49db9bb9-4583-4d7c-914a-30e2ddfe8152
     _scrollPosition: {x: 0, y: 0}
     _treeWindow_SearchShow: 1

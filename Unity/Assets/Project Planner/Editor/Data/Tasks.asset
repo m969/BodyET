@@ -1106,7 +1106,7 @@ MonoBehaviour:
       m_Value: 0
     _treeWindow_ShowSubtasks: 0
   - _id: c401be0cd516746e57e007fc0290149f3e4edaef-8531b744-e7e3-452f-990c-da5aa09c2c03
-    _parentID: b2568c2110f4b8fa3ecc89a1ad338635102852a7-28733475-d42f-4a59-8986-e2ddfddce79a
+    _parentID: b2568c2110f4b8fa3ecc89a1ad338635102852a7-af79abf1-1aef-45fb-82dd-24f0893e3f4b
     _lock: 0
     _done: 0
     _isParentSubtask: 0
@@ -1134,70 +1134,12 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
     _treeWindow_ShowSubtasks: 0
-  - _id: c401be0cd516746e57e007fc0290149f3e4edaef-7f4fab80-2154-4984-8182-4325d7804d3b
-    _parentID: b2568c2110f4b8fa3ecc89a1ad338635102852a7-af79abf1-1aef-45fb-82dd-24f0893e3f4b
-    _lock: 0
-    _done: 0
-    _isParentSubtask: 0
-    _name: "XAsset 5.0 \u96C6\u6210"
-    _description: 
-    _showSubtasks: 1
-    _tasksIds: []
-    _hideCompletedChecklistItems: 0
-    _showTags: 0
-    _tagIds: []
-    _showAssets: 0
-    _assets: []
-    _showColors: 0
-    _colorIds: []
-    _screenshot: []
-    _showScreenshots: 0
-    _createdTicks: 637324083547714627
-    _updatedTicks: 637324083686309331
-    _scrollPosition: {x: 0, y: 0}
-    _boardWindow_SearchShow: 1
-    _taskWindow_ShowSubtask: 0
-    _treeWindow_SearchShow: 1
-    treeWindowShowSubtasksAnimation:
-      m_Target: 0
-      speed: 2
-      m_Value: 0
-    _treeWindow_ShowSubtasks: 0
-  - _id: c401be0cd516746e57e007fc0290149f3e4edaef-2aad513b-62fd-4d30-8ff6-7c71d4861e43
-    _parentID: b2568c2110f4b8fa3ecc89a1ad338635102852a7-af79abf1-1aef-45fb-82dd-24f0893e3f4b
-    _lock: 0
-    _done: 0
-    _isParentSubtask: 0
-    _name: "\u6D88\u606F\u534F\u8BAE\u7F16\u8F91"
-    _description: 
-    _showSubtasks: 1
-    _tasksIds: []
-    _hideCompletedChecklistItems: 0
-    _showTags: 0
-    _tagIds: []
-    _showAssets: 0
-    _assets: []
-    _showColors: 0
-    _colorIds: []
-    _screenshot: []
-    _showScreenshots: 0
-    _createdTicks: 637325010216951707
-    _updatedTicks: 637325010738189523
-    _scrollPosition: {x: 0, y: 0}
-    _boardWindow_SearchShow: 1
-    _taskWindow_ShowSubtask: 0
-    _treeWindow_SearchShow: 1
-    treeWindowShowSubtasksAnimation:
-      m_Target: 0
-      speed: 2
-      m_Value: 0
-    _treeWindow_ShowSubtasks: 0
   - _id: c401be0cd516746e57e007fc0290149f3e4edaef-ed6d0d27-42f3-4e11-a6b9-c3485df17b1f
-    _parentID: b2568c2110f4b8fa3ecc89a1ad338635102852a7-af79abf1-1aef-45fb-82dd-24f0893e3f4b
+    _parentID: b2568c2110f4b8fa3ecc89a1ad338635102852a7-28733475-d42f-4a59-8986-e2ddfddce79a
     _lock: 0
     _done: 0
     _isParentSubtask: 0
-    _name: "\u8FDC\u7A0B\u65B9\u6CD5\u4EE3\u7801\u751F\u6210"
+    _name: "\u8FDC\u7A0B\u8C03\u7528\u4EE3\u7801\u751F\u6210"
     _description: 
     _showSubtasks: 1
     _tasksIds: []
@@ -1211,7 +1153,7 @@ MonoBehaviour:
     _screenshot: []
     _showScreenshots: 0
     _createdTicks: 637325010747195338
-    _updatedTicks: 637325010760694258
+    _updatedTicks: 637352124137616060
     _scrollPosition: {x: 0, y: 0}
     _boardWindow_SearchShow: 1
     _taskWindow_ShowSubtask: 0

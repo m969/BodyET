@@ -44,7 +44,7 @@
 
         private void OnEnable()
         {
-			attributeConfigObject = AssetDatabase.LoadAssetAtPath<AttributeConfigObject>("Assets/UnityGame/CombatConfigs/战斗属性配置.asset");
+			attributeConfigObject = AssetDatabase.LoadAssetAtPath<AttributeConfigObject>("Assets/EGamePlay/CombatConfigs/战斗属性配置.asset");
 			if (attributeConfigObject == null)
             {
 
@@ -169,7 +169,7 @@
 		}
 
 
-		[MenuItem("Tools/UnityGame/战斗属性编辑界面")]
+		[MenuItem("Tools/EGamePlay/战斗属性编辑界面")]
 		private static void ShowWindow()
 		{
 			var window = GetWindowWithRect<CombatAttributeWindow>(new Rect(0, 0, 800, 600), true, "战斗属性编辑界面");
