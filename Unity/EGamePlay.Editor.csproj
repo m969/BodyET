@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{CD311104-1830-B119-81B6-5DBEE2467FFB}</ProjectGuid>
+    <ProjectGuid>{B22D9189-2062-ECF6-7233-958FC039A47C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Unity.Editor</AssemblyName>
+    <AssemblyName>EGamePlay.Editor</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -26,7 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,7 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <NoConfig>true</NoConfig>
@@ -63,72 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Editor\AstarPathfindingProject\AIBaseEditor.cs" />
-    <Compile Include="Assets\Editor\AstarPathfindingProject\AILerpEditor.cs" />
-    <Compile Include="Assets\Editor\AstarPathfindingProject\AstarPathEditor.cs" />
-    <Compile Include="Assets\Editor\AstarPathfindingProject\AstarUpdateChecker.cs" />
-    <Compile Include="Assets\Editor\AstarPathfindingProject\AstarUpdateWindow.cs" />
-    <Compile Include="Assets\Editor\AstarPathfindingProject\CustomGraphEditorAttribute.cs" />
-    <Compile Include="Assets\Editor\AstarPathfindingProject\GraphEditors\GraphEditor.cs" />
-    <Compile Include="Assets\Editor\AstarPathfindingProject\GraphEditors\RecastGraphEditor.cs" />
-    <Compile Include="Assets\Editor\AstarPathfindingProject\GraphUpdateSceneEditor.cs" />
-    <Compile Include="Assets\Editor\AstarPathfindingProject\ModifierEditors\RaycastModifierEditor.cs" />
-    <Compile Include="Assets\Editor\AstarPathfindingProject\ModifierEditors\SmoothModifierEditor.cs" />
-    <Compile Include="Assets\Editor\AstarPathfindingProject\PackageTools\EditorBase.cs" />
-    <Compile Include="Assets\Editor\AstarPathfindingProject\PackageTools\EditorGUIx.cs" />
-    <Compile Include="Assets\Editor\AstarPathfindingProject\PackageTools\EnumFlagDrawer.cs" />
-    <Compile Include="Assets\Editor\AstarPathfindingProject\PackageTools\OptimizationHandler.cs" />
-    <Compile Include="Assets\Editor\AstarPathfindingProject\RVOControllerEditor.cs" />
-    <Compile Include="Assets\Editor\AstarPathfindingProject\RVONavmeshEditor.cs" />
-    <Compile Include="Assets\Editor\AstarPathfindingProject\RVOSimulatorEditor.cs" />
-    <Compile Include="Assets\Editor\AstarPathfindingProject\RVOSquareObstacleEditor.cs" />
-    <Compile Include="Assets\Editor\AstarPathfindingProject\RecastMeshObjEditor.cs" />
-    <Compile Include="Assets\Editor\AstarPathfindingProject\SeekerEditor.cs" />
-    <Compile Include="Assets\Editor\BuffEditor\BuffEditor.cs" />
-    <Compile Include="Assets\Editor\BuildEditor\BuildEditor.cs" />
-    <Compile Include="Assets\Editor\BuildEditor\BuildHelper.cs" />
-    <Compile Include="Assets\Editor\BuildEditor\BuildHotfixEditor.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\ComponentViewEditor.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\Entity\EditorLayout.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\Entity\SerializationTypeExtension.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\ITypeDrawer.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\TypeDrawer\AnimationCurveTypeDrawer.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\TypeDrawer\BoolTypeDrawer.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\TypeDrawer\BoundsTypeDrawer.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\TypeDrawer\CharTypeDrawer.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\TypeDrawer\ColorTypeDrawer.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\TypeDrawer\DateTimeTypeDrawer.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\TypeDrawer\DoubleTypeDrawer.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\TypeDrawer\EnumTypeDrawer.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\TypeDrawer\FloatTypeDrawer.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\TypeDrawer\IntTypeDrawer.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\TypeDrawer\LongTypeDrawer.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\TypeDrawer\RectTypeDrawer.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\TypeDrawer\StringTypeDrawer.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\TypeDrawer\UnityObjectTypeDrawer.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\TypeDrawer\Vector2TypeDrawer.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\TypeDrawer\Vector3TypeDrawer.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\TypeDrawer\Vector4TypeDrawer.cs" />
-    <Compile Include="Assets\Editor\ComponentViewEditor\TypeDrawerAttribute.cs" />
-    <Compile Include="Assets\Editor\Demigiant\DOTweenPro\Editor\DOTweenAnimationInspector.cs" />
-    <Compile Include="Assets\Editor\Demigiant\DOTweenPro\Editor\DOTweenPreviewManager.cs" />
-    <Compile Include="Assets\Editor\ExcelExporterEditor\ExcelExporterEditor.cs" />
-    <Compile Include="Assets\Editor\GlobalConfigEditor\GlobalConfigEditor.cs" />
-    <Compile Include="Assets\Editor\Helper\EditorResHelper.cs" />
-    <Compile Include="Assets\Editor\ILRuntimeEditor\ILRuntimeCLRBinding.cs" />
-    <Compile Include="Assets\Editor\Proto2CsEditor\ETMessageDefineObject.cs" />
-    <Compile Include="Assets\Editor\Proto2CsEditor\InnerProto2CS.cs" />
-    <Compile Include="Assets\Editor\Proto2CsEditor\Proto2CSEditor.cs" />
-    <Compile Include="Assets\Editor\ReferenceCollectorEditor\ReferenceCollectorEditor.cs" />
-    <Compile Include="Assets\Editor\RsyncEditor\RsyncConfig.cs" />
-    <Compile Include="Assets\Editor\RsyncEditor\RsyncEditor.cs" />
-    <Compile Include="Assets\Editor\ServerCommandLineEditor\ServerCommandLineEditor.cs" />
-    <Compile Include="Assets\Editor\ServerManagerEditor\ServerManagerEditor.cs" />
-    <None Include="Assets\Editor\Unity.Editor.asmdef" />
-    <None Include="Assets\Editor\Demigiant\DemiLib\Editor\DemiEditor.xml" />
-    <None Include="Assets\Editor\AstarPathfindingProject\EditorAssets\Materials\Navmesh.cginc" />
-    <None Include="Assets\Editor\AstarPathfindingProject\EditorAssets\Materials\NavmeshOutline.shader" />
-    <None Include="Assets\Editor\AstarPathfindingProject\EditorAssets\Materials\Navmesh.shader" />
+    <Compile Include="Assets\EGamePlay\Editor\Combat\CombatAttributeWindow.cs" />
+    <None Include="Assets\EGamePlay\Editor\EGamePlay.Editor.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity 2019.4.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -761,14 +697,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Unity.Model.csproj">
-      <Project>{B4BF9894-F5D9-41C4-13E3-3F26F7700E29}</Project>
-      <Name>Unity.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.ThirdParty.csproj">
-      <Project>{E15BADD2-3A26-309A-AB0F-DC5B08044350}</Project>
-      <Name>Unity.ThirdParty</Name>
-    </ProjectReference>
     <ProjectReference Include="EGamePlay.Combat.csproj">
       <Project>{7DED0F00-163E-E1BC-33AB-D4F60159A670}</Project>
       <Name>EGamePlay.Combat</Name>

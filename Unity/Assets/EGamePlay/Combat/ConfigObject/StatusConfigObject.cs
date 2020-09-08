@@ -7,7 +7,7 @@ using Sirenix.Serialization;
 using System.IO;
 using Sirenix.Utilities.Editor;
 
-namespace UnityGame.Combat
+namespace EGamePlay.Combat
 {
     [CreateAssetMenu(fileName = "状态配置", menuName = "技能|状态/状态配置")]
     [LabelText("状态配置")]

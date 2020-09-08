@@ -63,8 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\UnityGame\Editor\Combat\CombatAttributeWindow.cs" />
-    <None Include="Assets\UnityGame\Editor\UnityGame.Editor.asmdef" />
+    <Compile Include="Assets\EGamePlay\Editor\Combat\CombatAttributeWindow.cs" />
+    <None Include="Assets\EGamePlay\Editor\UnityGame.Editor.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity 2019.4.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -697,9 +697,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="UnityGame.Combat.csproj">
-      <Project>{07BD3B98-5034-8DA4-3657-06E10C2453C9}</Project>
-      <Name>UnityGame.Combat</Name>
+    <ProjectReference Include="EGamePlay.Combat.csproj">
+      <Project>{7DED0F00-163E-E1BC-33AB-D4F60159A670}</Project>
+      <Name>EGamePlay.Combat</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

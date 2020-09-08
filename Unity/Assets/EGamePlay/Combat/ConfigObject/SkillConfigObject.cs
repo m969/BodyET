@@ -10,7 +10,7 @@ using UnityEngine.PlayerLoop;
 using Sirenix.Utilities.Editor;
 using UnityEngine.Serialization;
 
-namespace UnityGame.Combat
+namespace EGamePlay.Combat
 {
     [CreateAssetMenu(fileName = "技能配置", menuName = "技能|状态/技能配置")]
     [LabelText("技能配置")]

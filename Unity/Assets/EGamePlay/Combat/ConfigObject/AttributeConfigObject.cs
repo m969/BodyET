@@ -8,7 +8,7 @@ using System.IO;
 using Sirenix.Utilities.Editor;
 using System.Linq;
 
-namespace UnityGame.Combat
+namespace EGamePlay.Combat
 {
     [CreateAssetMenu(fileName = "战斗属性配置", menuName = "技能|状态/战斗属性配置")]
     [LabelText("战斗属性配置")]

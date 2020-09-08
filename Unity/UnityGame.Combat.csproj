@@ -63,16 +63,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\UnityGame\Combat\ConfigObject\AttributeConfigObject.cs" />
-    <Compile Include="Assets\UnityGame\Combat\ConfigObject\NameArrayObject.cs" />
-    <Compile Include="Assets\UnityGame\Combat\ConfigObject\ProjectileEffectObject.cs" />
-    <Compile Include="Assets\UnityGame\Combat\ConfigObject\SkillConfigObject.cs" />
-    <Compile Include="Assets\UnityGame\Combat\ConfigObject\SkillEffectObject.cs" />
-    <Compile Include="Assets\UnityGame\Combat\ConfigObject\StatusConfigObject.cs" />
-    <Compile Include="Assets\UnityGame\Combat\ConfigObject\StatusEffectObject.cs" />
-    <Compile Include="Assets\UnityGame\Combat\Helper\BuffHelper.cs" />
-    <Compile Include="Assets\UnityGame\Combat\Helper\SkillHelper.cs" />
-    <None Include="Assets\UnityGame\Combat\UnityGame.Combat.asmdef" />
+    <Compile Include="Assets\EGamePlay\Combat\ConfigObject\AttributeConfigObject.cs" />
+    <Compile Include="Assets\EGamePlay\Combat\ConfigObject\NameArrayObject.cs" />
+    <Compile Include="Assets\EGamePlay\Combat\ConfigObject\ProjectileEffectObject.cs" />
+    <Compile Include="Assets\EGamePlay\Combat\ConfigObject\SkillConfigObject.cs" />
+    <Compile Include="Assets\EGamePlay\Combat\ConfigObject\SkillEffectObject.cs" />
+    <Compile Include="Assets\EGamePlay\Combat\ConfigObject\StatusConfigObject.cs" />
+    <Compile Include="Assets\EGamePlay\Combat\ConfigObject\StatusEffectObject.cs" />
+    <Compile Include="Assets\EGamePlay\Combat\Helper\BuffHelper.cs" />
+    <Compile Include="Assets\EGamePlay\Combat\Helper\SkillHelper.cs" />
+    <None Include="Assets\EGamePlay\Combat\UnityGame.Combat.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity 2019.4.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

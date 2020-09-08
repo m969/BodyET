@@ -768,9 +768,9 @@
       <Project>{686145E0-A51B-685E-EF99-A1034C8B63AB}</Project>
       <Name>Sirenix.OdinInspector.CompatibilityLayer.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="UnityGame.Combat.csproj">
-      <Project>{07BD3B98-5034-8DA4-3657-06E10C2453C9}</Project>
-      <Name>UnityGame.Combat</Name>
+    <ProjectReference Include="EGamePlay.Combat.csproj">
+      <Project>{7DED0F00-163E-E1BC-33AB-D4F60159A670}</Project>
+      <Name>EGamePlay.Combat</Name>
     </ProjectReference>
     <ProjectReference Include="Sirenix.OdinInspector.CompatibilityLayer.csproj">
       <Project>{E387569F-725F-F5C8-517B-584709B7D5D8}</Project>
@@ -784,9 +784,9 @@
       <Project>{B4BF9894-F5D9-41C4-13E3-3F26F7700E29}</Project>
       <Name>Unity.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="UnityGame.Editor.csproj">
-      <Project>{0AD36B80-53AC-B7BA-1837-E03103D1C883}</Project>
-      <Name>UnityGame.Editor</Name>
+    <ProjectReference Include="EGamePlay.Editor.csproj">
+      <Project>{B22D9189-2062-ECF6-7233-958FC039A47C}</Project>
+      <Name>EGamePlay.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Sirenix.OdinValidator.csproj">
       <Project>{A315CBBB-F9CB-FB80-1F01-767A894B6CFD}</Project>

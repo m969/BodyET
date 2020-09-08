@@ -1,4 +1,4 @@
-﻿namespace UnityGame.Combat
+﻿namespace EGamePlay.Combat
 {
     using System.Collections;
     using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿namespace UnityGame.Combat
+﻿namespace EGamePlay.Combat
 {
     using System;
     using Sirenix.OdinInspector;
