@@ -1192,3 +1192,32 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
     _treeWindow_ShowSubtasks: 0
+  - _id: c401be0cd516746e57e007fc0290149f3e4edaef-ee070cd6-ece3-4788-a2f9-ed9c0fe99e1a
+    _parentID: b2568c2110f4b8fa3ecc89a1ad338635102852a7-28733475-d42f-4a59-8986-e2ddfddce79a
+    _lock: 0
+    _done: 0
+    _isParentSubtask: 0
+    _name: "\u53EF\u89C6\u6280\u80FD\u573A"
+    _description: 
+    _showSubtasks: 1
+    _tasksIds: []
+    _hideCompletedChecklistItems: 0
+    _showTags: 0
+    _tagIds: []
+    _showAssets: 0
+    _assets: []
+    _showColors: 0
+    _colorIds: []
+    _screenshot: []
+    _showScreenshots: 0
+    _createdTicks: 637364708194370926
+    _updatedTicks: 637364708332610374
+    _scrollPosition: {x: 0, y: 0}
+    _boardWindow_SearchShow: 1
+    _taskWindow_ShowSubtask: 0
+    _treeWindow_SearchShow: 1
+    treeWindowShowSubtasksAnimation:
+      m_Target: 0
+      speed: 2
+      m_Value: 0
+    _treeWindow_ShowSubtasks: 0
