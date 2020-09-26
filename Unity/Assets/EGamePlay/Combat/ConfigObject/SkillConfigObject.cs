@@ -23,20 +23,28 @@ namespace EGamePlay.Combat
         [DelayedProperty]
         public string Name = "技能1";
         public SkillSpellType SkillSpellType;
-        public SkillType SkillType;
+        //public SkillType SkillType;
+        //[LabelText("是否指定目标")]
+        //public bool IsTargeted = true;
+        //[HideIf("IsTargeted")]
         public SkillTargetSelectType TargetSelectType;
+        [ShowIf("TargetSelectType", SkillTargetSelectType.AreaSelect)]
+        public SkillAffectAreaType AffectAreaType;
+        [LabelText("圆形区域场半径")]
+        [ShowIf("AffectAreaType", SkillAffectAreaType.Circle)]
+        public float CircleAreaRadius;
 
-        [ToggleGroup("TargetSelect", "$TargetGroupTitle")]
-        [ReadOnly]
-        public bool TargetSelect = true;
-        [ToggleGroup("TargetSelect")]
-        [HideInInspector]
-        public string TargetGroupTitle = "目标限制";
-        [ToggleGroup("TargetSelect")]
+        //[ToggleGroup("TargetSelect", "$TargetGroupTitle")]
+        //[ReadOnly]
+        //public bool TargetSelect = true;
+        //[ToggleGroup("TargetSelect")]
+        //[HideInInspector]
+        //public string TargetGroupTitle = "目标限制";
+        //[ToggleGroup("TargetSelect")]
         public SkillAffectTargetType AffectTargetType;
-        [ToggleGroup("TargetSelect")]
-        [HideIf("AffectTargetType", SkillAffectTargetType.Self)]
-        public SkillTargetType TargetType;
+        //[ToggleGroup("TargetSelect")]
+        //[HideIf("AffectTargetType", SkillAffectTargetType.Self)]
+        //public SkillTargetType TargetType;
 
         [ToggleGroup("Cold", "$ColdGroupTitle")]
         public bool Cold = false;

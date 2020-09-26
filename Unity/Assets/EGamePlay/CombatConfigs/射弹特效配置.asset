@@ -21,3 +21,4 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
+  ProjectileParticleEffect: {fileID: 0}
