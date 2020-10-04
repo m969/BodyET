@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\EGamePlay\Demo\Hero.cs" />
     <Compile Include="Assets\EGamePlay\EGamePlayInit.cs" />
     <None Include="Assets\Res\Config\UnitConfig.txt" />
     <None Include="Assets\Res\Config\GlobalProto.txt" />

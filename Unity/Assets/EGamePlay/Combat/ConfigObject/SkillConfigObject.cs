@@ -27,12 +27,20 @@ namespace EGamePlay.Combat
         //[LabelText("是否指定目标")]
         //public bool IsTargeted = true;
         //[HideIf("IsTargeted")]
+        [LabelText("技能目标检测方式")]
         public SkillTargetSelectType TargetSelectType;
         [ShowIf("TargetSelectType", SkillTargetSelectType.AreaSelect)]
+        [LabelText("区域场类型")]
         public SkillAffectAreaType AffectAreaType;
         [LabelText("圆形区域场半径")]
         [ShowIf("AffectAreaType", SkillAffectAreaType.Circle)]
         public float CircleAreaRadius;
+        [LabelText("区域场引导配置")]
+        [ShowIf("TargetSelectType", SkillTargetSelectType.AreaSelect)]
+        public GameObject AreaGuideObj;
+        [LabelText("区域场配置")]
+        [ShowIf("TargetSelectType", SkillTargetSelectType.AreaSelect)]
+        public GameObject AreaCollider;
 
         //[ToggleGroup("TargetSelect", "$TargetGroupTitle")]
         //[ReadOnly]
@@ -41,6 +49,7 @@ namespace EGamePlay.Combat
         //[HideInInspector]
         //public string TargetGroupTitle = "目标限制";
         //[ToggleGroup("TargetSelect")]
+        [LabelText("技能作用对象")]
         public SkillAffectTargetType AffectTargetType;
         //[ToggleGroup("TargetSelect")]
         //[HideIf("AffectTargetType", SkillAffectTargetType.Self)]

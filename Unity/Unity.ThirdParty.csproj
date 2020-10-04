@@ -710,12 +710,16 @@
     <Compile Include="Assets\ThirdParty\ThirdPartyArt\Epic Toon FX\Demo\Scripts\ETFXMouseOrbit.cs" />
     <Compile Include="Assets\ThirdParty\ThirdPartyArt\Epic Toon FX\Demo\Scripts\ETFXProjectileScript.cs" />
     <Compile Include="Assets\ThirdParty\ThirdPartyArt\Epic Toon FX\Demo\Scripts\ETFXSceneManager.cs" />
+    <Compile Include="Assets\ThirdParty\ThirdPartyArt\Epic Toon FX\Demo\Scripts\ETFXTarget.cs" />
     <Compile Include="Assets\ThirdParty\ThirdPartyArt\Epic Toon FX\Scripts\ETFXLightFade.cs" />
     <Compile Include="Assets\ThirdParty\ThirdPartyArt\Epic Toon FX\Scripts\ETFXPitchRandomizer.cs" />
     <Compile Include="Assets\ThirdParty\ThirdPartyArt\Epic Toon FX\Scripts\ETFXRotation.cs" />
+    <None Include="Assets\ThirdParty\ThirdPartyArt\Epic Toon FX\Prefabs\Environment\Environment FX.txt" />
+    <None Include="Assets\ThirdParty\ThirdPartyArt\Epic Toon FX\Prefabs\Combat\Combat FX.txt" />
     <None Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Misc\Shaders\OneSidedTextShader.shader" />
     <None Include="Assets\ThirdParty\Character Movement Fundamentals\README.txt" />
     <None Include="Assets\ThirdParty\ThirdPartyArt\Epic Toon FX\ETFX Readme.txt" />
+    <None Include="Assets\ThirdParty\ThirdPartyArt\Epic Toon FX\Prefabs\Interactive\Interactive FX.txt" />
     <None Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Misc\Fonts\LICENSE.txt" />
     <None Include="Assets\ThirdParty\Demigiant\DOTweenPro\readme.txt" />
     <None Include="Assets\ThirdParty\Character Movement Fundamentals\Source\Misc\Fonts\Attribution.txt" />
