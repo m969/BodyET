@@ -8,3 +8,5 @@
 基于Odin和ScriptableObject实现的灵活的技能、buff配置工具（试验品）。
 ![技能配置](https://github.com/m969/BodyET/blob/master/SkillConfig.jpg)
 ![Buff配置](https://github.com/m969/BodyET/blob/master/BuffConfig.jpg)
+
+![QQ截图20201005121009.png](https://upload-images.jianshu.io/upload_images/2528994-d8737bff9b1cdb3c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
