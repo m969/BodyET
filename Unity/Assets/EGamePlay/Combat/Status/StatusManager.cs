@@ -6,6 +6,9 @@ namespace EGamePlay.Combat.Status
 {
     public class StatusManager
     {
+        public List<Status> Statuses { get; set; } = new List<Status>();
+
+
         // Start is called before the first frame update
         public void Start()
         {
@@ -18,5 +21,4 @@ namespace EGamePlay.Combat.Status
 
         }
     }
-
 }

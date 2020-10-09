@@ -12,7 +12,8 @@ namespace EGamePlay.Combat
 
         public void Start()
         {
-
+            SkillManager.Start();
+            StatusManager.Start();
         }
 
         public void Update()

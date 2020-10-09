@@ -42,9 +42,9 @@
         Auto,
         [LabelText("手动指定")]
         PlayerSelect,
-        [LabelText("弹体碰撞指定")]
+        [LabelText("弹体碰撞检测")]
         BodyCollideSelect,
-        [LabelText("固定区域场指定")]
+        [LabelText("固定区域场检测")]
         AreaSelect,
         [LabelText("条件指定")]
         ConditionSelect,

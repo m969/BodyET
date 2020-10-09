@@ -63,6 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\EGamePlay\Combat\BlackBoard.cs" />
+    <Compile Include="Assets\EGamePlay\Combat\CombatBlackBoard.cs" />
     <Compile Include="Assets\EGamePlay\Combat\CombatManager.cs" />
     <Compile Include="Assets\EGamePlay\Combat\ConfigObject\AttributeConfigObject.cs" />
     <Compile Include="Assets\EGamePlay\Combat\ConfigObject\NameArrayObject.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="Assets\EGamePlay\Combat\ConfigObject\StatusConfigObject.cs" />
     <Compile Include="Assets\EGamePlay\Combat\ConfigObject\StatusEffectObject.cs" />
     <Compile Include="Assets\EGamePlay\Combat\Helper\BuffHelper.cs" />
+    <Compile Include="Assets\EGamePlay\Combat\Helper\GameTimer.cs" />
     <Compile Include="Assets\EGamePlay\Combat\Helper\SkillHelper.cs" />
     <Compile Include="Assets\EGamePlay\Combat\Skill\SkillEntity\Skill.cs" />
     <Compile Include="Assets\EGamePlay\Combat\Skill\SkillEntity\SkillListen.cs" />
