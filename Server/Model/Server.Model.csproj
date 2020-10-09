@@ -425,6 +425,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ThirdParty\Box2D\Box2D.csproj" />
+    <ProjectReference Include="..\ThirdParty\Bullet\Bullet.csproj" />
     <ProjectReference Include="..\ThirdParty\Google.Protobuf\Google.Protobuf.csproj" />
     <ProjectReference Include="..\ThirdParty\KcpLib\KcpLib.csproj" />
     <ProjectReference Include="..\ThirdParty\MongoDBDriver\MongoDB.Bson\MongoDB.Bson.csproj" />
@@ -443,9 +444,6 @@
     <Folder Include="Module\Scene" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="BulletSharp">
-      <HintPath>..\ThirdParty\BulletSharp.dll</HintPath>
-    </Reference>
     <Reference Include="Pathfinding.Ionic.Zip.Reduced, Version=1.9.1.9000, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\ThirdParty\Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
     </Reference>

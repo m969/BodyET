@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="Lib\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Lib\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Lib\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\..\Unity\Assets\Plugins\BulletUnity\Native\Linux\64\libbulletc.so">
+        <Link>libbulletc.so</Link>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="..\..\..\Unity\Assets\Plugins\BulletUnity\Native\x64\libbulletc.dll">
+        <Link>libbulletc.dll</Link>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+</Project>
