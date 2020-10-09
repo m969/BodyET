@@ -424,6 +424,7 @@
     <PackageReference Include="SharpZipLib" Version="1.0.0-alpha2" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ThirdParty\Box2D\Box2D.csproj" />
     <ProjectReference Include="..\ThirdParty\Google.Protobuf\Google.Protobuf.csproj" />
     <ProjectReference Include="..\ThirdParty\KcpLib\KcpLib.csproj" />
     <ProjectReference Include="..\ThirdParty\MongoDBDriver\MongoDB.Bson\MongoDB.Bson.csproj" />
@@ -442,9 +443,6 @@
     <Folder Include="Module\Scene" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Box2DSharp">
-      <HintPath>..\ThirdParty\Box2DSharp.dll</HintPath>
-    </Reference>
     <Reference Include="BulletSharp">
       <HintPath>..\ThirdParty\BulletSharp.dll</HintPath>
     </Reference>
