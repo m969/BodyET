@@ -31,7 +31,7 @@ namespace ETModel
 		//public Vector3 Position { get; set; }
 		public Quaternion Quaternion { get; set; }
 		public string name { get; set; }
-		public Vector3 Target;
+		public Vector3 Target { get; set; }
 		public bool needSend { get; set; }
 		public string triggerType { get; set; }
 		public List<Vector3> _movepath { get; set; }

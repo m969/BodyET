@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\EGamePlay\Editor\BuffEditor\BuffEditor.cs" />
     <Compile Include="Assets\EGamePlay\Editor\Combat\CombatAttributeWindow.cs" />
     <None Include="Assets\EGamePlay\Editor\EGamePlay.Editor.asmdef" />
     <Reference Include="UnityEngine">

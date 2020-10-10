@@ -84,7 +84,6 @@
     <Compile Include="Assets\Editor\AstarPathfindingProject\RVOSquareObstacleEditor.cs" />
     <Compile Include="Assets\Editor\AstarPathfindingProject\RecastMeshObjEditor.cs" />
     <Compile Include="Assets\Editor\AstarPathfindingProject\SeekerEditor.cs" />
-    <Compile Include="Assets\Editor\BuffEditor\BuffEditor.cs" />
     <Compile Include="Assets\Editor\BuildEditor\BuildEditor.cs" />
     <Compile Include="Assets\Editor\BuildEditor\BuildHelper.cs" />
     <Compile Include="Assets\Editor\BuildEditor\BuildHotfixEditor.cs" />
