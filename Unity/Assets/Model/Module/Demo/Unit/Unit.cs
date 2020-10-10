@@ -7,6 +7,14 @@ using System;
 
 namespace ETModel
 {
+	public enum UnitType
+	{
+		Hero,
+		Npc,
+		Item,
+		Monster,
+	}
+
 	[EntityDefine]
 	public partial class Unit: Entity, ITransform
 	{
@@ -18,6 +26,16 @@ namespace ETModel
 		[PropertyDefine(SyncFlag.AllClients)]
 		public int State { get { return StateProperty.Value; } set { StateProperty.Value = value; PublishProperty(nameof(State), value); } }
 
+
+		public UnitType UnitType { get; private set; }
+		//public Vector3 Position { get; set; }
+		public Quaternion Quaternion { get; set; }
+		public string name { get; set; }
+		public Vector3 Target;
+		public bool needSend { get; set; }
+		public string triggerType { get; set; }
+		public List<Vector3> _movepath { get; set; }
+		
 		public long PlayerId { get; set; }
 		public bool PreviousFiring { get; set; }
 		public bool Firing { get; set; }

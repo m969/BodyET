@@ -571,5 +571,13 @@ namespace UnityEngine
             vector4.w = value1.w * num;
             return vector4;
         }
+
+        public float magnitude
+        {
+            get
+            {
+                return Mathf.Sqrt(Vector4.Dot(this, this));
+            }
+        }
     }
 }

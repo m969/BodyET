@@ -1,20 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using BulletSharp;
-using UnityEngine;
 using ETModel;
+using UnityEngine;
 
 namespace ETModel
 {
-    public class BCollisionObject : Entity
+    [ObjectSystem]
+    public class BCollisionObjectAwakeSystem : AwakeSystem<BCollisionObject>
     {
-        public TransformComponent transform { get { return Parent.Parent.GetComponent<TransformComponent>(); } }
-
+        public override void Awake(BCollisionObject self)
+        {
+            self.Awake();
+        }
+    }
+    [ObjectSystem]
+    public class BCollisionObjectStartSystem : StartSystem<BCollisionObject>
+    {
+        public override void Start(BCollisionObject self)
+        {
+            self = self.realyBCollisionObject;
+            self.Start();
+        }
+    }
+    public class BCollisionObject : Entity, IDisposable
+    {
+        private Unit _Unit = null;
+        public BCollisionObject realyBCollisionObject { get; set; }
         public interface BICollisionCallbackEventHandler
         {
             void OnVisitPersistentManifold(PersistentManifold pm);
             void OnFinishedVisitingManifolds();
         }
+
 
         //This is used to handle a design problem. 
         //We want OnEnable to add physics object to world and OnDisable to remove.
@@ -27,143 +45,137 @@ namespace ETModel
         protected CollisionObject m_collisionObject;
         protected BCollisionShape m_collisionShape;
         internal bool isInWorld = false;
-        protected BulletSharp.CollisionFlags m_collisionFlags = BulletSharp.CollisionFlags.KinematicObject;
-        protected BulletSharp.CollisionFilterGroups m_groupsIBelongTo = BulletSharp.CollisionFilterGroups.Everything; // A bitmask
-        protected BulletSharp.CollisionFilterGroups m_collisionMask = CollisionFilterGroups.Everything; // A colliding object must match this mask in order to collide with me.
+        
+        protected CollisionFlags m_collisionFlags = CollisionFlags.None;
+        
+        protected CollisionFilterGroups m_groupsIBelongTo = CollisionFilterGroups.DefaultFilter; // A bitmask
+        
+        protected CollisionFilterGroups m_collisionMask = CollisionFilterGroups.Everything; // A colliding object must match this mask in order to collide with me.
 
-        public virtual BulletSharp.CollisionFlags collisionFlags
+        public virtual CollisionFlags collisionFlags
         {
             get { return m_collisionFlags; }
-            set
-            {
+            set {
                 if (m_collisionObject != null && value != m_collisionFlags)
                 {
                     m_collisionObject.CollisionFlags = value;
                     m_collisionFlags = value;
-                }
-                else
+                } else
                 {
                     m_collisionFlags = value;
                 }
             }
         }
 
-        public BulletSharp.CollisionFilterGroups groupsIBelongTo
+        public CollisionFilterGroups groupsIBelongTo
         {
             get { return m_groupsIBelongTo; }
             set
             {
                 if (m_collisionObject != null && value != m_groupsIBelongTo)
                 {
-                    Log.Error("Cannot change the collision group once a collision object has been created");
-                }
-                else
+                    Log.Warning("Cannot change the collision group once a collision object has been created");
+                } else 
                 {
                     m_groupsIBelongTo = value;
                 }
             }
         }
 
-        public BulletSharp.CollisionFilterGroups collisionMask
+        public CollisionFilterGroups collisionMask
         {
             get { return m_collisionMask; }
             set
             {
                 if (m_collisionObject != null && value != m_collisionMask)
                 {
-                    Log.Error("Cannot change the collision mask once a collision object has been created");
-                }
-                else
+                    Log.Warning("Cannot change the collision mask once a collision object has been created");
+                } else
                 {
                     m_collisionMask = value;
                 }
             }
         }
 
-        HashSet<BICollisionCallbackEventHandler> m_onCollisionCallbacks = new HashSet<BICollisionCallbackEventHandler>();
-        public virtual HashSet<BICollisionCallbackEventHandler> collisionCallbackEventHandlers
+        BICollisionCallbackEventHandler m_onCollisionCallback;
+        public virtual BICollisionCallbackEventHandler collisionCallbackEventHandler
         {
-            get { return m_onCollisionCallbacks; }
+            get { return m_onCollisionCallback; }
         }
 
         public virtual void AddOnCollisionCallbackEventHandler(BICollisionCallbackEventHandler myCallback)
         {
-            BPhysicsWorld bhw = BPhysicsWorld.Get();
-            m_onCollisionCallbacks.Add(myCallback);
-            bhw.RegisterCollisionCallbackListener(myCallback);
+            BPhysicsWorld bhw = BPhysicsWorld.Get;
+            if (m_onCollisionCallback != null)
+            {
+                Log.Warning("BCollisionObject {0} already has a collision callback. You must remove it before adding another. ");
+                
+            }
+            m_onCollisionCallback = myCallback;
+            bhw.RegisterCollisionCallbackListener(m_onCollisionCallback);
         }
 
-        public virtual void RemoveOnCollisionCallbackEventHandler(BICollisionCallbackEventHandler myCallback)
+        public virtual void RemoveOnCollisionCallbackEventHandler()
         {
-            BPhysicsWorld bhw = BPhysicsWorld.Get();
-            if (bhw != null && m_onCollisionCallbacks.Contains(myCallback))
+            BPhysicsWorld bhw = BPhysicsWorld.Get;
+            if (bhw != null && m_onCollisionCallback != null)
             {
-                m_onCollisionCallbacks.Remove(myCallback);
-                bhw.DeregisterCollisionCallbackListener(myCallback);
+                bhw.DeregisterCollisionCallbackListener(m_onCollisionCallback);
             }
+            m_onCollisionCallback = null;
         }
 
         //called by Physics World just before rigid body is added to world.
         //the current rigid body properties are used to rebuild the rigid body.
         internal virtual bool _BuildCollisionObject()
         {
-            Log.Debug("_BuildCollisionObject");
-            try
+            BPhysicsWorld world = BPhysicsWorld.Get;
+
+            if (m_collisionObject != null)
             {
-                BPhysicsWorld world = BPhysicsWorld.Get();
-
-                //if (m_collisionObject != null)
-                //{
-                //    if (isInWorld && world != null)
-                //    {
-                //        world.RemoveCollisionObject(this);
-                //    }
-                //}
-
-                //if (transform.localScale != UnityEngine.Vector3.one)
-                //{
-                //    Log.Error("The local scale on this collision shape is not one. Bullet physics does not support scaling on a rigid body world transform. Instead alter the dimensions of the CollisionShape.");
-                //}
-
-                m_collisionShape = Parent.GetComponent<BBoxShape>();
-                if (m_collisionShape == null)
+                if (isInWorld && world != null)
                 {
-                    Log.Error($"There was no collision shape component attached to this BRigidBody.");
-                    return false;
+                    world.RemoveCollisionObject(this);
                 }
-
-                CollisionShape cs = m_collisionShape.GetCollisionShape();
-                //rigidbody is dynamic if and only if mass is non zero, otherwise static
-
-
-                if (m_collisionObject == null)
-                {
-                    m_collisionObject = new CollisionObject();
-                    m_collisionObject.CollisionShape = cs;
-                    m_collisionObject.UserObject = this;
-
-                    BulletSharp.Math.Matrix worldTrans;
-                    BulletSharp.Math.Quaternion q = transform.rotation.ToBullet();
-                    BulletSharp.Math.Matrix.RotationQuaternion(ref q, out worldTrans);
-                    worldTrans.Origin = transform.position.ToBullet();
-                    m_collisionObject.WorldTransform = worldTrans;
-                    m_collisionObject.CollisionFlags = m_collisionFlags;
-                }
-                else
-                {
-                    m_collisionObject.CollisionShape = cs;
-                    BulletSharp.Math.Matrix worldTrans;
-                    BulletSharp.Math.Quaternion q = transform.rotation.ToBullet();
-                    BulletSharp.Math.Matrix.RotationQuaternion(ref q, out worldTrans);
-                    worldTrans.Origin = transform.position.ToBullet();
-                    m_collisionObject.WorldTransform = worldTrans;
-                    m_collisionObject.CollisionFlags = m_collisionFlags;
-                }
-                Log.Debug($"m_collisionObject={m_collisionObject}");
             }
-            catch (Exception e)
+
+            // if (transform.localScale != Vector3.one)
+            // {
+            //     Log.Warning("The local scale on this collision shape is not one. Bullet physics does not support scaling on a rigid body world transform. Instead alter the dimensions of the CollisionShape.");
+            // }
+
+            Unit Unit = this.GetParent<Unit>();
+            m_collisionShape = Unit.GetComponent<BCollisionShape>(); //必须用另一方式来赋值才行啊!!
+            if (m_collisionShape == null)
             {
-                Log.Error(e);
+                Log.Warning("There was no collision shape component attached to this BRigidBody. ");
+                return false;
+            }
+            CollisionShape cs = m_collisionShape.GetCollisionShape;
+            //rigidbody is dynamic if and only if mass is non zero, otherwise static
+
+            if (m_collisionObject == null)
+            {
+                m_collisionObject = new CollisionObject();
+                m_collisionObject.CollisionShape = cs;
+                m_collisionObject.UserObject = this;
+
+                BulletSharp.Math.Matrix worldTrans;
+                BulletSharp.Math.Quaternion q = this.GetParent<Unit>().Quaternion.ToBullet();
+                BulletSharp.Math.Matrix.RotationQuaternion(ref q, out worldTrans);
+                worldTrans.Origin = this.GetParent<Unit>().Position.ToBullet();
+                m_collisionObject.WorldTransform = worldTrans;
+                m_collisionObject.CollisionFlags = m_collisionFlags;
+            }
+            else 
+            {
+                m_collisionObject.CollisionShape = cs;
+                BulletSharp.Math.Matrix worldTrans;
+                BulletSharp.Math.Quaternion q = this.GetParent<Unit>().Quaternion.ToBullet();
+                BulletSharp.Math.Matrix.RotationQuaternion(ref q, out worldTrans);
+                worldTrans.Origin = this.GetParent<Unit>().Position.ToBullet();
+                m_collisionObject.WorldTransform = worldTrans;
+                m_collisionObject.CollisionFlags = m_collisionFlags;
             }
             return true;
         }
@@ -180,20 +192,24 @@ namespace ETModel
         //Don't try to call functions on other objects such as the Physics world since they may not exit.
         public virtual void Awake()
         {
-            m_collisionShape = Parent.GetComponent<BCollisionShape>();
+            m_collisionShape = this.GetParent<Unit>().GetComponent<BCollisionShape>();
+            if (m_collisionShape == null)
+            {
+                Log.Warning("A BCollisionObject component must be on an object with a BCollisionShape component.");
+            }
         }
 
         protected virtual void AddObjectToBulletWorld()
         {
-            BPhysicsWorld.Get().AddCollisionObject(this);
+            BPhysicsWorld.Get.AddCollisionObject(this);//这里区分多个碰撞体。如刚体就是从这里继承，并添加的。
         }
 
         protected virtual void RemoveObjectFromBulletWorld()
         {
-            BPhysicsWorld.Get().RemoveCollisionObject(this);
+            BPhysicsWorld.Get.RemoveCollisionObject(this);
         }
 
-
+        
         // Add this object to the world on Start. We are doing this so that scripts which add this componnet to 
         // game objects have a chance to configure them before the object is added to the bullet world.
         // Be aware that Start is not affected by script execution order so objects such as constraints should
@@ -206,6 +222,8 @@ namespace ETModel
                 m_startHasBeenCalled = true;
                 AddObjectToBulletWorld();
             }
+
+            OnEnable();
         }
 
         //OnEnable and OnDisable are called when a game object is Activated and Deactivated. 
@@ -247,7 +265,7 @@ namespace ETModel
         {
             if (isInWorld && isdisposing && m_collisionObject != null)
             {
-                BPhysicsWorld pw = BPhysicsWorld.Get();
+                BPhysicsWorld pw = BPhysicsWorld.Get;
                 if (pw != null && pw.world != null)
                 {
                     ((DiscreteDynamicsWorld)pw.world).RemoveCollisionObject(m_collisionObject);
@@ -255,7 +273,7 @@ namespace ETModel
             }
             if (m_collisionObject != null)
             {
-
+               
                 m_collisionObject.Dispose();
                 m_collisionObject = null;
             }
@@ -268,32 +286,29 @@ namespace ETModel
                 BulletSharp.Math.Matrix newTrans = m_collisionObject.WorldTransform;
                 newTrans.Origin = position.ToBullet();
                 m_collisionObject.WorldTransform = newTrans;
-                transform.position = position;
-            }
-            else
+                this.GetParent<Unit>().Position = position;
+            } else
             {
-                transform.position = position;
+                this.GetParent<Unit>().Position = position;
             }
+
         }
 
         public virtual void SetPositionAndRotation(Vector3 position, Quaternion rotation)
         {
-            //Log.Debug($"SetPositionAndRotation isInWorld={isInWorld}");
             if (isInWorld)
             {
                 BulletSharp.Math.Matrix newTrans = m_collisionObject.WorldTransform;
                 BulletSharp.Math.Quaternion q = rotation.ToBullet();
                 BulletSharp.Math.Matrix.RotationQuaternion(ref q, out newTrans);
-                newTrans.Origin = transform.position.ToBullet();
+                newTrans.Origin = this.GetParent<Unit>().Position.ToBullet();
                 m_collisionObject.WorldTransform = newTrans;
-                transform.position = position;
-                transform.rotation = rotation;
-                //Log.Debug($"SetPositionAndRotation transform.position={transform.position} WorldTransform={m_collisionObject.WorldTransform}");
-            }
-            else
+                this.GetParent<Unit>().Position = position;
+                this.GetParent<Unit>().Quaternion = rotation;
+            } else
             {
-                transform.position = position;
-                transform.rotation = rotation;
+                this.GetParent<Unit>().Position = position;
+                this.GetParent<Unit>().Quaternion = rotation;
             }
         }
 
@@ -304,14 +319,15 @@ namespace ETModel
                 BulletSharp.Math.Matrix newTrans = m_collisionObject.WorldTransform;
                 BulletSharp.Math.Quaternion q = rotation.ToBullet();
                 BulletSharp.Math.Matrix.RotationQuaternion(ref q, out newTrans);
-                newTrans.Origin = transform.position.ToBullet();
+                newTrans.Origin = this.GetParent<Unit>().Position.ToBullet();
                 m_collisionObject.WorldTransform = newTrans;
-                transform.rotation = rotation;
+                this.GetParent<Unit>().Quaternion = rotation;
             }
             else
             {
-                transform.rotation = rotation;
+                this.GetParent<Unit>().Quaternion = rotation;
             }
         }
+
     }
 }

@@ -31,6 +31,8 @@ namespace ETModel
 
 		private readonly UnOrderMultiMap<Type, ILoadSystem> loadSystems = new UnOrderMultiMap<Type, ILoadSystem>();
 
+		private readonly UnOrderMultiMap<Type, IFixedUpdateSystem> fixedupdateSystems = new UnOrderMultiMap<Type, IFixedUpdateSystem>();
+
 		private readonly UnOrderMultiMap<Type, IUpdateSystem> updateSystems = new UnOrderMultiMap<Type, IUpdateSystem>();
 
 		private readonly UnOrderMultiMap<Type, ILateUpdateSystem> lateUpdateSystems = new UnOrderMultiMap<Type, ILateUpdateSystem>();
@@ -41,7 +43,10 @@ namespace ETModel
 
 		private Queue<long> updates = new Queue<long>();
 		private Queue<long> updates2 = new Queue<long>();
-		
+
+		private Queue<long> fixedupdates = new Queue<long>();
+		private Queue<long> fixedupdates2 = new Queue<long>();
+
 		private readonly Queue<long> starts = new Queue<long>();
 
 		private Queue<long> loaders = new Queue<long>();
@@ -76,6 +81,7 @@ namespace ETModel
 
 			this.awakeSystems.Clear();
 			this.lateUpdateSystems.Clear();
+			this.fixedupdateSystems.Clear();
 			this.updateSystems.Clear();
 			this.startSystems.Clear();
 			this.loadSystems.Clear();
@@ -94,6 +100,9 @@ namespace ETModel
 						break;
 					case IUpdateSystem updateSystem:
 						this.updateSystems.Add(updateSystem.Type(), updateSystem);
+						break;
+					case IFixedUpdateSystem fixedUpdateSystem:
+						this.fixedupdateSystems.Add(fixedUpdateSystem.Type(), fixedUpdateSystem);
 						break;
 					case ILateUpdateSystem lateUpdateSystem:
 						this.lateUpdateSystems.Add(lateUpdateSystem.Type(), lateUpdateSystem);
@@ -529,10 +538,28 @@ namespace ETModel
 				}
 			}
 		}
-		
+		private int fixedDeltaTime = 20;
+		private double deltaTime = 0;
+		private double g_tFixPre = TimeHelper.Now();
+		private double g_tPre = 0;
+		private double g_tNow = TimeHelper.Now();
+
 		public void Update()
 		{
+			g_tPre = g_tNow;
+			g_tNow = TimeHelper.Now();
+			deltaTime = g_tNow - g_tPre;
+			double tempTime = g_tNow - g_tFixPre;
 			this.Start();
+			if (tempTime > 100000)
+			{
+				g_tFixPre = g_tFixPre / 2;
+			}
+			while (g_tNow - g_tFixPre >= this.fixedDeltaTime)
+			{
+				this.FixedUpdate();
+				g_tFixPre += this.fixedDeltaTime;
+			}
 
 			while (this.updates.Count > 0)
 			{
@@ -767,6 +794,39 @@ namespace ETModel
 			}
 
 			return sb.ToString();
+		}
+
+		private void FixedUpdate()
+		{
+			while (this.fixedupdates.Count > 0)
+			{
+				long instanceId = this.fixedupdates.Dequeue();
+				Entity component;
+				if (!this.allComponents.TryGetValue(instanceId, out component))
+				{
+					continue;
+				}
+
+				List<IFixedUpdateSystem> iFixedUpdateSystems = this.fixedupdateSystems[component.GetType()];
+				if (iFixedUpdateSystems == null)
+				{
+					continue;
+				}
+
+				this.fixedupdates2.Enqueue(instanceId);
+				foreach (IFixedUpdateSystem iFixedUpdateSystem in iFixedUpdateSystems)
+				{
+					try
+					{
+						iFixedUpdateSystem.Run(component);
+					}
+					catch (Exception e)
+					{
+						Log.Error(e);
+					}
+				}
+			}
+			ObjectHelper.Swap(ref this.fixedupdates, ref this.fixedupdates2);
 		}
 	}
 }

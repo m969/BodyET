@@ -96,6 +96,7 @@
     <Compile Include="..\..\Unity\Assets\Model\Base\Object\IDestroySystem.cs">
       <Link>Base\Object\IDestroySystem.cs</Link>
     </Compile>
+    <Compile Include="..\..\Unity\Assets\Model\Base\Object\IFixedUpdateSystem.cs" Link="Base\Object\IFixedUpdateSystem.cs" />
     <Compile Include="..\..\Unity\Assets\Model\Base\Object\ILateUpdateSystem.cs">
       <Link>Base\Object\ILateUpdateSystem.cs</Link>
     </Compile>
