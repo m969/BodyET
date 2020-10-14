@@ -32,9 +32,12 @@ namespace EGamePlay.Combat
         [ShowIf("TargetSelectType", SkillTargetSelectType.AreaSelect)]
         [LabelText("区域场类型")]
         public SkillAffectAreaType AffectAreaType;
+
         [LabelText("圆形区域场半径")]
-        [ShowIf("AffectAreaType", SkillAffectAreaType.Circle)]
+        [ShowIf("ShowCircleAreaRadius")]
         public float CircleAreaRadius;
+        public bool ShowCircleAreaRadius { get { return AffectAreaType == SkillAffectAreaType.Circle && TargetSelectType == SkillTargetSelectType.AreaSelect; } }
+
         [LabelText("区域场引导配置")]
         [ShowIf("TargetSelectType", SkillTargetSelectType.AreaSelect)]
         public GameObject AreaGuideObj;
