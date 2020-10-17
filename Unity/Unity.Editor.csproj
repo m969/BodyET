@@ -374,12 +374,6 @@
     <Reference Include="Sirenix.Utilities.Editor">
       <HintPath>E:/Github Projects/BodyET/Unity/Assets/Plugins/Sirenix/Assemblies/Sirenix.Utilities.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>E:/Github Projects/BodyET/Unity/Assets/Project Planner/Editor/Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Project Planner">
-      <HintPath>E:/Github Projects/BodyET/Unity/Assets/Project Planner/Editor/Project Planner.dll</HintPath>
-    </Reference>
     <Reference Include="DemiLib">
       <HintPath>E:/Github Projects/BodyET/Unity/Assets/ThirdParty/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
     </Reference>

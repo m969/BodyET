@@ -44,7 +44,7 @@
 
         private void OnEnable()
         {
-			attributeConfigObject = AssetDatabase.LoadAssetAtPath<AttributeConfigObject>("Assets/EGamePlay/CombatConfigs/战斗属性配置.asset");
+			attributeConfigObject = AssetDatabase.LoadAssetAtPath<AttributeConfigObject>("Assets/EGamePlay/Demo/Resources/战斗属性配置.asset");
 			if (attributeConfigObject == null)
             {
 

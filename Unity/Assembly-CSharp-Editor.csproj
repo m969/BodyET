@@ -63,7 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Project Planner\Editor\Menu.cs" />
+    <Compile Include="Assets\ToDoListEditor\Editor\TaskListConfigObject.cs" />
     <None Include="Assets\Samples\UI Builder\1.0.0-preview.3\OptionsPanel\Editor\Resources\UI Builder\OptionsPanel\options_panel.uss" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity 2019.4.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -310,12 +310,6 @@
     </Reference>
     <Reference Include="Sirenix.Utilities.Editor">
       <HintPath>E:/Github Projects/BodyET/Unity/Assets/Plugins/Sirenix/Assemblies/Sirenix.Utilities.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>E:/Github Projects/BodyET/Unity/Assets/Project Planner/Editor/Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Project Planner">
-      <HintPath>E:/Github Projects/BodyET/Unity/Assets/Project Planner/Editor/Project Planner.dll</HintPath>
     </Reference>
     <Reference Include="DemiLib">
       <HintPath>E:/Github Projects/BodyET/Unity/Assets/ThirdParty/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
