@@ -9,6 +9,7 @@ using Sirenix.OdinInspector.Editor;
 using UnityEngine.PlayerLoop;
 using Sirenix.Utilities.Editor;
 using UnityEngine.Serialization;
+using System.Linq;
 
 namespace EGamePlay.Combat
 {
@@ -71,10 +72,26 @@ namespace EGamePlay.Combat
         [Space(30)]
         [LabelText("效果列表")]
         [OnInspectorGUI("DrawSpace", append:true)]
+        [ListDrawerSettings(Expanded = true, DraggableItems = false, /*HideAddButton = true, */ShowItemCount = false)]
         public SkillEffectToggleGroup[] EffectGroupList;
         private void DrawSpace()
         {
+            //if (GUILayout.Button("+"))
+            //{
+            //    var list = EffectGroupList.ToList();
+            //    list.Add(new SkillEffectToggleGroup());
+            //    EffectGroupList = list.ToArray();
+            //}
             GUILayout.Space(30);
+        }
+        private void OnEndListElementGUI()
+        {
+            if (GUILayout.Button("+"))
+            {
+                var list = EffectGroupList.ToList();
+                list.Add(new SkillEffectToggleGroup());
+                EffectGroupList = list.ToArray();
+            }
         }
 
         [BoxGroup("技能表现")]
