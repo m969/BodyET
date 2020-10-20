@@ -22,15 +22,11 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   TaskConfigs:
-  - Enabled: 0
-    Title: "\u52A8\u6001\u8868\u8FBE\u5F0F\u89E3\u6790\u529F\u80FD"
+  - Title: "\u52A8\u6001\u8868\u8FBE\u5F0F\u89E3\u6790\u529F\u80FD"
     Description: "\u63CF\u8FF0"
-  - Enabled: 0
-    Title: "demo\u6B7B\u4EA1\u590D\u6D3B\u6D41\u7A0B"
+  - Title: "demo\u6B7B\u4EA1\u590D\u6D3B\u6D41\u7A0B"
     Description: "\u63CF\u8FF0"
-  - Enabled: 0
-    Title: "\u53EF\u89C6\u6280\u80FD\u573A"
+  - Title: "\u53EF\u89C6\u6280\u80FD\u573A"
     Description: "\u63CF\u8FF0"
-  - Enabled: 0
-    Title: Hero Builder Editor
+  - Title: Hero Builder Editor
     Description: "\u63CF\u8FF0"

@@ -14,13 +14,16 @@ namespace ToDoListEditor
     {
         public const string TitleStr = "待办清单";
 
-        [ToggleGroup("Enabled", "@Title")]
-        public bool Enabled;
-        [ToggleGroup("Enabled")]
+        //[ToggleGroup("Enabled", "@Title")]
+        //[FoldoutGroup("@Title")]
+        //public bool Enabled;
+        //[ToggleGroup("Enabled")]
+        [FoldoutGroup("@Title")]
         [HideLabel]
         [GUIColor(.8f, .8f, .8f)]
         public string Title = "任务标题";
-        [ToggleGroup("Enabled")]
+        //[ToggleGroup("Enabled")]
+        [FoldoutGroup("@Title")]
         [HideLabel]
         [TextArea(2, 4)]
         [GUIColor(1,1,1,.8f)]
@@ -30,7 +33,9 @@ namespace ToDoListEditor
     [CreateAssetMenu(fileName = TaskConfig.TitleStr, menuName = TaskConfig.TitleStr)]
     public class TaskListConfigObject : SerializedScriptableObject
     {
-        [LabelText(TaskConfig.TitleStr)]
+        [LabelText("-")]
+        //[HideLabel]
+        [ListDrawerSettings(Expanded = true, DraggableItems = false, ShowItemCount = false)]
         public List<TaskConfig> TaskConfigs = new List<TaskConfig>();
     }
 
@@ -47,46 +52,49 @@ namespace ToDoListEditor
 
         public override void OnInspectorGUI()
         {
-            //base.OnInspectorGUI();
-            var taskListConfigObject = target as TaskListConfigObject;
-            TaskConfig remove = null;
-            foreach (var taskConfig in taskListConfigObject.TaskConfigs)
-            {
-                EditorGUILayout.BeginHorizontal();
+            ForceHideMonoScriptInEditor = true;
+            base.OnInspectorGUI();
+            ForceHideMonoScriptInEditor = false;
+            return;
+            //var taskListConfigObject = target as TaskListConfigObject;
+            //TaskConfig remove = null;
+            //foreach (var taskConfig in taskListConfigObject.TaskConfigs)
+            //{
+            //    EditorGUILayout.BeginHorizontal();
 
-                EditorGUILayout.BeginVertical();
+            //    EditorGUILayout.BeginVertical();
 
-                var visible = EditorPrefs.GetBool($"{taskConfig.GetHashCode().ToString()}", false);
-                var toggeled = SirenixEditorGUI.BeginToggleGroup(taskConfig, ref taskConfig.Enabled, ref visible, taskConfig.Title, 0.3f);
-                if (toggeled)
-                {
-                    taskConfig.Title = EditorGUILayout.TextField(taskConfig.Title);
-                    taskConfig.Description = EditorGUILayout.TextArea(taskConfig.Description);
-                }
-                EditorPrefs.SetBool($"{taskConfig.GetHashCode()}", visible);
-                SirenixEditorGUI.EndToggleGroup();
+            //    var visible = EditorPrefs.GetBool($"{taskConfig.GetHashCode().ToString()}", false);
+            //    var toggeled = SirenixEditorGUI.BeginToggleGroup(taskConfig, ref taskConfig.Enabled, ref visible, taskConfig.Title, 0.3f);
+            //    if (toggeled)
+            //    {
+            //        taskConfig.Title = EditorGUILayout.TextField(taskConfig.Title);
+            //        taskConfig.Description = EditorGUILayout.TextArea(taskConfig.Description);
+            //    }
+            //    EditorPrefs.SetBool($"{taskConfig.GetHashCode()}", visible);
+            //    SirenixEditorGUI.EndToggleGroup();
 
-                EditorGUILayout.EndVertical();
+            //    EditorGUILayout.EndVertical();
 
-                if (GUILayout.Button("-", GUILayout.Width(20)))
-                {
-                    remove = taskConfig;
-                }
+            //    if (GUILayout.Button("-", GUILayout.Width(20)))
+            //    {
+            //        remove = taskConfig;
+            //    }
 
-                EditorGUILayout.EndHorizontal();
-            }
-            if (remove != null)
-            {
-                taskListConfigObject.TaskConfigs.Remove(remove);
-                EditorUtility.SetDirty(taskListConfigObject);
-            }
-            if (GUILayout.Button("+"))
-            {
-                taskListConfigObject.TaskConfigs.Add(new TaskConfig());
-                EditorUtility.SetDirty(taskListConfigObject);
-            }
-            serializedObject.ApplyModifiedProperties();
-            serializedObject.UpdateIfRequiredOrScript();
+            //    EditorGUILayout.EndHorizontal();
+            //}
+            //if (remove != null)
+            //{
+            //    taskListConfigObject.TaskConfigs.Remove(remove);
+            //    EditorUtility.SetDirty(taskListConfigObject);
+            //}
+            //if (GUILayout.Button("+"))
+            //{
+            //    taskListConfigObject.TaskConfigs.Add(new TaskConfig());
+            //    EditorUtility.SetDirty(taskListConfigObject);
+            //}
+            //serializedObject.ApplyModifiedProperties();
+            //serializedObject.UpdateIfRequiredOrScript();
         }
     }
 //#endif
