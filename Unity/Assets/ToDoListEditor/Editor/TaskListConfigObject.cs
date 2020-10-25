@@ -33,7 +33,7 @@ namespace ToDoListEditor
     [CreateAssetMenu(fileName = TaskConfig.TitleStr, menuName = TaskConfig.TitleStr)]
     public class TaskListConfigObject : SerializedScriptableObject
     {
-        [LabelText("-")]
+        [LabelText("·")]
         //[HideLabel]
         [ListDrawerSettings(Expanded = true, DraggableItems = false, ShowItemCount = false)]
         public List<TaskConfig> TaskConfigs = new List<TaskConfig>();

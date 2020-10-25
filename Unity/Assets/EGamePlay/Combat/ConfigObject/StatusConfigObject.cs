@@ -70,6 +70,9 @@ namespace EGamePlay.Combat
             //    RunningEffectGroupList = list.ToArray();
             //}
             GUILayout.Space(30);
+            SirenixEditorGUI.DrawThickHorizontalSeparator();
+            //SirenixEditorGUI.DrawHorizontalLineSeperator(, 0, 10);
+            GUILayout.Space(10);
             SirenixEditorGUI.BeginBox("状态表现");
         }
         [LabelText("状态特效")]
