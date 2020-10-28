@@ -10,7 +10,7 @@ namespace EGamePlay.Combat
     /// </summary>
     public class CombatAction
     {
-        public Entity ActionCreatorEntity { get; set; }
-        public List<Entity> ActionTargetEntities { get; set; }
+        public CombatEntity Creator { get; set; }
+        public CombatEntity Target { get; set; }
     }
 }

@@ -1,0 +1,40 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using EGamePlay;
+using System;
+
+namespace EGamePlay.Combat
+{
+    /// <summary>
+    /// 伤害行为
+    /// </summary>
+    public class DamageAction : CombatAction
+    {
+        //伤害类型
+        public DamageType DamageType { get; set; }
+        //伤害来源
+        public DamageSource DamageSource { get; set; }
+        //伤害公式
+        public string Expression { get; set; }
+        //伤害数值
+        public int DamageValue { get; set; }
+        //是否是暴击
+        public bool IsCritical { get; set; }
+        //是否能暴击
+        public bool CanCritical { get; set; }
+
+        public void ApplyDamage()
+        {
+            Target.ReceiveDamage(DamageValue);
+        }
+    }
+
+    public enum DamageSource
+    {
+        None,
+        Attack,//普攻
+        Skill,//技能
+        Buff,//Buff
+    }
+}

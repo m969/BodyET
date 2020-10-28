@@ -13,7 +13,9 @@ namespace EGamePlay
 
         public void AddComponent<T>() where T : Component, new()
         {
-            this.Components.Add(typeof(T), new T());
+            var c = new T();
+            c.SetParent(this);
+            this.Components.Add(typeof(T), c);
         }
 
         public void RemoveComponent<T>() where T : Component

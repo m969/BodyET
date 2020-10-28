@@ -95,7 +95,6 @@
     [LabelText("伤害类型")]
     public enum DamageType
     {
-        [HideLabel]
         [LabelText("物理伤害")]
         Physic = 0,
         [LabelText("魔法伤害")]

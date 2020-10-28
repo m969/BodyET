@@ -64,11 +64,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\EGamePlay\Combat\BlackBoard.cs" />
+    <Compile Include="Assets\EGamePlay\Combat\CombatAction\AttachStatusAction.cs" />
     <Compile Include="Assets\EGamePlay\Combat\CombatAction\CombatAction.cs" />
+    <Compile Include="Assets\EGamePlay\Combat\CombatAction\CureAction.cs" />
+    <Compile Include="Assets\EGamePlay\Combat\CombatAction\DamageAction.cs" />
     <Compile Include="Assets\EGamePlay\Combat\CombatBlackBoard.cs" />
     <Compile Include="Assets\EGamePlay\Combat\CombatEntity\CombatEntity.cs" />
     <Compile Include="Assets\EGamePlay\Combat\CombatEntity\CombatListen.cs" />
     <Compile Include="Assets\EGamePlay\Combat\CombatEntity\CombatRun.cs" />
+    <Compile Include="Assets\EGamePlay\Combat\CombatEntity\Component\CombatHealthComponent.cs" />
     <Compile Include="Assets\EGamePlay\Combat\ConfigObject\AttributeConfigObject.cs" />
     <Compile Include="Assets\EGamePlay\Combat\ConfigObject\ClassDesignObject.cs" />
     <Compile Include="Assets\EGamePlay\Combat\ConfigObject\NameArrayObject.cs" />
