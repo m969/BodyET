@@ -4,7 +4,10 @@ using UnityEngine;
 
 namespace EGamePlay.Combat
 {
-    public class CombatManager
+    /// <summary>
+    /// 单位战斗管理器
+    /// </summary>
+    public sealed class UnitCombatManager
     {
         public Skill.SkillManager SkillManager = new Skill.SkillManager();
         public Status.StatusManager StatusManager = new Status.StatusManager();
@@ -22,5 +25,4 @@ namespace EGamePlay.Combat
             StatusManager.Update();
         }
     }
-
 }

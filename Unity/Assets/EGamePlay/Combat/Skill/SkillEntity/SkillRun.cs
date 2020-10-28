@@ -6,7 +6,7 @@ namespace EGamePlay.Combat.Skill
 {
     public class SkillRun
     {
-        public Skill Skill { get; set; }
+        public SkillEntity Skill { get; set; }
         public SkillConfigObject SkillConfigObject => Skill.SkillConfigObject;
         public GameTimer GameTimer { get; set; } = new GameTimer(0.05f);
         public GameObject SkillColliderObj { get; set; }

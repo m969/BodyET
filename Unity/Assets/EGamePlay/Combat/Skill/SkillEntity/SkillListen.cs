@@ -7,7 +7,7 @@ namespace EGamePlay.Combat.Skill
 {
     public class SkillListen
     {
-        public Skill Skill { get; set; }
+        public SkillEntity Skill { get; set; }
         public SkillConfigObject SkillConfigObject => Skill.SkillConfigObject;
         public Transform SkillGuideTrm { get; set; }
 

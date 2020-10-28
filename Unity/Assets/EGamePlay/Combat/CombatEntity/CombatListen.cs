@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EGamePlay.Combat.Status
+namespace EGamePlay.Combat
 {
-    public class StatusListen
+    public class CombatListen
     {
 
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace EGamePlay.Combat.Status
 {
-    public class Status
+    public class StatusEntity : Entity
     {
         public StatusConfigObject StatusConfigObject { get; set; }
         public StatusListen StatusListen { get; set; }

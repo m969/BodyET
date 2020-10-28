@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace EGamePlay.Combat.Skill
 {
-    public class Skill
+    public class SkillEntity : Entity
     {
         public SkillConfigObject SkillConfigObject { get; set; }
         public SkillListen SkillListen { get; set; } = new SkillListen();

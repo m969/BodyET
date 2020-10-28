@@ -8,5 +8,4 @@ namespace EGamePlay.Combat.Status
     {
 
     }
-
 }
