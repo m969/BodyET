@@ -153,13 +153,13 @@
     public enum NumericType
     {
         [LabelText("物理攻击")]
-        PhysicAttack = 0,
-        [LabelText("护甲")]
-        Defense = 1,
+        PhysicAttack = 1,
+        [LabelText("物理护甲")]
+        Defense = 2,
         [LabelText("法术强度")]
-        SpellPower = 2,
-        [LabelText("魔抗")]
-        MagicDefense = 3,
+        SpellPower = 3,
+        [LabelText("魔法抗性")]
+        MagicDefense = 4,
     }
 
     //[Flags]

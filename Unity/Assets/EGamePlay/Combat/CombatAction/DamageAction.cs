@@ -24,17 +24,29 @@ namespace EGamePlay.Combat
         //是否能暴击
         public bool CanCritical { get; set; }
 
+
+        private void BeforeDamage()
+        {
+
+        }
+
         public void ApplyDamage()
         {
+            BeforeDamage();
             Target.ReceiveDamage(DamageValue);
+            AfterDamage();
+        }
+
+        private void AfterDamage()
+        {
+
         }
     }
 
     public enum DamageSource
     {
-        None,
-        Attack,//普攻
-        Skill,//技能
-        Buff,//Buff
+        Attack = 1,//普攻
+        Skill = 2,//技能
+        Buff = 3,//Buff
     }
 }

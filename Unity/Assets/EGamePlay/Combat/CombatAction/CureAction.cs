@@ -12,5 +12,23 @@ namespace EGamePlay.Combat
     {
         //治疗数值
         public int CureValue { get; set; }
+
+
+        private void BeforeCure()
+        {
+
+        }
+
+        public void ApplyCure()
+        {
+            BeforeCure();
+
+            AfterCure();
+        }
+
+        private void AfterCure()
+        {
+
+        }
     }
 }
