@@ -153,13 +153,36 @@
     public enum NumericType
     {
         [LabelText("物理攻击")]
-        PhysicAttack = 1,
+        PhysicAttack = 1001,
         [LabelText("物理护甲")]
-        Defense = 2,
+        Defense = 1002,
         [LabelText("法术强度")]
-        SpellPower = 3,
+        SpellPower = 1003,
         [LabelText("魔法抗性")]
-        MagicDefense = 4,
+        MagicDefense = 1004,
+
+        [LabelText("暴击概率")]
+        CriticalProb = 2001,
+    }
+
+    [LabelText("整形数值")]
+    public enum IntNumericType
+    {
+        [LabelText("物理攻击")]
+        PhysicAttack = 1001,
+        [LabelText("物理护甲")]
+        Defense = 1002,
+        [LabelText("法术强度")]
+        SpellPower = 1003,
+        [LabelText("魔法抗性")]
+        MagicDefense = 1004,
+    }
+
+    [LabelText("浮点型形数值")]
+    public enum FloatNumericType
+    {
+        [LabelText("暴击概率")]
+        CriticalProb = 2001,
     }
 
     //[Flags]

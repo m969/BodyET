@@ -9,7 +9,7 @@ namespace EGamePlay.Combat
         public CombatListen CombatListen { get; set; }
         public CombatRun CombatRun { get; set; }
         public int Health { get; private set; }
-        public NumericBox NumericBox { get; private set; } = new NumericBox();
+        public CombatNumericBox NumericBox { get; private set; } = new CombatNumericBox();
 
 
         public void Awake()
