@@ -13,6 +13,7 @@ namespace EGamePlay.Combat
 
         public int FinalValue()
         {
+            Update();
             return Value;
         }
 
@@ -34,6 +35,7 @@ namespace EGamePlay.Combat
 
         public float FinalValue()
         {
+            Update();
             return Value;
         }
 

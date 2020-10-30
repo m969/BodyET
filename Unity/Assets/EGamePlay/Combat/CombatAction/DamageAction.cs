@@ -33,7 +33,7 @@ namespace EGamePlay.Combat
         public void ApplyDamage()
         {
             BeforeDamage();
-            Target.ReceiveDamage(DamageValue);
+            Target.ReceiveDamage(this);
             AfterDamage();
         }
 
