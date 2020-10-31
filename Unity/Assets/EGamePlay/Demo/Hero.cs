@@ -12,6 +12,7 @@ public sealed class Hero : MonoBehaviour
     public float AnimTime = 0.05f;
     public GameTimer AnimTimer = new GameTimer(0.1f);
     public GameObject AttackPrefab;
+    public GameObject HitEffectPrefab;
 
 
     // Start is called before the first frame update
@@ -45,6 +46,14 @@ public sealed class Hero : MonoBehaviour
             attackEffect.GetComponent<LineRenderer>().SetPosition(0, transform.position);
             attackEffect.GetComponent<LineRenderer>().SetPosition(1, monster.transform.position);
             GameObject.Destroy(attackEffect, 0.05f);
+
+            var vec = transform.position - monster.transform.position;
+            var hitPoint = monster.transform.position + vec.normalized * .6f;
+            hitPoint += Vector3.up;
+            var hitEffect = GameObject.Instantiate(HitEffectPrefab);
+            hitEffect.transform.position = hitPoint;
+            GameObject.Destroy(hitEffect, 0.2f);
+
             CombatEntity.DamageAction.Target = monster.GetComponent<Monster>().CombatEntity;
             CombatEntity.DamageAction.DamageValue = RandomHelper.RandomNumber(100, 999);
             CombatEntity.DamageAction.ApplyDamage();

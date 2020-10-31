@@ -272,8 +272,12 @@ namespace Box2DSharp.Dynamics
         /// <returns></returns>
         public bool DestroyBody(Body body)
         {
-            Debug.Assert(BodyList.Count > 0);
-            Debug.Assert(IsLocked == false);
+            //Debug.Assert(BodyList.Count > 0);
+            //Debug.Assert(IsLocked == false);
+            if (BodyList.Count == 0)
+            {
+                return false;
+            }
             if (IsLocked)
             {
                 return false;

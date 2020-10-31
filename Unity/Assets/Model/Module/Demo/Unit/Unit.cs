@@ -29,6 +29,7 @@ namespace ETModel
 
 		public UnitType UnitType { get; private set; }
 		//public Vector3 Position { get; set; }
+		[BsonIgnore]
 		public Quaternion Quaternion { get; set; }
 		public string name { get; set; }
 		public Vector3 Target { get; set; }

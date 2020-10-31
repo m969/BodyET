@@ -50,7 +50,7 @@ namespace ETModel
             Body ground;
             var bd = new BodyDef();
             ground = World.CreateBody(bd);
-            FixedUpdate = new FixedUpdate(TimeSpan.FromSeconds(1 / 60d), () => { Step(true); });
+            FixedUpdate = new FixedUpdate(TimeSpan.FromSeconds(0.01d), () => { Step(true); });
             FixedUpdate.Start();
         }
 
@@ -89,8 +89,8 @@ namespace ETModel
             if (bodyComponents.ContainsKey(body))
             {
                 bodyComponents.Remove(body);
+                World.DestroyBody(body);
             }
-            World.DestroyBody(body);
         }
 
         private float _dt = 1 / 60f;

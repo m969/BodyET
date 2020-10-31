@@ -28,6 +28,7 @@ namespace ETModel
 
 	public class Body2dComponent : Entity
 	{
+		public Box2dWorldComponent Box2DWorldComponent { get; set; }
 		public System.Action<Body2dComponent> OnBeginContactAction { get; set; }
 		public Body Body { get; set; }
 		public Vector2 Position
@@ -57,13 +58,18 @@ namespace ETModel
 
 		public Body2dComponent CreateBody(float hx, float hy)
 		{
-			this.Body = Parent.Domain.GetComponent<Box2dWorldComponent>().CreateBoxCollider(this, Position.x, Position.y, hx, hy);
+			Box2DWorldComponent = Parent.Domain.GetComponent<Box2dWorldComponent>();
+			this.Body = Box2DWorldComponent.CreateBoxCollider(this, Position.x, Position.y, hx, hy);
 			return this;
 		}
 
 		private Vector2 lastPosition { get; set; }
 		public void Update()
 		{
+			if (Parent.GetComponent<TransformComponent>() == null)
+            {
+				return;
+            }
 			if (Position != lastPosition)
 			{
 				//Log.Debug("Position = " + Position.ToString());
@@ -74,14 +80,21 @@ namespace ETModel
 
 		public override void Dispose()
 		{
-			Body.World.DestroyBody(Body);
 			base.Dispose();
+			Box2DWorldComponent.Remove(Body);
 		}
 
 		public void BeginContact(Contact contact, Body2dComponent other)
 		{
 			Log.Debug($"Body2dComponent BeginContact");
-			OnBeginContactAction?.Invoke(other);
+            try
+            {
+				OnBeginContactAction?.Invoke(other);
+			}
+			catch (System.Exception e)
+            {
+				Log.Error(e);
+            }
 		}
 
 		public void EndContact(Contact contact)

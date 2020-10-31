@@ -39,9 +39,9 @@ namespace ETHotfix
 		{
 			//self.Position = position;
 			self.AddComponent<TransformComponent>().position = position;
-			self.AddComponent<MoveComponent>().Speed = 30;
+			self.AddComponent<MoveComponent>().Speed = 20;
 			self.AddComponent<EntitySyncComponent>();
-			self.AddComponent<Body2dComponent>().CreateBody(.1f, .1f);
+			self.AddComponent<Body2dComponent>().CreateBody(.2f, .2f);
 			self.GetComponent<Body2dComponent>().OnBeginContactAction += self.OnBeginContact;
 		}
 
@@ -54,32 +54,39 @@ namespace ETHotfix
 
 		public static void OnBeginContact(this Bullet self, Body2dComponent other)
 		{
-			if (other.Parent is Unit unit)
-			{
-				if (self.OwnerId != unit.Id)
-				{
-					if (unit.State == 0 || self.IsDisposed)
-					{
-						return;
-					}
-					unit.GetComponent<HealthComponent>().DoDamage(10);
-					self.Dispose();
-				}
-			}
-			if (other.Parent is Monster monster)
-			{
-				if (self.OwnerId != monster.Id || self.IsDisposed)
-				{
-					//if (monster.State == 0)
-					//{
-					//	return;
-					//}
-					monster.GetComponent<HealthComponent>().DoDamage(10);
-					//if (monster.GetComponent<HealthComponent>().HP == 0)
-					//	MonsterComponent.Instance.Remove(monster.Id);
-					self.Dispose();
-				}
-			}
+            try
+            {
+                if (other.Parent is Unit unit)
+                {
+                    if (self.OwnerId != unit.Id)
+                    {
+                        if (unit.State == 0 || self.IsDisposed)
+                        {
+                            return;
+                        }
+                        unit.GetComponent<HealthComponent>().DoDamage(10);
+                        self.Dispose();
+                    }
+                }
+                if (other.Parent is Monster monster)
+                {
+                    if (self.OwnerId != monster.Id || self.IsDisposed)
+                    {
+                        //if (monster.State == 0)
+                        //{
+                        //	return;
+                        //}
+                        monster.GetComponent<HealthComponent>().DoDamage(10);
+                        //if (monster.GetComponent<HealthComponent>().HP == 0)
+                        //	MonsterComponent.Instance.Remove(monster.Id);
+                        self.Dispose();
+                    }
+                }
+            }
+            catch (System.Exception e)
+            {
+				Log.Error(e);
+            }
 		}
 
 		public static void Destroy(this Bullet self)
