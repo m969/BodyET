@@ -70,7 +70,6 @@
     <None Include="Assets\Res\Config\GlobalProto.txt" />
     <None Include="Assets\Samples\UI Builder\1.0.0-preview.3\OptionsPanel\options_panel.uxml" />
     <None Include="Assets\link.xml" />
-    <None Include="Assets\Oriental Fantasy Character - Berserker Grade 0\Readme.txt" />
     <None Include="Assets\Res\Config\BuffConfig.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity 2019.4.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

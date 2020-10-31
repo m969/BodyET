@@ -19,6 +19,64 @@ namespace Sirenix.OdinInspector.Demos
     {
         [HealthBar(100)]
         public float Health;
+
+        [HealthPointBar]
+        public HealthPoint HealthPoint;
+    }
+
+    [Serializable]
+    public class HealthPoint
+    {
+        private int value = 100;
+        [ShowInInspector]
+        public int Value 
+        { 
+            get
+            {
+                return value;
+            }
+            set
+            {
+                if (value > Max)
+                {
+                    value = Max;
+                }
+                if (value < 0)
+                {
+                    return;
+                }
+                this.value = value;
+            }
+        }
+        private int max = 100;
+        [ShowInInspector]
+        public int Max
+        {
+            get
+            {
+                return max;
+            }
+            set
+            {
+                if (value < Value)
+                {
+                    Value = value;
+                }
+                if (value < 0)
+                {
+                    return;
+                }
+                this.max = value;
+            }
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
+    public class HealthPointBarAttribute : Attribute
+    {
+        public HealthPointBarAttribute()
+        {
+        }
     }
 
     // Attribute used by HealthBarAttributeDrawer.
@@ -40,8 +98,6 @@ namespace Sirenix.OdinInspector.Demos
     {
         protected override void DrawPropertyLayout(GUIContent label)
         {
-            // Call the next drawer, which will draw the float field.
-            this.CallNextDrawer(label);
 
             // Get a rect to draw the health-bar on. You Could also use GUILayout instead, but using rects makes it simpler to draw the health bar.
             Rect rect = EditorGUILayout.GetControlRect();
@@ -51,6 +107,33 @@ namespace Sirenix.OdinInspector.Demos
             SirenixEditorGUI.DrawSolidRect(rect, new Color(0f, 0f, 0f, 0.3f), false);
             SirenixEditorGUI.DrawSolidRect(rect.SetWidth(rect.width * width), Color.red, false);
             SirenixEditorGUI.DrawBorders(rect, 1);
+
+            // Call the next drawer, which will draw the float field.
+            this.CallNextDrawer(label);
+
+        }
+    }
+
+    public class HealthPointBarAttributeDrawer : OdinAttributeDrawer<HealthPointBarAttribute, HealthPoint>
+    {
+        protected override void DrawPropertyLayout(GUIContent label)
+        {
+
+            // Get a rect to draw the health-bar on. You Could also use GUILayout instead, but using rects makes it simpler to draw the health bar.
+            Rect rect = EditorGUILayout.GetControlRect();
+
+            // Draw the health bar.
+            if (this.ValueEntry.SmartValue.Max > 0)
+            {
+                float width = Mathf.Clamp01(this.ValueEntry.SmartValue.Value / (float)this.ValueEntry.SmartValue.Max);
+                SirenixEditorGUI.DrawSolidRect(rect, new Color(0f, 0f, 0f, 0.3f), false);
+                SirenixEditorGUI.DrawSolidRect(rect.SetWidth(rect.width * width), Color.green, false);
+                SirenixEditorGUI.DrawBorders(rect, 1);
+            }
+
+            // Call the next drawer, which will draw the float field.
+            this.CallNextDrawer(label);
+
         }
     }
 

@@ -119,6 +119,7 @@ public class ETMessageDefineObject : SerializedScriptableObject
     //public ETProtoPackageType PackageName = ETProtoPackageType.ETHotfix;
     [Space(20)]
     [LabelText("消息类列表")]
+    [ListDrawerSettings(Expanded = true, NumberOfItemsPerPage = 30)]
     public List<MessageClass> MessageClasses;
     //public List<MessageParamConfig> MessageParamConfigs = new List<MessageParamConfig>();
 
@@ -199,7 +200,7 @@ public class ETMessageDefineObject : SerializedScriptableObject
     public bool ImportMessagesGroup;
 
     [ToggleGroup("ImportMessagesGroup")]
-    [Button("反向导入消息类配置", ButtonHeight = 30)]
+    [Button("反向导入消息类列表", ButtonHeight = 30)]
     public void ImportMessages()
     {
         MessageClasses = ParseMessages(FileName.ToString());
@@ -345,6 +346,7 @@ public class MessageClass
 
     [ToggleGroup("Enabled", CollapseOthersOnExpand = true)]
     [LabelText("消息参数列表")]
+    [ListDrawerSettings(Expanded = true, NumberOfItemsPerPage = 10)]
     public List<MessageParamConfig> MessageParamConfigs = new List<MessageParamConfig>();
 }
 
@@ -353,7 +355,7 @@ public class MessageParamConfig
 {
     [HorizontalGroup(80)]
     [HideLabel]
-    public string ParamName;
+    public string ParamName = "Param1";
 
     [HorizontalGroup(100)]
     [HideLabel]

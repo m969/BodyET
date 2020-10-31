@@ -603,6 +603,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 0.02
+  AttackPrefab: {fileID: 453928607068391413, guid: ab9c12b4a40a2a249800ef30b3607ff1,
+    type: 3}
 --- !u!1 &1186170163
 GameObject:
   m_ObjectHideFlags: 0
