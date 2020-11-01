@@ -762,10 +762,6 @@
       <Project>{E15BADD2-3A26-309A-AB0F-DC5B08044350}</Project>
       <Name>Unity.ThirdParty</Name>
     </ProjectReference>
-    <ProjectReference Include="EGamePlay.Combat.csproj">
-      <Project>{7DED0F00-163E-E1BC-33AB-D4F60159A670}</Project>
-      <Name>EGamePlay.Combat</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

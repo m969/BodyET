@@ -737,10 +737,6 @@
       <Project>{2662B409-6332-1E56-D797-C9025C53BDD6}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
-    <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{CD8C9303-404B-FB8D-6B9B-21988D5CAC0A}</Project>
-      <Name>Assembly-CSharp</Name>
-    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
       <Project>{F534D6C4-3368-032B-289C-A943CC171719}</Project>
       <Name>Assembly-CSharp-Editor-firstpass</Name>
@@ -757,10 +753,6 @@
       <Project>{686145E0-A51B-685E-EF99-A1034C8B63AB}</Project>
       <Name>Sirenix.OdinInspector.CompatibilityLayer.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="EGamePlay.Combat.csproj">
-      <Project>{7DED0F00-163E-E1BC-33AB-D4F60159A670}</Project>
-      <Name>EGamePlay.Combat</Name>
-    </ProjectReference>
     <ProjectReference Include="Sirenix.OdinInspector.CompatibilityLayer.csproj">
       <Project>{E387569F-725F-F5C8-517B-584709B7D5D8}</Project>
       <Name>Sirenix.OdinInspector.CompatibilityLayer</Name>
@@ -772,10 +764,6 @@
     <ProjectReference Include="Unity.Model.csproj">
       <Project>{B4BF9894-F5D9-41C4-13E3-3F26F7700E29}</Project>
       <Name>Unity.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="EGamePlay.Editor.csproj">
-      <Project>{B22D9189-2062-ECF6-7233-958FC039A47C}</Project>
-      <Name>EGamePlay.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Sirenix.OdinValidator.csproj">
       <Project>{A315CBBB-F9CB-FB80-1F01-767A894B6CFD}</Project>
