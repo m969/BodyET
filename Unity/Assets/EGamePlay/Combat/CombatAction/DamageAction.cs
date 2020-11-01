@@ -27,7 +27,8 @@ namespace EGamePlay.Combat
 
         private void BeforeDamage()
         {
-
+            IsCritical = 0.6f < Creator.NumericBox.CriticalProb_F.Value;
+            DamageValue = Mathf.Max(0, Creator.NumericBox.PhysicAttack_I.Value - Target.NumericBox.PhysicDefense_I.Value);
         }
 
         public void ApplyDamage()

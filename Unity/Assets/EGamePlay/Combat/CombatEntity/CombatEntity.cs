@@ -9,29 +9,44 @@ namespace EGamePlay.Combat
     {
         public CombatListen CombatListen { get; set; }
         public CombatRun CombatRun { get; set; }
-        public HealthPoint Health { get; private set; } = new HealthPoint();
+        public HealthPoint HealthPoint { get; private set; } = new HealthPoint();
         public CombatNumericBox NumericBox { get; private set; } = new CombatNumericBox();
-        public DamageAction DamageAction { get; private set; } = new DamageAction();
-        public Action<DamageAction> OnReceiveDamage { get; set; }
+        public CombatActionTrigger ActionTrigger { get; set; } = new CombatActionTrigger();
 
 
         public void Initialize()
         {
             NumericBox.Initialize();
-            Health.SetMaxValue(99_999);
-            Health.Reset();
-            DamageAction.Creator = this;
+            ActionTrigger.Initialize();
+            HealthPoint.SetMaxValue(99_999);
+            HealthPoint.Reset();
         }
 
-        public void ReceiveDamage(DamageAction damageAction)
+        public void AddListener(CombatActionType actionType, Action<CombatAction> action)
         {
-            Health.Minus(damageAction.DamageValue);
-            OnReceiveDamage?.Invoke(damageAction);
+            ActionTrigger.AddListener(actionType, action);
+        }
+
+        public void RemoveListener(CombatActionType actionType, Action<CombatAction> action)
+        {
+            ActionTrigger.RemoveListener(actionType, action);
+        }
+
+        public void CallAction(CombatActionType actionType, CombatAction action)
+        {
+            ActionTrigger.CallAction(actionType, action);
+        }
+
+        public void ReceiveDamage(CombatAction combatAction)
+        {
+            var damageAction = combatAction as DamageAction;
+            HealthPoint.Minus(damageAction.DamageValue);
+            ActionTrigger.CallAction(CombatActionType.CauseDamage, combatAction);
         }
 
         public void ReceiveCure(int cure)
         {
-            Health.Add(cure);
+            HealthPoint.Add(cure);
         }
     }
 }

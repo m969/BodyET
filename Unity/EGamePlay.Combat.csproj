@@ -64,8 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\EGamePlay\Combat\BlackBoard.cs" />
-    <Compile Include="Assets\EGamePlay\Combat\CombatAction\AssignAffectAction.cs" />
+    <Compile Include="Assets\EGamePlay\Combat\CombatAction\AssignEffectAction.cs" />
     <Compile Include="Assets\EGamePlay\Combat\CombatAction\CombatAction.cs" />
+    <Compile Include="Assets\EGamePlay\Combat\CombatAction\CombatActionTrigger.cs" />
+    <Compile Include="Assets\EGamePlay\Combat\CombatAction\CombatActionType.cs" />
     <Compile Include="Assets\EGamePlay\Combat\CombatAction\CureAction.cs" />
     <Compile Include="Assets\EGamePlay\Combat\CombatAction\DamageAction.cs" />
     <Compile Include="Assets\EGamePlay\Combat\CombatBlackBoard.cs" />

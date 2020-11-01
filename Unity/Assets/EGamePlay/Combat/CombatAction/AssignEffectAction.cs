@@ -8,12 +8,12 @@ namespace EGamePlay.Combat
     /// <summary>
     /// 赋给效果行为
     /// </summary>
-    public class AssignAffectAction : CombatAction
+    public class AssignEffectAction : CombatAction
     {
         //效果类型
-        public AffectType AffectType { get; set; }
+        public EffectType EffectType { get; set; }
         //效果数值
-        public string AffectValue { get; set; }
+        public string EffectValue { get; set; }
 
 
         private void BeforeAssign()
@@ -34,7 +34,7 @@ namespace EGamePlay.Combat
         }
     }
 
-    public enum AffectType
+    public enum EffectType
     {
         DamageAffect = 1,
         NumericModify = 2,

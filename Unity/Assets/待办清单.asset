@@ -27,8 +27,10 @@ MonoBehaviour:
   - Title: "demo\u6B7B\u4EA1\u590D\u6D3B\u6D41\u7A0B"
     Description: "\u63CF\u8FF0"
   - Title: "\u78B0\u649E\u76D2\u4E0E\u53EF\u89C6\u6280\u80FD\u573A"
-    Description: "\u63CF\u8FF0"
+    Description: "LockstepCollision\u78B0\u649E\u7CFB\u7EDF"
   - Title: Hero Builder Editor
     Description: "\u63CF\u8FF0"
   - Title: "\u6280\u80FD\u6548\u679C\u6570\u503C\u516C\u5F0F\u7F16\u8F91\u9762\u677F"
     Description: "\u63CF\u8FF0"
+  - Title: "\u5B9E\u4F53\u5C5E\u6027\u540C\u6B65\u673A\u5236\u4F18\u5316"
+    Description: ReactProperty<string, SyncFlag.AllClients>

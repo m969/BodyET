@@ -2,63 +2,109 @@
 
 namespace EGamePlay.Combat
 {
-    public class IntNumericItem
+    /// <summary>
+    /// 整形数值
+    /// </summary>
+    public class IntNumeric
     {
-        public int Value;
-        public int Base { get; set; }
-        public int Add { get; set; }
-        public int PctAdd { get; set; }
-        public int FinalAdd { get; set; }
-        public int FinalPctAdd { get; set; }
+        public int Value { get; private set; }
+        public int baseValue { get; private set; }
+        public int add { get; private set; }
+        public int pctAdd { get; private set; }
+        public int finalAdd { get; private set; }
+        public int finalPctAdd { get; private set; }
 
-        public int FinalValue()
+        public void Initialize()
         {
+            baseValue = add = pctAdd = finalAdd = finalPctAdd = 0;
+        }
+        public int SetBase(int value)
+        {
+            baseValue = value;
             Update();
-            return Value;
+            return baseValue;
+        }
+        public int Add(int value)
+        {
+            add += value;
+            Update();
+            return add;
+        }
+        public int PctAdd(int value)
+        {
+            pctAdd += value;
+            Update();
+            return pctAdd;
+        }
+        public int FinalAdd(int value)
+        {
+            finalAdd += value;
+            Update();
+            return finalAdd;
+        }
+        public int FinalPctAdd(int value)
+        {
+            finalPctAdd += value;
+            Update();
+            return finalPctAdd;
         }
 
         public void Update()
         {
-            // 一个数值可能会多种情况影响 比如速度 加个buff可能增加速度绝对值100 也有些buff增加10%速度 所以一个值可以由5个值进行控制其最终结果
-            Value = (int)((((Base + Add) * (100 + PctAdd) / 100f) + FinalAdd) * (100 + FinalPctAdd) / 100f);
+            var value1 = baseValue;
+            var value2 = (value1 + add) * (100 + pctAdd) / 100f;
+            var value3 = (value2 + finalAdd) * (100 + finalPctAdd) / 100f;
+            Value = (int)value3;
         }
     }
 
-    public class FloatNumericItem
+    /// <summary>
+    /// 浮点型数值
+    /// </summary>
+    public class FloatNumeric
     {
-        public float Value;
+        private float value;
+        public float Value
+        {
+            get
+            {
+                Update();
+                return value;
+            }
+        }
         public float Base { get; set; }
         public float Add { get; set; }
         public int   PctAdd { get; set; }
         public float FinalAdd { get; set; }
         public int   FinalPctAdd { get; set; }
 
-        public float FinalValue()
-        {
-            Update();
-            return Value;
-        }
-
         public void Update()
         {
-            // 一个数值可能会多种情况影响 比如速度 加个buff可能增加速度绝对值100 也有些buff增加10%速度 所以一个值可以由5个值进行控制其最终结果
-            Value = (((Base + Add) * (100 + PctAdd) / 100f) + FinalAdd) * (100 + FinalPctAdd) / 100f;
+            var value1 = Base;
+            var value2 = (value1 + Add) * (100 + PctAdd) / 100f;
+            var value3 = (value2 + FinalAdd) * (100 + FinalPctAdd) / 100f;
+            value = value3;
         }
     }
 
+    /// <summary>
+    /// 战斗数值匣子，在这里管理所有角色战斗数值的存储、变更、刷新等
+    /// </summary>
     public class CombatNumericBox
 	{
 		//public Dictionary<int, NumericItem> NumericItems = new Dictionary<int, NumericItem>();
 		//public Dictionary<int, int> IntNumericBox = new Dictionary<int, int>();
         //public Dictionary<int, float> FloatNumericBox = new Dictionary<int, float>();
-        public IntNumericItem PhysicAttack_I = new IntNumericItem();
-        public FloatNumericItem CriticalProb_F = new FloatNumericItem();
+        public IntNumeric PhysicAttack_I = new IntNumeric();
+        public IntNumeric PhysicDefense_I = new IntNumeric();
+        public FloatNumeric CriticalProb_F = new FloatNumeric();
 
 
         public void Initialize()
 		{
             // 这里初始化base值
-            PhysicAttack_I.Base = 1;
+            PhysicAttack_I.SetBase(1000);
+            PhysicDefense_I.SetBase(300);
             CriticalProb_F.Base = 0.5f;
         }
 
@@ -165,3 +211,67 @@ namespace EGamePlay.Combat
 		//}
 	}
 }
+
+/*
+    /// <summary>
+    /// 整形数值
+    /// </summary>
+    public class IntNumeric<T> where T : struct, ope
+    {
+        public T Value { get; private set; }
+        public T baseValue { get; private set; }
+        public T add { get; private set; }
+        public int pctAdd { get; private set; }
+        public T finalAdd { get; private set; }
+        public int finalPctAdd { get; private set; }
+
+        public void Initialize()
+        {
+            baseValue = add = pctAdd = finalAdd = finalPctAdd = default(T);
+        }
+        public T SetBase(T value)
+        {
+            baseValue = value;
+            Update();
+            return baseValue;
+        }
+        public int Add(int value)
+        {
+            add += value;
+            Update();
+            return add;
+        }
+        public int PctAdd(int value)
+        {
+            pctAdd += value;
+            Update();
+            return pctAdd;
+        }
+        public int FinalAdd(int value)
+        {
+            finalAdd += value;
+            Update();
+            return finalAdd;
+        }
+        public int FinalPctAdd(int value)
+        {
+            finalPctAdd += value;
+            Update();
+            return finalPctAdd;
+        }
+
+        public void Update()
+        {
+            if (baseValue is int value1 && add is int addValue && finalAdd is int finalAddValue)
+            {
+                var value2 = (value1 + addValue) * (100 + pctAdd) / 100f;
+                var value3 = (value2 + finalAddValue) * (100 + finalPctAdd) / 100f;
+                Value = value3;
+            }
+            //var value1 = baseValue;
+            //var value2 = (value1 + add) * (100 + pctAdd) / 100f;
+            //var value3 = (value2 + finalAdd) * (100 + finalPctAdd) / 100f;
+            //Value = (int)value3;
+        }
+    }
+ */
