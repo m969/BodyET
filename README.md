@@ -6,7 +6,7 @@ TO DO：
 
 
 # 简述：
-博客文章：https://www.jianshu.com/p/29464aa1a6b9
+博客文章：https://zhuanlan.zhihu.com/p/271195695
 
 
 ## 基于旧版ET6.0，实现了一套实体、组件属性自动同步的流程（类似KBEngine的属性自动同步），另外集成了Box2dSharp物理库，并基于这两个做了一个topdpwn射击demo。
