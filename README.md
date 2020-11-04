@@ -25,7 +25,7 @@
 
 
 # To Do：
-调通Bullet碰撞流程
+调通BulletSharp碰撞流程
 
 集成LockstepCollision定点数碰撞库：https://github.com/JiepengTan/LockstepCollision
 
