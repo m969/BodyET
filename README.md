@@ -30,3 +30,6 @@
 集成LockstepCollision定点数碰撞库：https://github.com/JiepengTan/LockstepCollision
 
 集成EGamePlay战斗框架：https://github.com/m969/EGamePlay
+
+# 引用：
+ET框架仓库地址：https://github.com/egametang/ET
